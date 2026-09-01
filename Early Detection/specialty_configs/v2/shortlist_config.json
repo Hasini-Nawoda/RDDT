@@ -1,0 +1,9 @@
+{
+  "shortlist_specialties": [
+    "ortho",
+    "cardio",
+    "neuro"
+  ],
+  "shortlist_min_specialties": 2,
+  "shortlist_n": null
+}

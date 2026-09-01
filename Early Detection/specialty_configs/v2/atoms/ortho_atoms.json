@@ -1,0 +1,1036 @@
+{
+  "specialty": "ortho",
+  "schema_notes": "Each atom = one clinical concept, captured from every angle EHR data actually uses it: clinical names, abbreviations, misspellings, and every code system (ICD-10, ICD-9, SNOMED, CPT, HCPCS). Every code carries match_role: best (strongest single code) | related (weaker but still positive) | differential (looks similar, must NOT count as a match — kept here so it's documented, not silently re-added later).",
+  "atoms": [
+    {
+      "atom_id": "cts_any",
+      "preferred_name": "Carpal tunnel syndrome (any laterality)",
+      "clinical_names": [
+        "Carpal tunnel syndrome",
+        "Median nerve compression at the wrist"
+      ],
+      "abbreviations": [
+        "CTS"
+      ],
+      "keywords": {
+        "canonical": [
+          "carpal tunnel",
+          "median neuropathy at wrist",
+          "cts release",
+          "ctr"
+        ],
+        "fuzzy_variants": [
+          "carpel tunnel",
+          "carpal tunel",
+          "carpal tunnal",
+          "carpaltunnel"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "G56.03",
+            "description": "Carpal tunnel syndrome, bilateral upper limbs",
+            "match_role": "related"
+          },
+          {
+            "code": "G56.01",
+            "description": "Carpal tunnel syndrome, right upper limb",
+            "match_role": "related"
+          },
+          {
+            "code": "G56.02",
+            "description": "Carpal tunnel syndrome, left upper limb",
+            "match_role": "related"
+          },
+          {
+            "code": "G56.00",
+            "description": "Carpal tunnel syndrome, unspecified upper limb",
+            "match_role": "related"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "57406009",
+            "description": "Carpal tunnel syndrome",
+            "match_role": "best"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "20526",
+            "description": "Injection, therapeutic; carpal tunnel",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "cts_bilateral",
+      "preferred_name": "Bilateral carpal tunnel syndrome",
+      "clinical_names": [
+        "Carpal tunnel syndrome, bilateral upper limbs"
+      ],
+      "abbreviations": [
+        "BCT",
+        "bilateral CTS",
+        "b/l CTS"
+      ],
+      "keywords": {
+        "canonical": [
+          "bilateral carpal tunnel",
+          "bilateral cts",
+          "carpal tunnel both wrists",
+          "both wrists",
+          "carpal tunnel surgery both",
+          "cts both wrists"
+        ],
+        "fuzzy_variants": [
+          "bilateral carpel tunnel",
+          "b/l carpal tunnel",
+          "bilat cts"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "G56.03",
+            "description": "Carpal tunnel syndrome, bilateral upper limbs",
+            "match_role": "best"
+          },
+          {
+            "code": "G56.13",
+            "description": "Other lesions of median nerve, bilateral upper limbs",
+            "match_role": "related"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "1303624004",
+            "description": "Bilateral carpal tunnel release",
+            "match_role": "best"
+          },
+          {
+            "code": "293871000119108",
+            "description": "Carpal tunnel syndrome of right wrist",
+            "match_role": "related"
+          },
+          {
+            "code": "293861000119102",
+            "description": "Carpal tunnel syndrome of left wrist",
+            "match_role": "related"
+          },
+          {
+            "code": "397828008",
+            "description": "Median neuropathy",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [],
+        "hcpcs": []
+      },
+      "notes": "Laterality-pair rule (G56.01 on one row + G56.02 on another row for the same patient) is handled separately in the SQL pipeline, not via a code here — see sql_generator.py has_g5601/has_g5602.",
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "cts_recurrent",
+      "preferred_name": "Recurrent / revision carpal tunnel syndrome",
+      "clinical_names": [
+        "Recurrent carpal tunnel syndrome",
+        "Revision carpal tunnel release"
+      ],
+      "abbreviations": [
+        "recurrent CTS",
+        "revision CTR"
+      ],
+      "keywords": {
+        "canonical": [
+          "recurrent carpal tunnel",
+          "recurrent cts",
+          "intractable carpal",
+          "repeat carpal tunnel",
+          "revision carpal tunnel",
+          "contralateral carpal tunnel release",
+          "flexor tenosynovectomy",
+          "unresolved median neuropathy"
+        ],
+        "fuzzy_variants": [
+          "recurrant carpal tunnel",
+          "repeat ctr"
+        ]
+      },
+      "codes": {
+        "icd10": [],
+        "icd9": [],
+        "snomed": [],
+        "cpt": [],
+        "hcpcs": []
+      },
+      "notes": "No dedicated code system captures 'recurrent' as distinct from a first-time CTS diagnosis — this atom is keyword-only by design; recurrence is a clinical-narrative fact, not a billable concept.",
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "ctr_any",
+      "preferred_name": "Carpal tunnel release procedure (any technique)",
+      "clinical_names": [
+        "Carpal tunnel release",
+        "Median nerve decompression at the wrist"
+      ],
+      "abbreviations": [
+        "CTR"
+      ],
+      "keywords": {
+        "canonical": [
+          "carpal tunnel release",
+          "carpal tunnel surgery",
+          "ctr surgery",
+          "endoscopic carpal tunnel"
+        ],
+        "fuzzy_variants": [
+          "carpel tunnel surgery"
+        ]
+      },
+      "codes": {
+        "icd10": [],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "171841007",
+            "description": "Endoscopic carpal tunnel release",
+            "match_role": "best"
+          },
+          {
+            "code": "47534009",
+            "description": "Carpal tunnel decompression / release",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "64721",
+            "description": "Neuroplasty/transposition, median nerve at carpal tunnel (open CTR)",
+            "match_role": "best"
+          },
+          {
+            "code": "29848",
+            "description": "Endoscopic release of transverse carpal ligament",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "biceps_rupture",
+      "preferred_name": "Spontaneous distal biceps tendon rupture (\"Popeye sign\")",
+      "clinical_names": [
+        "Spontaneous rupture of distal biceps tendon",
+        "Atraumatic biceps tendon rupture"
+      ],
+      "abbreviations": [
+        "BTR"
+      ],
+      "keywords": {
+        "canonical": [
+          "biceps tendon rupture",
+          "distal biceps tear",
+          "distal biceps rupture",
+          "popeye sign",
+          "popeye deformity",
+          "atraumatic biceps rupture",
+          "spontaneous biceps tear"
+        ],
+        "fuzzy_variants": [
+          "bicep tendon rupture",
+          "bicep rupture",
+          "poppeye sign"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M66.821",
+            "description": "Spontaneous rupture of other tendons, right upper arm",
+            "match_role": "best"
+          },
+          {
+            "code": "M66.822",
+            "description": "Spontaneous rupture of other tendons, left upper arm",
+            "match_role": "best"
+          },
+          {
+            "code": "M66.829",
+            "description": "Spontaneous rupture of other tendons, unspecified upper arm",
+            "match_role": "best"
+          },
+          {
+            "code": "M66.80",
+            "description": "Spontaneous rupture of other tendons, unspecified site",
+            "match_role": "related"
+          },
+          {
+            "code": "M66.89",
+            "description": "Spontaneous rupture of other tendons, multiple sites",
+            "match_role": "related"
+          },
+          {
+            "code": "M66.9",
+            "description": "Spontaneous rupture of unspecified tendon",
+            "match_role": "related"
+          },
+          {
+            "code": "S46.211A",
+            "description": "Strain of muscle/tendon, other parts of biceps, right arm, initial encounter",
+            "match_role": "differential"
+          },
+          {
+            "code": "S46.221A",
+            "description": "Strain of muscle/tendon, other parts of biceps, left arm, initial encounter",
+            "match_role": "differential"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "428883008",
+            "description": "Rupture of biceps tendon",
+            "match_role": "best"
+          },
+          {
+            "code": "86128003",
+            "description": "Rupture of tendon of biceps, long head",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "24342",
+            "description": "Reinsertion of ruptured biceps or triceps tendon, distal, with or without tendon graft",
+            "match_role": "best"
+          }
+        ],
+        "hcpcs": []
+      },
+      "notes": "S46.2xx codes are TRAUMA (strain), not the spontaneous/atraumatic rupture that's actually ATTR-specific — marked differential so they're never counted as a positive hit, but documented so nobody re-adds them by mistake.",
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "trigger_finger",
+      "preferred_name": "Trigger finger / stenosing tenosynovitis",
+      "clinical_names": [
+        "Trigger finger",
+        "Stenosing tenosynovitis",
+        "Flexor tenosynovitis"
+      ],
+      "abbreviations": [],
+      "keywords": {
+        "canonical": [
+          "trigger finger",
+          "trigger digit",
+          "trigger thumb",
+          "stenosing tenosynovitis",
+          "flexor tenosynovitis",
+          "flexor synovitis",
+          "tenosynovial thickening",
+          "a1 pulley release",
+          "flexor tendon clicking",
+          "tenosynovial biopsy"
+        ],
+        "fuzzy_variants": [
+          "trigger finger syndrome",
+          "steno tenosynovitis"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M65.30",
+            "description": "Trigger finger, unspecified finger",
+            "match_role": "best"
+          },
+          {
+            "code": "M65.311",
+            "description": "Trigger thumb, right",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.312",
+            "description": "Trigger thumb, left",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.319",
+            "description": "Trigger thumb, unspecified",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.321",
+            "description": "Trigger finger, right index",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.322",
+            "description": "Trigger finger, left index",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.329",
+            "description": "Trigger finger, unspecified index",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.331",
+            "description": "Trigger finger, right middle",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.332",
+            "description": "Trigger finger, left middle",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.339",
+            "description": "Trigger finger, unspecified middle",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.341",
+            "description": "Trigger finger, right ring",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.342",
+            "description": "Trigger finger, left ring",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.349",
+            "description": "Trigger finger, unspecified ring",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.351",
+            "description": "Trigger finger, right little",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.352",
+            "description": "Trigger finger, left little",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.359",
+            "description": "Trigger finger, unspecified little",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.841",
+            "description": "Other synovitis and tenosynovitis, right hand",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.842",
+            "description": "Other synovitis and tenosynovitis, left hand",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.849",
+            "description": "Other synovitis and tenosynovitis, unspecified hand",
+            "match_role": "related"
+          },
+          {
+            "code": "M65.9",
+            "description": "Synovitis and tenosynovitis, unspecified",
+            "match_role": "related"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "1539003",
+            "description": "Acquired trigger finger",
+            "match_role": "best"
+          },
+          {
+            "code": "239987006",
+            "description": "Triggering of digit",
+            "match_role": "related"
+          },
+          {
+            "code": "239267000",
+            "description": "Release of trigger finger",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "26055",
+            "description": "Tendon sheath incision (e.g., for trigger finger)",
+            "match_role": "best"
+          },
+          {
+            "code": "20550",
+            "description": "Injection(s); single tendon sheath, or ligament, aponeurosis",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "lumbar_stenosis",
+      "preferred_name": "Lumbar spinal stenosis",
+      "clinical_names": [
+        "Lumbar spinal stenosis",
+        "Neurogenic claudication"
+      ],
+      "abbreviations": [
+        "LSS",
+        "LF (ligamentum flavum, biopsy context)"
+      ],
+      "keywords": {
+        "canonical": [
+          "lumbar spinal stenosis",
+          "lumbar stenosis",
+          "spinal stenosis",
+          "neurogenic claudication",
+          "ligamentum flavum",
+          "ligamentum flavum hypertrophy",
+          "posterior lumbar decompression",
+          "laminectomy",
+          "ligamentum flavum specimen",
+          "congo red positive ligament",
+          "apple-green birefringence"
+        ],
+        "fuzzy_variants": [
+          "ligamentum flavum hypertophy",
+          "lumbar spinal stenoses"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M48.062",
+            "description": "Spinal stenosis, lumbar region with neurogenic claudication",
+            "match_role": "best"
+          },
+          {
+            "code": "M48.061",
+            "description": "Spinal stenosis, lumbar region without neurogenic claudication",
+            "match_role": "related"
+          },
+          {
+            "code": "M48.06",
+            "description": "Spinal stenosis, lumbar region",
+            "match_role": "related"
+          },
+          {
+            "code": "M48.07",
+            "description": "Spinal stenosis, lumbosacral region",
+            "match_role": "related"
+          },
+          {
+            "code": "M48.00",
+            "description": "Spinal stenosis, site unspecified",
+            "match_role": "related"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "18347007",
+            "description": "Spinal stenosis of lumbar region",
+            "match_role": "best"
+          },
+          {
+            "code": "76107001",
+            "description": "Spinal stenosis",
+            "match_role": "related"
+          },
+          {
+            "code": "303081002",
+            "description": "Neurogenic claudication",
+            "match_role": "related"
+          },
+          {
+            "code": "302129007",
+            "description": "Decompression of lumbar spine",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "63047",
+            "description": "Laminectomy, facetectomy and foraminotomy (uni/bilateral); lumbar",
+            "match_role": "best"
+          },
+          {
+            "code": "63030",
+            "description": "Laminotomy (hemilaminectomy) with decompression of nerve root(s); one interspace, lumbar",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "rotator_cuff",
+      "preferred_name": "Rotator cuff tear / repair",
+      "clinical_names": [
+        "Rotator cuff tear",
+        "Rupture of rotator cuff of shoulder"
+      ],
+      "abbreviations": [],
+      "keywords": {
+        "canonical": [
+          "rotator cuff",
+          "rotator cuff tear",
+          "rotator cuff repair",
+          "shoulder repair"
+        ],
+        "fuzzy_variants": [
+          "rotator cup",
+          "rotater cuff"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M75.100",
+            "description": "Rotator cuff tear or rupture, not specified as traumatic, unspecified shoulder",
+            "match_role": "best"
+          },
+          {
+            "code": "M75.101",
+            "description": "Rotator cuff tear or rupture, not specified as traumatic, right shoulder",
+            "match_role": "related"
+          },
+          {
+            "code": "M75.102",
+            "description": "Rotator cuff tear or rupture, not specified as traumatic, left shoulder",
+            "match_role": "related"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "926335004",
+            "description": "Rupture of rotator cuff of shoulder",
+            "match_role": "best"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "29827",
+            "description": "Arthroscopic rotator cuff repair",
+            "match_role": "best"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "arthroplasty",
+      "preferred_name": "Hip or knee joint replacement (arthroplasty)",
+      "clinical_names": [
+        "Total knee arthroplasty",
+        "Total hip arthroplasty",
+        "Joint replacement"
+      ],
+      "abbreviations": [
+        "TKA",
+        "THA"
+      ],
+      "keywords": {
+        "canonical": [
+          "knee replacement",
+          "hip replacement",
+          "total knee",
+          "total hip",
+          "arthroplasty",
+          "tka",
+          "tha",
+          "joint replacement"
+        ],
+        "fuzzy_variants": [
+          "knee replacment",
+          "hip replacment"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "Z96.641",
+            "description": "Presence of right artificial hip joint",
+            "match_role": "related"
+          },
+          {
+            "code": "Z96.642",
+            "description": "Presence of left artificial hip joint",
+            "match_role": "related"
+          },
+          {
+            "code": "Z96.651",
+            "description": "Presence of right artificial knee joint",
+            "match_role": "related"
+          },
+          {
+            "code": "Z96.652",
+            "description": "Presence of left artificial knee joint",
+            "match_role": "related"
+          },
+          {
+            "code": "M17.9",
+            "description": "Osteoarthritis of knee, unspecified",
+            "match_role": "differential"
+          },
+          {
+            "code": "M16.9",
+            "description": "Osteoarthritis of hip, unspecified",
+            "match_role": "differential"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "609588000",
+            "description": "Total knee arthroplasty",
+            "match_role": "best"
+          },
+          {
+            "code": "304120007",
+            "description": "Total hip replacement prosthesis",
+            "match_role": "related"
+          },
+          {
+            "code": "239873007",
+            "description": "Osteoarthritis of knee",
+            "match_role": "differential"
+          },
+          {
+            "code": "239872002",
+            "description": "Osteoarthritis of hip",
+            "match_role": "differential"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "27447",
+            "description": "Arthroplasty, knee, condyle and plateau (TKA)",
+            "match_role": "best"
+          },
+          {
+            "code": "27130",
+            "description": "Arthroplasty, acetabular and proximal femoral prosthetic replacement (THA)",
+            "match_role": "best"
+          }
+        ],
+        "hcpcs": []
+      },
+      "notes": "Z96.64x/65x reported as NOT present in the local ICD_DESCRIPTION.csv reference in earlier review — CPT 27447/27130 is the more reliable structured signal for this atom until that reference gap is fixed. Plain osteoarthritis codes (M17/M16, SNOMED 239873007/239872002) marked differential — OA alone is common and nonspecific; only the arthroplasty/prosthesis-presence codes should count as a positive hit.",
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "congo_red",
+      "preferred_name": "Congo red / amyloid tissue confirmation",
+      "clinical_names": [
+        "Congo red stain positive",
+        "Apple-green birefringence",
+        "Amyloid deposits on biopsy"
+      ],
+      "abbreviations": [],
+      "keywords": {
+        "canonical": [
+          "congo red",
+          "apple-green",
+          "apple green birefringence",
+          "amyloid deposits",
+          "thioflavin",
+          "mass spectrometry ttr",
+          "polarized light amyloid"
+        ],
+        "fuzzy_variants": [
+          "congo-red positive",
+          "thioflavin-s"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "E85.82",
+            "description": "Wild-type transthyretin-related (ATTR) amyloidosis",
+            "match_role": "best"
+          },
+          {
+            "code": "E85.1",
+            "description": "Neuropathic heredofamilial amyloidosis",
+            "match_role": "related"
+          },
+          {
+            "code": "E85.4",
+            "description": "Organ-limited amyloidosis",
+            "match_role": "related"
+          },
+          {
+            "code": "E85.9",
+            "description": "Amyloidosis, unspecified",
+            "match_role": "related"
+          },
+          {
+            "code": "E85.89",
+            "description": "Other amyloidosis",
+            "match_role": "related"
+          },
+          {
+            "code": "E85.81",
+            "description": "Light chain (AL) amyloidosis",
+            "match_role": "differential"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "17602002",
+            "description": "Amyloidosis",
+            "match_role": "best"
+          },
+          {
+            "code": "1354544003",
+            "description": "Familial transthyretin-related amyloidosis",
+            "match_role": "best"
+          },
+          {
+            "code": "715655000",
+            "description": "Transthyretin related familial amyloid cardiomyopathy",
+            "match_role": "related"
+          },
+          {
+            "code": "56871000",
+            "description": "Localized amyloidosis",
+            "match_role": "related"
+          },
+          {
+            "code": "23132008",
+            "description": "AL amyloidosis",
+            "match_role": "differential"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "88313",
+            "description": "Special stain including interpretation and report (e.g., Congo red)",
+            "match_role": "best"
+          },
+          {
+            "code": "88342",
+            "description": "Immunohistochemistry (IHC), initial single antibody stain",
+            "match_role": "related"
+          },
+          {
+            "code": "88346",
+            "description": "Immunofluorescent study, each antibody; direct method",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "notes": "E85.81 (AL amyloidosis) and SNOMED 23132008 marked differential — that's the OTHER amyloid disease this whole framework exists to rule out, must never count as an ATTR-positive hit.",
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "dupuytren",
+      "preferred_name": "Dupuytren's contracture",
+      "clinical_names": [
+        "Dupuytren's contracture",
+        "Palmar fascial fibromatosis"
+      ],
+      "abbreviations": [],
+      "keywords": {
+        "canonical": [
+          "dupuytren",
+          "dupuytren's disease",
+          "palmar fibromatosis",
+          "palmar cord",
+          "dupuytren release"
+        ],
+        "fuzzy_variants": [
+          "dupuytrens",
+          "duputrens"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M72.0",
+            "description": "Palmar fascial fibromatosis [Dupuytren]",
+            "match_role": "best"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "203045001",
+            "description": "Dupuytren's disease of palm",
+            "match_role": "best"
+          },
+          {
+            "code": "74422001",
+            "description": "Fasciectomy",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "26123",
+            "description": "Fasciectomy, partial palmar with release of single digit",
+            "match_role": "best"
+          },
+          {
+            "code": "26121",
+            "description": "Fasciectomy, palmar only",
+            "match_role": "related"
+          },
+          {
+            "code": "26040",
+            "description": "Fasciotomy, palmar (closed / needle aponeurotomy)",
+            "match_role": "related"
+          },
+          {
+            "code": "26045",
+            "description": "Fasciotomy, palmar; open, partial",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "family_tables_only": false
+    },
+    {
+      "atom_id": "achilles",
+      "preferred_name": "Achilles tendon thickening or spontaneous rupture",
+      "clinical_names": [
+        "Achilles tendon rupture",
+        "Achilles tendinopathy"
+      ],
+      "abbreviations": [],
+      "keywords": {
+        "canonical": [
+          "achilles tendon rupture",
+          "achilles tendinopathy",
+          "atraumatic achilles",
+          "spontaneous achilles tear",
+          "achilles thickening"
+        ],
+        "fuzzy_variants": [
+          "achiles tendon",
+          "achilles tendon ruptured"
+        ]
+      },
+      "codes": {
+        "icd10": [
+          {
+            "code": "M66.361",
+            "description": "Spontaneous rupture of flexor tendons, right lower leg",
+            "match_role": "best"
+          },
+          {
+            "code": "M66.362",
+            "description": "Spontaneous rupture of flexor tendons, left lower leg",
+            "match_role": "best"
+          },
+          {
+            "code": "M66.369",
+            "description": "Spontaneous rupture of flexor tendons, unspecified lower leg",
+            "match_role": "best"
+          },
+          {
+            "code": "M76.61",
+            "description": "Achilles tendinitis, right leg",
+            "match_role": "related"
+          },
+          {
+            "code": "M76.62",
+            "description": "Achilles tendinitis, left leg",
+            "match_role": "related"
+          },
+          {
+            "code": "M76.60",
+            "description": "Achilles tendinitis, unspecified leg",
+            "match_role": "related"
+          },
+          {
+            "code": "M66.861",
+            "description": "Spontaneous rupture of other tendons, right lower leg",
+            "match_role": "related"
+          },
+          {
+            "code": "M66.862",
+            "description": "Spontaneous rupture of other tendons, left lower leg",
+            "match_role": "related"
+          },
+          {
+            "code": "M66.869",
+            "description": "Spontaneous rupture of other tendons, unspecified lower leg",
+            "match_role": "related"
+          },
+          {
+            "code": "S86.011A",
+            "description": "Strain of right Achilles tendon, initial encounter",
+            "match_role": "differential"
+          },
+          {
+            "code": "S86.012A",
+            "description": "Strain of left Achilles tendon, initial encounter",
+            "match_role": "differential"
+          },
+          {
+            "code": "S86.019A",
+            "description": "Strain of unspecified Achilles tendon, initial encounter",
+            "match_role": "differential"
+          }
+        ],
+        "icd9": [],
+        "snomed": [
+          {
+            "code": "429513001",
+            "description": "Rupture of Achilles tendon",
+            "match_role": "best"
+          },
+          {
+            "code": "11654001",
+            "description": "Achilles tendinitis",
+            "match_role": "related"
+          }
+        ],
+        "cpt": [
+          {
+            "code": "27650",
+            "description": "Repair, primary, open or percutaneous, ruptured Achilles tendon",
+            "match_role": "best"
+          },
+          {
+            "code": "27652",
+            "description": "Repair Achilles tendon with graft",
+            "match_role": "related"
+          },
+          {
+            "code": "27654",
+            "description": "Repair, secondary, Achilles tendon, with or without graft",
+            "match_role": "related"
+          }
+        ],
+        "hcpcs": []
+      },
+      "notes": "S86.01xA codes are TRAUMA (strain), same reasoning as biceps_rupture's S46.2xx — marked differential, not counted.",
+      "family_tables_only": false
+    }
+  ]
+}
