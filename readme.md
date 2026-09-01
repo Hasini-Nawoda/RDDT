@@ -40,7 +40,7 @@ Use **Early Detection** when you want specialty red-flag patterns (CTS, HF, neur
 
 ## 1. Data Analyze (`Data Analyze/`)
 
-Read-only Snowflake notebooks — **one script/notebook per source table** — to explore schema, grain, and value patterns before wiring ingest or ATTR pipelines.
+Read-only Snowflake notebooks - **one script/notebook per source table** - to explore schema, grain, and value patterns before wiring ingest or ATTR pipelines.
 
 Branch: `feat/ai/data-analyze`
 
@@ -115,15 +115,14 @@ Identify patients with **confirmed ATTR** evidence (not the broad specialty shor
 | File | Role |
 |------|------|
 | `ATTR_Confirmed_Patients_Configurable.ipynb` | Preferred: config-driven columns, Step A explore → Step B confirm |
-| `ATTR_Confirmed_Patients_Snowflake.ipynb` | Earlier hardcoded-column version |
 
 **Configurable notebook flow**
 
-1. **Config** — map logical tables/columns to this client’s names  
-2. **Step A (BROAD)** — per-table, per-column amyloid vocabulary discovery  
-3. **A.8** — add missed ATTR keywords to `ATTR_EXTRA_TERMS`  
-4. **Step B (CONFIRMED)** — stricter ATTR terms + structured ICD/SNOMED where configured  
-5. **Optional** — write session temporary outputs (`ATTR_CONFIRMED_*`)
+1. **Config** - map logical tables/columns to this client’s names  
+2. **Step A (BROAD)** - per-table, per-column amyloid vocabulary discovery  
+3. **A.8** - add missed ATTR keywords to `ATTR_EXTRA_TERMS`  
+4. **Step B (CONFIRMED)** - stricter ATTR terms + structured ICD/SNOMED where configured  
+5. **Optional** - write session temporary outputs (`ATTR_CONFIRMED_*`)
 
 `run_per_column_scan('MEDICAL_HISTORY', mode='BROAD')` scans **each search column** and stores results in `scan_store`.  
 `.head(30)` on `discover_phrases(...)` is only a display preview; full detail is available via `scan_detail('BROAD', ...)`.
@@ -151,30 +150,11 @@ Specialty Tier agents for **early ATTR signals** (ortho / cardio / neuro), endin
 | 4 v1 / v2 | Feature hits + shortlist | Tier 1–2 rules; shortlist = ≥2 specialties |
 
 **Client wiring:** edit `SOURCE_CONFIG` in the notebook (physical table/column names).  
-**Clinical rules (v2):** edit JSON under `specialty_configs/v2/atoms|features|buckets` — no Python change for new keywords/codes/features that use existing operators.
+**Clinical rules (v2):** edit JSON under `specialty_configs/v2/atoms|features|buckets` - no Python change for new keywords/codes/features that use existing operators.
 
 Upload the whole `specialty_configs/` folder into Snowflake notebook Files (keep `v1/` and `v2/`).
 
 All Step 3/4 objects are **session TEMPORARY** tables.
-
----
-
-## Other / legacy folders
-
-| Path | Notes |
-|------|--------|
-| `initial_qudrum/` | Early Architecture 2 prototype |
-| `RDDT_Final_v1/` | Earlier packaged Step 4 snapshot |
-
-Prefer **`Early Detection/`** for current screening work.
-
----
-
-## Conventions
-
-- **Snowflake notebooks** use `get_active_session()` — run inside Snowflake (or an environment with an active Snowpark session).
-- **Do not commit** `.env`, `__pycache__/`, virtualenvs, or Excel lock files (`~$*`). See `.gitignore` when present on the branch.
-- Spreadsheets such as data dictionaries / detection frameworks may live beside a workstream for reference; keep secrets out of the repo.
 
 ---
 
@@ -204,7 +184,7 @@ git checkout feat/ai/early-detection
 
 ---
 
-## Related docs on disk
+## Related docs
 
 - Data dictionary / ATTR framework Excel files (when present on a branch) support column mapping and clinical signal definitions.
 - `Ingest/diagram.png` documents the ingest flow.
