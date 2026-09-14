@@ -1,0 +1,321 @@
+{
+  "phenotype": "AA",
+  "_source": "architecture_v3_specs/11_phenotype_bucket_tiers_and_combinations.md (authoritative) + specialty_configs_v3/atoms/*.json source_workbook_rows. Guardrails/DO_NOT_USE/temporal-only signs excluded.",
+  "_decisions": {
+    "authority": "File 11 wins over older Signal Catalog where they conflict (WT18, WT20).",
+    "cts_policy": "Bilateral/recurrent atoms are gate-forming; unilateral/generic CTS atoms are weaker / non-gate."
+  },
+  "overlays": [
+    {
+      "atom_id": "autoinflammatory_syndrome",
+      "source_sign_id": "AA02",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "fmf",
+      "source_sign_id": "AA02",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "autoinflammatory_syndrome",
+      "source_sign_id": "AA06",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "bronchiectasis",
+      "source_sign_id": "AA08",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "chronic_infection",
+      "source_sign_id": "AA08",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "chronic_inflammatory_arthritis",
+      "source_sign_id": "AA01",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "ibd_inflammatory_driver",
+      "source_sign_id": "AA07",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "abscess",
+      "source_sign_id": "AA09",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "chronic_wound",
+      "source_sign_id": "AA09",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "skin_soft_tissue_infection",
+      "source_sign_id": "AA09",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "castleman_disease",
+      "source_sign_id": "AA10",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "renal_cell_carcinoma",
+      "source_sign_id": "AA10",
+      "bucket": "INFLAMMATORY_DRIVER",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "saa_result",
+      "source_sign_id": "AA13",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 1,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "fmf",
+      "source_sign_id": "AA05",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "inflammatory_control_assessment",
+      "source_sign_id": "AA05",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "inflammatory_control_assessment",
+      "source_sign_id": "AA14",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "inflammatory_flare",
+      "source_sign_id": "AA14",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "crp_result",
+      "source_sign_id": "AA12",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 3,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "esr_result",
+      "source_sign_id": "AA12",
+      "bucket": "INFLAMMATORY_ACTIVITY",
+      "tier": 3,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "urine_protein_result",
+      "source_sign_id": "AA16",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "nephrotic_range_proteinuria",
+      "source_sign_id": "AA17",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "nephrotic_syndrome",
+      "source_sign_id": "AA17",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "composite_rule_id": "RENAL_DISPROPORTIONATE",
+      "is_composite": true,
+      "source_sign_id": "AA21",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true,
+      "note": "May elevate RENAL to Tier 1; see composites/shape_b_c.json"
+    },
+    {
+      "atom_id": "microalbuminuria",
+      "source_sign_id": "AA15",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "creatinine_result",
+      "source_sign_id": "AA20",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "egfr_result",
+      "source_sign_id": "AA20",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "kidney_failure",
+      "source_sign_id": "AA20",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "hypoalbuminemia",
+      "source_sign_id": "AA18",
+      "bucket": "RENAL",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "peripheral_edema",
+      "source_sign_id": "AA19",
+      "bucket": "RENAL",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "mefv_high_risk_genotype",
+      "source_sign_id": "AA03",
+      "bucket": "SUSCEPTIBILITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "family_aa_amyloidosis",
+      "source_sign_id": "AA04",
+      "bucket": "SUSCEPTIBILITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "family_eskd",
+      "source_sign_id": "AA04",
+      "bucket": "SUSCEPTIBILITY",
+      "tier": 2,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "diarrhea",
+      "source_sign_id": "AA22",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "gi_bleeding",
+      "source_sign_id": "AA23",
+      "bucket": "GI_HEPATIC",
+      "tier": 4,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "paralytic_ileus",
+      "source_sign_id": "AA23",
+      "bucket": "GI_HEPATIC",
+      "tier": 4,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "obesity",
+      "source_sign_id": "AA11",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "goiter",
+      "source_sign_id": "AA24",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "hypothyroidism",
+      "source_sign_id": "AA24",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    }
+  ],
+  "_notes": [
+    "INFLAMMATORY_ACTIVITY and SUSCEPTIBILITY are MODIFIER only.",
+    "AA21 composite pseudo-entry included for RENAL Tier 1 elevation.",
+    "Guardrails AA25-30 excluded."
+  ]
+}

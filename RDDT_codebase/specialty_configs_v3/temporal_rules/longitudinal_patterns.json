@@ -1,0 +1,182 @@
+{
+  "_source": "Amyloidosis_MultiPhenotype_Bucket_Config.xlsx, Temporal Rules sheet (T01-T07). Excel columns preserved verbatim; machine fields retained for SQL wiring.",
+  "_count": 7,
+  "_schema_gap": "T02, T04, T05, and T06 all require detecting PERSISTENCE or PROGRESSION across multiple visits/dates for the same atom (e.g. 'repeated CRP elevation', not one CRP value). But ATTR_V3_ATOMS as designed in 10_architecture_mechanics_and_new_tables.md only carries <atom_id> and <atom_id>_FIRST_SEEN — a single earliest date, no occurrence count and no last-seen date. These four rules cannot actually be evaluated until ATTR_V3_ATOMS gains either <atom_id>_OCCURRENCE_COUNT or <atom_id>_LAST_SEEN. They are written below with the correct atom/bucket references, but marked 'executable: false' until that schema extension happens — do not wire them into SQL as-is.",
+  "rules": [
+    {
+      "temporal_rule_id": "T01",
+      "source_sign_ids": [
+        "WT01"
+      ],
+      "phenotype": "ATTRwt",
+      "pattern": "ORTHO_BEFORE_CARDIO",
+      "logic": "First qualifying ORTHO evidence precedes first qualifying CARDIO evidence",
+      "threshold_status": "No hard minimum gap; store years_between for ranking/explanation",
+      "effect": "Upgrade to ATTRwt Priority A",
+      "double_counting_guardrail": "Do not create an extra bucket.",
+      "rule_shape": "ORDER",
+      "left_bucket": "ORTHO",
+      "right_bucket": "CARDIO",
+      "comparator": "LEFT_FIRST_SEEN_BEFORE_RIGHT_FIRST_SEEN",
+      "executable": true,
+      "requires_schema": "ATTR_V3_BUCKET_TIER.FIRST_SEEN_DATE (already in the Layer 3 design)."
+    },
+    {
+      "temporal_rule_id": "T02",
+      "source_sign_ids": [
+        "V02",
+        "V04",
+        "V14"
+      ],
+      "phenotype": "ATTRv",
+      "pattern": "PROGRESSIVE_NEUROPATHY",
+      "logic": "Evidence of progression across visits/tests rather than one lifetime neuropathy code",
+      "threshold_status": "Use first/last date and repeated objective findings when available",
+      "effect": "Strengthens NEURO tier reliability",
+      "double_counting_guardrail": "Progression is part of phenotype quality.",
+      "rule_shape": "MULTI_OCCURRENCE",
+      "member_atom_ids": [
+        "polyneuropathy",
+        "sfn",
+        "sensory_loss",
+        "neuropathic_pain",
+        "cidp",
+        "treatment_response_assessment",
+        "immunotherapy_exposure"
+      ],
+      "min_distinct_dates": 2,
+      "executable": false,
+      "requires_schema": "ATTR_V3_ATOMS.<atom_id>_OCCURRENCE_COUNT or _LAST_SEEN — not yet designed. See _schema_gap above."
+    },
+    {
+      "temporal_rule_id": "T03",
+      "source_sign_ids": [
+        "V01",
+        "V17",
+        "V18"
+      ],
+      "phenotype": "ATTRv",
+      "pattern": "CARRIER_NEW_CHANGE",
+      "logic": "Known carrier/family-risk context precedes a new objective neurologic/autonomic/renal change",
+      "threshold_status": "No fixed interval",
+      "effect": "Carrier-conversion review",
+      "double_counting_guardrail": "Do not call active ATTRv from genotype alone.",
+      "rule_shape": "ORDER",
+      "comparator": "LEFT_FIRST_SEEN_BEFORE_ANY_RIGHT_FIRST_SEEN",
+      "left_atom_id": "ttr_pathogenic_variant",
+      "right_atom_ids": [
+        "microalbuminuria",
+        "nfl_result"
+      ],
+      "executable": true,
+      "requires_schema": "ATTR_V3_ATOMS.<atom_id>_FIRST_SEEN (already in the Layer 1 design)."
+    },
+    {
+      "temporal_rule_id": "T04",
+      "source_sign_ids": [
+        "AA05",
+        "AA12",
+        "AA13",
+        "AA14"
+      ],
+      "phenotype": "AA",
+      "pattern": "PERSISTENT_INFLAMMATORY_BURDEN",
+      "logic": "Repeated/persistent activity over time rather than one CRP/ESR/SAA value",
+      "threshold_status": "No universal hard threshold in this config",
+      "effect": "Strengthens AA priority",
+      "double_counting_guardrail": "Inflammatory activity is a modifier, not the second independent disease bucket.",
+      "rule_shape": "MULTI_OCCURRENCE",
+      "member_atom_ids": [
+        "inflammatory_control_assessment",
+        "fmf",
+        "crp_result",
+        "esr_result",
+        "saa_result",
+        "inflammatory_flare"
+      ],
+      "min_distinct_dates": 2,
+      "executable": false,
+      "requires_schema": "ATTR_V3_ATOMS.<atom_id>_OCCURRENCE_COUNT or _LAST_SEEN — not yet designed. See _schema_gap above."
+    },
+    {
+      "temporal_rule_id": "T05",
+      "source_sign_ids": [
+        "AA15",
+        "AA16",
+        "AA17",
+        "AA20"
+      ],
+      "phenotype": "AA",
+      "pattern": "RENAL_TRANSITION",
+      "logic": "New/persistent or progressive renal abnormality after/with chronic inflammatory driver",
+      "threshold_status": "Require persistence/trend where source row specifies it",
+      "effect": "Qualifies RENAL bucket",
+      "double_counting_guardrail": "Single transient abnormality should not trigger the gate.",
+      "rule_shape": "MULTI_OCCURRENCE",
+      "member_atom_ids": [
+        "microalbuminuria",
+        "urine_protein_result",
+        "nephrotic_range_proteinuria",
+        "nephrotic_syndrome",
+        "creatinine_result",
+        "egfr_result",
+        "kidney_failure"
+      ],
+      "min_distinct_dates": 2,
+      "executable": false,
+      "requires_schema": "ATTR_V3_ATOMS.<atom_id>_OCCURRENCE_COUNT or _LAST_SEEN — not yet designed. See _schema_gap above."
+    },
+    {
+      "temporal_rule_id": "T06",
+      "source_sign_ids": [
+        "AL03",
+        "AL04",
+        "AL06"
+      ],
+      "phenotype": "AL",
+      "pattern": "RENAL_PERSISTENCE",
+      "logic": "Persistent/progressive proteinuric renal phenotype",
+      "threshold_status": "Use trend and repeat measurements",
+      "effect": "Improves renal evidence confidence",
+      "double_counting_guardrail": "Avoid single-measurement overcalling.",
+      "rule_shape": "MULTI_OCCURRENCE",
+      "member_atom_ids": [
+        "urine_protein_result",
+        "nephrotic_range_proteinuria",
+        "nephrotic_syndrome",
+        "kidney_failure",
+        "renal_dysfunction",
+        "creatinine_result",
+        "egfr_result"
+      ],
+      "min_distinct_dates": 2,
+      "executable": false,
+      "requires_schema": "ATTR_V3_ATOMS.<atom_id>_OCCURRENCE_COUNT or _LAST_SEEN — not yet designed. See _schema_gap above."
+    },
+    {
+      "temporal_rule_id": "T07",
+      "source_sign_ids": [
+        "AL21"
+      ],
+      "phenotype": "AL",
+      "pattern": "MULTISYSTEM_ACCUMULATION_OVER_TIME",
+      "logic": "Distinct organ buckets accumulate longitudinally",
+      "threshold_status": "No fixed window",
+      "effect": "AL possible / monoclonal-screen funnel",
+      "double_counting_guardrail": "Count distinct organ buckets, not repeated codes.",
+      "rule_shape": "ACCUMULATION_OVER_TIME",
+      "reads_from": "ATTR_V3_BUCKET_TIER",
+      "allowed_buckets": [
+        "RENAL",
+        "CARDIO",
+        "NEURO",
+        "AUTONOMIC",
+        "GI_HEPATIC",
+        "MUCOSAL_CUTANEOUS"
+      ],
+      "min_distinct_buckets": 3,
+      "executable": true,
+      "requires_schema": "ATTR_V3_BUCKET_TIER.FIRST_SEEN_DATE (already in the Layer 3 design) — this rule is the composite AL21's own temporal counterpart; see 02b_composite_rules.md."
+    }
+  ]
+}

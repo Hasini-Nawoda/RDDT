@@ -1,0 +1,765 @@
+{
+  "atoms": [
+    {
+      "atom_id": "creatinine_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "2160-0",
+              "description": "Creatinine in Serum or Plasma",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rising creatinine"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated creatinine"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "serum creatinine"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "creatinine result",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA20",
+        "AA21",
+        "AL06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "egfr_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "48642-3",
+              "description": "Estimated glomerular filtration rate (eGFR)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "falling eGFR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "declining eGFR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "reduced eGFR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "estimated glomerular filtration rate"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "egfr result",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA20",
+        "AA21",
+        "AL06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "falling_egfr",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Rising creatinine / falling eGFR",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "hypoalbuminemia",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "E88.09",
+              "description": "Other disorders of plasma-protein metabolism (context: hypoalbuminemia)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "1751-7",
+              "description": "Albumin in Serum or Plasma",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "serum albumin"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hypoalbuminemia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "low albumin"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Hypoalbuminemia",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA18",
+        "AL05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "kidney_failure",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "N18.9",
+              "description": "Chronic kidney disease, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "N19",
+              "description": "Unspecified kidney failure",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "kidney failure"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "renal failure"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic kidney disease"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CKD"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "kidney failure",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA20",
+        "AL06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "microalbuminuria",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "UACR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "microalbumin"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "albuminuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent microalbuminuria"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Microalbuminuria / low-grade albuminuria",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA15",
+        "V17"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nephrotic_range_proteinuria",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nephrotic-range proteinuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "heavy proteinuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "proteinuria greater than 3.5 grams"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Nephrotic-range proteinuria",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA17",
+        "AA21",
+        "AL04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nephrotic_syndrome",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "N04.9",
+              "description": "Nephrotic syndrome with unspecified morphologic changes",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "52254009",
+              "description": "Nephrotic syndrome",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nephrotic syndrome"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Nephrotic syndrome",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA17",
+        "AA21",
+        "AL04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "peripheral_edema",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "edema"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "leg swelling"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "anasarca"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Peripheral edema / anasarca (with proteinuria/hypoalbuminemia context)",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA19",
+        "AL05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "persistent_proteinuria",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Persistent proteinuria",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "progressive_proteinuria",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Progressive proteinuria",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "renal_differential_assessment",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "33914-3",
+              "description": "Kappa/Lambda free light chain ratio in Serum",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "free light chain ratio"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "FLC ratio"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "kappa lambda ratio"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "abnormal FLC ratio"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "serum free light chains"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "kappa/lambda free light chain"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "renal differential assessment (FLC ratio in CKD context)",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "WT26"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "renal_dysfunction",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "N28.9",
+              "description": "Disorder of kidney and ureter, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "renal dysfunction"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "renal impairment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "worsening renal function"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "renal dysfunction",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA21",
+        "AL06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "urine_albumin_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "urine albumin result",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "urine_protein_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R80.9",
+              "description": "Proteinuria, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "2889-4",
+              "description": "Protein [Mass/volume] in Urine",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "proteinuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "new persistent proteinuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "progressive proteinuria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "UPCR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "24-hour urine protein"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "urine protein result",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [
+        "AA16",
+        "AA21",
+        "AL03"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "urine_sediment_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "urine sediment result",
+      "source_specialty": "NEPHROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "NEPHROLOGY"
+}

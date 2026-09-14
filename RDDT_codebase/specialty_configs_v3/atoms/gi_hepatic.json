@@ -1,0 +1,648 @@
+{
+  "atoms": [
+    {
+      "atom_id": "abdominal_pain",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R10.9",
+              "description": "Unspecified abdominal pain",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "abdominal pain"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unexplained abdominal pain"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "abdominal pain",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "choking",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "DEPRECATED - moved to neuro.json:bulbar_neuropathy_symptoms (V28, correct NEURO bucket)",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "constipation",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K59.00",
+              "description": "Constipation, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "constipation"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic constipation"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "constipation",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL11"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "delayed_gastric_emptying",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K31.84",
+              "description": "Gastroparesis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "delayed gastric emptying"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "gastroparesis"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "delayed gastric emptying",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "diarrhea",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic diarrhea"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "intractable diarrhea"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "watery diarrhea"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "diarrhea",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AA22",
+        "AL11"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "dysarthria",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "DEPRECATED - moved to neuro.json:bulbar_neuropathy_symptoms (V28, correct NEURO bucket)",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "dysphagia",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R13.10",
+              "description": "Dysphagia, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dysphagia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "difficulty swallowing"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "dysphagia",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL11"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "early_satiety",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "early satiety"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "feeling full quickly"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "early satiety",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "gi_bleeding",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K92.2",
+              "description": "Gastrointestinal hemorrhage, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "K92.1",
+              "description": "Melena",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "melena"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "GI bleed"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "gastrointestinal bleeding"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "gi bleeding",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AA23"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "hepatic_alp_elevation",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "6768-6",
+              "description": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated alkaline phosphatase"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cholestatic ALP elevation"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated ALP"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "hepatic alp elevation",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL18"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "hepatomegaly",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R16.0",
+              "description": "Hepatomegaly, not elsewhere classified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hepatomegaly"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "enlarged liver"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "liver span greater than 15 cm"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "hepatomegaly",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL18"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "hoarseness",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "DEPRECATED - moved to neuro.json:bulbar_neuropathy_symptoms (V28, correct NEURO bucket)",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nausea",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R11.0",
+              "description": "Nausea",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nausea"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent nausea"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "nausea",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "paralytic_ileus",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K56.0",
+              "description": "Paralytic ileus",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "paralytic ileus"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "adynamic ileus"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "paralytic ileus",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AA23"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "vomiting",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R11.10",
+              "description": "Vomiting, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "vomiting"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent vomiting"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "vomiting",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "AL10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "GASTROENTEROLOGY"
+}

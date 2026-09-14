@@ -1,0 +1,37 @@
+{
+  "_source": "User-authoritative composite catalog (Source_Sign_ID / Derived_Rule_ID / Rule_Scope / Definition / Effect / Double_Counting_Guardrail). 7 rules — none dropped.",
+  "_catalog_count": 7,
+  "_reads_from": {
+    "ORTHO_CLUSTER": "ATTR_V3_ATOMS (before bucket-tier rollup)",
+    "RENAL_DISPROPORTIONATE": "ATTR_V3_ATOMS + early bucket context (within-bucket RENAL discriminator)",
+    "others": "ATTR_V3_BUCKET_TIER after rollup"
+  },
+  "composites": [
+    {
+      "source_sign_id": "WT04",
+      "phenotype": "ATTRwt",
+      "derived_rule_id": "ORTHO_CLUSTER",
+      "rule_scope": "Within-bucket derived feature",
+      "shape": "WITHIN_BUCKET_COUNT",
+      "definition": "Multiple distinct orthopedic red flags across different tissues/procedures",
+      "effect": "Derive ORTHO Tier 1",
+      "double_counting_guardrail": "Counts once as ORTHO; never as multiple specialties.",
+      "bucket": "ORTHO",
+      "member_signals": [
+        { "sign_id": "WT02", "label": "bilateral/recurrent CTS", "atom_ids": ["cts_bilateral", "cts_recurrent", "cts_left", "cts_right", "cts_any", "ctr_any"] },
+        { "sign_id": "WT03", "label": "biceps rupture", "atom_ids": ["biceps_rupture"] },
+        { "sign_id": "WT05", "label": "LSS/decompression", "atom_ids": ["lumbar_stenosis", "lumbar_decompression", "ligamentum_flavum_thickening"] },
+        { "sign_id": "WT06", "label": "arthroplasty", "atom_ids": ["arthroplasty"] },
+        { "sign_id": "WT07", "label": "trigger finger", "atom_ids": ["trigger_finger", "trigger_release"] },
+        { "sign_id": "WT08", "label": "shoulder disease", "atom_ids": ["rotator_cuff", "rotator_cuff_repair", "shoulder_disorder"] }
+      ],
+      "min_count": 2,
+      "count_unit": "DISTINCT_SIGNALS_NOT_ATOMS",
+      "direct_effect": "FEEDS_BUCKET_TIER",
+      "output_bucket": "ORTHO",
+      "output_tier": 1,
+      "output_phenotype": "ATTRwt",
+      "implementation_note": "Collapse each member_signal atom_ids with OR to one 0/1 flag, then require sum >= 2."
+    }
+  ]
+}

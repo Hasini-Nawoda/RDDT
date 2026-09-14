@@ -1,0 +1,390 @@
+{
+  "specialty": "cardio",
+  "features": [
+    {
+      "feature_id": "C_T1_APICAL_SPARING",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "Apical sparing / cherry-on-top",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "apical_sparing"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_CMR_ECV",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "CMR expanded ECV",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "cmr_ecv"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_NATIVE_T1",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "CMR elevated native T1 (Excel #3 confirmed)",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "cmr_native_t1"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_WALLS",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "Unexplained LV wall thickness >12mm",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "thick_walls"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_DIFFUSE_LGE",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "CMR diffuse LGE (Excel #6 confirmed)",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "cmr_lge"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_VOLTAGE_MISMATCH",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "Voltage-mass mismatch",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "voltage_mass_mismatch"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_PYP_G23",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "PYP/DPD/HMDP Perugini grade 2-3",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "pyp_grade_2_3"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T1_AF_JOINT_HFPEF",
+      "specialty": "cardio",
+      "tier": 1,
+      "shortlist_eligible": true,
+      "short_name": "AF + joint disorders + HFpEF",
+      "logic": {
+        "op": "all",
+        "children": [
+          {
+            "op": "any",
+            "atoms": [
+              "af"
+            ]
+          },
+          {
+            "op": "any",
+            "atoms": [
+              "hfpef"
+            ]
+          },
+          {
+            "op": "any",
+            "atoms": [
+              "arthroplasty",
+              "cts_any",
+              "lumbar_stenosis",
+              "rotator_cuff",
+              "trigger_finger"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_RESTRICTIVE",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Restrictive filling / Grade III DD",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "restrictive_filling"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_BIATRIAL",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Biatrial enlargement",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "biatrial_enlargement"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_HFPEF_LVH",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "HFpEF + unexplained LVH",
+      "logic": {
+        "op": "all",
+        "atoms": [
+          "hfpef",
+          "thick_walls"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_REDUCED_GLS",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Reduced GLS without apical sparing",
+      "logic": {
+        "op": "all",
+        "children": [
+          {
+            "op": "any",
+            "atoms": [
+              "reduced_gls"
+            ]
+          },
+          {
+            "op": "not",
+            "atoms": [
+              "apical_sparing"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_LFLG_AS",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Low-flow low-gradient AS / TAVR",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "lflg_as",
+          "tavr"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_CONDUCTION",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Conduction disease",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "conduction_disease"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_PACEMAKER",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Pacemaker / ICD",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "pacemaker_icd"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_AF",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Atrial fibrillation/flutter",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "af"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_LOW_SVI",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Reduced SVI / low CO preserved EF",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "low_svi"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T2_NULLING",
+      "specialty": "cardio",
+      "tier": 2,
+      "shortlist_eligible": true,
+      "short_name": "Difficulty nulling myocardium",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "difficulty_nulling"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T3_SMALL_LV",
+      "specialty": "cardio",
+      "tier": 3,
+      "shortlist_eligible": false,
+      "short_name": "Small LV cavity preserved EF",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "small_lv_cavity"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T3_TROPONIN",
+      "specialty": "cardio",
+      "tier": 3,
+      "shortlist_eligible": false,
+      "short_name": "Persistent troponin elevation",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "troponin_elevated"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T3_NTPROBNP",
+      "specialty": "cardio",
+      "tier": 3,
+      "shortlist_eligible": false,
+      "short_name": "Elevated NT-proBNP",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "ntprobnp_elevated"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_PSEUDO_MI",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "Pseudo-infarction Q waves",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "pseudo_infarct"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_EFFUSION",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "Small pericardial effusion",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "pericardial_effusion"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_IAS",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "Thickened interatrial septum",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "thickened_ias"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_RV",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "RV wall thickening",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "rv_wall_thick"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_VALVE_THICK",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "Valve thickening",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "valve_thickening"
+        ]
+      }
+    },
+    {
+      "feature_id": "C_T4_GRANULAR",
+      "specialty": "cardio",
+      "tier": 4,
+      "shortlist_eligible": false,
+      "short_name": "Granular/speckled myocardium",
+      "logic": {
+        "op": "any",
+        "atoms": [
+          "granular_myocardium"
+        ]
+      }
+    }
+  ]
+}

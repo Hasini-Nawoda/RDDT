@@ -1,0 +1,571 @@
+{
+  "atoms": [
+    {
+      "atom_id": "dysautonomia",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "G90.9",
+              "description": "Disorder of the autonomic nervous system, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dysautonomia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "autonomic neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "sweating abnormality"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "autonomic dysfunction"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "anhidrosis"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Autonomic dysfunction / dysautonomia",
+      "source_specialty": "NEUROLOGY_AUTONOMIC_CLINIC",
+      "source_workbook_rows": [
+        "V05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "erectile_dysfunction",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "N52.9",
+              "description": "Male erectile dysfunction, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "397803000",
+              "description": "Erectile dysfunction",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "erectile dysfunction"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "impotence"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "erectile dysfunction",
+      "source_specialty": "UROLOGY",
+      "source_workbook_rows": [
+        "V26"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "gastroparesis",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K31.84",
+              "description": "Gastroparesis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "230148000",
+              "description": "Delayed gastric emptying",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "K31.84"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "gastroparesis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "delayed gastric emptying"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "early satiety"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent nausea and vomiting"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Gastroparesis / delayed gastric emptying",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "V11"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "gi_dysmotility",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "K59.8",
+              "description": "Other specified functional intestinal disorders",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "alternating diarrhea and constipation"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic diarrhea"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unexplained bowel habit change"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "GI dysmotility"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "autonomic bowel dysfunction"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Unexplained gastrointestinal dysmotility",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_workbook_rows": [
+        "V10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "mibg_cardiac_denervation",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "DEPRECATED - moved to cardio.json:mibg_cardiac_denervation (V23, correct CARDIO bucket)",
+      "source_specialty": "NUCLEAR_CARDIOLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "neurogenic_bladder",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "N31.9",
+              "description": "Neuromuscular dysfunction of bladder, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "45469004",
+              "description": "Neurogenic bladder",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neurogenic bladder"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bladder dysfunction"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neuromuscular dysfunction of bladder"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "neurogenic bladder",
+      "source_specialty": "UROLOGY",
+      "source_workbook_rows": [
+        "V27"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "orthostatic_intolerance",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "I95.1",
+              "description": "Orthostatic hypotension",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "28651003",
+              "description": "Orthostatic hypotension",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "orthostatic hypotension"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "postural hypotension"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "postural BP drop"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "orthostatic intolerance"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dizziness on standing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "presyncope on standing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent orthostatic intolerance"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nOH"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neurogenic orthostatic hypotension"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "syncope on standing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "drop in BP on standing"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "orthostatic intolerance",
+      "source_specialty": "CARDIOLOGY_OR_NEUROLOGY_VITALS",
+      "source_workbook_rows": [
+        "V09",
+        "AL13"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "sudoscan_reduced_esc",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "SUDOSCAN"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "electrochemical skin conductance"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ESC"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Reduced electrochemical skin conductance on SUDOSCAN",
+      "source_specialty": "NEUROLOGY_AUTONOMIC_CLINIC",
+      "source_workbook_rows": [
+        "V19"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "urinary_incontinence",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R32",
+              "description": "Unspecified urinary incontinence",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "urinary incontinence"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "involuntary urination"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "urinary incontinence",
+      "source_specialty": "UROLOGY",
+      "source_workbook_rows": [
+        "V27"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "urinary_retention",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "R33.9",
+              "description": "Retention of urine, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "urinary retention"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unable to void"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "urinary retention",
+      "source_specialty": "UROLOGY",
+      "source_workbook_rows": [
+        "V27"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "NEUROLOGY_AUTONOMIC"
+}

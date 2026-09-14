@@ -1,0 +1,1094 @@
+{
+  "atoms": [
+    {
+      "atom_id": "abscess",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "L02.91",
+              "description": "Cutaneous abscess, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "abscess"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent abscess"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "abscess",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA09"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "autoinflammatory_syndrome",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "TRAPS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CAPS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "MKD"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "HIDS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "autoinflammatory syndrome"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Other chronic autoinflammatory syndrome",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA02",
+        "AA06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "bronchiectasis",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "J47.9",
+              "description": "Bronchiectasis, uncomplicated",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bronchiectasis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic suppurative lung disease"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "bronchiectasis",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA08"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "castleman_disease",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "D47.Z2",
+              "description": "Castleman disease",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Castleman disease"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unicentric Castleman"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "castleman disease",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "chronic_infection",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "A15.9",
+              "description": "Respiratory tuberculosis unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M86.9",
+              "description": "Osteomyelitis, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic infection"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "active infection"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "tuberculosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "osteomyelitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic suppurative disease"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Chronic or active infection",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA08"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "chronic_inflammatory_arthritis",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rheumatoid arthritis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ankylosing spondylitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "inflammatory arthritis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "biologic escalation"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Chronic inflammatory joint disease",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA01"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "chronic_wound",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "L98.499",
+              "description": "Non-pressure chronic ulcer of other site with unspecified severity",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic wound"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic ulcer"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "non-healing wound"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "chronic wound",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA09"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "crp_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "1988-5",
+              "description": "C reactive protein [Mass/volume] in Serum or Plasma",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CRP"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "C-reactive protein"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated CRP"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hsCRP"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "crp result",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA12"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "esr_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "4537-7",
+              "description": "Erythrocyte sedimentation rate",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ESR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "erythrocyte sedimentation rate"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated ESR"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "esr result",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA12"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "family_aa_amyloidosis",
+      "experiencer_contract": "FAMILY_MEMBER",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "family history amyloidosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "family history AA amyloidosis"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": true,
+      "preferred_name": "family aa amyloidosis",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "family_eskd",
+      "experiencer_contract": "FAMILY_MEMBER",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "family history renal failure"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "family history dialysis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "family history end-stage kidney disease"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": true,
+      "preferred_name": "family eskd",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "fmf",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "E85.0",
+              "description": "Non-neuropathic heredofamilial amyloidosis (Familial Mediterranean fever)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "23231000",
+              "description": "Familial Mediterranean fever",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "familial Mediterranean fever"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "FMF"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent fever"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "periodic fever syndrome"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "serositis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "erysipelas-like erythema"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Familial Mediterranean fever / periodic fever syndrome",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA02",
+        "AA05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "ibd_inflammatory_driver",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "K50.9",
+              "description": "Crohn's disease, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Crohn disease"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "fistula"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "perianal abscess"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "stricturing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bowel resection"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Inflammatory bowel disease",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA07"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "inflammatory_control_assessment",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "colchicine nonadherence"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "missed doses"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "colchicine resistant"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent attacks despite treatment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "inadequate disease control"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "inflammatory control assessment",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA05",
+        "AA14"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "inflammatory_flare",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "flare"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "uncontrolled disease"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "steroid burst"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "biologic escalation"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "resistant disease"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "inflammatory flare",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA14"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "inflammatory_neoplastic_driver",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Inflammatory neoplastic driver",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "mefv_high_risk_genotype",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "MEFV"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "M694V/M694V"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "exon 10 variant"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "High-risk MEFV genotype in the patient",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA03"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "recurrent_soft_tissue_infection",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Recurrent skin or soft-tissue infection",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "renal_cell_carcinoma",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "C64.9",
+              "description": "Malignant neoplasm of unspecified kidney, except renal pelvis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "renal cell carcinoma"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "RCC"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "renal cell carcinoma",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA10"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "saa_elevated",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Elevated serum amyloid A",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "saa_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "35180-2",
+              "description": "Amyloid A protein [Mass/volume] in Serum or Plasma",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "serum amyloid A"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "SAA"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "elevated SAA"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistently elevated SAA"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "saa result",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA13"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "skin_soft_tissue_infection",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "L08.9",
+              "description": "Local infection of the skin and subcutaneous tissue, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "L03.90",
+              "description": "Cellulitis, unspecified",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cellulitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "skin and soft tissue infection"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "wound infection"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent cellulitis"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "skin soft tissue infection",
+      "source_specialty": "RHEUM_INFLAMMATORY",
+      "source_workbook_rows": [
+        "AA09"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "RHEUM_INFLAMMATORY"
+}

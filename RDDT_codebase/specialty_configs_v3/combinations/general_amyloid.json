@@ -1,0 +1,67 @@
+{
+  "phenotype": "GENERAL_AMYLOID",
+  "_source": "architecture_v3_specs/03_combinations.md GA01–GA02 + 07_combinations_detailed/01_general_amyloid.md. Both workbook rules retained.",
+  "_decisions": {
+    "completeness": "GA01 and GA02 both present — no workbook GENERAL_AMYLOID combination dropped.",
+    "priority_tiebreak": "GA02 former A/B → A when ORGAN Tier 1 AND ETIOLOGY Tier 1; otherwise B."
+  },
+  "combinations": [
+    {
+      "rule_id": "GA01",
+      "priority": "A",
+      "rule_type": "COUNT_DISTINCT_BUCKETS",
+      "allowed_buckets": [
+        "CARDIO",
+        "RENAL",
+        "NEURO",
+        "AUTONOMIC",
+        "ORTHO",
+        "OCULAR",
+        "MUCOSAL_CUTANEOUS",
+        "GI_HEPATIC"
+      ],
+      "require_gate_eligible": true,
+      "max_tier_per_bucket": 2,
+      "min_distinct_buckets": 2,
+      "output_route": "GENERAL_AMYLOID_REVIEW",
+      "note": "Any 2 independent organ/phenotype buckets at Tier 1-2. T3/T4 never supply a counted bucket. Same biological process cannot be counted twice across source specialties."
+    },
+    {
+      "rule_id": "GA02",
+      "priority": "A",
+      "priority_when": {
+        "default": "B",
+        "upgrade_to": "A",
+        "if_all": [
+          { "role": "ORGAN", "max_tier": 1 },
+          { "role": "ETIOLOGY", "max_tier": 1 }
+        ]
+      },
+      "rule_type": "ORG_PLUS_ETIOLOGY",
+      "require_gate_eligible": true,
+      "requires": [
+        {
+          "role": "ORGAN",
+          "allowed_buckets": [
+            "CARDIO",
+            "RENAL",
+            "NEURO",
+            "AUTONOMIC",
+            "ORTHO",
+            "OCULAR",
+            "MUCOSAL_CUTANEOUS",
+            "GI_HEPATIC"
+          ],
+          "max_tier": 2
+        },
+        {
+          "role": "ETIOLOGY",
+          "allowed_buckets": ["HEME_CLONAL", "INFLAMMATORY_DRIVER", "HEREDITARY"],
+          "max_tier": 2
+        }
+      ],
+      "output_route": "GENERAL_AMYLOID_REVIEW",
+      "note": "1 organ/phenotype + 1 etiologic-context bucket, both Tier 1-2. Etiology alone never passes. Priority A only when both sides are Tier 1."
+    }
+  ]
+}

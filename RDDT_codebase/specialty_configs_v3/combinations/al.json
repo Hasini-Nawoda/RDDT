@@ -1,0 +1,113 @@
+{
+  "phenotype": "AL",
+  "_source": "architecture_v3_specs/03_combinations.md AL_RULE_01–07 + 07_combinations_detailed/05_al.md. All seven workbook rules retained.",
+  "_decisions": {
+    "completeness": "AL_RULE_01–07 all present. No rules dropped for overlay T3-only buckets — engine still evaluates them; they fire if/when those buckets become gate-eligible.",
+    "triple_owner": "AL_RULE_07 owns AL_MONOCLONAL_SCREEN at combination layer. Composite AL21 and temporal T07 should feed or annotate this rule, not emit the route independently.",
+    "priority_tiebreak": "AL_RULE_02 former A/B → A when HEME_CLONAL Tier 1; B when HEME_CLONAL Tier 2."
+  },
+  "combinations": [
+    {
+      "rule_id": "AL_RULE_01",
+      "priority": "A",
+      "rule_type": "PAIR",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "HEME_CLONAL", "max_tier": 2 },
+        { "bucket": "RENAL", "max_tier": 2 }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Highest-yield clonal + renal phenotype."
+    },
+    {
+      "rule_id": "AL_RULE_02",
+      "priority": "A",
+      "priority_when": {
+        "default": "B",
+        "upgrade_to": "A",
+        "if": [{ "bucket": "HEME_CLONAL", "max_tier": 1 }]
+      },
+      "rule_type": "PAIR",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "HEME_CLONAL", "max_tier": 2 },
+        { "bucket": "CARDIO", "max_tier": 2 }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Clonal + cardiac amyloid phenotype. A if HEME Tier 1; B if HEME Tier 2 only."
+    },
+    {
+      "rule_id": "AL_RULE_03",
+      "priority": "B",
+      "rule_type": "PAIR",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "HEME_CLONAL", "max_tier": 2 },
+        { "bucket": "NEURO", "max_tier": 2 }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Clonal + neuropathy."
+    },
+    {
+      "rule_id": "AL_RULE_04",
+      "priority": "B",
+      "rule_type": "PAIR",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "HEME_CLONAL", "max_tier": 2 },
+        { "bucket": "AUTONOMIC", "max_tier": 2 }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Clonal + autonomic organ involvement. Retained from workbook even if current AL overlays keep AUTONOMIC at T3 (would not gate-fire until overlay tiers change)."
+    },
+    {
+      "rule_id": "AL_RULE_05",
+      "priority": "B",
+      "rule_type": "PAIR",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "HEME_CLONAL", "max_tier": 2 },
+        { "bucket": "GI_HEPATIC", "max_tier": 2 }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Clonal + GI/hepatic organ involvement. Retained from workbook even if current AL overlays keep GI_HEPATIC at T3."
+    },
+    {
+      "rule_id": "AL_RULE_06",
+      "priority": "A",
+      "rule_type": "PAIR_CLASS",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "requires": [
+        { "bucket": "MUCOSAL_CUTANEOUS", "max_tier": 1 },
+        {
+          "bucket_class": "ANY_OF",
+          "allowed_buckets": ["RENAL", "CARDIO", "NEURO", "AUTONOMIC", "GI_HEPATIC"],
+          "max_tier": 2
+        }
+      ],
+      "output_route": "AL_SAFETY_REVIEW",
+      "note": "Macroglossia/purpura remain high-specificity but low-sensitivity clues. Full workbook ANY_OF set restored."
+    },
+    {
+      "rule_id": "AL_RULE_07",
+      "priority": "POSSIBLE_AL",
+      "rule_type": "COUNT_DISTINCT_BUCKETS",
+      "require_gate_eligible": true,
+      "funnel_source": "GENERAL_AMYLOID",
+      "allowed_buckets": ["RENAL", "CARDIO", "NEURO", "AUTONOMIC", "GI_HEPATIC", "MUCOSAL_CUTANEOUS"],
+      "max_tier_per_bucket": 2,
+      "min_distinct_buckets": 3,
+      "heme_clonal_required": false,
+      "heme_clonal_forbidden_for_this_route": true,
+      "owns_route": "AL_MONOCLONAL_SCREEN",
+      "output_route": "AL_MONOCLONAL_SCREEN",
+      "note": "Do not label AL. >=3 organ buckets at T1/T2 with no clonal finding → monoclonal-screen funnel only. Full organ set restored from workbook."
+    }
+  ]
+}

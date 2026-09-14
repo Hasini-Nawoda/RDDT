@@ -1,0 +1,420 @@
+{
+  "_source": "Amyloidosis_MultiPhenotype_Bucket_Config.xlsx, Guardrails sheet (26 rows: 24 parallel routes + 2 DO_NOT_USE). Excel columns preserved verbatim.",
+  "_count": {
+    "guardrails": 24,
+    "do_not_use": 2,
+    "total_sheet_rows": 26
+  },
+  "_important": "Guardrails never become Tier 4 positive evidence; they route/flag in parallel and allow simultaneous phenotype passes. DO_NOT_USE rows are audit/provenance only - never screening triggers.",
+  "_trigger_basis_key": {
+    "VERIFIED_ATOM_TAG": "sign_id appears in an atom source_workbook_rows array.",
+    "INFERRED_CLINICAL_MATCH": "mapped by Feature text to existing atoms; needs_review true.",
+    "INFERRED_TARGET_PHENOTYPE_PATTERN": "MULTISYSTEM_COMPOSITE - reuses target phenotype combination rule(s)."
+  },
+  "guardrails": [
+    {
+      "sign_id": "WT24",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "RULE_WT24",
+      "reasoning_bucket": "CARDIO",
+      "route_or_guardrail": "NO_EXCLUSION_FEMALE_WALL_THICKNESS",
+      "feature": "Female patient with ATTR-like phenotype despite septal wall thickness <12 mm",
+      "source_guardrail_context": "Small cohort; exact best threshold needs validation.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "recorded_sex",
+        "lv_wall_measurement",
+        "lv_relative_wall_thickness"
+      ],
+      "note": "Do NOT hardcode a 12mm cutoff in SQL — the source explicitly says not to use a fixed female threshold without sex/body-size-aware LVMI. Trigger condition here is 'recorded_sex=F AND other ATTRwt buckets present', not a numeric wall-thickness comparison."
+    },
+    {
+      "sign_id": "WT25",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "HEME_MGUS",
+      "reasoning_bucket": "HEME_CLONAL",
+      "route_or_guardrail": "AL_SAFETY",
+      "feature": "Monoclonal gammopathy / MGUS in an otherwise ATTRwt-like phenotype",
+      "source_guardrail_context": "AL is urgent and must be actively excluded. Presence of monoclonal protein invalidates simple non-invasive ATTR attribution and usually requires definitive typing in the clinical pathway.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "mgus"
+      ]
+    },
+    {
+      "sign_id": "WT26",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "RULE_WT26",
+      "reasoning_bucket": "HEME_CLONAL",
+      "route_or_guardrail": "AL_SAFETY_INTERPRET_FLC_WITH_CKD",
+      "feature": "Abnormal serum free-light-chain ratio in CKD that may reflect renal clearance rather than monoclonality",
+      "source_guardrail_context": "Assay-specific reference ranges matter; true AL can coexist with CKD; immunofixation context remains essential.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "renal_differential_assessment"
+      ]
+    },
+    {
+      "sign_id": "WT27",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "RULE_AL_ORIENTED_MULTISYSTEM",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AL",
+      "feature": "Nephrotic-range proteinuria/marked hypoalbuminemia, macroglossia/periorbital purpura, or strong plasma-cell-disorder context",
+      "source_guardrail_context": "MGUS can coexist with ATTRwt, so subtype must remain unresolved until appropriate typing; renal disease can have non-amyloid causes.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AL_RULE_01",
+        "AL_RULE_06"
+      ]
+    },
+    {
+      "sign_id": "WT28",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "RULE_ATTRV_NEURO_AUTONOMIC",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "ATTRv",
+      "feature": "Prominent painful polyneuropathy with marked dysautonomia/GI dysfunction ± family history or ocular signs",
+      "source_guardrail_context": "ATTRwt can have some neuropathy/orthostasis, but severe or early autonomic/mixed phenotype shifts toward ATTRv.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "V_RULE_01"
+      ]
+    },
+    {
+      "sign_id": "WT29",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "RULE_AA_DRIVER_PLUS_RENAL",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AA",
+      "feature": "Chronic inflammatory/autoinflammatory disease or chronic infection + persistent inflammatory burden + heavy proteinuria",
+      "source_guardrail_context": "Older patients may have both degenerative cardiac disease and inflammatory illness; renal cause may remain unresolved.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AA_RULE_01",
+        "AA_RULE_02"
+      ]
+    },
+    {
+      "sign_id": "V37",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_V37",
+      "reasoning_bucket": "NEURO",
+      "route_or_guardrail": "ANTI_ANCHORING_NOT_EXCLUSION",
+      "feature": "Mild/well-controlled diabetes that does not explain severe, rapidly progressive or ataxic neuropathy",
+      "source_guardrail_context": "Diabetes remains the most common cause of neuropathy and should generally lower specificity.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "diabetes"
+      ]
+    },
+    {
+      "sign_id": "V38",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_V38",
+      "reasoning_bucket": "NEURO",
+      "route_or_guardrail": "ALTERNATIVE_NEUROPATHY",
+      "feature": "Active autoimmune disease / positive autoantibodies with a convincing inflammatory/demyelinating neuropathy pattern",
+      "source_guardrail_context": "ATTRv can be misdiagnosed as CIDP and nonspecific autoantibodies may coexist; never use autoimmunity as an exclusion.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "autoimmune_disease",
+        "autoantibody_result"
+      ]
+    },
+    {
+      "sign_id": "V32",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_V32",
+      "reasoning_bucket": "CARDIO",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Low-flow, low-gradient aortic stenosis",
+      "source_guardrail_context": "Severe AS itself causes LVH/low flow; ATTRwt is the stronger TTR subtype association.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "as_valve",
+        "lflg_as"
+      ],
+      "note": "Same underlying atoms as WT14 (ATTRwt Tier 2) — as_valve/lflg_as are not tagged with 'V32' in their source_workbook_rows, mapped by clinical description match."
+    },
+    {
+      "sign_id": "V41",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_ATTRWT_ORTHO_BEFORE_CARDIO",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Older patient with isolated cardiac ATTR-like phenotype and long orthopedic prodrome but little/no neuropathy or dysautonomia",
+      "source_guardrail_context": "Pathogenic TTR variants remain present in a meaningful fraction of elderly ATTR-CM patients, so genetic testing is still necessary.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "WT_RULE_01",
+        "WT_RULE_02"
+      ]
+    },
+    {
+      "sign_id": "V33",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_V33",
+      "reasoning_bucket": "ORTHO",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Biceps tendon rupture, rotator cuff tear, trigger finger/tenosynovitis as an isolated orthopedic prodrome",
+      "source_guardrail_context": "Age-related degenerative disease is common; isolated orthopedic pattern without neuropathy/autonomic clues points more toward ATTRwt.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "trigger_finger",
+        "trigger_release",
+        "rotator_cuff",
+        "rotator_cuff_repair",
+        "shoulder_disorder",
+        "biceps_rupture"
+      ]
+    },
+    {
+      "sign_id": "V39",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_AL_ORIENTED_MULTISYSTEM",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AL",
+      "feature": "Nephrotic-range proteinuria, macroglossia/periorbital purpura, or strong plasma-cell-disorder context",
+      "source_guardrail_context": "MGUS can coexist with ATTR; no single monoclonal abnormality proves AL.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AL_RULE_01",
+        "AL_RULE_06"
+      ]
+    },
+    {
+      "sign_id": "V40",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "RULE_AA_DRIVER_PLUS_RENAL",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AA",
+      "feature": "Chronic inflammatory/autoinflammatory/infectious disease plus new proteinuria/nephrotic renal phenotype",
+      "source_guardrail_context": "Inflammatory disease can coexist with unrelated ATTRv; context is probabilistic.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AA_RULE_01",
+        "AA_RULE_02"
+      ]
+    },
+    {
+      "sign_id": "AA26",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA26",
+      "reasoning_bucket": "RENAL",
+      "route_or_guardrail": "ALTERNATIVE_RENAL_PROCESS",
+      "feature": "FMF + proteinuria with possible non-amyloid kidney disease (NAKD)",
+      "source_guardrail_context": "Non-amyloid glomerulopathies can coexist with FMF; phenotype cannot replace tissue typing when clinically required.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "fmf",
+        "persistent_proteinuria"
+      ]
+    },
+    {
+      "sign_id": "AA25",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA25",
+      "reasoning_bucket": "CARDIO",
+      "route_or_guardrail": "AL_OR_ATTR",
+      "feature": "Heart failure / conduction disease / cardiac imaging abnormalities in a chronic inflammatory patient",
+      "source_guardrail_context": "AL and ATTR are much more important cardiac amyloid subtypes; ordinary cardiac disease is common.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AL_RULE_02",
+        "AC01"
+      ],
+      "note": "Two possible targets (AL or ATTR) — both reuse-rules are listed; route resolution between them is not specified in the source."
+    },
+    {
+      "sign_id": "AA27",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA27",
+      "reasoning_bucket": "RENAL",
+      "route_or_guardrail": "ALTERNATIVE_RENAL_PROCESS",
+      "feature": "Active urinary sediment / hematuria or leukocyturia in an AA-risk patient",
+      "source_guardrail_context": "Active sediment may favor glomerulonephritis, infection, stones, or other renal disease and therefore should reduce certainty.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "urine_sediment_result"
+      ]
+    },
+    {
+      "sign_id": "AA30",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA30",
+      "reasoning_bucket": "SYSTEMIC_CONTEXT",
+      "route_or_guardrail": "AA_UNCERTAIN_NO_DRIVER",
+      "feature": "No identified chronic inflammatory/infectious driver despite adequate longitudinal history",
+      "source_guardrail_context": "Occult infection, autoinflammatory disease, malignancy, or inadequately coded inflammatory disease may be missed.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "trigger_type": "ABSENCE",
+      "condition": "RENAL bucket gate-eligible AND INFLAMMATORY_DRIVER bucket NOT gate-eligible, despite adequate longitudinal history",
+      "note": "The only guardrail in this set defined by an ABSENCE of evidence rather than a presence pattern."
+    },
+    {
+      "sign_id": "AA28",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA28",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AL",
+      "feature": "Known monoclonal gammopathy / plasma-cell dyscrasia in a patient with proteinuria or multisystem amyloid-like features",
+      "source_guardrail_context": "Monoclonal gammopathy is not synonymous with AL; it also occurs incidentally, especially with age.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "mgus",
+        "plasma_cell_dyscrasia",
+        "persistent_proteinuria",
+        "nephrotic_syndrome"
+      ]
+    },
+    {
+      "sign_id": "AA29",
+      "source_phenotype": "AA",
+      "canonical_atom_or_rule_id": "RULE_AA29",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "ATTR",
+      "feature": "Classic ATTR orthopedic prodrome (bilateral/recurrent CTS, lumbar spinal stenosis, distal biceps rupture) followed by cardiac disease",
+      "source_guardrail_context": "CTS/stenosis are common degenerative disorders; they are comparative weights, not exclusions.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AC01"
+      ]
+    },
+    {
+      "sign_id": "AL25",
+      "source_phenotype": "AL",
+      "canonical_atom_or_rule_id": "RULE_AA_DRIVER_PLUS_RENAL",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "AA",
+      "feature": "Credible chronic inflammatory/autoinflammatory/infectious history + new persistent proteinuria",
+      "source_guardrail_context": "AL and inflammation can coexist; clonal evidence may keep AL active.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "AA_RULE_02"
+      ]
+    },
+    {
+      "sign_id": "AL30",
+      "source_phenotype": "AL",
+      "canonical_atom_or_rule_id": "RULE_ATTRWT_ORTHO_BEFORE_CARDIO",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Older patient with predominantly isolated cardiac phenotype + AF/CTS and little renal/GI/clonal evidence",
+      "source_guardrail_context": "AL can present cardiac-only; not a hard exclusion.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "WT_RULE_01",
+        "WT_RULE_02"
+      ]
+    },
+    {
+      "sign_id": "AL31",
+      "source_phenotype": "AL",
+      "canonical_atom_or_rule_id": "RULE_ATTRV_NEURO_AUTONOMIC",
+      "reasoning_bucket": "MULTISYSTEM_COMPOSITE",
+      "route_or_guardrail": "ATTRv",
+      "feature": "Painful length-dependent/small-fiber neuropathy with early marked autonomic/GI dysfunction ± hereditary clues",
+      "source_guardrail_context": "AL neuropathy, diabetes and CIDP overlap.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_TARGET_PHENOTYPE_PATTERN",
+      "reuses_rule": [
+        "V_RULE_01"
+      ]
+    },
+    {
+      "sign_id": "AL22",
+      "source_phenotype": "AL",
+      "canonical_atom_or_rule_id": "ORTHO_CTS_BILAT_RECURRENT",
+      "reasoning_bucket": "ORTHO",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Bilateral/recurrent carpal tunnel syndrome years before cardiac disease",
+      "source_guardrail_context": "CTS is common and can coexist with AL; not an exclusion.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "cts_bilateral",
+        "cts_left",
+        "cts_right",
+        "cts_recurrent",
+        "ctr_any",
+        "cts_any"
+      ]
+    },
+    {
+      "sign_id": "AL23",
+      "source_phenotype": "AL",
+      "canonical_atom_or_rule_id": "RULE_AL23",
+      "reasoning_bucket": "ORTHO",
+      "route_or_guardrail": "ATTRwt",
+      "feature": "Long orthopedic prodrome: lumbar spinal stenosis / distal biceps rupture / multiple tendon-hand procedures",
+      "source_guardrail_context": "Age-related degenerative disease can mimic individual events.",
+      "implementation_rule": "Never convert to Tier 4 positive evidence; route/flag in parallel and allow simultaneous phenotype passes.",
+      "trigger_basis": "INFERRED_CLINICAL_MATCH",
+      "needs_review": true,
+      "trigger_atom_ids": [
+        "lumbar_stenosis",
+        "lumbar_decompression",
+        "ligamentum_flavum_thickening",
+        "biceps_rupture"
+      ]
+    }
+  ],
+  "do_not_use": [
+    {
+      "sign_id": "WT30",
+      "source_phenotype": "ATTRwt",
+      "canonical_atom_or_rule_id": "ATOM_WT30",
+      "reasoning_bucket": "SYSTEMIC_CONTEXT",
+      "route_or_guardrail": "DO_NOT_USE_AS_TRIGGER",
+      "feature": "Elevated serum uric acid",
+      "source_guardrail_context": "CKD, diuretics, gout, metabolic syndrome and HF commonly elevate uric acid.",
+      "implementation_rule": "Retain only for provenance/audit/research.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "elevated_uric_acid"
+      ]
+    },
+    {
+      "sign_id": "V36",
+      "source_phenotype": "ATTRv",
+      "canonical_atom_or_rule_id": "ATOM_V36",
+      "reasoning_bucket": "SYSTEMIC_CONTEXT",
+      "route_or_guardrail": "DO_NOT_USE_AS_TRIGGER",
+      "feature": "Declining serum prealbumin (circulating transthyretin)",
+      "source_guardrail_context": "Malnutrition, inflammation and liver disease strongly affect prealbumin; low values are not ATTRv-specific.",
+      "implementation_rule": "Retain only for provenance/audit/research.",
+      "trigger_basis": "VERIFIED_ATOM_TAG",
+      "trigger_atom_ids": [
+        "declining_prealbumin"
+      ]
+    }
+  ]
+}

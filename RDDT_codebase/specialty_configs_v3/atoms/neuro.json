@@ -1,0 +1,1791 @@
+{
+  "atoms": [
+    {
+      "atom_id": "abnormal_cutaneous_silent_period",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cutaneous silent period"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CSP latency"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Abnormal cutaneous silent period",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V20"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "age_excessive_snhl",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "H90.3",
+              "description": "Sensorineural hearing loss, bilateral",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "60700002",
+              "description": "Sensorineural hearing loss",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "H90.3"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "sensorineural hearing loss"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilateral hearing aids"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "presbycusis disproportionate"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilateral SNHL"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hearing loss greater than expected for age"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Bilateral sensorineural hearing loss greater than expected for age",
+      "source_specialty": "AUDIOLOGY_ENT",
+      "source_workbook_rows": [
+        "WT21"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "mild_sensory_polyneuropathy",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G62.9",
+              "description": "Polyneuropathy, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "42658009"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "42658009",
+              "description": "Peripheral neuropathy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G62.9"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mild sensory polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "length-dependent sensory neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mild peripheral neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "distal sensory loss"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "stocking glove sensory loss"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mild distal polyneuropathy"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Mild-to-moderate length-dependent sensory polyneuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "WT22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "bulbar_neuropathy_symptoms",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "R13.10",
+              "description": "Dysphagia, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "R47.1",
+              "description": "Dysarthria and anarthria",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "R49.0",
+              "description": "Dysphonia (hoarseness)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dysphagia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hoarseness"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dysarthria"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "choking on food"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "difficulty swallowing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "voice change unexplained"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bulbar symptoms"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Unexplained bulbar neuropathy symptoms",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V28"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "bulbar_symptom",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "bulbar symptom",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "charcot_arthropathy",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "M14.671",
+              "description": "Charcot's joint, right ankle and foot",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "M14.672",
+              "description": "Charcot's joint, left ankle and foot",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "17879005",
+              "description": "Neuropathic arthropathy (Charcot joint)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Charcot joint"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Charcot arthropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neuropathic arthropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Charcot foot"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "charcot arthropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V29"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cidp",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G61.81",
+              "description": "Chronic inflammatory demyelinating polyneuritis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Chronic inflammatory demyelinating polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CIDP"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "chronic inflammatory demyelinating"
+          }
+        ],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Chronic inflammatory demyelinating polyneuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V14"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "emg_axonal",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Axonal pattern on EMG/NCS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "EMG"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "NCS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "axonal neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "axonal pattern"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "axonal sensorimotor"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "non-excitable nerves"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "severe axonal"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "axonal loss predominant"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "absent conduction block"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "no conduction block"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Axonal pattern on EMG/NCS",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "emg_mixed",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Mixed axonal-demyelinating EMG pattern"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CIDP"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mixed axonal-demyelinating"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "atypical cidp"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "secondary axonal loss"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mixed neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "demyelinating with axonal loss"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "128209004",
+              "description": "Chronic inflammatory demyelinating polyradiculoneuropathy",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Mixed axonal-demyelinating EMG pattern",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "ienfd",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Reduced intraepidermal nerve-fiber density"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "IENFD"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "PGP 9.5"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "reduced ienfd"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "low intraepidermal nerve fiber"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "intraepidermal nerve fiber"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "pgp9.5"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "skin biopsy nerve fiber"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "decreased epidermal nerve fiber"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "low intraepidermal nerve fiber density"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "skin biopsy nerve fiber loss"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "PGP 9.5 staining"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "decreased epidermal nerve fiber density"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Reduced intraepidermal nerve-fiber density",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "immunotherapy_exposure",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "J1568",
+              "description": "IVIG injection (per 500mg)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "36415",
+              "description": "Plasmapheresis / plasma exchange (context: CIDP treatment)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "IVIG"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "intravenous immunoglobulin"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "plasma exchange"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "immunotherapy for neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "steroid trial neuropathy"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "immunotherapy exposure",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V14"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "length_dependent",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Length-dependent axonal sensorimotor polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "length-dependent neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "length dependent neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "length-dependent polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "length dependent polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "stocking-glove"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "stocking glove"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "stocking-glove distribution"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "symmetric sensorimotor polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "symmetric length-dependent"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "distal symmetric polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "idiopathic axonal polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "distal axonal neuropathy"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G62.",
+              "description": "Other and unspecified polyneuropathies",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "42345000"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "G60.",
+              "description": "Hereditary and idiopathic neuropathy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "42345000"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E11.42",
+              "description": "Type 2 diabetes mellitus with diabetic polyneuropathy",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "42345000",
+              "description": "Polyneuropathy",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Length-dependent axonal sensorimotor polyneuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "lower_limb_symptom",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "lower limb symptom",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V30"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "mr_neurography_abnormal",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "MR neurography"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "plexus enlargement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "sciatic nerve T2"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "DTI"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "MR neurography abnormalities of peripheral nerve or plexus",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V21"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nerve_ultrasound_enlargement",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nerve ultrasound"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "proximal nerve enlargement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "brachial plexus enlargement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "increased nerve cross-sectional area"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Nerve ultrasound proximal enlargement",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nerve_ultrasound_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "76883",
+              "description": "Ultrasound, nerve(s) and accompanying structures",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cross-sectional area"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "nerve ultrasound abnormal"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "nerve ultrasound result",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "neuro_suspects_attr",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Neurologist suspects amyloid / ATTR neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ATTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "suspect amyloid neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rule out attr"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "consider hereditary amyloidosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recommend ttr genetic"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "refer amyloid"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "amyloid neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "possible attr neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "amyloid polyneuropathy suspected"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recommend TTR genetic testing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "refer amyloid center"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "42295001",
+              "description": "Familial amyloid polyneuropathy",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "1354544003",
+              "description": "Familial transthyretin-related amyloidosis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "17602002",
+              "description": "Amyloidosis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Neurologist suspects amyloid / ATTR neuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "RECOGNITION_MARKER"
+    },
+    {
+      "atom_id": "neuropathic_pain",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "R20.8",
+              "description": "Other disturbances of skin sensation",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E11.40",
+              "description": "diabetic neuropathy",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E11.42",
+              "description": "diabetic neuropathy",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Neuropathic pain (burning feet, dysesthesia, allodynia)"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "burning feet"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dysesthesia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "allodynia"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neuropathic pain"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "painful feet"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "burning pain feet"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hyperalgesia"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Neuropathic pain (burning feet, dysesthesia, allodynia)",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "nfl_result",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "83519",
+              "description": "Neurofilament light chain, serum (context-specific lab)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neurofilament light chain"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "NfL"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "sNfL"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rising neurofilament"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "nfl result",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V18"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "orthostatic",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "DEPRECATED - consolidated into autonomic.json:orthostatic_intolerance (AL13+V09)",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "plantar_ulcer",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "L97.40",
+              "description": "Non-pressure chronic ulcer of unspecified heel and midfoot",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "1163220004",
+              "description": "Ulcer of skin of foot",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "L97.40"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "plantar ulcer"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "painless ulcer"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "painless foot trauma"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neuropathic foot ulcer"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "plantar ulcer",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V29"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "polyneuropathy",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G62.",
+              "description": "Other and unspecified polyneuropathies",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "G60.",
+              "description": "Hereditary and idiopathic neuropathy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "KEYWORD_EVIDENCE"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Polyneuropathy / peripheral neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "PN"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "polyneuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "peripheral neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "sensorimotor neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "axonal polyneuropathy"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Polyneuropathy / peripheral neuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "AL24",
+        "V02"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "progressive_neuropathy",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Progressive neuropathy despite treatment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "progressive neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "worsening despite treatment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "relentlessly progressive"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "treatment-refractory progression"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "neuropathy progressing"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "worsening weakness neuropathy"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "42345000",
+              "description": "Polyneuropathy",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Progressive neuropathy despite treatment",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "sensory_loss",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "sensory loss",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "AL24",
+        "V04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "sfn",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G60.8",
+              "description": "Other hereditary and idiopathic neuropathies",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "G60.9",
+              "description": "Hereditary and idiopathic neuropathy, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G60.8",
+                "709489006"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "709489006",
+              "description": "Small fibre neuropathy",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Small-fiber neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "SFN"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "small fiber neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "small fibre neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "small fiber dysfunction"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "isolated small-fiber"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "early sensory neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "isolated small-fiber involvement"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Small-fiber neuropathy",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V04"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "treatment_response_assessment",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "no improvement after IVIG"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "failed immunotherapy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "refractory to IVIG"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "poor response to treatment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "progressive despite treatment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "steroid nonresponse"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "treatment response assessment",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V14"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "trophic_change",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "trophic changes"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "loss of protective sensation"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "painless trauma"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "foot osteoarthropathy"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "trophic change",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [
+        "V29"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "trophic_foot_sensory_loss",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Painless plantar ulcers / trophic foot changes",
+      "source_specialty": "NEUROLOGY",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "NEUROLOGY"
+}

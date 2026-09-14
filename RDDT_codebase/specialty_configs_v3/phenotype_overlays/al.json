@@ -1,0 +1,446 @@
+{
+  "phenotype": "AL",
+  "_source": "architecture_v3_specs/11_phenotype_bucket_tiers_and_combinations.md (authoritative) + specialty_configs_v3/atoms/*.json source_workbook_rows. Guardrails/DO_NOT_USE/temporal-only signs excluded.",
+  "_decisions": {
+    "authority": "File 11 wins over older Signal Catalog where they conflict (WT18, WT20).",
+    "cts_policy": "Bilateral/recurrent atoms are gate-forming; unilateral/generic CTS atoms are weaker / non-gate."
+  },
+  "overlays": [
+    {
+      "atom_id": "plasma_cell_dyscrasia",
+      "source_sign_id": "AL01",
+      "bucket": "HEME_CLONAL",
+      "tier": 1,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "mgus",
+      "source_sign_id": "AL02",
+      "bucket": "HEME_CLONAL",
+      "tier": 2,
+      "role": "ETIOLOGIC_CONTEXT",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "urine_protein_result",
+      "source_sign_id": "AL03",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "nephrotic_range_proteinuria",
+      "source_sign_id": "AL04",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "nephrotic_syndrome",
+      "source_sign_id": "AL04",
+      "bucket": "RENAL",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "hypoalbuminemia",
+      "source_sign_id": "AL05",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "peripheral_edema",
+      "source_sign_id": "AL05",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "creatinine_result",
+      "source_sign_id": "AL06",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "egfr_result",
+      "source_sign_id": "AL06",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "kidney_failure",
+      "source_sign_id": "AL06",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "renal_dysfunction",
+      "source_sign_id": "AL06",
+      "bucket": "RENAL",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "macroglossia",
+      "source_sign_id": "AL07",
+      "bucket": "MUCOSAL_CUTANEOUS",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "ecchymosis",
+      "source_sign_id": "AL08",
+      "bucket": "MUCOSAL_CUTANEOUS",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "periorbital_purpura",
+      "source_sign_id": "AL08",
+      "bucket": "MUCOSAL_CUTANEOUS",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "pinch_purpura",
+      "source_sign_id": "AL08",
+      "bucket": "MUCOSAL_CUTANEOUS",
+      "tier": 1,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "hf_any",
+      "source_sign_id": "AL14",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "hfpef",
+      "source_sign_id": "AL14",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "restrictive_cardiomyopathy",
+      "source_sign_id": "AL15",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "restrictive_filling",
+      "source_sign_id": "AL15",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "thick_walls",
+      "source_sign_id": "AL15",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "low_ecg_voltage",
+      "source_sign_id": "AL16",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "pseudo_infarct",
+      "source_sign_id": "AL16",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "voltage_mass_mismatch",
+      "source_sign_id": "AL16",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "bnp_result",
+      "source_sign_id": "AL17",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "ntprobnp_result",
+      "source_sign_id": "AL17",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "troponin_result",
+      "source_sign_id": "AL17",
+      "bucket": "CARDIO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "cardiomegaly",
+      "source_sign_id": "AL33",
+      "bucket": "CARDIO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "cardiomyopathy",
+      "source_sign_id": "AL33",
+      "bucket": "CARDIO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "pericardial_effusion",
+      "source_sign_id": "AL28",
+      "bucket": "CARDIO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "other_serosal_effusion",
+      "source_sign_id": "AL28",
+      "bucket": "CARDIO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "pleural_effusion",
+      "source_sign_id": "AL28",
+      "bucket": "CARDIO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "polyneuropathy",
+      "source_sign_id": "AL24",
+      "bucket": "NEURO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "sensory_loss",
+      "source_sign_id": "AL24",
+      "bucket": "NEURO",
+      "tier": 2,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": true
+    },
+    {
+      "atom_id": "orthostatic_intolerance",
+      "source_sign_id": "AL13",
+      "bucket": "NEURO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "dizziness",
+      "source_sign_id": "AL29",
+      "bucket": "NEURO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "hypotension",
+      "source_sign_id": "AL29",
+      "bucket": "NEURO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "syncope",
+      "source_sign_id": "AL29",
+      "bucket": "NEURO",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "abdominal_pain",
+      "source_sign_id": "AL10",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "delayed_gastric_emptying",
+      "source_sign_id": "AL10",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "early_satiety",
+      "source_sign_id": "AL10",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "nausea",
+      "source_sign_id": "AL10",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "vomiting",
+      "source_sign_id": "AL10",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "constipation",
+      "source_sign_id": "AL11",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "diarrhea",
+      "source_sign_id": "AL11",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "dysphagia",
+      "source_sign_id": "AL11",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "hepatic_alp_elevation",
+      "source_sign_id": "AL18",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "hepatomegaly",
+      "source_sign_id": "AL18",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "unintentional_weight_loss",
+      "source_sign_id": "AL09",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "weight_result",
+      "source_sign_id": "AL09",
+      "bucket": "GI_HEPATIC",
+      "tier": 3,
+      "role": "POSITIVE_EVIDENCE",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "fatigue",
+      "source_sign_id": "AL19",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "malaise",
+      "source_sign_id": "AL19",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "subjective_weakness",
+      "source_sign_id": "AL19",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "dyspnea",
+      "source_sign_id": "AL20",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    },
+    {
+      "atom_id": "nonspecific_edema",
+      "source_sign_id": "AL34",
+      "bucket": "SYSTEMIC_CONTEXT",
+      "tier": 4,
+      "role": "MODIFIER",
+      "gate_eligible": false
+    }
+  ],
+  "_notes": [
+    "AL21/AL26/AL27 are composites/escalations - not positive tier rows here.",
+    "Guardrails AL22/23/25/30/31 excluded."
+  ]
+}

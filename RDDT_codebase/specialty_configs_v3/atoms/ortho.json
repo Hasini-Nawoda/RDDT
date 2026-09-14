@@ -1,0 +1,2666 @@
+{
+  "atoms": [
+    {
+      "atom_id": "achilles",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "27650",
+              "description": "Repair, primary, open or percutaneous, ruptured Achilles tendon",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "27652",
+              "description": "Repair Achilles tendon with graft",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "27654",
+              "description": "Repair, secondary, Achilles tendon, with or without graft",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "M66.361",
+              "description": "Spontaneous rupture of flexor tendons, right lower leg",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "M66.362",
+              "description": "Spontaneous rupture of flexor tendons, left lower leg",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": true,
+              "code": "M66.369",
+              "description": "Spontaneous rupture of flexor tendons, unspecified lower leg",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M76.61",
+              "description": "Achilles tendinitis, right leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M76.62",
+              "description": "Achilles tendinitis, left leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M76.60",
+              "description": "Achilles tendinitis, unspecified leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.861",
+              "description": "Spontaneous rupture of other tendons, right lower leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.862",
+              "description": "Spontaneous rupture of other tendons, left lower leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.869",
+              "description": "Spontaneous rupture of other tendons, unspecified lower leg",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "S86.011A",
+              "description": "Strain of right Achilles tendon, initial encounter",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "S86.012A",
+              "description": "Strain of left Achilles tendon, initial encounter",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "S86.019A",
+              "description": "Strain of unspecified Achilles tendon, initial encounter",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "429513001",
+              "description": "Rupture of Achilles tendon",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "11654001",
+              "description": "Achilles tendinitis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.361",
+                "M66.362",
+                "M66.369",
+                "429513001",
+                "27650"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Achilles tendon rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Achilles tendinopathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "atraumatic achilles"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "spontaneous achilles tear"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "achilles thickening"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "achiles tendon"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "achilles tendon ruptured"
+          }
+        ],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Achilles tendon thickening or spontaneous rupture",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "arthroplasty",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "27447",
+              "description": "Arthroplasty, knee, condyle and plateau (TKA)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "27130",
+              "description": "Arthroplasty, acetabular and proximal femoral prosthetic replacement (THA)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "Z96.641",
+              "description": "Presence of right artificial hip joint",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "609588000",
+                "27447",
+                "27130"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "Z96.642",
+              "description": "Presence of left artificial hip joint",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "609588000",
+                "27447",
+                "27130"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "Z96.651",
+              "description": "Presence of right artificial knee joint",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "609588000",
+                "27447",
+                "27130"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "Z96.652",
+              "description": "Presence of left artificial knee joint",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "609588000",
+                "27447",
+                "27130"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M17.9",
+              "description": "Osteoarthritis of knee, unspecified",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M16.9",
+              "description": "Osteoarthritis of hip, unspecified",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "609588000",
+              "description": "Total knee arthroplasty",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "304120007",
+              "description": "Total hip replacement prosthesis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "609588000",
+                "27447",
+                "27130"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "239873007",
+              "description": "Osteoarthritis of knee",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "239872002",
+              "description": "Osteoarthritis of hip",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Total knee arthroplasty"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Total hip arthroplasty"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Joint replacement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "TKA"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "THA"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "knee replacement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hip replacement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "total knee"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "total hip"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "arthroplasty"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "knee replacment"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "hip replacment"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Hip or knee joint replacement (arthroplasty)",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT06"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "biceps_rupture",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "24342",
+              "description": "Reinsertion of ruptured biceps or triceps tendon, distal, with or without tendon graft",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.821",
+              "description": "Spontaneous rupture of other tendons, right upper arm",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.822",
+              "description": "Spontaneous rupture of other tendons, left upper arm",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.829",
+              "description": "Spontaneous rupture of other tendons, unspecified upper arm",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.80",
+              "description": "Spontaneous rupture of other tendons, unspecified site",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.821",
+                "M66.822",
+                "M66.829",
+                "428883008",
+                "24342"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.89",
+              "description": "Spontaneous rupture of other tendons, multiple sites",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.821",
+                "M66.822",
+                "M66.829",
+                "428883008",
+                "24342"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M66.9",
+              "description": "Spontaneous rupture of unspecified tendon",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.821",
+                "M66.822",
+                "M66.829",
+                "428883008",
+                "24342"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "S46.211A",
+              "description": "Strain of muscle/tendon, other parts of biceps, right arm, initial encounter",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "S46.221A",
+              "description": "Strain of muscle/tendon, other parts of biceps, left arm, initial encounter",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "428883008",
+              "description": "Rupture of biceps tendon",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "86128003",
+              "description": "Rupture of tendon of biceps, long head",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M66.821",
+                "M66.822",
+                "M66.829",
+                "428883008",
+                "24342"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Spontaneous rupture of distal biceps tendon"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Atraumatic biceps tendon rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "BTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "biceps tendon rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "distal biceps tear"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "distal biceps rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "popeye sign"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "popeye deformity"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "atraumatic biceps rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "spontaneous biceps tear"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bicep tendon rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bicep rupture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "poppeye sign"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Spontaneous distal biceps tendon rupture (\"Popeye sign\")",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT03"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "congo_red",
+      "extraction": {
+        "candidate_keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Congo red stain positive"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Apple-green birefringence"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Amyloid deposits on biopsy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "congo red"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "apple-green"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "apple green birefringence"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "amyloid deposits"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "thioflavin"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "mass spectrometry ttr"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "polarized light amyloid"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "congo-red positive"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "thioflavin-s"
+          }
+        ],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "88313",
+              "description": "Special stain including interpretation and report (e.g., Congo red)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "88342",
+              "description": "Immunohistochemistry (IHC), initial single antibody stain",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "88346",
+              "description": "Immunofluorescent study, each antibody; direct method",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.82",
+              "description": "Wild-type transthyretin-related (ATTR) amyloidosis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.1",
+              "description": "Neuropathic heredofamilial amyloidosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.4",
+              "description": "Organ-limited amyloidosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.9",
+              "description": "Amyloidosis, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.89",
+              "description": "Other amyloidosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "E85.81",
+              "description": "Light chain (AL) amyloidosis",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "17602002",
+              "description": "Amyloidosis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "1354544003",
+              "description": "Familial transthyretin-related amyloidosis",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "715655000",
+              "description": "Transthyretin related familial amyloid cardiomyopathy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "56871000",
+              "description": "Localized amyloidosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "E85.82",
+                "17602002",
+                "1354544003",
+                "88313"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "23132008",
+              "description": "AL amyloidosis",
+              "mapping_role": "DIFFERENTIAL_EXCLUDE",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Congo red / amyloid tissue confirmation",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [],
+      "stage": "CONFIRMATION"
+    },
+    {
+      "atom_id": "ctr_any",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "64721",
+              "description": "Neuroplasty/transposition, median nerve at carpal tunnel (open CTR)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "29848",
+              "description": "Endoscopic release of transverse carpal ligament",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "171841007",
+                "64721"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "171841007",
+              "description": "Endoscopic carpal tunnel release",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "47534009",
+              "description": "Carpal tunnel decompression / release",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "171841007",
+                "64721"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Median nerve decompression at the wrist"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunnel surgery"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ctr surgery"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "endoscopic carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpel tunnel surgery"
+          }
+        ],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Carpal tunnel release procedure (any technique)",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_any",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "20526",
+              "description": "Injection, therapeutic; carpal tunnel",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "57406009"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G56.03",
+              "description": "Carpal tunnel syndrome, bilateral upper limbs",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "57406009"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "G56.00",
+              "description": "Carpal tunnel syndrome, unspecified upper limb",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "57406009"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "57406009",
+              "description": "Carpal tunnel syndrome",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Carpal tunnel syndrome"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Median nerve compression at the wrist"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "CTS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "median neuropathy at wrist"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cts release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ctr"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpel tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunnal"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpaltunnel"
+          }
+        ],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Carpal tunnel syndrome (any laterality)",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_bilateral",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G56.03",
+              "description": "Carpal tunnel syndrome, bilateral upper limbs",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "G56.13",
+              "description": "Other lesions of median nerve, bilateral upper limbs",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G56.03",
+                "1303624004"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "1303624004",
+              "description": "Bilateral carpal tunnel release",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "293871000119108",
+              "description": "Carpal tunnel syndrome of right wrist",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G56.03",
+                "1303624004"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "293861000119102",
+              "description": "Carpal tunnel syndrome of left wrist",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G56.03",
+                "1303624004"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "397828008",
+              "description": "Median neuropathy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "G56.03",
+                "1303624004"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Carpal tunnel syndrome, bilateral upper limbs"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "BCT"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilateral CTS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "b/l CTS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilateral carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunnel both wrists"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "both wrists"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "carpal tunnel surgery both"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "cts both wrists"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilateral carpel tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "b/l carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "bilat cts"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Bilateral carpal tunnel syndrome",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_left",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "G56.02",
+              "description": "Carpal tunnel syndrome, left upper limb",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Carpal tunnel syndrome, left",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_persistent_after_release",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "G56.03",
+              "description": "Carpal tunnel syndrome, bilateral upper limbs (recheck after release)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "171841007",
+                "64721"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent numbness after carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent symptoms after CTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "failed carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unresolved numbness post carpal tunnel surgery"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "no improvement after carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent numbness after CTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent median neuropathy after release"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "cts persistent after release",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "V13"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_recurrent",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Recurrent carpal tunnel syndrome"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Revision carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent CTS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "revision CTR"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "intractable carpal"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "repeat carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "revision carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "contralateral carpal tunnel release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "flexor tenosynovectomy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "unresolved median neuropathy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrant carpal tunnel"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "repeat ctr"
+          }
+        ],
+        "structured_rules": [
+          {
+            "rule_type": "REPEAT_PROCEDURE_COUNT",
+            "reference_atom_id": "ctr_any",
+            "min_distinct_dates": 2,
+            "note": "2+ distinct-date carpal tunnel release procedures (ctr_any codes) for the same patient = recurrent/revision CTS, independent of whether a note ever uses the word 'recurrent'."
+          }
+        ]
+      },
+      "family_tables_only": false,
+      "preferred_name": "Recurrent / revision carpal tunnel syndrome",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "cts_right",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "G56.01",
+              "description": "Carpal tunnel syndrome, right upper limb",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Carpal tunnel syndrome, right",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT02",
+        "V13",
+        "AL22"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "dupuytren",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "26123",
+              "description": "Fasciectomy, partial palmar with release of single digit",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "26121",
+              "description": "Fasciectomy, palmar only",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M72.0",
+                "203045001",
+                "26123"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "26040",
+              "description": "Fasciotomy, palmar (closed / needle aponeurotomy)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M72.0",
+                "203045001",
+                "26123"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "26045",
+              "description": "Fasciotomy, palmar; open, partial",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M72.0",
+                "203045001",
+                "26123"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "M72.0",
+              "description": "Palmar fascial fibromatosis [Dupuytren]",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": true,
+              "code": "203045001",
+              "description": "Dupuytren's disease of palm",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "REVIEWED"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "74422001",
+              "description": "Fasciectomy",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M72.0",
+                "203045001",
+                "26123"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Dupuytren's contracture"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Palmar fascial fibromatosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dupuytren"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dupuytren's disease"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "palmar fibromatosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "palmar cord"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dupuytren release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "dupuytrens"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "duputrens"
+          }
+        ],
+        "structured_rules": []
+      },
+      "family_tables_only": false,
+      "preferred_name": "Dupuytren's contracture",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "ligamentum_flavum_thickening",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "302129007",
+              "description": "Decompression of lumbar spine (ligamentum flavum specimen context)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "18347007"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum thickening"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "thickened ligamentum flavum"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum hypertrophy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "congo red positive ligamentum flavum"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "amyloid deposits ligamentum flavum"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "ligamentum flavum thickening",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "lumbar_decompression",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "lumbar decompression",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "V30",
+        "WT05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "lumbar_stenosis",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "63047",
+              "description": "Laminectomy, facetectomy and foraminotomy (uni/bilateral); lumbar",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "63030",
+              "description": "Laminotomy (hemilaminectomy) with decompression of nerve root(s); one interspace, lumbar",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.062",
+              "description": "Spinal stenosis, lumbar region with neurogenic claudication",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.061",
+              "description": "Spinal stenosis, lumbar region without neurogenic claudication",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.06",
+              "description": "Spinal stenosis, lumbar region",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.07",
+              "description": "Spinal stenosis, lumbosacral region",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.00",
+              "description": "Spinal stenosis, site unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "18347007",
+              "description": "Spinal stenosis of lumbar region",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "76107001",
+              "description": "Spinal stenosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "303081002",
+              "description": "Neurogenic claudication",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "302129007",
+              "description": "Decompression of lumbar spine",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M48.062",
+                "18347007",
+                "63047"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Lumbar spinal stenosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Neurogenic claudication"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "LSS"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "lumbar stenosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "spinal stenosis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum hypertrophy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "posterior lumbar decompression"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "laminectomy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum specimen"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "congo red positive ligament"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "apple-green birefringence"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "ligamentum flavum hypertophy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "lumbar spinal stenoses"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Lumbar spinal stenosis",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "V30",
+        "WT05"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "persistent_lower_limb_symptoms_after_decompression",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "M48.062",
+              "description": "Spinal stenosis, lumbar region with neurogenic claudication (persistent post-decompression context)",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "63047",
+                "63030"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent lower limb symptoms after decompression"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent claudication after laminectomy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "failed back surgery syndrome"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "persistent radiculopathy after lumbar surgery"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "no improvement after lumbar decompression"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "recurrent neurogenic claudication post-laminectomy"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Persistent lower-limb symptoms after lumbar decompression",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "V30"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "rotator_cuff",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "29827",
+              "description": "Arthroscopic rotator cuff repair",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "M75.100",
+              "description": "Rotator cuff tear or rupture, not specified as traumatic, unspecified shoulder",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M75.101",
+              "description": "Rotator cuff tear or rupture, not specified as traumatic, right shoulder",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M75.100",
+                "926335004",
+                "29827"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M75.102",
+              "description": "Rotator cuff tear or rupture, not specified as traumatic, left shoulder",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M75.100",
+                "926335004",
+                "29827"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "926335004",
+              "description": "Rupture of rotator cuff of shoulder",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Rotator cuff tear"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Rupture of rotator cuff of shoulder"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rotator cuff"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rotator cuff repair"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "shoulder repair"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rotator cup"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "rotater cuff"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Rotator cuff tear / repair",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT08"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "rotator_cuff_repair",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "rotator cuff repair",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT08"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "shoulder_disorder",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "23472",
+              "description": "Reconstruction of shoulder, total shoulder arthroplasty",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "23470",
+              "description": "Hemiarthroplasty, shoulder joint",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "Z96.618",
+                "23472"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "Z96.618",
+              "description": "Presence of other artificial joint, shoulder",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "23472",
+                "23470"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M75.00",
+              "description": "Adhesive capsulitis of unspecified shoulder",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "23472",
+                "23470"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "shoulder arthroplasty"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "shoulder replacement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "total shoulder replacement"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "reverse shoulder arthroplasty"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "adhesive capsulitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "frozen shoulder"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "shoulder hemiarthroplasty"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "shoulder disorder",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT08"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "trigger_finger",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "26055",
+              "description": "Tendon sheath incision (e.g., for trigger finger)",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "20550",
+              "description": "Injection(s); single tendon sheath, or ligament, aponeurosis",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "hcpcs": [],
+          "icd10": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.30",
+              "description": "Trigger finger, unspecified finger",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.311",
+              "description": "Trigger thumb, right",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.312",
+              "description": "Trigger thumb, left",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.319",
+              "description": "Trigger thumb, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.321",
+              "description": "Trigger finger, right index",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.322",
+              "description": "Trigger finger, left index",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.329",
+              "description": "Trigger finger, unspecified index",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.331",
+              "description": "Trigger finger, right middle",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.332",
+              "description": "Trigger finger, left middle",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.339",
+              "description": "Trigger finger, unspecified middle",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.341",
+              "description": "Trigger finger, right ring",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.342",
+              "description": "Trigger finger, left ring",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.349",
+              "description": "Trigger finger, unspecified ring",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.351",
+              "description": "Trigger finger, right little",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.352",
+              "description": "Trigger finger, left little",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.359",
+              "description": "Trigger finger, unspecified little",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.841",
+              "description": "Other synovitis and tenosynovitis, right hand",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.842",
+              "description": "Other synovitis and tenosynovitis, left hand",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.849",
+              "description": "Other synovitis and tenosynovitis, unspecified hand",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "M65.9",
+              "description": "Synovitis and tenosynovitis, unspecified",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": [
+            {
+              "can_fire_atom_alone": false,
+              "code": "1539003",
+              "description": "Acquired trigger finger",
+              "mapping_role": "DIRECT_TARGET",
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "239987006",
+              "description": "Triggering of digit",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            },
+            {
+              "can_fire_atom_alone": false,
+              "code": "239267000",
+              "description": "Release of trigger finger",
+              "mapping_role": "PROXY_SUPPORT",
+              "requires_corroboration": [
+                "M65.30",
+                "1539003",
+                "26055"
+              ],
+              "review_status": "NEEDS_CLINICAL_REVIEW"
+            }
+          ]
+        },
+        "keywords": [
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Trigger finger"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Stenosing tenosynovitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "Flexor tenosynovitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "trigger digit"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "trigger thumb"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "flexor synovitis"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "tenosynovial thickening"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "a1 pulley release"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "flexor tendon clicking"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "tenosynovial biopsy"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "trigger finger syndrome"
+          },
+          {
+            "mode": "PHRASE",
+            "polarity_required": "AFFIRMED",
+            "value": "steno tenosynovitis"
+          }
+        ],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "Trigger finger / stenosing tenosynovitis",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT07"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    },
+    {
+      "atom_id": "trigger_release",
+      "experiencer_contract": "PATIENT",
+      "extraction": {
+        "candidate_keywords": [],
+        "candidate_structured_rules": [],
+        "codes": {
+          "cpt": [],
+          "hcpcs": [],
+          "icd10": [],
+          "icd9": [],
+          "loinc": [],
+          "rxnorm": [],
+          "snomed": []
+        },
+        "keywords": [],
+        "structured_rules": []
+      },
+      "extraction_executability": "NON_EXECUTABLE_MISSING_VOCABULARY",
+      "family_tables_only": false,
+      "preferred_name": "trigger release",
+      "source_specialty": "ORTHOPEDICS_MSK",
+      "source_workbook_rows": [
+        "WT07"
+      ],
+      "stage": "PRETEST_SIGNAL"
+    }
+  ],
+  "schema_version": "3.0",
+  "source_specialty": "ORTHOPEDICS_MSK"
+}
