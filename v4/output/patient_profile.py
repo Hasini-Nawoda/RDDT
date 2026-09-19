@@ -17,8 +17,19 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from ..config_loader import PHENOTYPE_SLOTS
+from ..reasoning.risk_labels import (
+    SUSPICION_FOLDER,
+    normalized_suspicion_levels,
+    suspicion_level,
+)
 
 PHENOTYPE_ORDER = PHENOTYPE_SLOTS
+ATTR_PHENOTYPES = ("ATTRV", "ATTRWT")
+_SUSPICION_RANK = {
+    "HIGHEST_SUSPICION": 0,
+    "HIGH_SUSPICION": 1,
+    "MODERATE_SUSPICION": 2,
+}
 
 
 def _value(item: Any, name: str, default: Any = None) -> Any:
@@ -80,7 +91,7 @@ def _verdicts(router_rows: Sequence[Any]) -> list[dict[str, Any]]:
                 "phenotype": phenotype,
                 "status": "NOT_EVALUATED",
                 "result_route": None,
-                "priority_class": None,
+                "suspicion_level": None,
                 "reason": "CONFIG_NOT_LOADED",
             })
             continue
@@ -88,11 +99,102 @@ def _verdicts(router_rows: Sequence[Any]) -> list[dict[str, Any]]:
             "phenotype": phenotype,
             "status": _value(row, "status", "UNKNOWN"),
             "result_route": _value(row, "result_route"),
-            "priority_class": _value(row, "priority_class"),
+            "suspicion_level": _value(
+                row,
+                "suspicion_level",
+                suspicion_level(_value(row, "priority_class")),
+            ),
             "reason": _value(row, "explanation"),
             "parallel_routes": _plain(_value(row, "parallel_routes", [])),
         })
     return verdicts
+
+
+def aggregate_attr_verdict(router_rows: Iterable[Any]) -> dict[str, Any]:
+    """Build one ATTR verdict from actual ATTRv/ATTRwt phenotype verdicts.
+
+    Guardrail and differential routes remain visible as parallel routes, but
+    they never create a phenotype pass. The aggregate suspicion is therefore
+    driven only by a real ``PHENOTYPE_PASS`` from ATTRv or ATTRwt.
+    """
+    rows = [
+        row for row in router_rows
+        if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
+    ]
+    passing = [
+        row for row in rows
+        if str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
+        and str(
+            _value(
+                row,
+                "suspicion_level",
+                suspicion_level(_value(row, "priority_class")),
+            )
+            or ""
+        ).upper() in _SUSPICION_RANK
+    ]
+    passing.sort(key=lambda row: (
+        _SUSPICION_RANK[str(
+            _value(
+                row,
+                "suspicion_level",
+                suspicion_level(_value(row, "priority_class")),
+            )
+        ).upper()],
+        ATTR_PHENOTYPES.index(str(_value(row, "phenotype", "")).upper()),
+    ))
+    parallel_routes = list(dict.fromkeys(
+        str(route)
+        for row in rows
+        for route in (_value(row, "parallel_routes", ()) or ())
+        if route not in (None, "")
+    ))
+    if passing:
+        best_level = str(
+            _value(
+                passing[0],
+                "suspicion_level",
+                suspicion_level(_value(passing[0], "priority_class")),
+            )
+        ).upper()
+        passed_phenotypes = [
+            str(_value(row, "phenotype", "")).upper() for row in passing
+        ]
+        highest_phenotypes = [
+            str(_value(row, "phenotype", "")).upper()
+            for row in passing
+            if str(
+                _value(
+                    row,
+                    "suspicion_level",
+                    suspicion_level(_value(row, "priority_class")),
+                )
+            ).upper() == best_level
+        ]
+        return {
+            "status": "ATTR_SUSPICION",
+            "result_route": "ATTR_EARLY_DETECTION_REVIEW",
+            "suspicion_level": best_level,
+            "passed_phenotypes": passed_phenotypes,
+            "highest_suspicion_phenotypes": highest_phenotypes,
+            "parallel_routes": parallel_routes,
+            "reason": (
+                "ATTR early-detection criteria were met by "
+                + " and ".join(passed_phenotypes)
+                + "; the combined tier uses the highest phenotype suspicion."
+            ),
+        }
+    statuses = {str(_value(row, "status", "")).upper() for row in rows}
+    status = "HOLD" if "HOLD" in statuses else "UNKNOWN" if "UNKNOWN" in statuses else "NO_MATCH"
+    return {
+        "status": status,
+        "result_route": "NO_MATCH",
+        "suspicion_level": None,
+        "passed_phenotypes": [],
+        "highest_suspicion_phenotypes": [],
+        "parallel_routes": parallel_routes,
+        "reason": "Neither ATTRv nor ATTRwt produced a phenotype pass.",
+    }
 
 
 def _supporting_evidence_ids(witnesses: Iterable[Any]) -> set[str]:
@@ -182,36 +284,45 @@ def build_patient_profile(
     names = _atom_names(config)
     verdicts = _verdicts(patient_router)
     target = str(screening_target).upper()
-    if target not in PHENOTYPE_ORDER:
-        raise ValueError(f"Unsupported screening target {target!r}; expected one of {PHENOTYPE_ORDER}")
-    target_verdict = next(item for item in verdicts if item["phenotype"] == target)
-
-    matched_combination_id = next(
-        (
-            _value(row, "matched_combination_id")
+    if target == "ATTR":
+        target_verdict = aggregate_attr_verdict(patient_router)
+        matched_combination_ids = {
+            str(_value(row, "matched_combination_id"))
+            for row in patient_router
+            if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
+            and str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
+            and _value(row, "matched_combination_id") not in (None, "")
+        }
+    else:
+        if target not in PHENOTYPE_ORDER:
+            raise ValueError(
+                f"Unsupported screening target {target!r}; expected ATTR or one of {PHENOTYPE_ORDER}"
+            )
+        target_verdict = next(item for item in verdicts if item["phenotype"] == target)
+        matched_combination_ids = {
+            str(_value(row, "matched_combination_id"))
             for row in patient_router
             if str(_value(row, "phenotype", "")).upper() == target
-        ),
-        None,
-    )
-    matched_combination = next(
-        (
-            row for row in patient_combinations
-            if _value(row, "combination_id") == matched_combination_id
-            and str(_value(row, "status", "")).upper() == "TRUE"
-        ),
-        None,
-    )
-    rationale_evidence_ids = _supporting_evidence_ids(
-        _value(matched_combination, "selected_witnesses", ()) or ()
-    )
+            and _value(row, "matched_combination_id") not in (None, "")
+        }
+
+    matched_combinations = [
+        row for row in patient_combinations
+        if str(_value(row, "combination_id")) in matched_combination_ids
+        and str(_value(row, "status", "")).upper() == "TRUE"
+    ]
+    rationale_evidence_ids: set[str] = set()
+    for matched_combination in matched_combinations:
+        rationale_evidence_ids.update(_supporting_evidence_ids(
+            _value(matched_combination, "selected_witnesses", ()) or ()
+        ))
 
     clinical_reasons = []
     seen_reasons: set[tuple[str, str, str]] = set()
     for evidence in patient_evidence:
         if str(_value(evidence, "status", "")).upper() != "TRUE":
             continue
-        if matched_combination is not None and str(_value(evidence, "evidence_id", "")) not in rationale_evidence_ids:
+        if matched_combinations and str(_value(evidence, "evidence_id", "")) not in rationale_evidence_ids:
             continue
         atom_id = str(_value(evidence, "atom_id", ""))
         provenance = _value(evidence, "source_provenance", {}) or {}
@@ -241,7 +352,11 @@ def build_patient_profile(
             "screening_target": target,
             "status": target_verdict["status"],
             "review_route": target_verdict["result_route"],
-            "priority_class": target_verdict["priority_class"],
+            "suspicion_level": target_verdict["suspicion_level"],
+            "passed_phenotypes": target_verdict.get("passed_phenotypes", [target]),
+            "highest_suspicion_phenotypes": target_verdict.get(
+                "highest_suspicion_phenotypes", [target]
+            ),
             "screening_only_not_diagnosis": True,
         },
         "clinical_rationale": {
@@ -301,16 +416,49 @@ def flagged_patient_ids(
     *,
     phenotype: str,
     statuses: Sequence[str] = ("PHENOTYPE_PASS",),
+    priority_classes: Sequence[str] | None = None,
+    suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
 ) -> list[str]:
     accepted = {status.upper() for status in statuses}
+    accepted_levels = normalized_suspicion_levels(
+        priority_classes if priority_classes is not None else suspicion_levels
+    )
     ids = {
         str(_value(row, "patient_id"))
         for row in router_rows
         if str(_value(row, "phenotype", "")).upper() == phenotype.upper()
         and str(_value(row, "status", "")).upper() in accepted
+        and (
+            accepted_levels is None
+            or suspicion_level(_value(row, "priority_class")) in accepted_levels
+        )
         and _value(row, "patient_id") not in (None, "")
     }
     return sorted(ids)
+
+
+def flagged_attr_patient_ids(
+    router_rows: Iterable[Any],
+    *,
+    suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
+) -> list[str]:
+    """Return patients whose combined ATTRv/ATTRwt verdict meets threshold."""
+    rows = list(router_rows)
+    accepted_levels = normalized_suspicion_levels(suspicion_levels)
+    patient_ids = sorted({
+        str(_value(row, "patient_id"))
+        for row in rows
+        if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
+        and _value(row, "patient_id") not in (None, "")
+    })
+    output = []
+    for patient_id in patient_ids:
+        verdict = aggregate_attr_verdict(_patient(rows, patient_id))
+        if verdict["status"] != "ATTR_SUSPICION":
+            continue
+        if accepted_levels is None or verdict["suspicion_level"] in accepted_levels:
+            output.append(patient_id)
+    return output
 
 
 def profiles_jsonl_bytes(profiles: Iterable[Mapping[str, Any]], *, include_proprietary_trace: bool = False) -> bytes:
@@ -321,20 +469,38 @@ def profiles_jsonl_bytes(profiles: Iterable[Mapping[str, Any]], *, include_propr
 def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
     """Return a compact, trace-free CSV index suitable for notebook download."""
     output = io.StringIO(newline="")
-    fields = ["run_id", "patient_id", "screening_target", "screening_status", "review_route", "priority_class", "clinical_rationale"]
+    fields = [
+        "run_id", "patient_id", "screening_target", "screening_status",
+        "review_route", "suspicion_level",
+        "attrv_status", "attrv_suspicion_level", "attrv_review_route",
+        "attrwt_status", "attrwt_suspicion_level", "attrwt_review_route",
+        "clinical_rationale",
+    ]
     writer = csv.DictWriter(output, fieldnames=fields)
     writer.writeheader()
     for profile in profiles:
         clean = strip_proprietary_trace(profile)
         diagnosis = clean.get("suspected_diagnosis", {})
         rationale = clean.get("clinical_rationale", {})
+        verdicts = {
+            str(row.get("phenotype", "")).upper(): row
+            for row in clean.get("phenotype_verdicts", [])
+        }
+        attrv = verdicts.get("ATTRV", {})
+        attrwt = verdicts.get("ATTRWT", {})
         writer.writerow({
             "run_id": clean.get("run_id"),
             "patient_id": clean.get("patient_id"),
             "screening_target": diagnosis.get("screening_target"),
             "screening_status": diagnosis.get("status"),
             "review_route": diagnosis.get("review_route"),
-            "priority_class": diagnosis.get("priority_class"),
+            "suspicion_level": diagnosis.get("suspicion_level"),
+            "attrv_status": attrv.get("status"),
+            "attrv_suspicion_level": attrv.get("suspicion_level"),
+            "attrv_review_route": attrv.get("result_route"),
+            "attrwt_status": attrwt.get("status"),
+            "attrwt_suspicion_level": attrwt.get("suspicion_level"),
+            "attrwt_review_route": attrwt.get("result_route"),
             "clinical_rationale": rationale.get("summary"),
         })
     return output.getvalue().encode("utf-8-sig")
@@ -347,23 +513,134 @@ def export_profiles(
     basename: str = "amyloidosis_flagged_patient_profiles",
     include_proprietary_trace: bool = False,
 ) -> dict[str, str]:
-    """Write local-runtime JSONL plus a trace-free CSV download index."""
+    """Write combined and suspicion-tiered local patient-profile exports."""
     rows = list(profiles)
     target = Path(output_dir).expanduser().resolve()
+    detected = target / "detected"
+    detected.mkdir(parents=True, exist_ok=True)
+    jsonl = detected / f"{basename}.jsonl"
+    csv_path = detected / f"{basename}.csv"
+    jsonl.write_bytes(profiles_jsonl_bytes(rows, include_proprietary_trace=include_proprietary_trace))
+    csv_path.write_bytes(profiles_csv_bytes(rows))
+    output = {"jsonl": str(jsonl), "csv": str(csv_path)}
+    for level, folder_name in SUSPICION_FOLDER.items():
+        tier_dir = detected / folder_name
+        tier_dir.mkdir(parents=True, exist_ok=True)
+        tier_rows = [
+            profile for profile in rows
+            if str(profile.get("suspected_diagnosis", {}).get("suspicion_level") or "").upper() == level
+        ]
+        tier_jsonl = tier_dir / f"{basename}.jsonl"
+        tier_csv = tier_dir / f"{basename}.csv"
+        tier_jsonl.write_bytes(profiles_jsonl_bytes(
+            tier_rows,
+            include_proprietary_trace=include_proprietary_trace,
+        ))
+        tier_csv.write_bytes(profiles_csv_bytes(tier_rows))
+        key = folder_name.lower()
+        output[f"{key}_jsonl"] = str(tier_jsonl)
+        output[f"{key}_csv"] = str(tier_csv)
+    return output
+
+
+def build_known_attr_profile(
+    patient: Any,
+    *,
+    known_config: Any,
+    source_events: Iterable[Any],
+    evidence_events: Iterable[Any] = (),
+    demographics: Mapping[str, Any] | None = None,
+    include_proprietary_trace: bool = True,
+) -> dict[str, Any]:
+    """Build a separate profile for a patient excluded before screening."""
+    patient_id = str(_value(patient, "patient_id", ""))
+    patient_source = _patient(source_events, patient_id)
+    patient_evidence = _patient(evidence_events, patient_id)
+    names = _atom_names(known_config)
+    matched_values = list(_value(patient, "matched_config_values", ()) or ())
+    event_dates = list(_value(patient, "event_dates", ()) or ())
+    profile = {
+        "run_id": _value(patient, "run_id"),
+        "patient_id": patient_id,
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "demographics": _plain(dict(demographics or {})),
+        "medical_profile": {
+            "timeline": _medical_timeline(patient_source, patient_evidence, names),
+            "event_count": len(patient_source),
+        },
+        "known_diagnosis": {
+            "status": "KNOWN_ATTR_OR_AMYLOIDOSIS",
+            "confirmation_scope": _value(patient, "confirmation_scope"),
+            "excluded_from_early_detection": True,
+            "source_recognition_not_new_diagnosis": True,
+        },
+        "clinical_rationale": {
+            "summary": "Existing ATTR-specific or corroborated amyloidosis evidence was present before screening.",
+            "matched_source_values": matched_values,
+            "event_dates": event_dates,
+        },
+    }
+    if include_proprietary_trace:
+        profile["proprietary_pipeline_trace"] = {
+            "known_attr_record": _plain(patient),
+            "known_attr_evidence": _plain(patient_evidence),
+        }
+    return profile
+
+
+def known_attr_profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
+    output = io.StringIO(newline="")
+    fields = [
+        "run_id", "patient_id", "status", "confirmation_scope",
+        "excluded_from_early_detection", "matched_source_values", "event_dates",
+    ]
+    writer = csv.DictWriter(output, fieldnames=fields)
+    writer.writeheader()
+    for profile in profiles:
+        clean = strip_proprietary_trace(profile)
+        diagnosis = clean.get("known_diagnosis", {})
+        rationale = clean.get("clinical_rationale", {})
+        writer.writerow({
+            "run_id": clean.get("run_id"),
+            "patient_id": clean.get("patient_id"),
+            "status": diagnosis.get("status"),
+            "confirmation_scope": diagnosis.get("confirmation_scope"),
+            "excluded_from_early_detection": diagnosis.get("excluded_from_early_detection"),
+            "matched_source_values": ";".join(str(value) for value in rationale.get("matched_source_values", [])),
+            "event_dates": ";".join(str(value) for value in rationale.get("event_dates", [])),
+        })
+    return output.getvalue().encode("utf-8-sig")
+
+
+def export_known_attr_profiles(
+    profiles: Iterable[Mapping[str, Any]],
+    output_dir: str | Path,
+    *,
+    basename: str = "known_attr_patient_profiles",
+    include_proprietary_trace: bool = False,
+) -> dict[str, str]:
+    rows = list(profiles)
+    target = Path(output_dir).expanduser().resolve() / "confirmed"
     target.mkdir(parents=True, exist_ok=True)
     jsonl = target / f"{basename}.jsonl"
     csv_path = target / f"{basename}.csv"
     jsonl.write_bytes(profiles_jsonl_bytes(rows, include_proprietary_trace=include_proprietary_trace))
-    csv_path.write_bytes(profiles_csv_bytes(rows))
+    csv_path.write_bytes(known_attr_profiles_csv_bytes(rows))
     return {"jsonl": str(jsonl), "csv": str(csv_path)}
 
 
 __all__ = [
     "PHENOTYPE_ORDER",
+    "ATTR_PHENOTYPES",
+    "aggregate_attr_verdict",
     "build_patient_profile",
     "strip_proprietary_trace",
     "flagged_patient_ids",
+    "flagged_attr_patient_ids",
     "profiles_jsonl_bytes",
     "profiles_csv_bytes",
     "export_profiles",
+    "build_known_attr_profile",
+    "known_attr_profiles_csv_bytes",
+    "export_known_attr_profiles",
 ]

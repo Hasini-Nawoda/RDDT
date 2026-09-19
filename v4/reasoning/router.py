@@ -6,13 +6,23 @@ from typing import Any, Iterable
 from .explain import build_explanation, build_trace
 from .priority import resolve_priority
 from .reasoning_utils import FALSE, TRUE, UNKNOWN, configured_phenotype, norm_status, value
+from .risk_labels import suspicion_level
 
 
 def route_results(config: Any, combination_hits: Iterable[Any], *, guardrail_hits: Iterable[Any] = (), patient_id: Any = None, phenotype: str | None = None, run_id: Any = None, config_hash: str | None = None, implementation_version: str = "v4") -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     phenotype = configured_phenotype(config, phenotype)
     combos = list(combination_hits)
     guards = list(guardrail_hits)
-    true_combos = [c for c in combos if norm_status(value(c, "status", UNKNOWN)) == TRUE]
+    true_combos = [
+        c for c in combos
+        if norm_status(value(c, "status", UNKNOWN)) == TRUE
+        and str(value(c, "outcome", "") or "").upper() != "ROUTE_ONLY"
+    ]
+    route_only_combos = [
+        c for c in combos
+        if norm_status(value(c, "status", UNKNOWN)) == TRUE
+        and str(value(c, "outcome", "") or "").upper() == "ROUTE_ONLY"
+    ]
     priority_rank = {"A": 0, "B": 1, "C": 2}
     resolved = [
         (c, resolve_priority(config, c, list(value(c, "selected_witnesses", ()) or ())))
@@ -23,7 +33,14 @@ def route_results(config: Any, combination_hits: Iterable[Any], *, guardrail_hit
         str(value(item[0], "combination_id", "")),
     ))
     true_combo = resolved[0][0] if resolved else None
-    hold_combo = next((c for c in combos if value(c, "hold_reason", None)), None)
+    # Differential/route-only combinations are parallel clinical routes, not
+    # phenotype passes.  They must never become the selected ATTR profile or
+    # affect the main PASS/HOLD/UNKNOWN decision.
+    evaluable_combos = [
+        c for c in combos
+        if str(value(c, "outcome", "") or "").upper() != "ROUTE_ONLY"
+    ]
+    hold_combo = next((c for c in evaluable_combos if value(c, "hold_reason", None)), None)
     if true_combo is not None:
         status = "PHENOTYPE_PASS"
         selected = list(value(true_combo, "selected_witnesses", ()) or ())
@@ -33,17 +50,25 @@ def route_results(config: Any, combination_hits: Iterable[Any], *, guardrail_hit
         status = "HOLD"
         priority = {"priority_class": None}
         combo = hold_combo
-    elif any(norm_status(value(c, "status", UNKNOWN)) == UNKNOWN for c in combos):
+    elif any(norm_status(value(c, "status", UNKNOWN)) == UNKNOWN for c in evaluable_combos):
         status = "UNKNOWN"
         priority = {"priority_class": None}
-        combo = next((c for c in combos if norm_status(value(c, "status", UNKNOWN)) == UNKNOWN), None)
+        combo = next((c for c in evaluable_combos if norm_status(value(c, "status", UNKNOWN)) == UNKNOWN), None)
     else:
         status = "NO_MATCH"
         priority = {"priority_class": None}
         combo = None
     active_guards = [g for g in guards if norm_status(value(g, "status", UNKNOWN)) == TRUE]
     guard_ids = tuple(str(value(g, "guardrail_id", "")) for g in active_guards)
-    parallel = tuple(str(value(g, "route", "")) for g in active_guards if value(g, "route", None))
+    parallel_values = [
+        str(value(g, "route", "")) for g in active_guards if value(g, "route", None)
+    ]
+    parallel_values.extend(
+        str(value(c, "result_route", ""))
+        for c in route_only_combos
+        if value(c, "result_route", None)
+    )
+    parallel = tuple(dict.fromkeys(parallel_values))
     result = {
         "run_id": run_id,
         "patient_id": patient_id,
@@ -51,6 +76,7 @@ def route_results(config: Any, combination_hits: Iterable[Any], *, guardrail_hit
         "status": status,
         "result_route": value(combo, "result_route", None) if combo is not None else "NO_MATCH",
         "priority_class": priority.get("priority_class"),
+        "suspicion_level": suspicion_level(priority.get("priority_class")),
         "matched_combination_id": value(combo, "combination_id", None) if combo is not None and status == "PHENOTYPE_PASS" else None,
         "supporting_signal_ids": tuple(value(combo, "supporting_signal_ids", ()) or ()) if combo is not None else (),
         "supporting_buckets": tuple(value(combo, "supporting_buckets", ()) or ()) if combo is not None else (),

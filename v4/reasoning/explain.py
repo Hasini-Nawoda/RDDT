@@ -14,18 +14,19 @@ def build_explanation(result: Any, *, patient_facing: bool = False) -> str:
     should use :func:`build_trace` separately.
     """
     status = value(result, "status", "UNKNOWN")
+    phenotype = str(value(result, "phenotype", "phenotype") or "phenotype")
     route = value(result, "result_route", None)
     guardrails = [str(x) for x in (value(result, "guardrail_ids", ()) or ()) if x]
     if status == "PHENOTYPE_PASS":
-        text = "ATTRv screening/review route matched using independent configured clinical findings"
+        text = f"{phenotype} screening/review route matched using independent configured clinical findings"
         if route:
             text += f" with route {route}"
     elif status == "HOLD":
-        text = "ATTRv screening/review is on hold pending an auditable evidence or configuration issue"
+        text = f"{phenotype} screening/review is on hold pending an auditable evidence or configuration issue"
     elif status == "NO_MATCH":
-        text = "No enabled workbook-defined ATTRv combination matched"
+        text = f"No enabled workbook-defined {phenotype} combination matched"
     else:
-        text = "ATTRv screening/review remains unknown because required evidence or configuration was unavailable"
+        text = f"{phenotype} screening/review remains unknown because required evidence or configuration was unavailable"
     if guardrails:
         text += "; parallel review routes are present"
     return text

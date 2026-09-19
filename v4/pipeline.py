@@ -8,6 +8,7 @@ engine.  It contains no clinical terms, codes, thresholds, or fallback rules.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import uuid
 from dataclasses import asdict, dataclass, field, is_dataclass
@@ -18,10 +19,16 @@ from typing import Any, Iterable, Mapping, Sequence
 from . import IMPLEMENTATION_VERSION
 from .extraction.candidate_net import CandidatePatient
 from .extraction.evidence_qualification import ClinicalContextAdapter
+from .extraction.known_attr import (
+    CandidateConfigUnion,
+    KnownAttrConfig,
+    load_known_attr_config,
+)
 from .warehouse.snowflake_io import create_run_table, execute, insert_rows
 from .pipeline_steps.step_01_source_validation import load_config, validate_sources
 from .pipeline_steps.step_02_candidate_retrieval import candidate_records, retrieve_candidates
 from .pipeline_steps.step_03_source_events import build_source_events
+from .pipeline_steps.step_03b_known_attr_exclusion import separate_known_attr
 from .pipeline_steps.step_04_atom_matching import match_atoms
 from .pipeline_steps.step_05_evidence_qualification import qualify_evidence
 from .pipeline_steps.step_06_signal_evaluation import evaluate_signals_stage
@@ -29,12 +36,20 @@ from .pipeline_steps.step_07_bucket_evaluation import evaluate_buckets_stage
 from .pipeline_steps.step_08_combination_matching import match_combinations_stage
 from .pipeline_steps.step_09_priority_guardrails import evaluate_guardrails_stage
 from .pipeline_steps.step_10_router import route_stage
-from .pipeline_steps.step_11_patient_profiles import build_profiles, export_profile_files
+from .pipeline_steps.step_11_patient_profiles import (
+    build_attr_profiles,
+    build_known_profiles,
+    build_profiles,
+    export_attr_profile_files,
+    export_known_profile_files,
+    export_profile_files,
+)
 from .warehouse.source_schema import default_source_config, qualified_table_name, quote_identifier
 
 
 TEMP_TABLES = {
     "candidate_patients": "AMY_V4_CANDIDATE_PATIENT",
+    "known_attr_patients": "AMY_V4_KNOWN_ATTR",
     "source_events": "AMY_V4_SOURCE_EVENT",
     "atom_matches": "AMY_V4_ATOM_MATCH",
     "evidence_events": "AMY_V4_EVIDENCE_EVENT",
@@ -51,6 +66,12 @@ TEMP_TABLE_SCHEMAS = {
         "RUN_ID", "PATIENT_ID", "CANDIDATE_REASON_TYPE", "CONFIG_ATOM_ID",
         "CONFIG_TERMINOLOGY_SYSTEM", "CONFIG_VALUE", "SOURCE_TABLE",
         "SOURCE_RECORD_ID", "CONFIG_HASH",
+    ),
+    "known_attr_patients": (
+        "RUN_ID", "PATIENT_ID", "STATUS", "CONFIRMATION_SCOPE",
+        "CONFIRMATION_RULE_IDS", "MATCHED_CONFIG_VALUES", "EVENT_DATES",
+        "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVIDENCE_IDS",
+        "KNOWN_ATTR_CONFIG_HASH",
     ),
     "source_events": (
         "RUN_ID", "PATIENT_ID", "SOURCE_EVENT_ID", "SUPPORT_LINEAGE_ID",
@@ -92,14 +113,14 @@ TEMP_TABLE_SCHEMAS = {
     ),
     "phenotype_results": (
         "RUN_ID", "PATIENT_ID", "PHENOTYPE", "STATUS", "RESULT_ROUTE",
-        "PRIORITY_CLASS", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
+        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
         "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVENT_DATES",
         "GUARDRAIL_IDS", "PARALLEL_ROUTES", "EXPLANATION", "CONFIG_HASH",
         "IMPLEMENTATION_VERSION",
     ),
     "router_output": (
         "RUN_ID", "PATIENT_ID", "PHENOTYPE", "STATUS", "RESULT_ROUTE",
-        "PRIORITY_CLASS", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
+        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
         "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVENT_DATES",
         "GUARDRAIL_IDS", "PARALLEL_ROUTES", "EXPLANATION", "CONFIG_HASH",
         "IMPLEMENTATION_VERSION", "ROUTER_SCHEMA_VERSION",
@@ -111,6 +132,41 @@ class PipelineError(RuntimeError):
     """Raised when a run cannot safely continue."""
 
 
+ATTR_PHENOTYPES = ("ATTRV", "ATTRWT")
+
+
+class AttrExtractionConfig:
+    """Shared atom/terminology view for one-pass ATTRv plus ATTRwt extraction."""
+
+    def __init__(self, configs: Mapping[str, Any]):
+        missing = [phenotype for phenotype in ATTR_PHENOTYPES if phenotype not in configs]
+        if missing:
+            raise PipelineError(f"Combined ATTR run is missing phenotype configs: {missing}")
+        baseline = configs[ATTR_PHENOTYPES[0]]
+        self.tables = {
+            "atoms": baseline.rows("atoms"),
+            "terminology": baseline.rows("terminology"),
+        }
+        for phenotype in ATTR_PHENOTYPES[1:]:
+            current = configs[phenotype]
+            for table in ("atoms", "terminology"):
+                if current.rows(table) != self.tables[table]:
+                    raise PipelineError(
+                        f"{phenotype} does not share the same {table} registry; "
+                        "one-pass extraction would be unsafe"
+                    )
+        hash_payload = json.dumps(
+            {phenotype: configs[phenotype].config_hash for phenotype in ATTR_PHENOTYPES},
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        self.config_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
+        self.phenotype = "ATTR"
+
+    def rows(self, table: str) -> list[dict[str, Any]]:
+        return list(self.tables.get(table, []))
+
+
 @dataclass
 class PipelineRun:
     run_id: str
@@ -118,8 +174,12 @@ class PipelineRun:
     implementation_version: str
     source_validation: dict[str, Any] | None
     stage_counts: dict[str, int]
+    evaluated_phenotypes: list[str] = field(default_factory=list)
     config_gaps: list[dict[str, Any]] = field(default_factory=list)
     candidate_patients: list[Any] = field(default_factory=list)
+    known_attr_patients: list[Any] = field(default_factory=list)
+    known_attr_profiles: list[dict[str, Any]] = field(default_factory=list)
+    known_attr_exports: dict[str, str] = field(default_factory=dict)
     source_events: list[Any] = field(default_factory=list)
     atom_matches: list[Any] = field(default_factory=list)
     evidence_events: list[Any] = field(default_factory=list)
@@ -138,10 +198,12 @@ class PipelineRun:
             "run_id": self.run_id,
             "config_hash": self.config_hash,
             "implementation_version": self.implementation_version,
+            "evaluated_phenotypes": list(self.evaluated_phenotypes),
             "stage_counts": dict(self.stage_counts),
             "config_gaps": list(self.config_gaps),
             "temporary_tables": dict(self.temporary_tables),
             "profile_exports": dict(self.profile_exports),
+            "known_attr_exports": dict(self.known_attr_exports),
         }
 
 
@@ -292,7 +354,7 @@ def _demographics(rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]], sour
     return result
 
 
-def run_phenotype_reference_pipeline(
+def _run_single_phenotype_reference_pipeline(
     rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]],
     *,
     config: Any,
@@ -305,6 +367,9 @@ def run_phenotype_reference_pipeline(
     screening_cutoff: Any = None,
     include_profiles: bool = True,
     profile_output_dir: str | Path | None = None,
+    profile_priority_classes: Sequence[str] | None = None,
+    profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
+    known_attr_config: KnownAttrConfig | None = None,
 ) -> PipelineRun:
     """Run one loaded phenotype package on already supplied warehouse rows."""
     if screening_cutoff is None:
@@ -312,23 +377,34 @@ def run_phenotype_reference_pipeline(
     source_config = source_config or default_source_config()
     run_id = run_id or str(uuid.uuid4())
     selected_phenotype = _selected_phenotype(config, phenotype)
-    events = build_source_events(
+    all_events = build_source_events(
         rows_by_table,
         run_id=run_id,
         config_hash=config.config_hash,
         source_config=source_config,
         candidate_patient_ids=candidate_patient_ids,
     )
-    matches = match_atoms(events, config, nlp=nlp)
     if context_processor is None and nlp is not None:
         context_processor = ClinicalContextAdapter(nlp)
+    known_config = known_attr_config or load_known_attr_config()
+    known_attr, events = separate_known_attr(
+        all_events,
+        run_id=run_id,
+        screening_cutoff=screening_cutoff,
+        known_attr_config=known_config,
+        nlp=nlp,
+        context_processor=context_processor,
+    )
+    known_ids = known_attr.patient_ids
+    matches = match_atoms(events, config, nlp=nlp)
     evidence = qualify_evidence(
         matches,
         config,
         context_processor=context_processor,
         screening_cutoff=screening_cutoff,
     )
-    patients = sorted(candidate_patient_ids or {event.patient_id for event in events})
+    patient_universe = set(candidate_patient_ids or {event.patient_id for event in all_events})
+    patients = sorted(patient_universe - known_ids)
     signal_hits: list[Any] = []
     bucket_state: list[Any] = []
     combination_hits: list[Any] = []
@@ -358,10 +434,22 @@ def run_phenotype_reference_pipeline(
         if explanation.startswith("CONFIG_GAP:"):
             gaps.append({"patient_id": row.get("patient_id"), "signal_id": row.get("signal_id"), "gap": explanation})
 
-    profiles = build_profiles(router_output, config=config, phenotype=selected_phenotype, source_events=events, evidence_events=evidence, signal_hits=signal_hits, bucket_state=bucket_state, combination_hits=combination_hits, guardrail_hits=guardrail_hits, demographics=_demographics(rows_by_table, source_config), run_id=run_id, include_proprietary_trace=True) if include_profiles else []
+    demographics = _demographics(rows_by_table, source_config)
+    profiles = build_profiles(router_output, config=config, phenotype=selected_phenotype, source_events=events, evidence_events=evidence, signal_hits=signal_hits, bucket_state=bucket_state, combination_hits=combination_hits, guardrail_hits=guardrail_hits, demographics=demographics, run_id=run_id, include_proprietary_trace=True, profile_priority_classes=profile_priority_classes, profile_suspicion_levels=profile_suspicion_levels) if include_profiles else []
+    known_profiles = build_known_profiles(
+        known_attr.patients,
+        known_config=known_config,
+        source_events=all_events,
+        evidence_events=known_attr.evidence,
+        demographics=demographics,
+        include_proprietary_trace=True,
+    ) if include_profiles else []
     exports = export_profile_files(profiles, profile_output_dir, phenotype=selected_phenotype)
+    known_exports = export_known_profile_files(known_profiles, profile_output_dir)
     stages = {
         "candidate_patients": len(patients),
+        "candidate_patients_total_retrieved": len(patient_universe),
+        "known_attr_patients": len(known_attr.patients),
         "source_events": len(events),
         "atom_matches": len(matches),
         "evidence_events": len(evidence),
@@ -372,6 +460,7 @@ def run_phenotype_reference_pipeline(
         "phenotype_results": len(phenotype_results),
         "router_output": len(router_output),
         "patient_profiles": len(profiles),
+        "known_attr_profiles": len(known_profiles),
     }
     return PipelineRun(
         run_id=run_id,
@@ -379,7 +468,11 @@ def run_phenotype_reference_pipeline(
         implementation_version=IMPLEMENTATION_VERSION,
         source_validation=None,
         stage_counts=stages,
+        evaluated_phenotypes=[selected_phenotype],
         config_gaps=gaps,
+        known_attr_patients=known_attr.patients,
+        known_attr_profiles=known_profiles,
+        known_attr_exports=known_exports,
         source_events=events,
         atom_matches=matches,
         evidence_events=evidence,
@@ -394,7 +487,193 @@ def run_phenotype_reference_pipeline(
     )
 
 
-def run_phenotype_v4_pipeline(
+def run_attr_reference_pipeline(
+    rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]],
+    *,
+    configs: Mapping[str, Any] | None = None,
+    config_dir: str | Path | None = None,
+    source_config: Mapping[str, Any] | None = None,
+    run_id: str | None = None,
+    candidate_patient_ids: set[str] | None = None,
+    nlp: Any = None,
+    context_processor: Any = None,
+    screening_cutoff: Any = None,
+    include_profiles: bool = True,
+    profile_output_dir: str | Path | None = None,
+    profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
+    known_attr_config: KnownAttrConfig | None = None,
+) -> PipelineRun:
+    """Run ATTRv and ATTRwt together after one shared extraction pass."""
+    if screening_cutoff is None:
+        raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
+    loaded_configs = dict(configs or {
+        phenotype: _load_config(config_dir=config_dir, phenotype=phenotype)
+        for phenotype in ATTR_PHENOTYPES
+    })
+    extraction_config = AttrExtractionConfig(loaded_configs)
+    source_config = source_config or default_source_config()
+    run_id = run_id or str(uuid.uuid4())
+    all_events = build_source_events(
+        rows_by_table,
+        run_id=run_id,
+        config_hash=extraction_config.config_hash,
+        source_config=source_config,
+        candidate_patient_ids=candidate_patient_ids,
+    )
+    if context_processor is None and nlp is not None:
+        context_processor = ClinicalContextAdapter(nlp)
+    known_config = known_attr_config or load_known_attr_config()
+    known_attr, events = separate_known_attr(
+        all_events,
+        run_id=run_id,
+        screening_cutoff=screening_cutoff,
+        known_attr_config=known_config,
+        nlp=nlp,
+        context_processor=context_processor,
+    )
+    matches = match_atoms(events, extraction_config, nlp=nlp)
+    evidence = qualify_evidence(
+        matches,
+        extraction_config,
+        context_processor=context_processor,
+        screening_cutoff=screening_cutoff,
+    )
+    patient_universe = set(candidate_patient_ids or {event.patient_id for event in all_events})
+    patients = sorted(patient_universe - known_attr.patient_ids)
+
+    signal_hits: list[Any] = []
+    bucket_state: list[Any] = []
+    combination_hits: list[Any] = []
+    guardrail_hits: list[Any] = []
+    phenotype_results: list[Any] = []
+    router_output: list[Any] = []
+    for patient_id in patients:
+        patient_evidence = [row for row in evidence if row.patient_id == patient_id]
+        for phenotype in ATTR_PHENOTYPES:
+            config = loaded_configs[phenotype]
+            patient_signals = evaluate_signals_stage(
+                config,
+                patient_evidence,
+                patient_id=patient_id,
+                phenotype=phenotype,
+            )
+            patient_buckets = evaluate_buckets_stage(
+                config,
+                patient_signals,
+                patient_id=patient_id,
+                phenotype=phenotype,
+            )
+            patient_combinations = match_combinations_stage(
+                config,
+                patient_signals,
+                patient_buckets,
+                patient_id=patient_id,
+                phenotype=phenotype,
+            )
+            patient_guards = evaluate_guardrails_stage(
+                config,
+                patient_evidence,
+                patient_id=patient_id,
+                phenotype=phenotype,
+            )
+            patient_results, patient_router = route_stage(
+                config,
+                patient_combinations,
+                patient_guards,
+                patient_id=patient_id,
+                phenotype=phenotype,
+                run_id=run_id,
+                config_hash=config.config_hash,
+                implementation_version=IMPLEMENTATION_VERSION,
+            )
+            signal_hits.extend(patient_signals)
+            bucket_state.extend(patient_buckets)
+            combination_hits.extend(patient_combinations)
+            guardrail_hits.extend(patient_guards)
+            phenotype_results.extend(patient_results)
+            router_output.extend(patient_router)
+
+    gaps = []
+    for row in evidence:
+        if row.status == "UNKNOWN" and row.reason:
+            gaps.append({"patient_id": row.patient_id, "atom_id": row.atom_id, "gap": row.reason})
+    for row in signal_hits:
+        explanation = str(row.get("explanation") or "")
+        if explanation.startswith("CONFIG_GAP:"):
+            gaps.append({
+                "patient_id": row.get("patient_id"),
+                "phenotype": row.get("phenotype"),
+                "signal_id": row.get("signal_id"),
+                "gap": explanation,
+            })
+
+    demographics = _demographics(rows_by_table, source_config)
+    profiles = build_attr_profiles(
+        router_output,
+        config=extraction_config,
+        source_events=events,
+        evidence_events=evidence,
+        signal_hits=signal_hits,
+        bucket_state=bucket_state,
+        combination_hits=combination_hits,
+        guardrail_hits=guardrail_hits,
+        demographics=demographics,
+        run_id=run_id,
+        include_proprietary_trace=True,
+        profile_suspicion_levels=profile_suspicion_levels,
+    ) if include_profiles else []
+    known_profiles = build_known_profiles(
+        known_attr.patients,
+        known_config=known_config,
+        source_events=all_events,
+        evidence_events=known_attr.evidence,
+        demographics=demographics,
+        include_proprietary_trace=True,
+    ) if include_profiles else []
+    exports = export_attr_profile_files(profiles, profile_output_dir)
+    known_exports = export_known_profile_files(known_profiles, profile_output_dir)
+    stages = {
+        "candidate_patients": len(patients),
+        "candidate_patients_total_retrieved": len(patient_universe),
+        "known_attr_patients": len(known_attr.patients),
+        "source_events": len(events),
+        "atom_matches": len(matches),
+        "evidence_events": len(evidence),
+        "signal_hits": len(signal_hits),
+        "bucket_state": len(bucket_state),
+        "combination_hits": len(combination_hits),
+        "guardrail_hits": len(guardrail_hits),
+        "phenotype_results": len(phenotype_results),
+        "router_output": len(router_output),
+        "patient_profiles": len(profiles),
+        "known_attr_profiles": len(known_profiles),
+    }
+    return PipelineRun(
+        run_id=run_id,
+        config_hash=extraction_config.config_hash,
+        implementation_version=IMPLEMENTATION_VERSION,
+        source_validation=None,
+        stage_counts=stages,
+        evaluated_phenotypes=list(ATTR_PHENOTYPES),
+        config_gaps=gaps,
+        known_attr_patients=known_attr.patients,
+        known_attr_profiles=known_profiles,
+        known_attr_exports=known_exports,
+        source_events=events,
+        atom_matches=matches,
+        evidence_events=evidence,
+        signal_hits=signal_hits,
+        bucket_state=bucket_state,
+        combination_hits=combination_hits,
+        guardrail_hits=guardrail_hits,
+        phenotype_results=phenotype_results,
+        router_output=router_output,
+        patient_profiles=profiles,
+        profile_exports=exports,
+    )
+
+
+def _run_single_phenotype_v4_pipeline(
     session: Any,
     phenotype: str,
     source_config: Mapping[str, Any] | None = None,
@@ -408,6 +687,9 @@ def run_phenotype_v4_pipeline(
     screening_cutoff: Any = None,
     include_profiles: bool = True,
     profile_output_dir: str | Path | None = None,
+    profile_priority_classes: Sequence[str] | None = None,
+    profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
+    known_attr_config_path: str | Path | None = None,
 ) -> PipelineRun:
     """Run one configured phenotype pipeline against a Snowpark-like session.
 
@@ -418,6 +700,7 @@ def run_phenotype_v4_pipeline(
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     selected_phenotype = str(phenotype).upper()
     config = _load_config(config_dir=config_dir, phenotype=selected_phenotype)
+    known_config = load_known_attr_config(known_attr_config_path)
     selected_phenotype = _selected_phenotype(config, selected_phenotype)
     source_config = source_config or default_source_config()
     run_id = run_id or str(uuid.uuid4())
@@ -427,7 +710,7 @@ def run_phenotype_v4_pipeline(
     if source_rows_by_table is None:
         candidates = retrieve_candidates(
             session,
-            config,
+            CandidateConfigUnion(config, known_config),
             run_id=run_id,
             source_config=source_config,
             nlp=nlp,
@@ -449,7 +732,7 @@ def run_phenotype_v4_pipeline(
     else:
         candidate_ids = None
 
-    result = run_phenotype_reference_pipeline(
+    result = _run_single_phenotype_reference_pipeline(
         source_rows_by_table,
         config=config,
         phenotype=selected_phenotype,
@@ -461,9 +744,15 @@ def run_phenotype_v4_pipeline(
         screening_cutoff=screening_cutoff,
         include_profiles=include_profiles,
         profile_output_dir=profile_output_dir,
+        profile_priority_classes=profile_priority_classes,
+        profile_suspicion_levels=profile_suspicion_levels,
+        known_attr_config=known_config,
     )
     result.candidate_patients = candidates
-    result.stage_counts["candidate_patients"] = len(candidate_ids or {event.patient_id for event in result.source_events})
+    known_ids = {str(row.patient_id) for row in result.known_attr_patients}
+    retrieved_ids = set(candidate_ids or {event.patient_id for event in result.source_events}) | known_ids
+    result.stage_counts["candidate_patients"] = len(retrieved_ids - known_ids)
+    result.stage_counts["candidate_patients_total_retrieved"] = len(retrieved_ids)
     result.source_validation = _plain(validation)
 
     if persist_intermediates:
@@ -475,7 +764,10 @@ def run_phenotype_v4_pipeline(
                     "candidate_reason_type": "CALLER_SUPPLIED_CANDIDATE_ROWS",
                     "config_hash": config.config_hash,
                 }
-                for patient_id in sorted({event.patient_id for event in result.source_events})
+                for patient_id in sorted(
+                    {event.patient_id for event in result.source_events}
+                    | {str(row.patient_id) for row in result.known_attr_patients}
+                )
             ]
             _materialize_records(
                 session,
@@ -485,6 +777,126 @@ def run_phenotype_v4_pipeline(
                 run_id=run_id,
             )
         stage_rows = {
+            "known_attr_patients": result.known_attr_patients,
+            "source_events": result.source_events,
+            "atom_matches": result.atom_matches,
+            "evidence_events": result.evidence_events,
+            "signal_hits": result.signal_hits,
+            "bucket_state": result.bucket_state,
+            "combination_hits": result.combination_hits,
+            "guardrail_hits": result.guardrail_hits,
+            "phenotype_results": result.phenotype_results,
+            "router_output": result.router_output,
+        }
+        for stage, records in stage_rows.items():
+            _materialize_records(
+                session,
+                TEMP_TABLES[stage],
+                records,
+                required_columns=TEMP_TABLE_SCHEMAS[stage],
+                run_id=run_id,
+            )
+    return result
+
+
+def run_attr_v4_pipeline(
+    session: Any,
+    source_config: Mapping[str, Any] | None = None,
+    run_id: str | None = None,
+    persist_intermediates: bool = True,
+    *,
+    config_dir: str | Path | None = None,
+    source_rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]] | None = None,
+    nlp: Any = None,
+    context_processor: Any = None,
+    screening_cutoff: Any = None,
+    include_profiles: bool = True,
+    profile_output_dir: str | Path | None = None,
+    profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
+    known_attr_config_path: str | Path | None = None,
+) -> PipelineRun:
+    """Run ATTRv and ATTRwt for every candidate and emit one ATTR profile."""
+    if screening_cutoff is None:
+        raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
+    configs = {
+        phenotype: _load_config(config_dir=config_dir, phenotype=phenotype)
+        for phenotype in ATTR_PHENOTYPES
+    }
+    extraction_config = AttrExtractionConfig(configs)
+    known_config = load_known_attr_config(known_attr_config_path)
+    source_config = source_config or default_source_config()
+    run_id = run_id or str(uuid.uuid4())
+    validation = validate_sources(session, source_config)
+
+    candidates: list[CandidatePatient] = []
+    if source_rows_by_table is None:
+        candidates = retrieve_candidates(
+            session,
+            CandidateConfigUnion(extraction_config, known_config),
+            run_id=run_id,
+            source_config=source_config,
+            nlp=nlp,
+        )
+        _materialize_records(
+            session,
+            TEMP_TABLES["candidate_patients"],
+            candidate_records(candidates),
+            required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
+            run_id=run_id,
+        )
+        source_rows_by_table = _fetch_candidate_source_rows(
+            session,
+            source_config,
+            candidate_table=TEMP_TABLES["candidate_patients"],
+        )
+        candidate_ids = {candidate.patient_id for candidate in candidates}
+    else:
+        candidate_ids = None
+
+    result = run_attr_reference_pipeline(
+        source_rows_by_table,
+        configs=configs,
+        source_config=source_config,
+        run_id=run_id,
+        candidate_patient_ids=candidate_ids,
+        nlp=nlp,
+        context_processor=context_processor,
+        screening_cutoff=screening_cutoff,
+        include_profiles=include_profiles,
+        profile_output_dir=profile_output_dir,
+        profile_suspicion_levels=profile_suspicion_levels,
+        known_attr_config=known_config,
+    )
+    result.candidate_patients = candidates
+    known_ids = {str(row.patient_id) for row in result.known_attr_patients}
+    retrieved_ids = set(candidate_ids or {event.patient_id for event in result.source_events}) | known_ids
+    result.stage_counts["candidate_patients"] = len(retrieved_ids - known_ids)
+    result.stage_counts["candidate_patients_total_retrieved"] = len(retrieved_ids)
+    result.source_validation = _plain(validation)
+
+    if persist_intermediates:
+        if source_rows_by_table is not None and not candidates:
+            synthetic_ids = (
+                {event.patient_id for event in result.source_events}
+                | {str(row.patient_id) for row in result.known_attr_patients}
+            )
+            _materialize_records(
+                session,
+                TEMP_TABLES["candidate_patients"],
+                [
+                    {
+                        "run_id": run_id,
+                        "patient_id": patient_id,
+                        "candidate_reason_type": "CALLER_SUPPLIED_CANDIDATE_ROWS",
+                        "config_hash": extraction_config.config_hash,
+                    }
+                    for patient_id in sorted(synthetic_ids)
+                ],
+                required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
+                run_id=run_id,
+            )
+        stage_rows = {
+            "known_attr_patients": result.known_attr_patients,
             "source_events": result.source_events,
             "atom_matches": result.atom_matches,
             "evidence_events": result.evidence_events,
@@ -510,15 +922,17 @@ def run_attrv_reference_pipeline(
     rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]],
     **kwargs: Any,
 ) -> PipelineRun:
-    """Compatibility entry point for the currently loaded ATTRV package."""
+    """Legacy name retained; production behavior now always runs both ATTR phenotypes."""
     requested = kwargs.pop("phenotype", "ATTRV")
     if str(requested).upper() != "ATTRV":
         raise PipelineError("run_attrv_reference_pipeline only accepts the ATTRV phenotype")
-    return run_phenotype_reference_pipeline(
-        rows_by_table,
-        phenotype="ATTRV",
-        **kwargs,
-    )
+    legacy_config = kwargs.pop("config", None)
+    if legacy_config is not None and "configs" not in kwargs:
+        raise PipelineError(
+            "The legacy single ATTRV config argument is no longer accepted; "
+            "the production pipeline requires both ATTRV and ATTRWT configs"
+        )
+    return run_attr_reference_pipeline(rows_by_table, **kwargs)
 
 
 def run_attrv_v4_pipeline(
@@ -528,13 +942,12 @@ def run_attrv_v4_pipeline(
     persist_intermediates: bool = True,
     **kwargs: Any,
 ) -> PipelineRun:
-    """Compatibility entry point for the currently loaded ATTRV package."""
+    """Legacy name retained; production behavior now always runs both ATTR phenotypes."""
     requested = kwargs.pop("phenotype", "ATTRV")
     if str(requested).upper() != "ATTRV":
         raise PipelineError("run_attrv_v4_pipeline only accepts the ATTRV phenotype")
-    return run_phenotype_v4_pipeline(
+    return run_attr_v4_pipeline(
         session,
-        "ATTRV",
         source_config=source_config,
         run_id=run_id,
         persist_intermediates=persist_intermediates,
@@ -547,8 +960,10 @@ __all__ = [
     "TEMP_TABLE_SCHEMAS",
     "PipelineError",
     "PipelineRun",
-    "run_phenotype_reference_pipeline",
-    "run_phenotype_v4_pipeline",
+    "ATTR_PHENOTYPES",
+    "AttrExtractionConfig",
+    "run_attr_reference_pipeline",
+    "run_attr_v4_pipeline",
     "run_attrv_reference_pipeline",
     "run_attrv_v4_pipeline",
 ]
