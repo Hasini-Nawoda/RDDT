@@ -210,18 +210,7 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {
-          "SNOMED_CT": [
-            {
-              "value": "36031001",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "230570005",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "Grierson-Gopalan syndrome",
@@ -277,6 +266,10 @@
         "codes": {
           "ICD10": [
             {
+              "value": "L97.409-L97.529",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "M14.671",
               "can_fire_atom_alone": false
             },
@@ -286,6 +279,14 @@
             }
           ],
           "ICD9": [
+            {
+              "value": "707.14",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "707.15",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "713.5",
               "can_fire_atom_alone": false
@@ -325,6 +326,12 @@
       "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "96365-96368",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
               "value": "G61.81",
@@ -431,6 +438,16 @@
       "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93660",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
               "value": "G90.8",
@@ -444,16 +461,6 @@
           "ICD9": [
             {
               "value": "337.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "95923",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "93660",
               "can_fire_atom_alone": false
             }
           ]
@@ -493,14 +500,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit elevated/increased/rising neurofilament-light-chain wording. A bare NfL test/result mention must not create an elevated-NfL atom.",
       "extraction": {
-        "codes": {
-          "LOINC": [
-            {
-              "value": "101281-4",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "elevated NfL",
@@ -598,18 +598,6 @@
       "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "K31.84",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "536.3",
-              "can_fire_atom_alone": false
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "78264",
@@ -621,6 +609,30 @@
             },
             {
               "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.01",
               "can_fire_atom_alone": false
             }
           ]
@@ -664,11 +676,27 @@
         "codes": {
           "ICD10": [
             {
+              "value": "K59.00",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "K59.1",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "K59.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R19.7",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "564.00",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "564.5",
               "can_fire_atom_alone": false
@@ -727,7 +755,32 @@
       "clinical_meaning": "IVIG / corticosteroid / immunotherapy exposure",
       "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "96365-96368",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "357.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "51689008",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Gamunex",
@@ -795,14 +848,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Only interpret as a CIDP-misdiagnosis red flag after an adequate therapeutic trial. Stopping treatment for adverse effects or inadequate exposure is not nonresponse.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "96365-96368",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "IVIG discontinued for lack of efficacy",
@@ -927,6 +973,168 @@
       }
     },
     {
+      "atom_id": "mild_sensory_polyneuropathy",
+      "preferred_name": "Mild-to-moderate length-dependent sensory polyneuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Mild sensory-predominant length-dependent polyneuropathy compatible with ATTRwt",
+      "source_specialty": "NEUROLOGY",
+      "source_subdomain": "neuro",
+      "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "13694005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "789588003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "1155933006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "95907",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95908",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95909",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95910",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95911",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95912",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95913",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95885",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "95886",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "mild sensory neuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "sensory polyneuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "numbness in the feet",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "mild axonal neuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "length-dependent sensory loss",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "mr_neurography_abnormal",
       "preferred_name": "MR neurography abnormalities of peripheral nerve or plexus",
       "stage": "PRETEST_SIGNAL",
@@ -938,10 +1146,6 @@
           "CPT_HCPCS": [
             {
               "value": "72195-72197",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "73718-73720",
               "can_fire_atom_alone": false
             }
           ]
@@ -1023,18 +1227,6 @@
       "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "N31.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "596.54",
-              "can_fire_atom_alone": false
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "51728",
@@ -1042,6 +1234,30 @@
             },
             {
               "value": "51729",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N31.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R32",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R33.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "788.30",
               "can_fire_atom_alone": false
             }
           ]
@@ -1079,13 +1295,35 @@
       "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93660",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
+            {
+              "value": "G90.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "I95.1",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "337.9",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "458.0",
               "can_fire_atom_alone": false
@@ -1094,12 +1332,6 @@
           "SNOMED_CT": [
             {
               "value": "28651003",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "93660",
               "can_fire_atom_alone": false
             }
           ]
@@ -1151,26 +1383,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Pain/temperature loss can support early ATTRv small-fiber disease even when pain is absent, but for V04 it should be progressive and length-dependent unless corroborated by other compatible small-fiber evidence.",
       "extraction": {
-        "codes": {
-          "SNOMED_CT": [
-            {
-              "value": "6810008",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "1140008",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "816133002",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "299928001",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "Impaired pain and temperature sensation",
@@ -1256,6 +1469,14 @@
             {
               "value": "L97.409-L97.529",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "M14.671",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "M14.672",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
@@ -1265,6 +1486,10 @@
             },
             {
               "value": "707.15",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "713.5",
               "can_fire_atom_alone": false
             }
           ]
@@ -1309,26 +1534,7 @@
       "clinical_meaning": "Peripheral polyneuropathy. For ATTRv screening, generic neuropathy evidence must be qualified by phenotype (for example progressive, length-dependent, axonal and/or sensorimotor) before satisfying a high-specificity signal.",
       "context_guard": "Generic or unspecified neuropathy is nonspecific. Do not infer ATTR-compatible neuropathy from diabetes codes, autonomic terms, cardiac terms, or a procedure code alone.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "G62.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "356.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "302226006",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "axonal polyneuropathy",
@@ -1380,26 +1586,7 @@
       "experiencer": "PATIENT",
       "context_guard": "A positive autoantibody alone is not a sufficient alternative diagnosis. Require clinical relevance and a convincing inflammatory neuropathy phenotype.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "R76.0",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "795.79",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "5045-8",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "ANA",
@@ -1455,14 +1642,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit reduced/decreased intraepidermal nerve-fiber density or equivalent skin-biopsy wording. QST, QSART, and PGP9.5 mention alone do not establish reduced IENFD.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "88305",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "decreased IENFD",
@@ -1515,6 +1695,40 @@
       "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "356.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "782.0",
+              "can_fire_atom_alone": false
+            }
+          ],
           "SNOMED_CT": [
             {
               "value": "709489006",
@@ -1570,14 +1784,7 @@
       "clinical_meaning": "Reduced electrochemical skin conductance (SUDOSCAN)",
       "context_guard": "Reduced electrochemical skin conductance is supportive of sudomotor/small-fiber dysfunction but is not ATTRv-specific; require a compatible carrier or clinical phenotype.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "95923",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "reduced foot ESC",
@@ -1594,7 +1801,36 @@
       "clinical_meaning": "Trophic foot / skin changes",
       "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L97.409-L97.529",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "M14.671",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "M14.672",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "707.14",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "707.15",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "713.5",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "brittle nails",
@@ -1644,13 +1880,35 @@
       "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "51728",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "51729",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
+              "value": "N31.9",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "R32",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R33.9",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "788.30",
               "can_fire_atom_alone": false
@@ -1694,9 +1952,37 @@
       "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "51728",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "51729",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
+              "value": "N31.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R32",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "R33.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "788.30",
               "can_fire_atom_alone": false
             }
           ]
@@ -1818,54 +2104,7 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {
-          "SNOMED_CT": [
-            {
-              "value": "7916009",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "699258007",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "193183000",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "193184006",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "49455004",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "126535008",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "789585000",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "230576004",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "230574001",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "230575000",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "126534007",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "B12 deficiency",

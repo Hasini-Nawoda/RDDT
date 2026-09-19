@@ -2,6 +2,168 @@
   "source_specialty": "MULTISPECIALTY",
   "atoms": [
     {
+      "atom_id": "age_excessive_snhl",
+      "preferred_name": "Bilateral sensorineural hearing loss disproportionate to age",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Bilateral SNHL greater than expected for age",
+      "source_specialty": "AUDIOLOGY",
+      "source_subdomain": "neuro",
+      "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "194424005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "1055224002",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "609125008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "H90.3",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "H90.5",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "H91.8X3",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "H91.8X9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "92553",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92557",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92567",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92570",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92628",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92629",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "92632",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "sensorineural hearing loss",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "SNHL",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "bilateral hearing aids",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "hearing loss worse than expected for age",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "disproportionate presbycusis",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "hearing aids both ears",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "autoimmune_disease",
       "preferred_name": "autoimmune disease",
       "stage": "PRETEST_SIGNAL",
@@ -14,11 +176,25 @@
             {
               "value": "M35.9",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "R76.0",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
             {
               "value": "279.4",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "795.79",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "LOINC": [
+            {
+              "value": "5045-8",
               "can_fire_atom_alone": false
             }
           ]
@@ -78,66 +254,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit axonal-neuropathy/polyneuropathy terminology. A bare adjective such as 'axonal' without neuropathy context must not create this atom.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "G62.89",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "230657007",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "60703000",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "723666009",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "95907",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95908",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95909",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95910",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95911",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95912",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95913",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95885",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "95886",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "axonal neuropathy",
@@ -234,13 +351,19 @@
       "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "95907-95913",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
-              "value": "E11.9",
+              "value": "E11.42",
               "can_fire_atom_alone": false
             },
             {
-              "value": "E11.42",
+              "value": "E11.9",
               "can_fire_atom_alone": false
             }
           ],
@@ -254,15 +377,15 @@
               "can_fire_atom_alone": false
             }
           ],
-          "SNOMED_CT": [
-            {
-              "value": "44054006",
-              "can_fire_atom_alone": false
-            }
-          ],
           "LOINC": [
             {
               "value": "4548-4",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "44054006",
               "can_fire_atom_alone": false
             }
           ]
@@ -311,6 +434,91 @@
           {
             "value": "type 2 diabetes mellitus",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "elevated_uric_acid",
+      "preferred_name": "Elevated serum uric acid",
+      "stage": "DO_NOT_USE",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Serum urate above reference range; prognosis/research only",
+      "source_specialty": "LABORATORY",
+      "source_subdomain": "shared",
+      "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "49099001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "269859006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E79.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "84550",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "84560",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "uric acid",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "urate",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "hyperuricemia",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "elevated uric acid",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
           }
         ]
       }
@@ -385,7 +593,21 @@
       "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "81404-81405",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
+            {
+              "value": "Z14.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "Z15.89",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "Z83.49",
               "can_fire_atom_alone": false
@@ -394,6 +616,16 @@
           "ICD9": [
             {
               "value": "V18.19",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "V83.89",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "LOINC": [
+            {
+              "value": "94225-0",
               "can_fire_atom_alone": false
             }
           ]
@@ -505,32 +737,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Require neuropathy-anchored progressive/idiopathic wording. Generic 'rapidly progressive', 'deteriorating', or 'cryptogenic' language without neuropathy context must not create this atom.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "G60.3",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "G60.9",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "G62.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "230657007",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "60703000",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "cryptogenic polyneuropathy",
@@ -575,6 +782,224 @@
           {
             "value": "worsening idiopathic neuropathy",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ligamentum_flavum_thickening",
+      "preferred_name": "Thickened ligamentum flavum",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Documented thickening of ligamentum flavum",
+      "source_specialty": "RADIOLOGY",
+      "source_subdomain": "ortho",
+      "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "72148",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "72149",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "72131",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "63047",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "63005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "63017",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "88304",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "88313",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "88342",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ligamentum flavum hypertrophy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "thickened ligamentum flavum",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "ligamentum flavum thickening",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "ligamentous hypertrophy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "buckling of ligamentum flavum",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "myocardial_bone_tracer_uptake",
+      "preferred_name": "Incidental myocardial bone-tracer uptake",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Myocardial uptake on bone scintigraphy performed for a non-amyloidosis indication",
+      "source_specialty": "NUCLEAR_MEDICINE",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78306",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "78305",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "78300",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "incidental cardiac uptake",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "myocardial tracer retention",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "cardiac uptake on bone scan",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "diffuse myocardial uptake",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "unexpected cardiac activity",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "Perugini grade",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "H/M ratio",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "incidental finding in the heart",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
           }
         ]
       }
@@ -631,34 +1056,7 @@
       "clinical_meaning": "Documented pathogenic or likely pathogenic TTR variant in the patient from a prior independent molecular result; carrier status alone does not establish symptomatic ATTRv.",
       "context_guard": "Accept common hereditary-TTR nomenclature and variant spellings, but do not trigger from generic 'TTR', 'transthyretin', or generic 'ATTR' alone, a test order, pending/negative result, VUS, or family-member result. Require a patient-level pathogenic/likely pathogenic result from an independent molecular source; disease-name phrases remain retrieval evidence until provenance confirms the result.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "Z15.89",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "Z14.8",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "V83.89",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "81479",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "81404-81405",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "TTR mutation positive",
@@ -734,6 +1132,14 @@
         "codes": {
           "ICD10": [
             {
+              "value": "F50.00-F50.02",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "R63.4",
               "can_fire_atom_alone": false
             },
@@ -744,13 +1150,15 @@
           ],
           "ICD9": [
             {
-              "value": "783.21",
+              "value": "307.1",
               "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
+            },
             {
-              "value": "89362005",
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "783.21",
               "can_fire_atom_alone": false
             }
           ],
@@ -761,6 +1169,12 @@
             },
             {
               "value": "39156-5",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "89362005",
               "can_fire_atom_alone": false
             }
           ]
@@ -878,6 +1292,173 @@
           {
             "value": "spinal stenosis with cardiac amyloidosis",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt21_competing_hearing_loss",
+      "preferred_name": "Competing cause of sensorineural hearing loss",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Alternative explanation for hearing loss",
+      "source_specialty": "AUDIOLOGY",
+      "source_subdomain": "neuro",
+      "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "49526009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "73415002",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "9062008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "267677007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "13445001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "H91.10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H91.13",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H83.3X3",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H83.3X9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H91.03",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H91.09",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H81.03",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "H81.09",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "presbycusis",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "age-related hearing loss",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "noise exposure",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "occupational noise",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "ototoxic",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "aminoglycoside",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "cisplatin",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "Meniere",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
           }
         ]
       }

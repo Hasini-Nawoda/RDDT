@@ -1,0 +1,80 @@
+{
+  "phenotype": "ATTRWT",
+  "combinations": [
+    {
+      "combination_id": "WT_COMBO01",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "ATTRWT_SUSPICION",
+      "priority_policy_id": "WT_PRI_A",
+      "clinical_rationale": "Established WT01 orthopedic/tenosynovial prodrome followed by an independent cardiac phenotype.",
+      "temporal_policy": "NONE",
+      "notes": "WT01 owns the component and temporal logic; subtype remains unresolved until diagnostic work-up/genotyping.",
+      "requirements": [
+        {
+          "requirement_id": "WT_REQ01",
+          "requirement_order": 1,
+          "kind": "SIGNAL_GROUP_COUNT",
+          "minimum_count": 1,
+          "context_witness_allowed": false,
+          "distinct_lineage_required": true,
+          "buckets": [],
+          "tiers": [
+            1
+          ],
+          "signal_ids": [
+            "WT01"
+          ],
+          "notes": "Require the established WT01 composite; its structured rule owns component counts, independence and chronology."
+        }
+      ]
+    },
+    {
+      "combination_id": "WT_COMBO02",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "CARDIAC_AMYLOIDOSIS_EVALUATION",
+      "priority_policy_id": "WT_PRI_A",
+      "clinical_rationale": "Strong cardiac amyloid clue plus another independent ATTRwt-compatible domain.",
+      "temporal_policy": "NONE",
+      "notes": "Does not establish ATTRwt subtype.",
+      "requirements": [
+        {
+          "requirement_id": "WT_REQ03",
+          "requirement_order": 1,
+          "kind": "SIGNAL_GROUP_COUNT",
+          "minimum_count": 1,
+          "context_witness_allowed": false,
+          "distinct_lineage_required": true,
+          "buckets": [],
+          "tiers": [
+            2,
+            3
+          ],
+          "signal_ids": [
+            "WT10",
+            "WT12",
+            "WT14",
+            "WT15",
+            "WT16"
+          ],
+          "notes": "At least one strong cardiac amyloid clue."
+        },
+        {
+          "requirement_id": "WT_REQ04",
+          "requirement_order": 2,
+          "kind": "BUCKET",
+          "minimum_count": 1,
+          "context_witness_allowed": true,
+          "distinct_lineage_required": true,
+          "buckets": [
+            "ORTHO"
+          ],
+          "tiers": [],
+          "signal_ids": [],
+          "notes": "At least one nonredundant contextual/orthopedic witness."
+        }
+      ]
+    }
+  ]
+}

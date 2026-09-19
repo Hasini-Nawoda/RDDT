@@ -1,0 +1,26 @@
+{
+  "phenotype": "ATTRWT",
+  "priority_policies": [
+    {
+      "priority_policy_id": "WT_PRI_A",
+      "kind": "FIXED",
+      "class": "A",
+      "tier_pattern": "ANY",
+      "clinical_note": "Immediate/high-priority phenotype or differential route."
+    },
+    {
+      "priority_policy_id": "WT_PRI_B",
+      "kind": "FIXED",
+      "class": "B",
+      "tier_pattern": "ANY",
+      "clinical_note": "Moderate-priority differential/context route."
+    },
+    {
+      "priority_policy_id": "WT_PRI_C",
+      "kind": "FIXED",
+      "class": "C",
+      "tier_pattern": "ANY",
+      "clinical_note": "Low-specificity/context/research route."
+    }
+  ]
+}

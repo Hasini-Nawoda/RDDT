@@ -338,6 +338,7 @@ def _adapt_signal_rule(
         "missing_data_policy": rule.get("missing_data_policy"),
         "truth_model": rule.get("truth_model", rule.get("three_valued_logic")),
         "outcome": rule.get("outcome", rule.get("rule_outcome")),
+        "temporal_policy": rule.get("temporal_policy"),
     }
     return rule_row, groups, members
 
@@ -345,7 +346,10 @@ def _adapt_signal_rule(
 def _is_direct_signal(row: Mapping[str, Any]) -> bool:
     action = str(row.get("config_action", row.get("action", "POSITIVE_SIGNAL")) or "").upper()
     entity = str(row.get("entity_type", row.get("kind", "SIGNAL")) or "").upper()
-    return action == "POSITIVE_SIGNAL" and entity in {"", "SIGNAL", "DIRECT_SIGNAL"}
+    # Normalized workbooks keep composite rules as first-class signal rows.
+    # Their structured AST is executable by the same signal engine; only
+    # guardrails and explicit DO_NOT_TRIGGER rows stay outside this view.
+    return action in {"POSITIVE_SIGNAL", "CROSS_BUCKET_COMPOSITE_RULE", "WITHIN_BUCKET_COMPOSITE"} and entity in {"", "SIGNAL", "DIRECT_SIGNAL", "COMPOSITE_RULE"}
 
 
 def _adapt_signal_atom_mappings(rows: Iterable[Mapping[str, Any]]) -> List[Dict[str, Any]]:
@@ -571,6 +575,17 @@ def _validate_tables(tables: Mapping[str, List[Dict[str, Any]]]) -> None:
     duplicates = sorted({atom_id for atom_id in atom_ids if atom_ids.count(atom_id) > 1})
     if duplicates:
         raise ConfigLoadError(f"Shared atom catalog contains duplicate atom IDs: {duplicates}")
+    terminology_keys = [
+        (
+            str(row.get("atom_id", "")),
+            str(row.get("terminology_system", row.get("system", ""))).upper(),
+            str(row.get("value", "")),
+        )
+        for row in tables.get("terminology", [])
+    ]
+    duplicate_terms = sorted({key for key in terminology_keys if terminology_keys.count(key) > 1})
+    if duplicate_terms:
+        raise ConfigLoadError(f"Shared terminology contains duplicate atom/system/value rows: {duplicate_terms[:20]}")
     known_atoms = set(atom_ids)
     referenced_atoms = {
         str(row.get("member_id"))
@@ -644,6 +659,81 @@ def _validate_tables(tables: Mapping[str, List[Dict[str, Any]]]) -> None:
     missing_direct_rules = sorted(direct_ids - rule_set)
     if missing_direct_rules:
         raise ConfigLoadError(f"Direct signals missing structured rules: {missing_direct_rules}")
+
+    bucket_ids = [
+        str(row.get("reasoning_bucket", row.get("bucket", "")))
+        for row in tables.get("buckets", [])
+    ]
+    duplicate_buckets = sorted({bucket for bucket in bucket_ids if bucket_ids.count(bucket) > 1})
+    if duplicate_buckets:
+        raise ConfigLoadError(f"Phenotype package contains duplicate reasoning buckets: {duplicate_buckets}")
+
+    combination_ids = [str(row.get("combination_id", "")) for row in tables.get("combinations", [])]
+    duplicate_combinations = sorted({cid for cid in combination_ids if combination_ids.count(cid) > 1})
+    if duplicate_combinations:
+        raise ConfigLoadError(f"Phenotype package contains duplicate combination IDs: {duplicate_combinations}")
+    requirement_ids = [str(row.get("requirement_id", "")) for row in tables.get("combination_requirements", [])]
+    duplicate_requirements = sorted({rid for rid in requirement_ids if requirement_ids.count(rid) > 1})
+    if duplicate_requirements:
+        raise ConfigLoadError(f"Phenotype package contains duplicate requirement IDs: {duplicate_requirements}")
+    known_requirements = set(requirement_ids)
+    missing_requirement_links = sorted({
+        str(row.get("requirement_id", ""))
+        for table in ("requirement_buckets", "requirement_tiers", "requirement_signals")
+        for row in tables.get(table, [])
+        if str(row.get("requirement_id", "")) not in known_requirements
+    })
+    if missing_requirement_links:
+        raise ConfigLoadError(f"Combination links reference unknown requirements: {missing_requirement_links}")
+    missing_requirement_buckets = sorted({
+        str(row.get("reasoning_bucket", ""))
+        for row in tables.get("requirement_buckets", [])
+        if str(row.get("reasoning_bucket", "")) not in set(bucket_ids)
+    })
+    if missing_requirement_buckets:
+        raise ConfigLoadError(f"Combination requirements reference unknown buckets: {missing_requirement_buckets}")
+    missing_requirement_signals = sorted({
+        str(row.get("allowed_signal_id", ""))
+        for row in tables.get("requirement_signals", [])
+        if str(row.get("allowed_signal_id", "")) not in known_signals
+    })
+    if missing_requirement_signals:
+        raise ConfigLoadError(f"Combination requirements reference unknown signals: {missing_requirement_signals}")
+
+    priority_ids = [str(row.get("priority_policy_id", "")) for row in tables.get("priority_policies", [])]
+    priority_keys = [
+        (str(row.get("priority_policy_id", "")), str(row.get("tier_pattern", "ANY")))
+        for row in tables.get("priority_policies", [])
+    ]
+    duplicate_priorities = sorted({key for key in priority_keys if priority_keys.count(key) > 1})
+    if duplicate_priorities:
+        raise ConfigLoadError(
+            f"Phenotype package contains duplicate priority-policy/tier-pattern rows: {duplicate_priorities}"
+        )
+    missing_priority_refs = sorted({
+        str(row.get("priority_policy_id", ""))
+        for row in tables.get("combinations", [])
+        if row.get("priority_policy_id") not in (None, "")
+        and str(row.get("priority_policy_id")) not in set(priority_ids)
+    })
+    if missing_priority_refs:
+        raise ConfigLoadError(f"Combinations reference unknown priority policies: {missing_priority_refs}")
+
+    blockers_by_signal: Dict[str, int] = {}
+    for row in tables.get("signal_blockers", []):
+        sid = str(row.get("signal_id", ""))
+        blockers_by_signal[sid] = blockers_by_signal.get(sid, 0) + 1
+    inconsistent_blocker_policy: List[str] = []
+    for row in tables.get("signal_rules", []):
+        sid = str(row.get("signal_id", ""))
+        applies = "APPLY" in str(row.get("blocker_policy", "")).upper()
+        has_blockers = blockers_by_signal.get(sid, 0) > 0
+        if applies != has_blockers:
+            inconsistent_blocker_policy.append(sid)
+    if inconsistent_blocker_policy:
+        raise ConfigLoadError(
+            f"Signal blocker policy does not match configured blockers: {sorted(inconsistent_blocker_policy)}"
+        )
 
     known_atoms_by_signal: Dict[str, set[str]] = {}
     for row in tables.get("signal_atoms", []):

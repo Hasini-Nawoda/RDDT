@@ -12,8 +12,7 @@
             "type": "atom",
             "id": "ttr_pathogenic_variant",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "prior_independent_result=True"
+            "experiencer": "PATIENT"
           }
         ],
         "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
@@ -48,15 +47,13 @@
                   "type": "atom",
                   "id": "axonal_neuropathy",
                   "role": "SUPPORT",
-                  "experiencer": "PATIENT",
-                  "required_attributes": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True"
+                  "experiencer": "PATIENT"
                 },
                 {
                   "type": "atom",
                   "id": "idiopathic_progressive_neuropathy",
                   "role": "SUPPORT",
-                  "experiencer": "PATIENT",
-                  "required_attributes": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True"
+                  "experiencer": "PATIENT"
                 },
                 {
                   "type": "atom",
@@ -141,8 +138,7 @@
             "type": "atom",
             "id": "sfn",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "progressive=True, length_dependent=True"
+            "experiencer": "PATIENT"
           },
           {
             "type": "atom",
@@ -213,8 +209,7 @@
             "type": "atom",
             "id": "dysautonomia",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "early=True, multisystem=True"
+            "experiencer": "PATIENT"
           },
           {
             "type": "atom",
@@ -281,8 +276,7 @@
             "type": "atom",
             "id": "fhx_established_attr",
             "role": "SUPPORT",
-            "experiencer": "FAMILY_MEMBER",
-            "required_attributes": "first_degree=True, established=True"
+            "experiencer": "FAMILY_MEMBER"
           }
         ],
         "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
@@ -613,8 +607,9 @@
       "enabled": true,
       "blockers": [],
       "rule": {
-        "operator": "LINKED_ALL",
-        "linkage_type": "CLINICAL_EPISODE",
+        "operator": "INDEPENDENT_ALL",
+        "require_independent_lineage": true,
+        "clinical_note": "Evidence may unfold across encounters; retain distinct source lineage for CIDP/EMG, treatment exposure, and nonresponse.",
         "members": [
           {
             "type": "group",
@@ -642,15 +637,13 @@
             "type": "atom",
             "id": "immunotherapy_exposure",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "actual_exposure=True, adequate_trial=True"
+            "experiencer": "PATIENT"
           },
           {
             "type": "atom",
             "id": "immunotherapy_nonresponse",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "response_to_cidp_treatment=True, poor_or_absent=True"
+            "experiencer": "PATIENT"
           }
         ],
         "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
@@ -1092,8 +1085,7 @@
             "type": "atom",
             "id": "thick_walls",
             "role": "SUPPORT",
-            "experiencer": "PATIENT",
-            "required_attributes": "unexplained=True"
+            "experiencer": "PATIENT"
           },
           {
             "type": "group",

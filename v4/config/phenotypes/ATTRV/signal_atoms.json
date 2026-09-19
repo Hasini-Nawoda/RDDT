@@ -4,11 +4,11 @@
     {
       "signal_id": "V01",
       "atom_id": "ttr_pathogenic_variant",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "prior_independent_result=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V02",
@@ -17,7 +17,7 @@
       "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True OR progressive=True, length_dependent=True, sensorimotor=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V02",
@@ -35,7 +35,7 @@
       "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True OR progressive=True, length_dependent=True, sensorimotor=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V02",
@@ -76,11 +76,11 @@
     {
       "signal_id": "V04",
       "atom_id": "sfn",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "progressive=True, length_dependent=True OR painful=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V05",
@@ -94,11 +94,11 @@
     {
       "signal_id": "V05",
       "atom_id": "dysautonomia",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "early=True, multisystem=True OR objective_autonomic_evidence=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V05",
@@ -112,11 +112,11 @@
     {
       "signal_id": "V07",
       "atom_id": "fhx_established_attr",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "FAMILY_MEMBER",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "first_degree=True, established=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V08",
@@ -328,11 +328,11 @@
     {
       "signal_id": "V14",
       "atom_id": "immunotherapy_exposure",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "actual_exposure=True, adequate_trial=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V14",
@@ -341,7 +341,7 @@
       "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "response_to_cidp_treatment=True, poor_or_absent=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V15",
@@ -472,11 +472,11 @@
     {
       "signal_id": "V24",
       "atom_id": "thick_walls",
-      "can_fire_from_mapping": false,
-      "evidence_mode": null,
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
       "experiencer": "PATIENT",
       "stage": "PRETEST_SIGNAL",
-      "required_qualifiers": "unexplained=True"
+      "required_qualifiers": null
     },
     {
       "signal_id": "V25",

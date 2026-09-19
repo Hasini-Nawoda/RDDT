@@ -10,13 +10,43 @@
       "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "33206-33208",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
+              "value": "I44.1-I44.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I45.4",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I48.",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "I48.0-I48.91",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "Z95.0",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "426.0-426.13",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "427.31",
               "can_fire_atom_alone": false
@@ -24,17 +54,19 @@
             {
               "value": "427.32",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "V45.01",
+              "can_fire_atom_alone": false
             }
           ],
           "SNOMED_CT": [
             {
               "value": "49436004",
               "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
+            },
             {
-              "value": "93000",
+              "value": "5370000",
               "can_fire_atom_alone": false
             }
           ]
@@ -88,6 +120,101 @@
       }
     },
     {
+      "atom_id": "apical_sparing",
+      "preferred_name": "Relative apical sparing",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Relative apical sparing pattern on longitudinal strain",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93356",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "relative apical sparing",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "apical sparing",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "cherry on top",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "bullseye",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "RELAPS",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "relative regional strain ratio",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "preserved apical strain",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "basal to apical gradient",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Relative apical sparing'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "arrhythmia",
       "preferred_name": "arrhythmia",
       "stage": "PRETEST_SIGNAL",
@@ -95,7 +222,60 @@
       "clinical_meaning": "Cardiac arrhythmia (other)",
       "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "33206-33208",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I44.1-I44.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I45.4",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I48.0-I48.91",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "Z95.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "426.0-426.13",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "427.31",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "427.32",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "V45.01",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "49436004",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "AFib",
@@ -137,6 +317,352 @@
       }
     },
     {
+      "atom_id": "as_valve",
+      "preferred_name": "Severe aortic stenosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Severe aortic valve stenosis",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I35.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I35.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I06.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I06.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93320",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93325",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33361",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33405",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "severe aortic stenosis",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "severe AS",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "critical AS",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "aortic valve area",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "mean gradient",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "asymmetric_septal_hypertrophy",
+      "preferred_name": "Asymmetric / basal septal hypertrophy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Asymmetric or basal septal hypertrophy on cardiac imaging",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "111027004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I42.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75557",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93356",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33416",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "asymmetric septal hypertrophy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "ASH",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "basal septal hypertrophy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "sigmoid septum",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "septal bulge",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "disproportionate septal thickening",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "bnp_lvmi_ratio_result",
+      "preferred_name": "BNP-to-LVMI ratio",
+      "stage": "DO_NOT_USE",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Computed BNP-to-LV mass index ratio; research-only comparative feature",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BNP/LVMI",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "BNP to LV mass ratio",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'BNP-to-LVMI ratio'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "bnp_result",
+      "preferred_name": "B-type natriuretic peptide",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "BNP laboratory result",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "407059007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BNP",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "NT-proBNP",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "natriuretic peptide",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "cardiomyopathy",
       "preferred_name": "cardiomyopathy",
       "stage": "PRETEST_SIGNAL",
@@ -144,32 +670,7 @@
       "clinical_meaning": "Cardiomyopathy / infiltrative or restrictive cardiac phenotype; requires clinical context and exclusion of common competing explanations before use as ATTR-supporting evidence.",
       "context_guard": "Match explicit cardiomyopathy/cardiac-amyloidosis terminology only. Wall thickening or HFpEF alone are separate cardiac findings and must not automatically create cardiomyopathy.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "I42.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "425.4",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "85898001",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "93306",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "amyloid cardiomyopathy",
@@ -221,7 +722,15 @@
         "codes": {
           "ICD10": [
             {
+              "value": "I44.",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "I44.1-I44.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I45.",
               "can_fire_atom_alone": false
             },
             {
@@ -232,12 +741,6 @@
           "ICD9": [
             {
               "value": "426.0-426.13",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "93000",
               "can_fire_atom_alone": false
             }
           ]
@@ -324,20 +827,7 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "I95.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "458.9",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "BP now low",
@@ -430,6 +920,168 @@
       }
     },
     {
+      "atom_id": "hf_any",
+      "preferred_name": "Heart failure",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Heart failure without HFpEF subtype requirement",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "84114007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "42343007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "48447003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "88805009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "161505003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I50.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I50.32",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I50.22",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I50.42",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I50.20",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93308",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "84484",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "heart failure",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "CHF",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "congestive heart failure",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "decompensated heart failure",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "hf_medication_intolerance",
       "preferred_name": "hf medication intolerance",
       "stage": "PRETEST_SIGNAL",
@@ -437,7 +1089,20 @@
       "clinical_meaning": "Intolerance of antihypertensive / heart-failure therapy",
       "context_guard": "Require explicit intolerance to antihypertensive/heart-failure medication, preferably linked to low or falling blood pressure. Generic hypotension or a medication name alone is insufficient.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "458.9",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "ACE inhibitor intolerance",
@@ -506,7 +1171,21 @@
       "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I50.3",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "I50.32",
               "can_fire_atom_alone": false
@@ -516,23 +1195,31 @@
               "can_fire_atom_alone": false
             },
             {
-              "value": "I42.9",
+              "value": "I51.7",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
             {
+              "value": "425.4",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "428.30-428.33",
               "can_fire_atom_alone": false
             },
             {
-              "value": "425.4",
+              "value": "429.3",
               "can_fire_atom_alone": false
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "93306",
+              "value": "418304008",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "84114007",
               "can_fire_atom_alone": false
             }
           ]
@@ -566,6 +1253,260 @@
       }
     },
     {
+      "atom_id": "hypertension",
+      "preferred_name": "Hypertension",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Documented pre-existing hypertension",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "59621000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I13.10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93784",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93786",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93788",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93790",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "hypertension",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "HTN",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "hypertensive",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "on blood pressure medication for years",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hypertrophic_cardiomyopathy",
+      "preferred_name": "Hypertrophic cardiomyopathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Documented hypertrophic cardiomyopathy diagnostic label",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "233873004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "45227007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "195020003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I42.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75557",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "81439",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33416",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93356",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "HCM",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "hypertrophic cardiomyopathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "HOCM",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "septal myectomy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "alcohol septal ablation",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "lflg_as",
       "preferred_name": "Low-flow low-gradient aortic stenosis",
       "stage": "PRETEST_SIGNAL",
@@ -577,6 +1518,28 @@
           "CPT_HCPCS": [
             {
               "value": "93306",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "93453",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I35.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "424.1",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "60573004",
               "can_fire_atom_alone": false
             }
           ]
@@ -614,6 +1577,506 @@
       }
     },
     {
+      "atom_id": "low_ecg_voltage",
+      "preferred_name": "Low QRS voltage",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Low ECG QRS voltage",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "251146004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "20329001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "251147008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "251148003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R94.31",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93010",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "low voltage",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "low QRS voltage",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "small complexes",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "diminished voltage",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lv_cavity_geometry",
+      "preferred_name": "Left-ventricular cavity geometry",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "LV chamber geometry/dimension result used as contextual imaging evidence",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "250929008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "250932006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "250931004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "250935008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "LV cavity dimension",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "LVIDd",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "LVIDs",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "chamber size",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "concentric remodeling",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Left-ventricular cavity geometry'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lv_mass_index_result",
+      "preferred_name": "Left-ventricular mass index",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "LV mass index result",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "373941003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "75557",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "LVMI",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "LV mass index",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "indexed LV mass",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lv_relative_wall_thickness",
+      "preferred_name": "Increased relative wall thickness",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Increased LV relative wall thickness on echocardiography",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "34344004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "relative wall thickness",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "RWT",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "concentric remodeling",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "concentric hypertrophy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Increased relative wall thickness'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lv_wall_measurement",
+      "preferred_name": "LV wall thickness measurement",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Measured interventricular septal/posterior-wall thickness; route value, not a finding by itself",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "45301000087103",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "IVSd",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "IVST",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "PWT",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "posterior wall thickness",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "septal thickness",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lvef_result",
+      "preferred_name": "Left-ventricular ejection fraction",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Measured LVEF result",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "250908004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            },
+            {
+              "value": "93308",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "LVEF",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "ejection fraction",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "EF 55%",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "preserved EF",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          },
+          {
+            "value": "normal systolic function",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Measurement/test route only. The existence of the test/result field does not itself establish the phenotype signal."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "medication_dose_change",
       "preferred_name": "medication dose change",
       "stage": "PRETEST_SIGNAL",
@@ -621,7 +2084,20 @@
       "clinical_meaning": "Antihypertensive dose reduction or discontinuation",
       "context_guard": "Require explicit antihypertensive/heart-failure medication reduction, holding, or discontinuation. Generic words such as 'stopped', 'held', or 'dose reduced' without medication context must not create this atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "458.9",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "antihypertensive discontinued",
@@ -663,6 +2139,175 @@
       }
     },
     {
+      "atom_id": "pacemaker_implantation",
+      "preferred_name": "Pacemaker implantation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Procedure history of pacemaker/device implantation",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "307280005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "65219008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "175142009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "1231779006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "429064006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "429542009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "Z95.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "33206",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33207",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33208",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33212",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33213",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33221",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33249",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33224",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33225",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "pacemaker insertion",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "PPM implant",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "device implant",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "CRT implant",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "ICD implant",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "pacemaker_presence",
       "preferred_name": "pacemaker presence",
       "stage": "PRETEST_SIGNAL",
@@ -671,6 +2316,12 @@
       "context_guard": "Require explicit pacemaker presence/interrogation language. Conduction disease or atrial arrhythmia alone must not create a pacemaker atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "33206-33208",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
               "value": "Z95.0",
@@ -680,12 +2331,6 @@
           "ICD9": [
             {
               "value": "V45.01",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "33206-33208",
               "can_fire_atom_alone": false
             }
           ]
@@ -718,6 +2363,343 @@
           {
             "value": "permanent pacemaker",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "pseudo_infarct",
+      "preferred_name": "Pseudo-infarction ECG pattern",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Pseudo-infarction Q-wave pattern without matching infarction explanation",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "164918000",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "164917005",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R94.31",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93000",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93010",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "pseudoinfarction",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "pseudo-infarct pattern",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "Q waves V1-V3",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "poor R wave progression",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "anteroseptal Q waves without infarct history",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "QS pattern",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "reduced_gls",
+      "preferred_name": "Reduced global longitudinal strain",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Reduced global longitudinal strain on echocardiography",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93356",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "reduced GLS",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "impaired global longitudinal strain",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "GLS -12%",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "abnormal longitudinal strain",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "reduced strain",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced global longitudinal strain'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "reduced_mcf",
+      "preferred_name": "Reduced myocardial contraction fraction",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Reduced myocardial contraction fraction",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75557",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "myocardial contraction fraction",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "MCF",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "stroke volume to myocardial volume ratio",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "low MCF",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Reduced myocardial contraction fraction'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "small_lv_cavity",
+      "preferred_name": "Small left-ventricular cavity",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Small LV cavity with preserved ejection fraction",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "250929008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "250932006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "250931004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "small LV cavity",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "small ventricular cavity",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "non-dilated",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "cavity obliteration",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "preserved EF with small cavity",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Small left-ventricular cavity'. Do not broaden to related but clinically distinct findings."
           }
         ]
       }
@@ -770,6 +2752,133 @@
       }
     },
     {
+      "atom_id": "tavr",
+      "preferred_name": "Aortic valve replacement",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Transcatheter or surgical aortic-valve replacement",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "773996000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "26212005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "Z95.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "Z95.3",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "Z95.4",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "33361",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33366",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33405",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33406",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "33410",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "TAVR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "TAVI",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "SAVR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "aortic valve replacement",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "valve-in-valve",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
       "atom_id": "thick_walls",
       "preferred_name": "Unexplained left-ventricular wall thickness / LVH",
       "stage": "PRETEST_SIGNAL",
@@ -778,7 +2887,29 @@
       "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
+            {
+              "value": "I42.",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I50.32",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I50.33",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "I51.7",
               "can_fire_atom_alone": false
@@ -786,13 +2917,25 @@
           ],
           "ICD9": [
             {
+              "value": "425.4",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "428.30-428.33",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "429.3",
               "can_fire_atom_alone": false
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "93306",
+              "value": "55827005",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "8186001",
               "can_fire_atom_alone": false
             }
           ]
@@ -900,6 +3043,975 @@
           {
             "value": "v24 competing lvh",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "voltage_mass_mismatch",
+      "preferred_name": "Voltage-to-mass discordance",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Low ECG voltage relative to LV mass",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93000",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93010",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": true,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "voltage-mass discordance",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "low voltage relative to wall thickness",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "QRS voltage inappropriately low",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "discordance between ECG and echo",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "voltage too low for the degree of hypertrophy",
+            "can_fire_atom_alone": true,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Voltage-to-mass discordance'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt09_competing_hf_cause",
+      "preferred_name": "Competing cause of heart failure",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Alternative cause adequately explaining heart failure",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "64715009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "59621000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "426856002",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "60573004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "48724000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "399020009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "233873004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "111000119104",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "703274008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I25.5",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I35.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I34.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I42.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "hypertension",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "hypertensive heart disease",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "ischemic",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "CAD",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "prior MI",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "valvular",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "obesity",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt11_competing_af_cause",
+      "preferred_name": "Competing cause of atrial fibrillation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Alternative cause adequately explaining atrial fibrillation/flutter",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "59621000",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "11851006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "34486009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "90739004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "78275009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "414916001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "1336085007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I34.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I34.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I05.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "E05.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "G47.33",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "E66.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "F10.20",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "hypertension",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "mitral valve disease",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "hyperthyroid",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "sleep apnea",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "OSA",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "obesity",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "alcohol",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt12_competing_conduction_cause",
+      "preferred_name": "Competing cause of conduction disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Alternative cause adequately explaining AV block/BBB/sinus-node disease",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "414545008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "413838009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "75403004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "77863005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "50920009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "397841007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "1142110005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I25.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I25.10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "D86.89",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "A69.29",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I40.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "R00.1",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I51.7",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ischemic",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "prior MI",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "sarcoidosis",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "Lyme",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "post-surgical",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "beta blocker",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "amiodarone",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "age-related degeneration",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt13_sarcomeric_hcm",
+      "preferred_name": "Sarcomeric HCM / hypertensive remodeling",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Competing sarcomeric or hypertensive explanation for HCM phenotype",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "83978005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "64715009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I42.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "I10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "Z82.41",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "Z82.49",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "81439",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "81407",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "81479",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "MYH7",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "MYBPC3",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "sarcomeric mutation",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "positive family history of HCM",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "young age at diagnosis",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "sudden death in family",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "wt18_competing_hypotension",
+      "preferred_name": "Competing cause of falling blood pressure",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Alternative explanation for hypotension/falling blood pressure",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "34095006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "248279007",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "709044004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "277879009",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "262285001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "31031000119102",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "91302008",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E86.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "E86.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "R54",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "A41.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "R63.4",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "I95.2",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            },
+            {
+              "value": "84443",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "frailty",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "dehydration",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "CKD",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "weight loss",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "deconditioning",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "autonomic dysfunction",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+          },
+          {
+            "value": "recent illness",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
           }
         ]
       }

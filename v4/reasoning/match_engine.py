@@ -7,6 +7,7 @@ rule.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date, datetime
 from itertools import combinations as witness_combinations
 from typing import Any, Iterable
 
@@ -55,8 +56,18 @@ def _requirements(config: Any, combination_id: str) -> list[Requirement]:
     out: list[Requirement] = []
     for r in raw:
         rid = str(value(r, "requirement_id", ""))
-        out.append(Requirement(
-            requirement_id=rid,
+        # ``minimum_count`` is a workbook-level cardinality contract.  The
+        # witness matcher operates on one arm per Requirement, so expand an
+        # arm such as "at least two of these signals" into two equivalent
+        # arms.  The normal lineage/conflict checks then require independent
+        # evidence for each occurrence.  This keeps the behavior generic for
+        # every phenotype rather than encoding ATTRwt-specific logic here.
+        raw_minimum = value(r, "minimum_count", None)
+        try:
+            minimum_count = max(1, int(raw_minimum or 1))
+        except (TypeError, ValueError):
+            minimum_count = 1
+        common = dict(
             combination_id=combination_id,
             order=int(value(r, "requirement_order", 0) or 0),
             kind=str(value(r, "requirement_kind", "BUCKET") or "BUCKET"),
@@ -65,9 +76,12 @@ def _requirements(config: Any, combination_id: str) -> list[Requirement]:
             allowed_signal_ids=frozenset(x for x in smap.get(rid, set()) if x),
             context_witness_allowed=_bool(value(r, "context_witness_allowed", False)),
             distinct_lineage_required=_bool(value(r, "distinct_lineage_required", True), True),
-            minimum_count=value(r, "minimum_count", None),
+            minimum_count=minimum_count,
             notes=value(r, "notes", None),
-        ))
+        )
+        for occurrence in range(1, minimum_count + 1):
+            expanded_id = rid if minimum_count == 1 else f"{rid}__{occurrence}"
+            out.append(Requirement(requirement_id=expanded_id, **common))
     return sorted(out, key=lambda r: (r.order, r.requirement_id))
 
 
@@ -145,6 +159,63 @@ def _dedupe_witness_sets(witness_sets: list[list[Any]]) -> list[list[Any]]:
             seen.add(key)
             output.append(witness_set)
     return output
+
+
+def _temporal_state(combination: Any, witnesses: list[Any]) -> str:
+    """Evaluate the small, explicit temporal contract used by ATTRwt.
+
+    Temporal order is a clinical rule, not an inferred score.  Missing or
+    unparsable dates remain UNKNOWN so the paired null-chronology rule can
+    route the patient without treating missing dates as a documented negative.
+    """
+    policy = str(value(combination, "temporal_policy", "") or "").upper()
+    if not policy or policy in {"NO_FIXED_ORDER", "NONE"}:
+        return TRUE
+
+    def parsed(raw: Any) -> datetime | None:
+        if raw in (None, ""):
+            return None
+        try:
+            if isinstance(raw, datetime):
+                result = raw
+            elif isinstance(raw, date):
+                result = datetime.combine(raw, datetime.min.time())
+            else:
+                result = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+            if result.tzinfo is not None:
+                result = result.astimezone().replace(tzinfo=None)
+            return result
+        except (TypeError, ValueError):
+            return None
+
+    by_bucket: dict[str, list[datetime]] = {}
+    missing_date = False
+    for witness in witnesses:
+        bucket = str(value(witness, "reasoning_bucket", "")).upper()
+        raw_dates = value(witness, "event_dates", ()) or ()
+        dates = [parsed(item) for item in raw_dates]
+        dates = [item for item in dates if item is not None]
+        if not bucket or not dates:
+            # A selected witness with no reliable event date makes chronology
+            # indeterminate, rather than silently satisfying a temporal gate.
+            by_bucket.setdefault(bucket, [])
+            missing_date = True
+            continue
+        by_bucket.setdefault(bucket, []).extend(dates)
+
+    if policy in {"ORTHO_BEFORE_CARDIO", "PAIR_TEMPORAL", "ORTHOPEDIC_BEFORE_CARDIAC_WHEN_AVAILABLE"}:
+        ortho = by_bucket.get("ORTHO", [])
+        cardio = by_bucket.get("CARDIO", [])
+        if not ortho or not cardio:
+            return UNKNOWN
+        return TRUE if min(ortho) < min(cardio) else FALSE
+    if policy == "REQUIRE_UNKNOWN":
+        # This branch is used only for a paired rule whose contract is the
+        # unresolved chronology case (WT_RULE_02).
+        if missing_date or not by_bucket.get("ORTHO") or not by_bucket.get("CARDIO"):
+            return UNKNOWN
+        return FALSE
+    return UNKNOWN
 
 
 def _hit_alternatives(hit: Any) -> list[Any]:
@@ -311,6 +382,8 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
         nested_rule = value(combo, "rule", None)
         reqs = _requirements(config, cid)
         conflicts: list[tuple[str, tuple[str, ...]]] = []
+        temporal_rejected = False
+        temporal_state: str | None = None
         if nested_rule is not None:
             status, selected, hold = _evaluate_nested_combination(cid, nested_rule, hits)
             assignment = selected if status == TRUE else None
@@ -319,14 +392,37 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
         else:
             assignment, conflicts = assign_witnesses(combo, reqs, hits, bucket_defs)
             status, hold = (TRUE, None) if assignment is not None else (FALSE, None)
-        if nested_rule is None and reqs and assignment is None:
+            if assignment is not None:
+                temporal_state = _temporal_state(combo, assignment)
+                temporal_policy = str(value(combo, "temporal_policy", "") or "").upper()
+                temporal_requirement = str(value(combo, "temporal_requirement", "") or "").upper()
+                if temporal_policy == "ORTHOPEDIC_BEFORE_CARDIAC_WHEN_AVAILABLE":
+                    # Chronology is enforced whenever both sides have reliable
+                    # dates.  Missing dates do not erase an otherwise valid
+                    # multi-domain suspicion route because the workbook marks
+                    # this policy explicitly as "when available".
+                    if temporal_state == FALSE:
+                        status, assignment, hold = FALSE, None, "TEMPORAL_ORDER_NOT_SATISFIED"
+                        temporal_rejected = True
+                elif temporal_requirement == "SATISFIED_TRUE":
+                    if temporal_state == FALSE:
+                        status, assignment, hold = FALSE, None, "TEMPORAL_ORDER_NOT_SATISFIED"
+                        temporal_rejected = True
+                    elif temporal_state == UNKNOWN:
+                        status, assignment, hold = UNKNOWN, None, "INCOMPLETE_OR_UNKNOWN_EVIDENCE"
+                        temporal_rejected = True
+                elif temporal_requirement == "SATISFIED_NULL":
+                    if temporal_state != UNKNOWN:
+                        status, assignment, hold = FALSE, None, "TEMPORAL_CHRONOLOGY_RESOLVED"
+                        temporal_rejected = True
+        if nested_rule is None and reqs and assignment is None and not temporal_rejected:
             # A relaxed run is diagnostic only.  It can produce a hold, never
             # a pass, when the only route reuses lineage/dedup evidence.
             relaxed_reqs = [Requirement(**{**r.__dict__, "distinct_lineage_required": False}) for r in reqs]
             relaxed, _ = assign_witnesses(combo, relaxed_reqs, hits, bucket_defs)
             if relaxed is not None:
                 status, hold = UNKNOWN, "HOLD_DUPLICATE_LINEAGE"
-        if nested_rule is None and reqs and assignment is None and status == FALSE:
+        if nested_rule is None and reqs and assignment is None and status == FALSE and not temporal_rejected:
             # Preserve three-valued logic at the combination boundary. If the
             # configured arms could be satisfied only by UNKNOWN signals, the
             # combination is UNKNOWN rather than an apparent negative.
@@ -354,6 +450,7 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
             "supporting_buckets": tuple(sorted({str(value(x, "reasoning_bucket", "")) for x in selected})),
             "support_lineage_ids": union_lineage(selected),
             "supporting_event_dates": tuple(sorted({str(d) for x in selected for d in (value(x, "event_dates", ()) or ())})),
+            "temporal_state": temporal_state,
             "conflicts": tuple(conflicts),
             "clinical_rationale": value(combo, "clinical_rationale", None),
             "config_hash": value(config, "config_hash", None),

@@ -9,44 +9,7 @@
       "clinical_meaning": "Monoclonal gammopathy / plasma-cell disorder",
       "context_guard": "MGUS/monoclonal gammopathy does not exclude ATTR and may coexist with ATTR. Treat as a competing AL-workup signal, not as proof of AL.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "D47.2",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "273.1",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "86335",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "83883",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "33717-0",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "11051-1",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "33914-3",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "M-protein",
@@ -75,6 +38,189 @@
           {
             "value": "plasma-cell disorder",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "plasma_cell_dyscrasia",
+      "preferred_name": "Plasma-cell dyscrasia / multiple myeloma",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Overt plasma-cell disorder that changes the AL differential pathway",
+      "source_specialty": "HEMATOLOGY",
+      "source_subdomain": "heme",
+      "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "415111003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "09989006",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "413587002",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "415112005",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "128922003",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "C90.00",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "C90.01",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "C90.10",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "C90.30",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "C90.20",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "38222",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "84165",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "86334",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "86335",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "83521",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "multiple myeloma",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "smoldering myeloma",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "plasma cell dyscrasia",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "plasmacytoma",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "lenalidomide",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "bortezomib",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "daratumumab",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings."
           }
         ]
       }

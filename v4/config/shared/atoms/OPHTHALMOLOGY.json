@@ -14,9 +14,17 @@
             {
               "value": "H04.123",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "H40.9",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "365.9",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "375.15",
               "can_fire_atom_alone": false
@@ -63,7 +71,46 @@
       "clinical_meaning": "Recurrent dark floaters",
       "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "67036",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92004",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92014",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "H43.20",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "H43.21",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "H43.22",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "H43.23",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "379.24",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "blurred vision from floaters",
@@ -111,6 +158,10 @@
         "codes": {
           "ICD10": [
             {
+              "value": "H04.123",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "H40.9",
               "can_fire_atom_alone": false
             }
@@ -118,6 +169,10 @@
           "ICD9": [
             {
               "value": "365.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "375.15",
               "can_fire_atom_alone": false
             }
           ]
@@ -251,6 +306,20 @@
       "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "67036",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92004",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92014",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
               "value": "H43.20",
@@ -272,20 +341,6 @@
           "ICD9": [
             {
               "value": "379.24",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "67036",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "92004",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "92014",
               "can_fire_atom_alone": false
             }
           ]

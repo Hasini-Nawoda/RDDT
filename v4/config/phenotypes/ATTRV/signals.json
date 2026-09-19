@@ -17,8 +17,8 @@
       "tier": 1,
       "canonical_dedup_group": "TTR_VARIANT",
       "evidence_stage": "PRETEST_SIGNAL",
-      "runtime_executability": "NON_EXECUTABLE",
-      "evidence_mode": null
+      "runtime_executability": "PARTIAL",
+      "evidence_mode": "DOCUMENTED_ASSERTION"
     },
     {
       "signal_id": "V02",
@@ -75,8 +75,8 @@
       "tier": 1,
       "canonical_dedup_group": "DYSAUTONOMIA",
       "evidence_stage": "PRETEST_SIGNAL",
-      "runtime_executability": "NON_EXECUTABLE",
-      "evidence_mode": null
+      "runtime_executability": "PARTIAL",
+      "evidence_mode": "DOCUMENTED_ASSERTION"
     },
     {
       "signal_id": "V07",
@@ -94,8 +94,8 @@
       "tier": 1,
       "canonical_dedup_group": "FAMILY_HISTORY",
       "evidence_stage": "PRETEST_SIGNAL",
-      "runtime_executability": "NON_EXECUTABLE",
-      "evidence_mode": null
+      "runtime_executability": "PARTIAL",
+      "evidence_mode": "DOCUMENTED_ASSERTION"
     },
     {
       "signal_id": "V08",
@@ -431,8 +431,8 @@
       "tier": 3,
       "canonical_dedup_group": "LV_THICKENING_RESTRICTIVE",
       "evidence_stage": "PRETEST_SIGNAL",
-      "runtime_executability": "NON_EXECUTABLE",
-      "evidence_mode": null
+      "runtime_executability": "PARTIAL",
+      "evidence_mode": "DOCUMENTED_ASSERTION"
     },
     {
       "signal_id": "V25",

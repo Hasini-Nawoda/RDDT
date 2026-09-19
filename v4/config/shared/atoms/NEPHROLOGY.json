@@ -9,20 +9,7 @@
       "clinical_meaning": "Abnormal serum free-light-chain result that warrants AL-amyloidosis workup in the appropriate clinical context.",
       "context_guard": "AL-workup trigger only; not a standalone diagnosis of AL amyloidosis. Interpret in clinical context and do not automatically exclude coexisting ATTR.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "83883",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "33914-3",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "abnormal free light chain ratio",
@@ -43,6 +30,211 @@
           {
             "value": "serum free light chains abnormal",
             "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "egfr_result",
+      "preferred_name": "Estimated glomerular filtration rate",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Estimated glomerular filtration rate",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "80274001",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N18.3",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "N18.4",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "82575",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "eGFR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "GFR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "creatinine clearance",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "CKD stage",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hypoalbuminemia",
+      "preferred_name": "Marked hypoalbuminemia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Markedly reduced serum albumin",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "119247004",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E88.09",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "E88.0",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "R77.8",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "82040",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "value_class": "STANDARD_CODE",
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "hypoalbuminemia",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "low albumin",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "albumin 2.1",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
           }
         ]
       }
@@ -130,36 +322,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Nonspecific renal phenotype. Requires differential evaluation; should not by itself classify AL, AA, or ATTR.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "N04.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "581.9",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "82004001",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "2888-6",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "13801-6",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "heavy proteinuria",
@@ -192,20 +355,7 @@
       "clinical_meaning": "Monoclonal protein detected on serum immunofixation; redirects toward AL evaluation/amyloid typing.",
       "context_guard": "AL-workup trigger only; monoclonal gammopathy can coexist with ATTR and must not by itself suppress an ATTR pathway.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "86335",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "33717-0",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "monoclonal band on serum immunofixation",
@@ -238,14 +388,7 @@
       "clinical_meaning": "Monoclonal protein detected on urine immunofixation; redirects toward AL evaluation/amyloid typing.",
       "context_guard": "AL-workup trigger only; monoclonal gammopathy can coexist with ATTR and must not by itself suppress an ATTR pathway.",
       "extraction": {
-        "codes": {
-          "CPT_HCPCS": [
-            {
-              "value": "86335",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "monoclonal band on urine immunofixation",
@@ -278,18 +421,7 @@
       "clinical_meaning": "New persistent proteinuria / worsening proteinuric renal phenotype.",
       "context_guard": "Nonspecific renal finding. For V40 it is necessary but not sufficient and must be paired with a chronic active inflammatory/autoinflammatory/infectious driver.",
       "extraction": {
-        "codes": {
-          "LOINC": [
-            {
-              "value": "2888-6",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "13801-6",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "24-hour urine protein",

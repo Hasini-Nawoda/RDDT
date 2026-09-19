@@ -8,20 +8,7 @@
       "experiencer": "PATIENT",
       "context_guard": "Common and nonspecific. Require a chronic/recurrent and otherwise unexplained pattern before contributing to V10; isolated IBS-like symptoms should not be sufficient.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "K59.8",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "564.5",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "alternating bowel habit",
@@ -73,7 +60,50 @@
       "experiencer": "PATIENT",
       "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "74230",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92610",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R13.10",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R13.19",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R49.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "784.49",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "784.51",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.20",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "aspiration while swallowing",
@@ -115,11 +145,27 @@
             {
               "value": "K59.00",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "K59.1",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "K59.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R19.7",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
             {
               "value": "564.00",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "564.5",
               "can_fire_atom_alone": false
             }
           ]
@@ -164,18 +210,6 @@
       "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "K31.84",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "536.3",
-              "can_fire_atom_alone": false
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "78264",
@@ -187,6 +221,30 @@
             },
             {
               "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.01",
               "can_fire_atom_alone": false
             }
           ]
@@ -230,15 +288,27 @@
         "codes": {
           "ICD10": [
             {
-              "value": "R19.7",
+              "value": "K59.00",
               "can_fire_atom_alone": false
             },
             {
               "value": "K59.1",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "K59.8",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R19.7",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
+            {
+              "value": "564.00",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "564.5",
               "can_fire_atom_alone": false
@@ -306,15 +376,45 @@
       "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "74230",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92610",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
+              "value": "R13.10",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R13.19",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "R47.1",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R49.0",
               "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
             {
+              "value": "784.49",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "784.51",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.20",
               "can_fire_atom_alone": false
             }
           ]
@@ -352,6 +452,16 @@
       "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "74230",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92610",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
               "value": "R13.10",
@@ -360,21 +470,27 @@
             {
               "value": "R13.19",
               "can_fire_atom_alone": false
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R49.0",
+              "can_fire_atom_alone": false
             }
           ],
           "ICD9": [
             {
-              "value": "787.20",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "CPT_HCPCS": [
-            {
-              "value": "92610",
+              "value": "784.49",
               "can_fire_atom_alone": false
             },
             {
-              "value": "74230",
+              "value": "784.51",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.20",
               "can_fire_atom_alone": false
             }
           ]
@@ -420,9 +536,41 @@
       "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78265",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
             {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": false
+            },
+            {
               "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.01",
               "can_fire_atom_alone": false
             }
           ]
@@ -465,20 +613,7 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "F50.00-F50.02",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "307.1",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "ARFID",
@@ -532,7 +667,29 @@
       "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
       "extraction": {
         "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "74230",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "92610",
+              "can_fire_atom_alone": false
+            }
+          ],
           "ICD10": [
+            {
+              "value": "R13.10",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R13.19",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": false
+            },
             {
               "value": "R49.0",
               "can_fire_atom_alone": false
@@ -541,6 +698,14 @@
           "ICD9": [
             {
               "value": "784.49",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "784.51",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.20",
               "can_fire_atom_alone": false
             }
           ]
@@ -585,7 +750,46 @@
       "clinical_meaning": "Nausea",
       "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78265",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.01",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "chronic nausea",
@@ -677,7 +881,46 @@
       "clinical_meaning": "Recurrent vomiting",
       "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78265",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "787.01",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "chronic vomiting",

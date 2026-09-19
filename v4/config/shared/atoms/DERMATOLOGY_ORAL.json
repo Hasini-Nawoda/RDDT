@@ -8,24 +8,7 @@
       "experiencer": "PATIENT",
       "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Confirm an affirmed patient finding and route for amyloid typing when clinically appropriate.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "Q38.2",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "K14.8",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "750.15",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "acquired tongue enlargement",
@@ -58,20 +41,7 @@
       "clinical_meaning": "Periorbital / pinch purpura",
       "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Require an affirmed patient finding rather than copied history or negated text.",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "R23.3",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "782.7",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "bruising around eyes",

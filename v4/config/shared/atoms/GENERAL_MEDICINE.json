@@ -7,40 +7,7 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {
-          "ICD10": [
-            {
-              "value": "R63.4",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R64",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "ICD9": [
-            {
-              "value": "783.21",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "SNOMED_CT": [
-            {
-              "value": "89362005",
-              "can_fire_atom_alone": false
-            }
-          ],
-          "LOINC": [
-            {
-              "value": "29463-7",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "39156-5",
-              "can_fire_atom_alone": false
-            }
-          ]
-        },
+        "codes": {},
         "nlp_terms": [
           {
             "value": "BMI declining",

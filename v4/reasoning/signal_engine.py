@@ -6,6 +6,7 @@ bundle.  It emits one auditable row per configured signal; no score is built.
 """
 from __future__ import annotations
 
+from datetime import date, datetime
 from itertools import combinations
 from typing import Any, Iterable, Mapping
 
@@ -154,6 +155,94 @@ def _dedupe_witness_sets(sets: list[list[Any]]) -> list[list[Any]]:
             seen.add(key)
             out.append(witnesses)
     return out
+
+
+def _witness_dates(witness: Any) -> list[datetime]:
+    raw_dates = value(witness, "event_dates", None)
+    if raw_dates in (None, ""):
+        raw_dates = [value(witness, "event_date", None)]
+    elif not isinstance(raw_dates, (list, tuple, set, frozenset)):
+        raw_dates = [raw_dates]
+    parsed: list[datetime] = []
+    for raw in raw_dates:
+        if raw in (None, ""):
+            continue
+        try:
+            if isinstance(raw, datetime):
+                item = raw
+            elif isinstance(raw, date):
+                item = datetime.combine(raw, datetime.min.time())
+            else:
+                item = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+            if item.tzinfo is not None:
+                item = item.astimezone().replace(tzinfo=None)
+            parsed.append(item)
+        except (TypeError, ValueError):
+            continue
+    return sorted(parsed)
+
+
+def _ordered_group_temporal_state(
+    config: Any,
+    policy: str,
+    witnesses: list[Any],
+    root_group_id: str,
+    mem_by_group: Mapping[str, list[Any]],
+    child_groups: Mapping[str, list[Any]],
+) -> str:
+    """Apply an explicit workbook temporal policy to one witness set."""
+    ordered_children = sorted(
+        child_groups.get(root_group_id, []),
+        key=lambda group: int(value(group, "evaluation_order", 0) or 0),
+    )
+    if len(ordered_children) < 2:
+        return UNKNOWN
+
+    def expanded_signal_members(signal_id: str) -> set[tuple[str, str]]:
+        # Use only the signal's direct atom mapping.  Recursively expanding a
+        # cross-bucket composite would leak its supporting cardiac atoms into
+        # an orthopedic temporal arm (and vice versa).
+        found: set[tuple[str, str]] = {("SIGNAL", signal_id)}
+        for mapping in rows(config, "signal_atoms"):
+            if str(value(mapping, "signal_id", "")) == signal_id:
+                found.add(("ATOM", str(value(mapping, "atom_id", ""))))
+        return found
+
+    def member_ids(group_id: str) -> set[tuple[str, str]]:
+        found: set[tuple[str, str]] = set()
+        for member in mem_by_group.get(group_id, []):
+            member_type = str(value(member, "member_type", "ATOM") or "ATOM").upper()
+            member_id = str(value(member, "member_id", ""))
+            if member_type == "SIGNAL":
+                found.update(expanded_signal_members(member_id))
+            else:
+                found.add(("ATOM", member_id))
+        for child in child_groups.get(group_id, []):
+            found.update(member_ids(str(value(child, "group_id", ""))))
+        return found
+
+    group_dates: list[list[datetime]] = []
+    for child in ordered_children:
+        allowed = member_ids(str(value(child, "group_id", "")))
+        dates: list[datetime] = []
+        for witness in witnesses:
+            identifiers = {
+                ("ATOM", str(value(witness, "atom_id", ""))),
+                ("SIGNAL", str(value(witness, "signal_id", ""))),
+            }
+            if allowed.intersection(identifiers):
+                dates.extend(_witness_dates(witness))
+        if not dates:
+            return UNKNOWN
+        group_dates.append(sorted(dates))
+
+    representatives = [dates[0] for dates in group_dates]
+    strict = policy == "ORTHOPEDIC_BEFORE_CARDIAC_WHEN_AVAILABLE"
+    ordered = all(
+        left < right if strict else left <= right
+        for left, right in zip(representatives, representatives[1:])
+    )
+    return TRUE if ordered else FALSE
 
 
 def _combine_group(group: Any, children: list[tuple[str, list[list[Any]], list[Any]]]) -> tuple[str, list[list[Any]], list[Any]]:
@@ -325,9 +414,40 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
             evaluated.append((str(ident), sets, us))
         return _combine_group(group, evaluated)
 
-    status, witness_sets, unknown = eval_group(str(value(root, "group_id", "")))
+    root_group_id = str(value(root, "group_id", ""))
+    status, witness_sets, unknown = eval_group(root_group_id)
+    reason = "workbook signal rule"
+    temporal_policy = str(value(rules[0], "temporal_policy", "") or "").upper() if rules else ""
+    if status == TRUE and temporal_policy:
+        temporal_states = [
+            _ordered_group_temporal_state(
+                config,
+                temporal_policy,
+                witness_set,
+                root_group_id,
+                mem_by_group,
+                child_groups,
+            )
+            for witness_set in witness_sets
+        ]
+        optional_when_missing = temporal_policy.endswith("_WHEN_AVAILABLE")
+        accepted = [
+            witness_set
+            for witness_set, temporal_state in zip(witness_sets, temporal_states)
+            if temporal_state == TRUE or (optional_when_missing and temporal_state == UNKNOWN)
+        ]
+        if accepted:
+            witness_sets = accepted
+            if any(state == UNKNOWN for state in temporal_states) and optional_when_missing:
+                reason = "workbook signal rule; chronology unavailable but optional"
+        elif any(state == UNKNOWN for state in temporal_states):
+            status, witness_sets, unknown = UNKNOWN, [], [item for witness_set in witness_sets for item in witness_set]
+            reason = "INCOMPLETE_OR_UNKNOWN_TEMPORAL_EVIDENCE"
+        else:
+            status, witness_sets = FALSE, []
+            reason = "TEMPORAL_ORDER_NOT_SATISFIED"
     support = witness_sets[0] if witness_sets else []
-    return status, support, unknown, "workbook signal rule", witness_sets
+    return status, support, unknown, reason, witness_sets
 
 
 def evaluate_signals(config: Any, evidence: Iterable[Any], *, patient_id: Any = None, phenotype: str | None = None) -> list[dict[str, Any]]:
