@@ -1,0 +1,905 @@
+{
+  "phenotype": "ATTRV",
+  "signal_atoms": [
+    {
+      "signal_id": "V01",
+      "atom_id": "ttr_pathogenic_variant",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "prior_independent_result=True"
+    },
+    {
+      "signal_id": "V02",
+      "atom_id": "axonal_neuropathy",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True OR progressive=True, length_dependent=True, sensorimotor=True"
+    },
+    {
+      "signal_id": "V02",
+      "atom_id": "axonal_pattern_on_emg",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "axonal=True"
+    },
+    {
+      "signal_id": "V02",
+      "atom_id": "idiopathic_progressive_neuropathy",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True OR progressive=True, length_dependent=True, sensorimotor=True"
+    },
+    {
+      "signal_id": "V02",
+      "atom_id": "polyneuropathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, length_dependent=True, axonal=True, sensorimotor=True OR progressive=True, length_dependent=True, sensorimotor=True"
+    },
+    {
+      "signal_id": "V04",
+      "atom_id": "burning_feet",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V04",
+      "atom_id": "pain_temperature_loss",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, length_dependent=True"
+    },
+    {
+      "signal_id": "V04",
+      "atom_id": "reduced_ienfd",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "compatible_clinical_sfn=True"
+    },
+    {
+      "signal_id": "V04",
+      "atom_id": "sfn",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, length_dependent=True OR painful=True"
+    },
+    {
+      "signal_id": "V05",
+      "atom_id": "anhidrosis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V05",
+      "atom_id": "dysautonomia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "early=True, multisystem=True OR objective_autonomic_evidence=True"
+    },
+    {
+      "signal_id": "V05",
+      "atom_id": "orthostatic_intolerance",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V07",
+      "atom_id": "fhx_established_attr",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "FAMILY_MEMBER",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "first_degree=True, established=True"
+    },
+    {
+      "signal_id": "V08",
+      "atom_id": "fhx_adult_onset_neuropathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "FAMILY_MEMBER",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "first_or_second_degree=True, adult_onset=True, progressive=True, unexplained=True"
+    },
+    {
+      "signal_id": "V08",
+      "atom_id": "fhx_sudden_death",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "FAMILY_MEMBER",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "first_or_second_degree=True, adult_onset=True, unexplained=True"
+    },
+    {
+      "signal_id": "V09",
+      "atom_id": "dizziness",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V09",
+      "atom_id": "orthostatic_intolerance",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "objective_orthostatic_hypotension=True OR recurrent=True"
+    },
+    {
+      "signal_id": "V09",
+      "atom_id": "syncope",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V10",
+      "atom_id": "alternating_bowel_habit",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic=True, unexplained=True"
+    },
+    {
+      "signal_id": "V10",
+      "atom_id": "constipation",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic=True, unexplained=True"
+    },
+    {
+      "signal_id": "V10",
+      "atom_id": "diarrhea",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic=True, unexplained=True"
+    },
+    {
+      "signal_id": "V10",
+      "atom_id": "gi_dysmotility",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "persistent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V11",
+      "atom_id": "delayed_gastric_emptying",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V11",
+      "atom_id": "early_satiety",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "persistent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V11",
+      "atom_id": "gastroparesis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V11",
+      "atom_id": "nausea",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "recurrent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V11",
+      "atom_id": "vomiting",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "recurrent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V12",
+      "atom_id": "declining_bmi",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "comparable_trend=True, progressive=True, unexplained=True"
+    },
+    {
+      "signal_id": "V12",
+      "atom_id": "unintentional_weight_loss",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "clinically_significant=True, unexplained=True"
+    },
+    {
+      "signal_id": "V13",
+      "atom_id": "cts_bilateral",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V13",
+      "atom_id": "cts_left",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V13",
+      "atom_id": "cts_persistent_after_release",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V13",
+      "atom_id": "cts_recurrent",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V13",
+      "atom_id": "cts_right",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V14",
+      "atom_id": "cidp",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V14",
+      "atom_id": "demyelinating_emg_pattern",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "convincing_demyelinating_pattern=True"
+    },
+    {
+      "signal_id": "V14",
+      "atom_id": "immunotherapy_exposure",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "actual_exposure=True, adequate_trial=True"
+    },
+    {
+      "signal_id": "V14",
+      "atom_id": "immunotherapy_nonresponse",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "response_to_cidp_treatment=True, poor_or_absent=True"
+    },
+    {
+      "signal_id": "V15",
+      "atom_id": "floaters",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "ophthalmologist_confirmed=True, unexplained=True, recurrent=True, dark=True"
+    },
+    {
+      "signal_id": "V15",
+      "atom_id": "vitreous_opacity",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "ophthalmologist_confirmed=True, amyloid_compatible=True"
+    },
+    {
+      "signal_id": "V16",
+      "atom_id": "iris_abnormality",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "characteristic=True, ophthalmologist_confirmed=True"
+    },
+    {
+      "signal_id": "V16",
+      "atom_id": "scalloped_pupil",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "ophthalmologist_confirmed=True"
+    },
+    {
+      "signal_id": "V17",
+      "atom_id": "microalbuminuria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "persistent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V17",
+      "atom_id": "urine_protein_result",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "persistent=True, unexplained=True"
+    },
+    {
+      "signal_id": "V18",
+      "atom_id": "elevated_nfl",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "rising=True, comparable_longitudinal_assay=True"
+    },
+    {
+      "signal_id": "V19",
+      "atom_id": "sudoscan_reduced_esc",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "reproducible_or_abnormal_reference=True"
+    },
+    {
+      "signal_id": "V20",
+      "atom_id": "abnormal_cutaneous_silent_period",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "small_fiber_dysfunction=True"
+    },
+    {
+      "signal_id": "V21",
+      "atom_id": "mr_neurography_abnormal",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "specialist_interpreted=True, peripheral_nerve_or_plexus_pattern=True"
+    },
+    {
+      "signal_id": "V22",
+      "atom_id": "nerve_ultrasound_enlargement",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "specialist_interpreted=True, proximal_or_plexus_pattern=True"
+    },
+    {
+      "signal_id": "V23",
+      "atom_id": "mibg_cardiac_denervation",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V24",
+      "atom_id": "cardiomyopathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V24",
+      "atom_id": "hfpef",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V24",
+      "atom_id": "thick_walls",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V25",
+      "atom_id": "af",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "early_or_disproportionate=True"
+    },
+    {
+      "signal_id": "V25",
+      "atom_id": "arrhythmia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "clinically_significant=True, otherwise_unexplained=True"
+    },
+    {
+      "signal_id": "V25",
+      "atom_id": "conduction_disease",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True"
+    },
+    {
+      "signal_id": "V25",
+      "atom_id": "pacemaker_presence",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "conduction_indication=True, otherwise_unexplained=True"
+    },
+    {
+      "signal_id": "V26",
+      "atom_id": "erectile_dysfunction",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V27",
+      "atom_id": "neurogenic_bladder",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "accompanying_neuropathy=True"
+    },
+    {
+      "signal_id": "V27",
+      "atom_id": "urinary_incontinence",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "accompanying_neuropathy=True"
+    },
+    {
+      "signal_id": "V27",
+      "atom_id": "urinary_retention",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "accompanying_neuropathy=True"
+    },
+    {
+      "signal_id": "V28",
+      "atom_id": "bulbar_neuropathy_symptoms",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True, progressive=True"
+    },
+    {
+      "signal_id": "V28",
+      "atom_id": "choking",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True, progressive_or_recurrent=True"
+    },
+    {
+      "signal_id": "V28",
+      "atom_id": "dysarthria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True, progressive_or_recurrent=True"
+    },
+    {
+      "signal_id": "V28",
+      "atom_id": "dysphagia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True, progressive_or_recurrent=True"
+    },
+    {
+      "signal_id": "V28",
+      "atom_id": "hoarseness",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "unexplained=True, progressive_or_recurrent=True"
+    },
+    {
+      "signal_id": "V29",
+      "atom_id": "charcot_arthropathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "sensory_cause=True"
+    },
+    {
+      "signal_id": "V29",
+      "atom_id": "plantar_ulcer",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "painless=True, sensory_cause=True"
+    },
+    {
+      "signal_id": "V29",
+      "atom_id": "trophic_change",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "sensory_cause=True"
+    },
+    {
+      "signal_id": "V30",
+      "atom_id": "lumbar_stenosis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "persistent_lower_limb_symptoms=True"
+    },
+    {
+      "signal_id": "V30",
+      "atom_id": "persistent_lower_limb_symptoms_after_decompression",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "linked_postoperative=True"
+    },
+    {
+      "signal_id": "V31",
+      "atom_id": "declining_blood_pressure",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "comparable_trend=True"
+    },
+    {
+      "signal_id": "V31",
+      "atom_id": "hf_medication_intolerance",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "progressive=True, falling_bp=True"
+    },
+    {
+      "signal_id": "V31",
+      "atom_id": "medication_dose_change",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "down_titration_or_discontinuation=True"
+    },
+    {
+      "signal_id": "V32",
+      "atom_id": "lflg_as",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V33",
+      "atom_id": "biceps_rupture",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "assessed_isolated_prodrome=True"
+    },
+    {
+      "signal_id": "V33",
+      "atom_id": "rotator_cuff",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "assessed_isolated_prodrome=True"
+    },
+    {
+      "signal_id": "V33",
+      "atom_id": "trigger_finger",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "assessed_isolated_prodrome=True"
+    },
+    {
+      "signal_id": "V34",
+      "atom_id": "eating_disorder_label",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "severe_gi_weight_loss=True, psychiatric_explanation_unconvincing=True"
+    },
+    {
+      "signal_id": "V35",
+      "atom_id": "dry_eye",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V35",
+      "atom_id": "glaucoma",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V36",
+      "atom_id": "declining_prealbumin",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "DO_NOT_USE",
+      "required_qualifiers": "comparable_trend=True"
+    },
+    {
+      "signal_id": "V37",
+      "atom_id": "diabetes",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "mild_or_controlled=True, disproportionate_neuropathy=True, severe_rapid_or_ataxic=True"
+    },
+    {
+      "signal_id": "V38",
+      "atom_id": "autoimmune_disease",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "active=True, convincing_inflammatory_neuropathy=True, adequately_explains_neuropathy=True"
+    },
+    {
+      "signal_id": "V38",
+      "atom_id": "positive_autoantibody",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "clinically_relevant=True, convincing_inflammatory_neuropathy=True, adequately_explains_neuropathy=True"
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "abnormal_serum_free_light_chain_ratio",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "macroglossia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "mgus",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "nephrotic_range_proteinuria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "periorbital_purpura",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "serum_immunofixation_monoclonal",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V39",
+      "atom_id": "urine_immunofixation_monoclonal",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "autoinflammatory_syndrome",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic_active=True"
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "chronic_infection",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic_active=True"
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "chronic_inflammatory_arthritis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic_active=True"
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "fmf",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic_active=True"
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "ibd_inflammatory_driver",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "chronic_active=True"
+    },
+    {
+      "signal_id": "V40",
+      "atom_id": "urine_protein_result",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "new_persistent=True"
+    },
+    {
+      "signal_id": "V41",
+      "atom_id": "orthopedic_to_cardiac_trajectory",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "V41",
+      "atom_id": "v41_attrwt_pattern_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": null,
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "genotype_unresolved=True"
+    }
+  ]
+}

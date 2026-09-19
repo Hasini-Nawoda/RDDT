@@ -1,0 +1,908 @@
+{
+  "source_specialty": "CARDIOLOGY",
+  "atoms": [
+    {
+      "atom_id": "af",
+      "preferred_name": "Atrial fibrillation or flutter",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Atrial fibrillation / flutter",
+      "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I48.0-I48.91",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "427.31",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "427.32",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "49436004",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "A-fib",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "AF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "AFib",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Atrial fibrillation or flutter",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrial fibrillation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrial flutter",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic AF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "new-onset AF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "paroxysmal AF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "permanent AF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent AF",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "arrhythmia",
+      "preferred_name": "arrhythmia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Cardiac arrhythmia (other)",
+      "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "AFib",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "NSVT",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "SVT",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "VT",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrial fibrillation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrial flutter",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "non-sustained VT",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "supraventricular tachycardia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ventricular tachycardia",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cardiomyopathy",
+      "preferred_name": "cardiomyopathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Cardiomyopathy / infiltrative or restrictive cardiac phenotype; requires clinical context and exclusion of common competing explanations before use as ATTR-supporting evidence.",
+      "context_guard": "Match explicit cardiomyopathy/cardiac-amyloidosis terminology only. Wall thickening or HFpEF alone are separate cardiac findings and must not automatically create cardiomyopathy.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "425.4",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "85898001",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "amyloid cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "amyloid heart disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "infiltrative cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "non-ischemic cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nonischemic cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "restrictive cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained cardiomyopathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "conduction_disease",
+      "preferred_name": "AV block, bundle-branch block, or sinus-node disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Cardiac conduction disease (AV block, BBB, sinus node disease)",
+      "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I44.1-I44.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I45.4",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "426.0-426.13",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "AV block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "CHB",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "LBBB",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "RBBB",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrioventricular block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bifascicular block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bundle branch block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cardiac conduction disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "complete heart block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "conduction disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "first-degree AV block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prolonged PR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "second-degree AV block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sick sinus syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sinus node dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "third-degree AV block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trifascicular block",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "declining_blood_pressure",
+      "preferred_name": "Falling blood pressure in a previously hypertensive patient",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "458.9",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BP now low",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Falling blood pressure in a previously hypertensive patient",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "blood pressure has come down",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "blood pressure panel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "declining blood pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diastolic blood pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertension resolved",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypotension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypotension unspecified",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low blood pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "previously hypertensive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "systolic blood pressure",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "dizziness",
+      "preferred_name": "Dizziness / lightheadedness",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Dizziness / lightheadedness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dizziness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dizziness and giddiness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "giddiness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lightheaded",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lightheadedness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "woozy on standing",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hf_medication_intolerance",
+      "preferred_name": "hf medication intolerance",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Intolerance of antihypertensive / heart-failure therapy",
+      "context_guard": "Require explicit intolerance to antihypertensive/heart-failure medication, preferably linked to low or falling blood pressure. Generic hypotension or a medication name alone is insufficient.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "ACE inhibitor intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ACE-inhibitor intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ARB intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "HF medication intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "beta blocker intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "beta-blocker intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "discontinued antihypertensive due to hypotension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "had to stop blood pressure medication because BP too low",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart-failure medication intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stopped antihypertensive because BP too low",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to tolerate antihypertensives",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to tolerate heart failure medications",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to tolerate heart-failure medications",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hfpef",
+      "preferred_name": "Heart failure with preserved ejection fraction",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I50.32",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I50.33",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "428.30-428.33",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "425.4",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "HFpEF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic diastolic heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diastolic heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart failure with preserved EF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart failure with preserved ejection fraction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "preserved ejection fraction heart failure",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lflg_as",
+      "preferred_name": "Low-flow low-gradient aortic stenosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Low-flow, low-gradient aortic stenosis",
+      "context_guard": "Require explicit low-flow/low-gradient aortic-stenosis wording or equivalent combined documentation. Generic aortic stenosis or severe AS alone must not create this atom.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "LFLG AS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low flow low gradient aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low-flow low-gradient aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low-gradient severe aortic stenosis with low flow",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "paradoxical low flow low gradient aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "paradoxical low-flow low-gradient aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced stroke volume index with aortic stenosis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "medication_dose_change",
+      "preferred_name": "medication dose change",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Antihypertensive dose reduction or discontinuation",
+      "context_guard": "Require explicit antihypertensive/heart-failure medication reduction, holding, or discontinuation. Generic words such as 'stopped', 'held', or 'dose reduced' without medication context must not create this atom.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "antihypertensive discontinued",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive dose reduced",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive down titrated",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive down-titrated",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive held due to low blood pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "blood pressure medication dose reduced",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "blood pressure medication stopped",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart failure medication down-titrated",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart-failure medication down-titrated",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "pacemaker_presence",
+      "preferred_name": "pacemaker presence",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Presence of cardiac pacemaker / device",
+      "context_guard": "Require explicit pacemaker presence/interrogation language. Conduction disease or atrial arrhythmia alone must not create a pacemaker atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Z95.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "V45.01",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "33206-33208",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "PPM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "has pacemaker",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pacemaker",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pacemaker in situ",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pacemaker interrogation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pacemaker present",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "permanent pacemaker",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "syncope",
+      "preferred_name": "Syncope / presyncope",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Syncope / presyncope",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "fainting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "loss of consciousness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "near syncope",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "passed out",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "presyncope",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "syncope",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "syncope and collapse",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vasovagal syncope",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "thick_walls",
+      "preferred_name": "Unexplained left-ventricular wall thickness / LVH",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Unexplained increased LV wall thickness",
+      "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I51.7",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "429.3",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "IVSd",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "LV wall thickening",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "LVH",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "concentric hypertrophy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased LV mass",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased LV wall thickness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased left ventricular mass",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased left ventricular wall thickness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased wall thickness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "interventricular septal thickening",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "left ventricular hypertrophy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "left ventricular wall thickening",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "septal thickening",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v24_competing_lvh",
+      "preferred_name": "Competing causes of LV wall thickening",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Competing causes of LV wall thickening",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "aortic valve stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "essential hypertension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertensive heart disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertrophic cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nonrheumatic aortic stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sarcomeric HCM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "v24 competing lvh",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

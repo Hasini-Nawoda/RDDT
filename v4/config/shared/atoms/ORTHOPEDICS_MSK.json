@@ -1,0 +1,578 @@
+{
+  "source_specialty": "ORTHOPEDICS_MSK",
+  "atoms": [
+    {
+      "atom_id": "biceps_rupture",
+      "preferred_name": "Spontaneous distal biceps tendon rupture (\"Popeye sign\")",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Spontaneous distal biceps tendon rupture (Popeye sign)",
+      "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M66.821",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "M66.822",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "727.63",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "24342",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Popeye deformity",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Popeye sign",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atraumatic biceps tendon rupture",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "biceps rupture",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "biceps tendon rupture",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "distal biceps tendon rupture",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spontaneous biceps tendon rupture",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cts_bilateral",
+      "preferred_name": "Bilateral carpal tunnel syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit bilateral/right-and-left wording. Recurrence, revision surgery, or persistent symptoms after release do not by themselves establish bilaterality.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.03",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "354.0",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "bilateral CTS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bilateral carpal tunnel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bilateral carpal tunnel syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bilateral median neuropathy at the wrists",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "both hands with carpal tunnel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel in both hands",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "right and left CTS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "right and left carpal tunnel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "right+left CTS",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cts_left",
+      "preferred_name": "Carpal tunnel syndrome, left",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.02",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "354.0",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Carpal tunnel syndrome, left",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel syndrome left upper limb",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel syndrome of left wrist",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cts left",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "left carpal tunnel",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cts_persistent_after_release",
+      "preferred_name": "Persistent/recurrent CTS symptoms after carpal tunnel release",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Persistent or recurrent symptoms after decompression are supportive but nonspecific and do not independently satisfy V13. Require bilateral CTS or recurrent/revision CTS for qualification.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.01",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G56.02",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "354.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "64721",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "failed carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "no improvement after carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ongoing symptoms after CTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent CTS symptoms after carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent carpal tunnel symptoms after release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent carpal tunnel syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent median nerve symptoms after release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent numbness after release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent carpal tunnel syndrome",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cts_recurrent",
+      "preferred_name": "Recurrent / revision carpal tunnel syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit recurrence/repeat/revision wording. Bilaterality alone and persistent symptoms without documented recurrence do not establish recurrent CTS.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.01",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G56.02",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "354.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "64721",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "CTS recurred after release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent CTS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent carpal tunnel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent median neuropathy at the wrist",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent symptoms after carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "repeat CTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "repeat carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "revision carpal tunnel release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "second carpal tunnel surgery",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cts_right",
+      "preferred_name": "Carpal tunnel syndrome, right",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.01",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "354.0",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Carpal tunnel syndrome, right",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel syndrome of right wrist",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel syndrome right upper limb",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cts right",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "right carpal tunnel",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "lumbar_stenosis",
+      "preferred_name": "Lumbar spinal stenosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M48.06",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "M48.07",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "724.02",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "lumbar canal stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lumbar central canal stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lumbar spinal stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lumbar stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neurogenic claudication due to lumbar stenosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spinal canal stenosis lumbar",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "persistent_lower_limb_symptoms_after_decompression",
+      "preferred_name": "Persistent lower-limb symptoms after lumbar decompression",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Persistent lower-limb symptoms after lumbar decompression",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "failed back surgery",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "no improvement after laminectomy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ongoing numbness after surgery",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent lower limb symptoms after decompression",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "postlaminectomy syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "symptoms persisted after decompression",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "rotator_cuff",
+      "preferred_name": "Rotator cuff tear / repair",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M75.100-M75.102",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "727.61",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "29827",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "23410",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "23412",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "repaired rotator cuff",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rotator cuff repair",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rotator cuff rupture",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rotator cuff tear",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "shoulder rotator cuff tear",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "trigger_finger",
+      "preferred_name": "Trigger finger / stenosing tenosynovitis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M65.30-M65.39",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "727.03",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "26055",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "catching finger",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "flexor tenosynovitis with triggering",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "locking finger",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "single tendon sheath, or ligament, aponeurosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stenosing tenosynovitis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trigger digit",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trigger finger",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trigger finger release",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trigger release",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

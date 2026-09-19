@@ -1,0 +1,886 @@
+{
+  "source_specialty": "MULTISPECIALTY",
+  "atoms": [
+    {
+      "atom_id": "autoimmune_disease",
+      "preferred_name": "autoimmune disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Active autoimmune disease",
+      "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M35.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "279.4",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "SLE",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Sjogren syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Sjogren's",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Sjögren syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autoimmune disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lupus",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rheumatoid arthritis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "systemic autoimmune disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "systemic autoimmune disorder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "systemic lupus erythematosus",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vasculitis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "axonal_neuropathy",
+      "preferred_name": "Axonal neuropathy / axonal polyneuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit axonal-neuropathy/polyneuropathy terminology. A bare adjective such as 'axonal' without neuropathy context must not create this atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "230657007",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "60703000",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "723666009",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "95907",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95908",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95909",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95910",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95911",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95912",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95913",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95885",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "95886",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "axonal neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal peripheral neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal sensorimotor neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal sensorimotor polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic axonal neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic axonal polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic idiopathic axonal polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "predominantly axonal neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "primarily axonal neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "declining_prealbumin",
+      "preferred_name": "Declining serum prealbumin (circulating transthyretin)",
+      "stage": "DO_NOT_USE",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Declining serum prealbumin / transthyretin level",
+      "extraction": {
+        "codes": {
+          "LOINC": [
+            {
+              "value": "1848-9",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "TTR level",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low prealbumin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prealbumin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prealbumin serum or plasma",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "transthyretin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "transthyretin level",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "diabetes",
+      "preferred_name": "diabetes",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Diabetes mellitus",
+      "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "E11.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "E11.42",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "250.00",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "250.60",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "44054006",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "LOINC": [
+            {
+              "value": "4548-4",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "T1D",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "T1DM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "T2D",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "T2DM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetes mellitus",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "type 1 diabetes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "type 1 diabetes mellitus",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "type 2 diabetes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "type 2 diabetes mellitus",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "fhx_adult_onset_neuropathy",
+      "preferred_name": "Family history of unexplained adult-onset progressive neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "FAMILY_MEMBER",
+      "context_guard": "Supportive family-history signal only. Require a first- or second-degree relative with adult-onset progressive unexplained neuropathy; do not infer ATTR or a pathogenic TTR variant from this history.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Z82.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "V17.2",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "brother in a wheelchair",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "familial polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history walking disability",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "father had neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "relative could not walk",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained neuropathy in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "walking disability in the family",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "fhx_established_attr",
+      "preferred_name": "First-degree family history of genetically or clinically established ATTR amyloidosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "FAMILY_MEMBER",
+      "clinical_meaning": "First-degree family history of established ATTR amyloidosis",
+      "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Z83.49",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "V18.19",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ATTR in first-degree relative",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "FAP in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "TTR-positive relative",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "TTR-related amyloidosis in relative",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "familial ATTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "familial amyloid polyneuropathy in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "familial amyloidotic polyneuropathy in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of ATTR amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of ATTRv",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of TTR amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of hereditary ATTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of transthyretin amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family member with TTR mutation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "father had amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "first-degree relative with ATTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "first-degree relative with ATTRv",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hATTR in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hereditary amyloidosis in relative",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hereditary transthyretin amyloidosis in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "mother had amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "relative with hereditary ATTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "relative with pathogenic TTR variant",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sibling with amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "transthyretin-related amyloidosis in relative",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "idiopathic_progressive_neuropathy",
+      "preferred_name": "Idiopathic progressive neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require neuropathy-anchored progressive/idiopathic wording. Generic 'rapidly progressive', 'deteriorating', or 'cryptogenic' language without neuropathy context must not create this atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "230657007",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "60703000",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "cryptogenic polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cryptogenic progressive neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hereditary and idiopathic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "idiopathic progressive neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive idiopathic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive neuropathy of unclear etiology",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive neuropathy of unknown cause",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive peripheral neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained progressive neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "worsening idiopathic neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "orthopedic_to_cardiac_trajectory",
+      "preferred_name": "Long orthopedic prodrome followed years later by cardiac disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit temporal linkage between an orthopedic prodrome and later cardiac disease. A single biceps rupture, lumbar decompression, or carpal-tunnel procedure alone must not create the trajectory atom.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "biceps rupture followed years later by cardiac disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel release years before heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carpal tunnel surgery years before cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "long orthopedic prodrome followed years later by cardiac disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lumbar decompression years before heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthopedic prodrome followed by heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthopedic prodrome preceding cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthopedic to cardiac trajectory",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ttr_pathogenic_variant",
+      "preferred_name": "Pathogenic or likely pathogenic TTR variant in the patient",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Documented pathogenic or likely pathogenic TTR variant in the patient from a prior independent molecular result; carrier status alone does not establish symptomatic ATTRv.",
+      "context_guard": "Accept common hereditary-TTR nomenclature and variant spellings, but do not trigger from generic 'TTR', 'transthyretin', or generic 'ATTR' alone, a test order, pending/negative result, VUS, or family-member result. Require a patient-level pathogenic/likely pathogenic result from an independent molecular source; disease-name phrases remain retrieval evidence until provenance confirms the result.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Z15.89",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "Z14.8",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "V83.89",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "81479",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "81404-81405",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "TTR mutation positive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "TTR pathogenic mutation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "V122I",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "V30M",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Val142Ile",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Val30Met",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Val50Met",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "likely pathogenic TTR variant",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "likely pathogenic variant in TTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "p.Val142Ile",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "p.Val50Met",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pathogenic TTR mutation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pathogenic TTR variant",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pathogenic variant in TTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "positive for pathogenic TTR variant",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "unintentional_weight_loss",
+      "preferred_name": "Unintentional weight loss / declining BMI",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Unintentional weight loss",
+      "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R63.4",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R64",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "783.21",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "89362005",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "LOINC": [
+            {
+              "value": "29463-7",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "39156-5",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BMI decline",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "GI-driven weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "declining BMI",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "declining weight",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "failure to thrive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "gastroparesis with weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "involuntary weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "losing weight without trying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "mBMI decline",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "severe weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained cachexia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained weight loss labeled psychiatric",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unintended weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unintentional weight loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "wasting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "weight loss without trying",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v41_attrwt_pattern_gate",
+      "preferred_name": "Cardiac ATTR-compatible phenotype + orthopedic prodrome with genotype unresolved",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Cardiac ATTR-compatible phenotype with an orthopedic prodrome where hereditary versus wild-type status remains unresolved pending TTR genotyping.",
+      "context_guard": "Redirection only. Do not infer ATTRwt from phenotype, age, sex, or absence of neuropathy. TTR genotyping is required; coexisting neuropathy/dysautonomia does not block the route.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "ATTR phenotype requiring TTR genotyping",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ATTR-compatible cardiac phenotype",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bilateral CTS with cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cardiac ATTR phenotype",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hereditary versus wild-type status unresolved",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthopedic prodrome followed by cardiac disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spinal stenosis with cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

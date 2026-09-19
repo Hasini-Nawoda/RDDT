@@ -1,0 +1,73 @@
+{
+  "phenotype": "ATTRV",
+  "guardrails": [
+    {
+      "guardrail_id": "V32",
+      "enabled": true,
+      "rule_ref": "V32",
+      "action": "DIFFERENTIAL_ROUTE_GUARDRAIL",
+      "route": "ATTR_CARDIAC_DIFFERENTIAL_REVIEW",
+      "does_not_negate_attrv": true
+    },
+    {
+      "guardrail_id": "V33",
+      "enabled": true,
+      "rule_ref": "V33",
+      "action": "DIFFERENTIAL_ROUTE_GUARDRAIL",
+      "route": "ATTR_CARDIAC_DIFFERENTIAL_REVIEW",
+      "does_not_negate_attrv": true
+    },
+    {
+      "guardrail_id": "V36",
+      "enabled": false,
+      "rule_ref": "V36",
+      "action": "DO_NOT_TRIGGER",
+      "route": "NONE_DO_NOT_TRIGGER",
+      "does_not_negate_attrv": true
+    },
+    {
+      "guardrail_id": "V37",
+      "enabled": true,
+      "rule_ref": "V37",
+      "action": "FALSE_NEGATIVE_GUARDRAIL",
+      "route": "REOPEN_ATTRV_IF_DISPROPORTIONATE",
+      "does_not_negate_attrv": true
+    },
+    {
+      "guardrail_id": "V38",
+      "enabled": true,
+      "rule_ref": "V38",
+      "action": "NEGATIVE_ALTERNATIVE_GUARDRAIL",
+      "route": "ALTERNATIVE_NEUROPATHY_REVIEW",
+      "does_not_negate_attrv": false,
+      "message": "Redirect toward an inflammatory/autoimmune neuropathy pathway only when the alternative diagnosis convincingly explains the phenotype. Persistent ATTR red flags, axonal progression, multisystem involvement, or treatment nonresponse should reopen ATTRv evaluation."
+    },
+    {
+      "guardrail_id": "V39",
+      "enabled": true,
+      "rule_ref": "V39",
+      "action": "DIFFERENTIAL_ROUTE_GUARDRAIL",
+      "route": "AL_EVALUATION_OR_AMYLOID_TYPING",
+      "does_not_negate_attrv": true,
+      "message": "REDIRECT TO AL EVALUATION / AMYLOID TYPING when characteristic AL features or monoclonal-protein evidence is present. Do not label AL from a screening atom alone, and do not suppress ATTR solely because MGUS/monoclonal gammopathy is present; coexistence is possible."
+    },
+    {
+      "guardrail_id": "V40",
+      "enabled": true,
+      "rule_ref": "V40",
+      "action": "DIFFERENTIAL_ROUTE_GUARDRAIL",
+      "route": "AA_DIFFERENTIAL_REVIEW",
+      "does_not_negate_attrv": true,
+      "message": "AA differential requires BOTH a chronic active inflammatory/autoinflammatory/infectious driver AND a new persistent proteinuric renal phenotype."
+    },
+    {
+      "guardrail_id": "V41",
+      "enabled": true,
+      "rule_ref": "V41",
+      "action": "DIFFERENTIAL_ROUTE_GUARDRAIL",
+      "route": "ATTR_CARDIAC_REVIEW_AND_TTR_GENOTYPING",
+      "does_not_negate_attrv": true,
+      "message": "ATTR cardiac-pathway redirection only. Do not infer ATTRwt from phenotype, age, sex, or absence of neuropathy; TTR genotyping is required to distinguish hereditary from wild-type disease. Coexisting neuropathy/dysautonomia does not block this redirection."
+    }
+  ]
+}

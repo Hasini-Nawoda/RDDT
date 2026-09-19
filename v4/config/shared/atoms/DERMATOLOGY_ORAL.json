@@ -1,0 +1,100 @@
+{
+  "source_specialty": "DERMATOLOGY_ORAL",
+  "atoms": [
+    {
+      "atom_id": "macroglossia",
+      "preferred_name": "Macroglossia / acquired tongue enlargement",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Confirm an affirmed patient finding and route for amyloid typing when clinically appropriate.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Q38.2",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "K14.8",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "750.15",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "acquired tongue enlargement",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dental impressions on tongue",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "enlarged tongue",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "macroglossia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "tongue indentations",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "periorbital_purpura",
+      "preferred_name": "Periorbital or pinch purpura",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Periorbital / pinch purpura",
+      "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Require an affirmed patient finding rather than copied history or negated text.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R23.3",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "782.7",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "bruising around eyes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "periorbital purpura",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pinch purpura",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "raccoon eyes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spontaneous periorbital ecchymosis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

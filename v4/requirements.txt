@@ -1,0 +1,5 @@
+# Workbook/build dependencies are intentionally kept in
+# ../v4_build_tools/requirements-build.txt.
+spacy>=3.7,<4
+medspacy>=1.2,<2
+snowflake-snowpark-python>=1.20,<2

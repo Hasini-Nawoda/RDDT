@@ -1,0 +1,83 @@
+{
+  "source_specialty": "HEMATOLOGY",
+  "atoms": [
+    {
+      "atom_id": "mgus",
+      "preferred_name": "Monoclonal gammopathy of undetermined significance",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Monoclonal gammopathy / plasma-cell disorder",
+      "context_guard": "MGUS/monoclonal gammopathy does not exclude ATTR and may coexist with ATTR. Treat as a competing AL-workup signal, not as proof of AL.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "273.1",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "86335",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "83883",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "LOINC": [
+            {
+              "value": "33717-0",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "11051-1",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "33914-3",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "M-protein",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "M-spike",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "MGUS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "monoclonal gammopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "monoclonal protein",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "paraprotein",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plasma-cell disorder",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

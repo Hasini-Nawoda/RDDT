@@ -1,0 +1,714 @@
+{
+  "source_specialty": "GASTROENTEROLOGY",
+  "atoms": [
+    {
+      "atom_id": "alternating_bowel_habit",
+      "preferred_name": "Alternating diarrhea and constipation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Common and nonspecific. Require a chronic/recurrent and otherwise unexplained pattern before contributing to V10; isolated IBS-like symptoms should not be sufficient.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K59.8",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "564.5",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "alternating bowel habit",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alternating bowel habits",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alternating diarrhea and constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alternating diarrhoea and constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bowels alternate between diarrhea and constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bowels swing between diarrhea and constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "change in bowel habit",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diarrhea alternating with constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diarrhoea alternating with constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "irregular bowel habit",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "choking",
+      "preferred_name": "choking",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "aspiration while swallowing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "choking",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "choking on food",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "choking when swallowing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "choking with meals",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "coughs when swallowing",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "constipation",
+      "preferred_name": "constipation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Constipation",
+      "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K59.00",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "564.00",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "chronic constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "constipation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "difficulty passing stool",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hard stools",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "infrequent bowel movements",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "infrequent stools",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent constipation",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "delayed_gastric_emptying",
+      "preferred_name": "delayed gastric emptying",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78265",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "78266",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "delayed gastric emptying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "delayed stomach emptying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "gastric emptying delayed",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "impaired gastric emptying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prolonged gastric emptying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "slowed gastric emptying",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "diarrhea",
+      "preferred_name": "diarrhea",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Diarrhea (chronic / persistent)",
+      "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R19.7",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "K59.1",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "564.5",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "chronic diarrhea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic diarrhoea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic loose stools",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diarrhea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diarrhoea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "loose stools for months",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nocturnal diarrhea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nocturnal diarrhoea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent diarrhea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent diarrhoea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained chronic diarrhea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained chronic diarrhoea",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "dysarthria",
+      "preferred_name": "dysarthria",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Dysarthria / slurred speech",
+      "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "784.51",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "difficulty articulating words",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysarthria",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysarthric speech",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "slurred speech",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "speech articulation difficulty",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "dysphagia",
+      "preferred_name": "dysphagia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Dysphagia / difficulty swallowing",
+      "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R13.10",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "R13.19",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "787.20",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "CPT_HCPCS": [
+            {
+              "value": "92610",
+              "can_fire_atom_alone": false
+            },
+            {
+              "value": "74230",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "aspiration with swallowing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "difficulty swallowing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysphagia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "food gets stuck",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "food sticking",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "swallowing difficulty",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trouble swallowing",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "early_satiety",
+      "preferred_name": "early satiety",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Early satiety",
+      "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "cannot finish meals because of fullness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "early fullness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "early satiety",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "feels full after a few bites",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "full after a few bites",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "postprandial fullness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "premature satiety",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "eating_disorder_label",
+      "preferred_name": "Anorexia nervosa / eating disorder diagnosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "F50.00-F50.02",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "307.1",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ARFID",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Anorexia nervosa / eating disorder diagnosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anorexia nervosa",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anorexia nervosa unspecified",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "avoidant restrictive food intake disorder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "eating disorder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "eating disorder label",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "eating disorder unspecified",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "other specified eating disorder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "restrictive eating",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hoarseness",
+      "preferred_name": "hoarseness",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Hoarseness / dysphonia",
+      "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R49.0",
+              "can_fire_atom_alone": false
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "784.49",
+              "can_fire_atom_alone": false
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "breathy voice",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysphonia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hoarse voice",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hoarseness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "raspy voice",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "voice change",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "weak voice",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "nausea",
+      "preferred_name": "nausea",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Nausea",
+      "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "chronic nausea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nausea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistent nausea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "queasiness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "queasy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent nausea",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v10_competing_gi",
+      "preferred_name": "Competing causes of chronic GI dysmotility",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Competing causes of chronic GI dysmotility",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Crohn",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Crohn disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IBS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "celiac",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "celiac disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic autonomic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic gastroenteropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "irritable bowel syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ulcerative colitis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "v10 competing gi",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "vomiting",
+      "preferred_name": "vomiting",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Recurrent vomiting",
+      "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "chronic vomiting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "emesis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "postprandial vomiting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent emesis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent vomiting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vomiting",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vomiting undigested food hours after eating",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

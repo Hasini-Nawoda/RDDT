@@ -1,0 +1,6 @@
+{
+  "shared_atoms": "shared/atoms",
+  "phenotypes": {
+    "ATTRV": "phenotypes/ATTRV"
+  }
+}

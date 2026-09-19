@@ -1,0 +1,52 @@
+{
+  "source_specialty": "GENETICS",
+  "atoms": [
+    {
+      "atom_id": "fhx_sudden_death",
+      "preferred_name": "Family history of sudden death or hereditary amyloid/neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "FAMILY_MEMBER",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Family history of sudden death or hereditary amyloid/neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "died suddenly",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of ischemic heart disease and other diseases of the circulatory system",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of sudden cardiac death",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history of sudden death",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "family history section",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "fhx sudden death",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sudden death in family",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained death",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}
