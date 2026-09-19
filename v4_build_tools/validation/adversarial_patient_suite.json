@@ -1,0 +1,151 @@
+{
+  "suite_id": "ATTR_ADVERSARIAL_EHR_V1",
+  "screening_cutoff": "2025-12-31",
+  "patients": [
+    {
+      "case_id": "REPEATED_POLARITY_LONG_SENTENCE",
+      "patient_id": "P-ADV-002",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-002", "BirthDate": "1958-02-11", "Gender": "F", "City": "Kandy", "State": "CP", "FamilyId": "ADV-2"}],
+        "encounter": [{"EncounterId/VisitId": "ADV2-E1", "Member/PatientId": "P-ADV-002", "Encounter/Visit Date": "2025-03-15"}],
+        "clinical_note": [{"NoteId": "ADV2-N1", "EncounterId/VisitId": "ADV2-E1", "Member/PatientId": "P-ADV-002", "NoteType": "ORTHOPEDICS", "Clinical Note Text": "The intake template initially states no bilateral carpal tunnel syndrome because the left-hand result had not yet been attached, but after the clinician reviewed the complete nerve-conduction report, compared both wrists, and repeated the examination, the final assessment for this patient is bilateral carpal tunnel syndrome with symptoms in both hands.", "Date": "2025-03-15"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "cts_bilateral", "statuses_include": ["FALSE", "TRUE"], "minimum_phrase_matches": 2}
+        ]
+      }
+    },
+    {
+      "case_id": "FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY",
+      "patient_id": "P-ADV-003",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-003", "BirthDate": "1967-09-07", "Gender": "M", "City": "Galle", "State": "SP", "FamilyId": "ADV-3"}],
+        "encounter": [{"EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "Encounter/Visit Date": "2025-04-10"}],
+        "family_history": [{"FamilyHistoryId": "ADV3-F1", "EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "SNOMED": "", "Condition": "mother with peripheral neuropathy", "Status": "CONFIRMED", "FamilyMember": "mother", "Date": "2025-04-10"}],
+        "clinical_note": [{"NoteId": "ADV3-N1", "EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "NoteType": "NEUROLOGY", "Clinical Note Text": "His mother has peripheral neuropathy and his brother has no neurologic diagnosis; the patient himself denies peripheral neuropathy, yet he clearly reports that burning feet began yesterday after an otherwise ordinary day and persisted through the night.", "Date": "2025-04-10"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "polyneuropathy", "forbid_status": "TRUE"},
+          {"atom_id": "burning_feet", "statuses_include": ["TRUE"], "event_dates_include": ["2025-04-09"]}
+        ]
+      }
+    },
+    {
+      "case_id": "UNCERTAINTY_RESOLVED_LATER_SAME_NOTE",
+      "patient_id": "P-ADV-004",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-004", "BirthDate": "1949-12-19", "Gender": "F", "City": "Jaffna", "State": "NP", "FamilyId": "ADV-4"}],
+        "encounter": [{"EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2025-05-06"}],
+        "clinical_note": [{"NoteId": "ADV4-N1", "EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "NoteType": "CARDIOLOGY", "Clinical Note Text": "At triage the irregular pulse raised possible atrial fibrillation, which the resident explicitly described as uncertain while awaiting the tracing; several hours later, after the twelve-lead study was reviewed by cardiology, the signed final assessment confirmed atrial fibrillation rather than artifact.", "Date": "2025-05-06"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "af", "statuses_include": ["UNKNOWN", "TRUE"], "minimum_phrase_matches": 2}
+        ]
+      }
+    },
+    {
+      "case_id": "NEGATED_CURRENT_AND_FUTURE_PLAN",
+      "patient_id": "P-ADV-005",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-005", "BirthDate": "1971-06-23", "Gender": "M", "City": "Matara", "State": "SP", "FamilyId": "ADV-5"}],
+        "encounter": [{"EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2025-06-02"}],
+        "clinical_note": [{"NoteId": "ADV5-N1", "EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "NoteType": "CARDIOLOGY", "Clinical Note Text": "There is no cardiomyopathy on today's assessment, and the chart should not be read as establishing that diagnosis; cardiac MRI is scheduled for next month only to evaluate possible cardiomyopathy if the unexplained symptoms continue.", "Date": "2025-06-02"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "cardiomyopathy", "forbid_status": "TRUE", "minimum_phrase_matches": 2}
+        ]
+      }
+    },
+    {
+      "case_id": "MULTIPLE_RELATIVE_DATES_HISTORICAL_AND_RECENT",
+      "patient_id": "P-ADV-006",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-006", "BirthDate": "1955-04-02", "Gender": "F", "City": "Kurunegala", "State": "NW", "FamilyId": "ADV-6"}],
+        "encounter": [{"EncounterId/VisitId": "ADV6-E1", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2025-05-20"}],
+        "clinical_note": [{"NoteId": "ADV6-N1", "EncounterId/VisitId": "ADV6-E1", "Member/PatientId": "P-ADV-006", "NoteType": "ORTHOPEDICS", "Clinical Note Text": "Three years ago she underwent carpal tunnel release after prolonged symptoms and recovered uneventfully; yesterday she returned because a new trigger finger began locking during ordinary household tasks, while today the opposite hand remains unaffected.", "Date": "2025-05-20"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "ctr_any", "statuses_include": ["TRUE"], "event_dates_include": ["2022-05-20"]},
+          {"atom_id": "trigger_finger", "statuses_include": ["TRUE"], "event_dates_include": ["2025-05-19"]}
+        ]
+      }
+    },
+    {
+      "case_id": "CLAUSE_LOCAL_DATES_AND_POLARITY",
+      "patient_id": "P-ADV-007",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-007", "BirthDate": "1960-08-30", "Gender": "M", "City": "Batticaloa", "State": "EP", "FamilyId": "ADV-7"}],
+        "encounter": [{"EncounterId/VisitId": "ADV7-E1", "Member/PatientId": "P-ADV-007", "Encounter/Visit Date": "2025-07-10"}],
+        "clinical_note": [{"NoteId": "ADV7-N1", "EncounterId/VisitId": "ADV7-E1", "Member/PatientId": "P-ADV-007", "NoteType": "GENERAL_MEDICINE", "Clinical Note Text": "Two weeks ago the patient first noticed burning feet after walking, and yesterday he described chronic diarrhea during the telephone intake, but today, after clarification in person, he denies chronic diarrhea and says the earlier wording referred to a single brief illness.", "Date": "2025-07-10"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "burning_feet", "statuses_include": ["TRUE"], "event_dates_include": ["2025-06-26"]},
+          {"atom_id": "diarrhea", "statuses_include": ["TRUE", "FALSE"], "minimum_phrase_matches": 2, "event_dates_include": ["2025-07-09", "2025-07-10"]}
+        ]
+      }
+    },
+    {
+      "case_id": "STRUCTURED_CODE_TEXT_CONFLICT",
+      "patient_id": "P-ADV-008",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-008", "BirthDate": "1963-01-14", "Gender": "F", "City": "Negombo", "State": "WP", "FamilyId": "ADV-8"}],
+        "encounter": [{"EncounterId/VisitId": "ADV8-E1", "Member/PatientId": "P-ADV-008", "Encounter/Visit Date": "2025-08-03"}],
+        "claim": [{"Member/PatientId": "P-ADV-008", "EncounterId/VisitId": "ADV8-E1", "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2025-08-03", "ToDate": "2025-08-03"}],
+        "clinical_note": [{"NoteId": "ADV8-N1", "EncounterId/VisitId": "ADV8-E1", "Member/PatientId": "P-ADV-008", "NoteType": "ORTHOPEDICS", "Clinical Note Text": "The imported G56.03 billing diagnosis is erroneous and was retained only for reconciliation; after examination the physician documents that the patient does not have bilateral carpal tunnel syndrome and requests correction of the claim.", "Date": "2025-08-03"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "cts_bilateral", "forbid_status": "TRUE", "statuses_include": ["FALSE", "UNKNOWN"]}
+        ]
+      }
+    },
+    {
+      "case_id": "COPIED_FORWARD_HISTORY_VERSUS_CURRENT_DENIAL",
+      "patient_id": "P-ADV-009",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-009", "BirthDate": "1947-03-28", "Gender": "M", "City": "Anuradhapura", "State": "NC", "FamilyId": "ADV-9"}],
+        "encounter": [{"EncounterId/VisitId": "ADV9-E1", "Member/PatientId": "P-ADV-009", "Encounter/Visit Date": "2025-09-12"}],
+        "clinical_note": [{"NoteId": "ADV9-N1", "EncounterId/VisitId": "ADV9-E1", "Member/PatientId": "P-ADV-009", "NoteType": "CARDIOLOGY", "Clinical Note Text": "Copied forward from the 2019 discharge summary: atrial fibrillation was listed during that admission. Current assessment today: the patient has no atrial fibrillation on review of the available rhythm data, and the old entry should not be interpreted as a new event.", "Date": "2025-09-12"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "af", "statuses_include": ["TRUE", "FALSE"], "minimum_phrase_matches": 2, "event_dates_include": ["2019-01-01", "2025-09-12"]}
+        ]
+      }
+    },
+    {
+      "case_id": "LONG_MULTICLAUSE_CROSS_CONTEXT_AND_FUTURE_WORKUP",
+      "patient_id": "P-ADV-010",
+      "rows_by_table": {
+        "census": [{"Member/PatientId": "P-ADV-010", "BirthDate": "1952-11-05", "Gender": "F", "City": "Colombo", "State": "WP", "FamilyId": "ADV-10"}],
+        "encounter": [{"EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "Encounter/Visit Date": "2025-10-20"}],
+        "family_history": [{"FamilyHistoryId": "ADV10-F1", "EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "SNOMED": "", "Condition": "father with ATTR amyloidosis", "Status": "CONFIRMED", "FamilyMember": "father", "Date": "2025-10-20"}],
+        "clinical_note": [{"NoteId": "ADV10-N1", "EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "NoteType": "MULTISPECIALTY", "Clinical Note Text": "The patient's father had ATTR amyloidosis, but this family statement is not a diagnosis for the patient; she denies peripheral neuropathy and has never had chronic diarrhea, yet yesterday the hand specialist documented bilateral carpal tunnel syndrome, while three months ago cardiology recorded low QRS voltage during an unrelated evaluation, and next month an echocardiogram is planned only because possible cardiomyopathy remains under consideration rather than confirmed.", "Date": "2025-10-20"}]
+      },
+      "expectations": {
+        "not_known_attr": true,
+        "evidence": [
+          {"atom_id": "polyneuropathy", "forbid_status": "TRUE"},
+          {"atom_id": "diarrhea", "forbid_status": "TRUE", "statuses_include": ["FALSE"]},
+          {"atom_id": "cts_bilateral", "statuses_include": ["TRUE"], "event_dates_include": ["2025-10-19"]},
+          {"atom_id": "low_ecg_voltage", "statuses_include": ["TRUE"], "event_dates_include": ["2025-07-20"]},
+          {"atom_id": "cardiomyopathy", "forbid_status": "TRUE"}
+        ]
+      }
+    }
+  ]
+}

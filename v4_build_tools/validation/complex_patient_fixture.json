@@ -1,0 +1,119 @@
+{
+  "fixture_id": "ATTRV_COMPLEX_PATIENT_V1",
+  "screening_cutoff": "2026-01-01",
+  "patient_id": "P-ATTRV-001",
+  "expected": {
+    "true_signals": ["V04", "V13"],
+    "matched_combination": "V_COMBO11",
+    "status": "PHENOTYPE_PASS",
+    "priority_class": "B"
+  },
+  "rows_by_table": {
+    "census": [
+      {
+        "Member/PatientId": "P-ATTRV-001",
+        "BirthDate": "1962-03-14",
+        "Gender": "F",
+        "City": "Colombo",
+        "State": "WP",
+        "FamilyId": "FAM-77"
+      }
+    ],
+    "encounter": [
+      {"EncounterId/VisitId": "E1", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-04-01"},
+      {"EncounterId/VisitId": "E2", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-06-21"},
+      {"EncounterId/VisitId": "E3", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-08-10"},
+      {"EncounterId/VisitId": "E4", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-10-10"},
+      {"EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2026-02-10"}
+    ],
+    "claim": [
+      {
+        "Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E3",
+        "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "",
+        "ProcedureCode": "64721", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "",
+        "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO",
+        "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "",
+        "FromDate": "2025-08-10", "ToDate": "2025-08-10"
+      },
+      {
+        "Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E2",
+        "DiagnosisCode": "I48.0", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "",
+        "ProcedureCode": "93000", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "",
+        "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "CARDIO",
+        "SpecialtyName": "CARDIOLOGY", "DRGCode": "", "ClinicalNotes": "",
+        "FromDate": "2025-06-21", "ToDate": "2025-06-21"
+      },
+      {
+        "Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E5",
+        "DiagnosisCode": "R80.9", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "",
+        "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "",
+        "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "NEPHRO",
+        "SpecialtyName": "NEPHROLOGY", "DRGCode": "", "ClinicalNotes": "",
+        "FromDate": "2026-02-10", "ToDate": "2026-02-10"
+      }
+    ],
+    "lab": [
+      {
+        "LabId": "L1", "EncounterId/VisitId": "E2", "Member/PatientId": "P-ATTRV-001",
+        "LabRequestId": "L1-REQ", "LabResultId": "L1-RES", "ObservationIdentifier": "14957-5",
+        "ObservationValue": "145 mg/g", "ObservationResultStatus": "FINAL",
+        "ObservationDateTime": "2025-06-21", "LabResultNote": "persistent microalbuminuria; unexplained"
+      },
+      {
+        "LabId": "L2", "EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001",
+        "LabRequestId": "L2-REQ", "LabResultId": "L2-RES", "ObservationIdentifier": "",
+        "ObservationValue": "protein 2+", "ObservationResultStatus": "FINAL",
+        "ObservationDateTime": "2026-02-10", "LabResultNote": "persistent proteinuria after the screening date"
+      }
+    ],
+    "medical_history": [
+      {
+        "MedicalHistoryId": "M1", "EncounterId/VisitId": "E4", "Member/PatientId": "P-ATTRV-001",
+        "Source/Category": "HEMATOLOGY", "Value": "MGUS documented",
+        "SNOMED": "", "Secondary SNOMED": "", "Date": "2025-10-10"
+      }
+    ],
+    "surgical_history": [
+      {
+        "SurgicalHistoryId": "S1", "EncounterId/VisitId": "E3", "Member/PatientId": "P-ATTRV-001",
+        "Source/Category": "ORTHOPEDICS", "Value": "carpal tunnel release",
+        "SNOMED": "", "Secondary SNOMED": "", "Date": "2025-08-10"
+      }
+    ],
+    "family_history": [
+      {
+        "FamilyHistoryId": "FH1", "EncounterId/VisitId": "E1", "Member/PatientId": "P-ATTRV-001",
+        "SNOMED": "", "Condition": "father had ATTR amyloidosis", "Status": "CONFIRMED",
+        "FamilyMember": "father", "Date": "2025-04-01"
+      }
+    ],
+    "clinical_note": [
+      {
+        "NoteId": "N1", "EncounterId/VisitId": "E1", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "NEUROLOGY", "Clinical Note Text": "During yesterday's late clinic review, after the patient spent several minutes explaining that the symptoms were not merely ordinary fatigue and were not the numbness his father once described, he reported burning feet with reduced pinprick that had become increasingly intrusive overnight.", "Date": "2025-04-01"
+      },
+      {
+        "NoteId": "N2", "EncounterId/VisitId": "E2", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "GASTROENTEROLOGY", "Clinical Note Text": "No chronic diarrhea.", "Date": "2025-06-21"
+      },
+      {
+        "NoteId": "N3", "EncounterId/VisitId": "E3", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "OPHTHALMOLOGY", "Clinical Note Text": "Although the imported family-history paragraph says that his sister never had bilateral carpal tunnel syndrome, the clinician's assessment after reviewing both hands is that this patient has bilateral carpal tunnel syndrome; in a separate clause, and without claiming diagnostic certainty, the examiner records a possible vitreous opacity that still requires specialist confirmation.", "Date": "2025-08-10"
+      },
+      {
+        "NoteId": "N4", "EncounterId/VisitId": "E4", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "NEUROLOGY", "Clinical Note Text": "Family history of progressive peripheral neuropathy in father.", "Date": "2025-10-10"
+      },
+      {
+        "NoteId": "N5", "EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "NEPHROLOGY", "Clinical Note Text": "Persistent proteinuria after the screening date.", "Date": "2026-02-10"
+      }
+    ],
+    "social_history": [
+      {"Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E1", "Value": "Never smoker", "Date": "2025-04-01"}
+    ],
+    "medication": [
+      {"Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E1", "Medication Name": "lisinopril", "Medication Status": "active", "Date": "2025-04-01"}
+    ]
+  }
+}

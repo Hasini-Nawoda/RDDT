@@ -1,7 +1,7 @@
 # ATTRwt V4 clinical/configuration audit
 
-Date: 2026-09-20  
-Audited source: `v4_build_tools/source/ATTRwt_Normalized_Clinical_Filtering_Config_FINAL.xlsx`  
+Date: 2026-09-20
+Audited source: `v4_build_tools/source/ATTRwt_Normalized_Clinical_Filtering_Config_FINAL.xlsx`
 Audited deployable package: `v4/config` (shared atoms plus ATTRV and ATTRWT phenotype packages)
 
 ## Conclusion
