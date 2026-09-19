@@ -29,6 +29,82 @@ class ClinicalContextAdapter:
         self.nlp = nlp
         self.require_context_components = require_context_components
 
+    def _target_window(
+        self,
+        text: str,
+        target_start: int,
+        target_end: int,
+    ) -> tuple[str, int, int]:
+        """Return a contrast/clause-local window while retaining medSpaCy.
+
+        ConText modifiers should not leak across semicolons, sentence ends, or
+        explicit contrast transitions in long EHR prose. This windowing uses
+        spaCy token boundaries; it does not perform clinical keyword matching.
+        """
+        source = self.nlp.make_doc(text)
+        tokens = list(source)
+        boundaries = {
+            ".", ";", "\n", "but", "however", "yet", "while", "whereas", "nevertheless",
+        }
+
+        # A comma is not always a context boundary (for example, ``no fever,
+        # chills, or nausea``).  It is a boundary when the following tokens
+        # start a new predicated clause, which covers the subject switches and
+        # assessment corrections common in long clinical notes without
+        # treating comma-delimited finding lists as separate assertions.
+        subjects = {
+            "he", "she", "they", "we", "i", "patient", "clinician", "physician",
+            "examiner", "resident", "specialist", "assessment", "examination",
+            "review", "history", "note", "chart", "report", "study", "result",
+        }
+        predicates = {
+            "am", "are", "is", "was", "were", "be", "been", "being", "has", "had",
+            "reports", "reported", "denies", "denied", "records", "recorded",
+            "documents", "documented", "confirms", "confirmed", "states", "stated",
+            "shows", "showed", "demonstrates", "demonstrated", "finds", "found",
+            "notes", "noted", "describes", "described", "indicates", "indicated",
+        }
+
+        def comma_starts_clause(index: int) -> bool:
+            segment: list[str] = []
+            for token in tokens[index + 1:index + 22]:
+                lowered = token.text.lower()
+                if lowered in boundaries or lowered == ",":
+                    break
+                segment.append(lowered)
+            while segment and segment[0] in {"and", "or", "then"}:
+                segment.pop(0)
+            if not segment:
+                return False
+            if segment[0] in predicates:
+                return True
+            return any(word in subjects for word in segment[:8]) and any(
+                word in predicates for word in segment
+            )
+
+        def is_boundary(index: int) -> bool:
+            lowered = tokens[index].text.lower()
+            return lowered in boundaries or (lowered == "," and comma_starts_clause(index))
+
+        left = 0
+        for index in range(max(0, target_start - 1), -1, -1):
+            if is_boundary(index):
+                left = index + 1
+                break
+        right = len(tokens)
+        for index in range(min(len(tokens), target_end), len(tokens)):
+            if is_boundary(index):
+                right = index
+                break
+        if left == 0 and right == len(tokens):
+            return text, target_start, target_end
+        if left >= right:
+            return text, target_start, target_end
+        start_char = tokens[left].idx
+        last = tokens[right - 1]
+        end_char = last.idx + len(last.text)
+        return text[start_char:end_char], target_start - left, target_end - left
+
     def process(self, text: str, *, target_span: tuple[int | None, int | None] | None = None, target_label: str | None = None) -> dict[str, Any]:
         if self.nlp is None:
             return {"context_processing_status": "CONFIG_GAP_CONTEXT_ANNOTATOR_UNAVAILABLE"}
@@ -48,7 +124,12 @@ class ClinicalContextAdapter:
             # PhraseMatcher offsets are token offsets. Insert that exact target
             # immediately before the medSpaCy context component so context is
             # evaluated for the configured phrase, not an unrelated entity.
-            doc = self.nlp.make_doc(text)
+            window_text, target_start, target_end = self._target_window(
+                text,
+                int(target_start),
+                int(target_end),
+            )
+            doc = self.nlp.make_doc(window_text)
             try:
                 from spacy.tokens import Span
                 target_entity = Span(doc, int(target_start), int(target_end), label=target_label or "V4_TARGET")
@@ -64,7 +145,7 @@ class ClinicalContextAdapter:
             except Exception:
                 # Failed target insertion is an auditable context gap. It is
                 # never replaced by lexical heuristics.
-                doc = self.nlp(text)
+                doc = self.nlp(window_text)
                 target_entity = None
         else:
             doc = self.nlp(text)
@@ -307,6 +388,8 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         status, reason, polarity = FALSE, "NEGATED", "NEGATED"
     if status == TRUE and _truth(attrs.get("uncertain", attrs.get("is_uncertain"))) is True:
         status, reason, certainty = UNKNOWN, "UNCERTAIN", "UNCERTAIN"
+    if status == TRUE and _truth(attrs.get("is_future")) is True:
+        status, reason = UNKNOWN, "FUTURE_OR_PLANNED_MENTION"
     # Historical mentions are preserved as affirmative/negative evidence with
     # explicit temporality. Whether recency is required belongs to the
     # workbook rule/qualifiers; history is not silently treated as current or
@@ -326,10 +409,18 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
     source_provenance = {"source_event_id": match.source_event_id, "support_lineage_id": match.support_lineage_id,
                          "encounter_id": match.encounter_id,
                          "match_method": match.match_method,
-                         "matched_config_value": match.matched_config_value}
+                         "matched_config_value": match.matched_config_value,
+                         "span_start": match.span_start,
+                         "span_end": match.span_end,
+                         "temporal_expression": attrs.get("temporal_expression"),
+                         "source_recorded_event_date": attrs.get("source_recorded_event_date")}
+    span_identity = (
+        f":{match.matcher_label}:{match.span_start}:{match.span_end}"
+        if match.match_method == "PHRASEMATCHER" else ""
+    )
     return QualifiedEvidence(
         run_id=match.run_id, patient_id=match.patient_id,
-        evidence_id=f"{match.source_event_id}:{match.atom_id}:{match.match_method}", atom_id=match.atom_id,
+        evidence_id=f"{match.source_event_id}:{match.atom_id}:{match.match_method}{span_identity}", atom_id=match.atom_id,
         event_date=_date_value(match.event_date), available_date=_date_value(match.available_date),
         stage=None if observed_stage in (None, "") else str(observed_stage), polarity=None if polarity in (None, "") else str(polarity),
         certainty=None if certainty in (None, "") else str(certainty), experiencer=None if observed_exp in (None, "") else str(observed_exp),

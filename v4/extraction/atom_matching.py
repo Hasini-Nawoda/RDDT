@@ -12,6 +12,7 @@ from typing import Any, Mapping, Sequence
 
 from .extraction_contract import event_system_compatible, is_nlp_system, normalize_system
 from .source_events import SourceEvent
+from .temporal_context import resolve_temporal_context
 
 
 def _rows(config: Any, key: str) -> list[Mapping[str, Any]]:
@@ -218,23 +219,29 @@ def match_atom_events(
                                      experiencer_hint=experiencer_hint, stage_hint=stage_hint))
                 unknown_count += 1
             continue
-        # Process one document once per source event.  Each matched label is
-        # emitted once, even when the phrase occurs at multiple spans.
+        # Process one document once per source event. Every configured span is
+        # retained because repeated mentions may have different polarity,
+        # certainty, experiencer, or clinical dates inside the same note.
         doc = nlp.make_doc(event.text_value)
-        seen_labels: set[str] = set()
+        seen_spans: set[tuple[str, int, int]] = set()
         for match_id, start, end in matcher(doc):
             label = doc.vocab.strings[match_id]
-            if label in seen_labels:
+            span_key = (label, int(start), int(end))
+            if span_key in seen_spans:
                 continue
-            seen_labels.add(label)
+            seen_spans.add(span_key)
             term = labels[label]
             experiencer_hint, stage_hint = source_hints(event)
+            temporal = resolve_temporal_context(doc, int(start), int(end), event.event_date)
+            source_attributes = dict(event.attributes or {})
+            source_attributes.update(temporal.attributes(event.event_date))
             out.append(AtomMatch(event.run_id, event.patient_id,
                                  str(_get(term, "atom_id", "Atom_ID", default="")), event.source_event_id,
                                  "PHRASEMATCHER", _term_value(term), event.text_value, "TRUE",
-                                 event.event_date, event.available_date, event.support_lineage_id,
+                                 temporal.clinical_date or event.event_date,
+                                 event.available_date, event.support_lineage_id,
                                  encounter_id=event.encounter_id,
-                                 source_attributes=dict(event.attributes or {}), result_value=event.result_value,
+                                 source_attributes=source_attributes, result_value=event.result_value,
                                  result_status=event.result_status,
                                  config_restriction=restriction(term), config_hash=config_hash,
                                  experiencer_hint=experiencer_hint, stage_hint=stage_hint,
