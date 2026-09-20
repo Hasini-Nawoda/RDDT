@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from datetime import date, datetime, timezone
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
@@ -13,6 +13,18 @@ from .extraction_contract import MEDSPACY_CONTEXT_ATTRIBUTES
 TRUE = "TRUE"
 FALSE = "FALSE"
 UNKNOWN = "UNKNOWN"
+
+# These names are used only for evidence arbitration after matching.  They do
+# not broaden structured-code or NLP matching behavior.
+_CODE_MATCH_METHODS = {
+    "EXACT_NORMALIZED_CODE",
+    "PREFIX_NORMALIZED_CODE",
+    "PREFIX_FALLBACK_CODE",
+    "RANGE_NORMALIZED_CODE",
+    "CODE_IN_TEXT",
+}
+_NLP_EVIDENCE_METHODS = {"PHRASEMATCHER"}
+_NON_STANDALONE_MAPPING_ROLES = {"SUPPORTING", "RESULT_REQUIRED"}
 
 
 class ClinicalContextAdapter:
@@ -315,16 +327,43 @@ def _processor_attributes(processor: Any, text: str | None, match: AtomMatch) ->
     # Clinical context is meaningful only for a matched text span. Structured
     # codes are already exact evidence and must not be downgraded merely
     # because they have no NLP target span.
-    if processor is None or not text or match.match_method != "PHRASEMATCHER":
+    if processor is None or not text or match.match_method not in {"PHRASEMATCHER", "CODE_IN_TEXT"}:
         return {}
+    target_span = (match.span_start, match.span_end)
+    # PhraseMatcher returns token offsets, while CODE_IN_TEXT is discovered by
+    # a character-span regex.  ClinicalContextAdapter follows spaCy's token
+    # span contract, so translate only when the adapter exposes its NLP model;
+    # custom processors continue to receive the offsets they were given.
+    if match.match_method == "CODE_IN_TEXT" and target_span[0] is not None and target_span[1] is not None:
+        nlp = getattr(processor, "nlp", None)
+        make_doc = getattr(nlp, "make_doc", None)
+        if callable(make_doc):
+            try:
+                tokens = list(make_doc(text))
+                start_char, end_char = int(target_span[0]), int(target_span[1])
+                token_start = next(
+                    (index for index, token in enumerate(tokens)
+                     if token.idx + len(token.text) > start_char),
+                    len(tokens),
+                )
+                token_end = next(
+                    (index for index, token in enumerate(tokens)
+                     if token.idx >= end_char),
+                    len(tokens),
+                )
+                target_span = (token_start, token_end)
+            except Exception:
+                # The processor will report its normal context gap if a custom
+                # tokenizer cannot represent the span.
+                pass
     if hasattr(processor, "process"):
         try:
-            result = processor.process(text, target_span=(match.span_start, match.span_end), target_label=match.matcher_label)
+            result = processor.process(text, target_span=target_span, target_label=match.matcher_label)
         except TypeError:
             result = processor.process(text)
     elif callable(processor):
         try:
-            result = processor(text, target_span=(match.span_start, match.span_end), target_label=match.matcher_label)
+            result = processor(text, target_span=target_span, target_label=match.matcher_label)
         except TypeError:
             result = processor(text)
     else:
@@ -334,9 +373,61 @@ def _processor_attributes(processor: Any, text: str | None, match: AtomMatch) ->
     return dict(getattr(result, "attributes", {}) or {})
 
 
+def _mapping_role(attrs: Mapping[str, Any]) -> str:
+    """Normalize the authoring role without changing matching behavior."""
+    value = attrs.get("mapping_role", attrs.get("Mapping_Role", ""))
+    return str(value or "").strip().upper().replace("-", "_").replace(" ", "_")
+
+
+def _evidence_method(evidence: QualifiedEvidence) -> str:
+    return str(
+        evidence.source_provenance.get("match_method", "")
+        or evidence.attributes.get("match_method", "")
+    ).strip().upper()
+
+
+def _apply_atom_firing_precedence(evidence: Sequence[QualifiedEvidence]) -> list[QualifiedEvidence]:
+    """Apply NLP-over-code precedence per run/patient/atom.
+
+    A real PhraseMatcher span is authoritative for that atom, including when
+    context qualifies it as negated, uncertain, future, or otherwise unknown.
+    A code hit therefore cannot bypass that mention.  A model/configuration
+    gap marker is not an NLP match; direct exact code evidence remains
+    eligible in that case (subject to its normal restrictions).
+    """
+    groups: dict[tuple[str, str, str], list[QualifiedEvidence]] = {}
+    for item in evidence:
+        groups.setdefault((item.run_id, item.patient_id, item.atom_id), []).append(item)
+
+    out: list[QualifiedEvidence] = []
+    for group in groups.values():
+        nlp_present = any(_evidence_method(item) in _NLP_EVIDENCE_METHODS for item in group)
+        if not nlp_present:
+            out.extend(group)
+            continue
+        for item in group:
+            if _evidence_method(item) not in _CODE_MATCH_METHODS or item.status != TRUE:
+                out.append(item)
+                continue
+            attrs = dict(item.attributes or {})
+            attrs.update({
+                "atom_firing_precedence": "NLP_OVER_CODE",
+                "code_fallback_suppressed": True,
+            })
+            out.append(replace(
+                item,
+                status=UNKNOWN,
+                support_lineage_ids=[],
+                attributes=attrs,
+                reason="NLP_PRECEDENCE_CODE_SUPPRESSED",
+            ))
+    return out
+
+
 def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor: Any = None, cutoff: Any = None) -> QualifiedEvidence:
     attrs = dict(match.source_attributes or {})
-    attrs.update(_processor_attributes(context_processor, match.matched_source_value, match))
+    context_text = match.context_text or match.matched_source_value
+    attrs.update(_processor_attributes(context_processor, context_text, match))
     if match.result_value not in (None, ""):
         attrs.setdefault("result_value", match.result_value)
     if match.result_status not in (None, ""):
@@ -353,7 +444,7 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         attrs["stage"] = "PRETEST_SIGNAL"
     status = match.match_status if match.match_status in {TRUE, FALSE, UNKNOWN} else UNKNOWN
     reason = None
-    if status == TRUE and match.match_method == "PHRASEMATCHER" and context_processor is None:
+    if status == TRUE and match.match_method in {"PHRASEMATCHER", "CODE_IN_TEXT"} and context_processor is None:
         status, reason = UNKNOWN, "CONFIG_GAP_CONTEXT_ANNOTATOR_UNAVAILABLE"
     if status == TRUE and str(attrs.get("context_processing_status", "")).startswith("CONFIG_GAP"):
         status, reason = UNKNOWN, str(attrs["context_processing_status"])
@@ -363,6 +454,12 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         # source event, but it cannot be silently promoted to affirmative atom
         # evidence without the contextual qualification available to NLP.
         status, reason = UNKNOWN, "CONFIG_RESTRICTION_TERM_CANNOT_FIRE_ALONE"
+    mapping_role = _mapping_role(attrs)
+    if status == TRUE and match.match_method in _CODE_MATCH_METHODS and mapping_role in _NON_STANDALONE_MAPPING_ROLES:
+        # Supporting/result-required rows may retrieve or annotate an event,
+        # but cannot establish an atom on their own.  This is qualification,
+        # not code matching.
+        status, reason = UNKNOWN, "CONFIG_RESTRICTION_MAPPING_ROLE_CANNOT_FIRE_ALONE"
     if status == TRUE and not match.support_lineage_id:
         status, reason = UNKNOWN, "MISSING_SUPPORT_LINEAGE"
     available_ok = _on_or_before(match.available_date, cutoff)
@@ -442,7 +539,7 @@ def qualify_atom_matches(
     for match in matches:
         atom = atoms.get(match.atom_id, {})
         out.append(_qualify_one(match, atom, context_processor=context_processor, cutoff=screening_cutoff))
-    return out
+    return _apply_atom_firing_precedence(out)
 
 
 def eligible_evidence(evidence: QualifiedEvidence, *, required_stage: str | None = None, cutoff: Any = None, require_lineage: bool = True) -> bool | None:

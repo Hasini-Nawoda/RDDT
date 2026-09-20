@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from ..extraction.atom_matching import build_phrase_matcher
+from ..extraction.code_semantics import find_code_in_text
 from ..extraction.candidate_net import CandidatePatient, CandidateReason, build_candidate_plan
 from ..extraction.extraction_contract import is_nlp_system
 from ..warehouse.snowflake_io import execute
@@ -35,6 +36,7 @@ def _reason(term: Mapping[str, Any], config_hash: str) -> CandidateReason:
         review_status=term.get("review_status", term.get("Review_Status")),
         config_hash=config_hash,
         retrieval_mode="BROAD_TEXT_FOR_PHRASEMATCHER",
+        mapping_role=term.get("mapping_role", term.get("Mapping_Role")),
     )
 
 
@@ -53,6 +55,29 @@ def retrieve_candidates(session: Any, config: Any, *, run_id: str, source_config
     for query in plan:
         rows = [_row_dict(row) for row in execute(session, query.sql, query.params)]
         if query.match_strategy != "BROAD_TEXT_FOR_PHRASEMATCHER":
+            if query.match_strategy == "CODE_IN_TEXT":
+                for row in rows:
+                    patient_id = _get(row, "PATIENT_ID")
+                    text_value = _get(row, "MATCHED_SOURCE_VALUE")
+                    if patient_id in (None, "") or text_value in (None, ""):
+                        continue
+                    for reason in query.reasons or (query.reason,):
+                        term = {
+                            "atom_id": reason.atom_id,
+                            "terminology_system": reason.terminology_system,
+                            "value": reason.config_value,
+                            "match_mode": reason.match_mode,
+                            "expanded_values": list(reason.expanded_values),
+                            "match_in_text": reason.match_in_text,
+                        }
+                        if not find_code_in_text(str(text_value), term):
+                            continue
+                        item = CandidatePatient(run_id, str(patient_id), reason, query.source_table, None)
+                        key = (item.patient_id, reason.atom_id, reason.config_value, None)
+                        if key not in seen:
+                            seen.add(key)
+                            candidates.append(item)
+                continue
             for row in rows:
                 patient_id = _get(row, "PATIENT_ID")
                 if patient_id in (None, ""):
@@ -90,6 +115,9 @@ def candidate_records(candidates: list[CandidatePatient]) -> list[dict[str, Any]
         "config_atom_id": item.reason.atom_id,
         "config_terminology_system": item.reason.terminology_system,
         "config_value": item.reason.config_value,
+        "config_match_mode": item.reason.match_mode,
+        "config_match_in_text": item.reason.match_in_text,
+        "config_mapping_role": item.reason.mapping_role,
         "source_table": item.source_table,
         "source_record_id": item.source_record_id,
         "config_hash": item.reason.config_hash,

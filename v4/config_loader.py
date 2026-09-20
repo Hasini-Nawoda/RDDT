@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence
 
+from .extraction.extraction_contract import normalize_system
 from .runtime_config import RuntimeConfig
 
 
@@ -115,40 +116,68 @@ def _config_hash(paths: Iterable[Path], base: Path) -> str:
 
 
 def _normal_system(value: Any) -> str:
-    text = str(value or "").strip().upper().replace("-", "_").replace(" ", "_")
-    aliases = {
-        "CPT": "CPT_HCPCS",
-        "HCPCS": "CPT_HCPCS",
-        "CPT/HCPCS": "CPT_HCPCS",
-        "SNOMED": "SNOMED_CT",
-        "SNOMEDCT": "SNOMED_CT",
-        "KEYWORD": "NLP",
-        "PHRASE": "NLP",
-    }
-    return aliases.get(text, text)
+    return normalize_system(value)
+
+
+def _as_bool(value: Any, *, default: bool = False, field: str = "boolean") -> bool:
+    """Parse configuration booleans without Python's truthy-string trap."""
+    if value is None or value == "":
+        return default
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)) and value in (0, 1):
+        return bool(value)
+    text = str(value).strip().upper()
+    if text in {"TRUE", "T", "YES", "Y", "ON", "1"}:
+        return True
+    if text in {"FALSE", "F", "NO", "N", "OFF", "0"}:
+        return False
+    raise ConfigLoadError(f"Invalid {field} value {value!r}; expected true/false")
 
 
 def _term_row(atom: Mapping[str, Any], item: Any, system: str) -> Dict[str, Any]:
     data = dict(item) if isinstance(item, Mapping) else {"value": item}
-    value = data.get("value", data.get("code", data.get("term", data.get("text"))))
+    # Workbook lineage belongs to the build/audit layer, not the deployable
+    # terminology contract.  Do not let source-sheet or digest fields leak
+    # into runtime matching rows.
+    for key in (
+        "provenance", "source_provenance", "source_workbook", "source_row",
+        "source_sheet", "workbook_sha256",
+    ):
+        data.pop(key, None)
+    value = data.get(
+        "value",
+        data.get("code", data.get("prefix", data.get("term", data.get("text")))),
+    )
     if value in (None, ""):
         raise ConfigLoadError(f"Atom {atom.get('atom_id')!r} contains an empty extraction term")
-    return {
+    inherited = {
+        key: atom[key]
+        for key in (
+            "context_guard", "match_mode", "mapping_role",
+            "review_status", "value_class", "requires_corroboration",
+        )
+        if key in atom and key not in data
+    }
+    row = {**inherited, **data}
+    row.update({
         "atom_id": str(atom.get("atom_id", "")),
         "terminology_system": _normal_system(
             data.get("terminology_system", data.get("system", system))
         ),
         "value": str(value),
-        "can_fire_atom_alone": bool(
+        "can_fire_atom_alone": _as_bool(
             data.get(
                 "can_fire_atom_alone",
                 data.get("can_fire", atom.get("can_fire_atom_alone", False)),
-            )
+            ),
+            field=f"{atom.get('atom_id', '')}.can_fire_atom_alone",
         ),
         # Guards belong to atoms in the clean files. The adapter supplies the
         # inherited value because the matcher consumes it at term level.
         "context_guard": data.get("context_guard", atom.get("context_guard")),
-    }
+    })
+    return row
 
 
 def _adapt_atoms(rows: Iterable[Mapping[str, Any]]) -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
@@ -178,6 +207,17 @@ def _adapt_atoms(rows: Iterable[Mapping[str, Any]]) -> tuple[List[Dict[str, Any]
                 terminology.append(_term_row(atom, item, str(item.get("system", ""))))
         else:
             raise ConfigLoadError(f"Atom {atom_id!r} extraction.codes must be an object or list")
+        # Prefix fallback rows are a dedicated operational vocabulary.  They
+        # are not inferred from legacy trailing-dot code values or workbook
+        # descriptions; the explicit row is the only activation signal.
+        for item in extraction.get("code_prefix_fallbacks", ()) or ():
+            if not isinstance(item, Mapping):
+                raise ConfigLoadError(f"Atom {atom_id!r} code_prefix_fallback entry must be an object")
+            fallback = dict(item)
+            if fallback.get("prefix") in (None, "") and fallback.get("value") in (None, ""):
+                raise ConfigLoadError(f"Atom {atom_id!r} code_prefix_fallback requires prefix")
+            fallback.setdefault("match_mode", "PREFIX_FALLBACK")
+            terminology.append(_term_row(atom, fallback, str(fallback.get("terminology_system", ""))))
         atoms.append(atom)
     return atoms, terminology
 
@@ -252,7 +292,10 @@ def _adapt_signal_rule(
             "evaluation_order": int(group.get("evaluation_order", order) or order),
             "operator": str(group.get("operator", group.get("op", "ANY"))).upper(),
             "minimum_count": group.get("minimum_count"),
-            "require_independent_lineage": bool(group.get("require_independent_lineage", False)),
+            "require_independent_lineage": _as_bool(
+                group.get("require_independent_lineage", False),
+                field=f"{signal_id}.{group_id}.require_independent_lineage",
+            ),
             "linkage_type": group.get("linkage_type"),
         })
         for member_order, raw_member in enumerate(_members(group), 1):
@@ -333,7 +376,11 @@ def _adapt_signal_rule(
     rule_row = {
         "signal_id": signal_id,
         "root_group_id": root_id,
-        "enabled": bool(rule.get("enabled", root_rule.get("enabled", True))),
+        "enabled": _as_bool(
+            rule.get("enabled", root_rule.get("enabled", True)),
+            default=True,
+            field=f"{signal_id}.enabled",
+        ),
         "blocker_policy": rule.get("blocker_policy", "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE"),
         "missing_data_policy": rule.get("missing_data_policy"),
         "truth_model": rule.get("truth_model", rule.get("three_valued_logic")),
@@ -364,11 +411,14 @@ def _adapt_signal_atom_mappings(rows: Iterable[Mapping[str, Any]]) -> List[Dict[
         row["atom_id"] = atom_id
         if "required_qualifiers" not in row and "required_attributes" in row:
             row["required_qualifiers"] = row.get("required_attributes")
-        if "can_fire_from_this_mapping" not in row:
-            row["can_fire_from_this_mapping"] = row.get(
-                "can_fire_from_mapping",
-                row.get("can_fire", True),
-            )
+        row["can_fire_from_this_mapping"] = _as_bool(
+            row.get(
+                "can_fire_from_this_mapping",
+                row.get("can_fire_from_mapping", row.get("can_fire", True)),
+            ),
+            default=True,
+            field=f"{signal_id}:{atom_id}.can_fire_from_mapping",
+        )
         output.append(row)
     return output
 
@@ -545,8 +595,15 @@ def _adapt_combinations(rows: Iterable[Mapping[str, Any]]) -> Dict[str, List[Dic
                 "combination_id": combination_id,
                 "requirement_order": int(requirement.get("requirement_order", order) or order),
                 "requirement_kind": str(requirement.get("requirement_kind", requirement.get("kind", "BUCKET"))),
-                "context_witness_allowed": bool(requirement.get("context_witness_allowed", False)),
-                "distinct_lineage_required": bool(requirement.get("distinct_lineage_required", True)),
+                "context_witness_allowed": _as_bool(
+                    requirement.get("context_witness_allowed", False),
+                    field=f"{combination_id}:{requirement_id}.context_witness_allowed",
+                ),
+                "distinct_lineage_required": _as_bool(
+                    requirement.get("distinct_lineage_required", True),
+                    default=True,
+                    field=f"{combination_id}:{requirement_id}.distinct_lineage_required",
+                ),
                 "minimum_count": requirement.get("minimum_count"),
             })
             tables["requirement_buckets"].extend(

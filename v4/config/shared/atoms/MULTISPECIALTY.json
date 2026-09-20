@@ -12,108 +12,122 @@
       "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "194424005",
+              "value": "92553",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "1055224002",
+              "value": "92557",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "609125008",
+              "value": "92567",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92570",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92628",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92629",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92632",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "H90.3",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H90.5",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H91.8X3",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H91.8X9",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "92553",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "194424005",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92557",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "1055224002",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92567",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "609125008",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "92570",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "92628",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "92629",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "92632",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -175,27 +189,47 @@
           "ICD10": [
             {
               "value": "M35.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R76.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "279.4",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "795.79",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "LOINC": [
             {
               "value": "5045-8",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -310,7 +344,10 @@
           "LOINC": [
             {
               "value": "1848-9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -353,40 +390,116 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "95907-95913",
-              "can_fire_atom_alone": false
+              "value": "95907",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95908",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95909",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95910",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95911",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95912",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95913",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
-              "value": "E11.42",
-              "can_fire_atom_alone": false
+              "value": "E11.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "E11.9",
-              "can_fire_atom_alone": false
+              "value": "E11.42",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "250.00",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "250.60",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "LOINC": [
             {
               "value": "4548-4",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "44054006",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -449,45 +562,50 @@
       "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "49099001",
+              "value": "84550",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "269859006",
+              "value": "84560",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "E79.0",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "84550",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "49099001",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "84560",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "269859006",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -534,13 +652,21 @@
           "ICD10": [
             {
               "value": "Z82.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supportive family-history signal only. Require a first- or second-degree relative with adult-onset progressive unexplained neuropathy; do not infer ATTR or a pathogenic TTR variant from this history.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "V17.2",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supportive family-history signal only. Require a first- or second-degree relative with adult-onset progressive unexplained neuropathy; do not infer ATTR or a pathogenic TTR variant from this history.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -595,38 +721,74 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "81404-81405",
-              "can_fire_atom_alone": false
+              "value": "81404",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "81405",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
-              "value": "Z14.8",
-              "can_fire_atom_alone": false
+              "value": "Z83.49",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z15.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "Z83.49",
-              "can_fire_atom_alone": false
+              "value": "Z14.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "V18.19",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "V83.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "LOINC": [
             {
               "value": "94225-0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -801,72 +963,82 @@
             {
               "value": "72148",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "72149",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "72131",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "63047",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "63005",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "63017",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "88304",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "88305",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "88313",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "88342",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Thickened ligamentum flavum'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -923,24 +1095,27 @@
           "CPT_HCPCS": [
             {
               "value": "78306",
-              "can_fire_atom_alone": true,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78305",
-              "can_fire_atom_alone": true,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78300",
-              "can_fire_atom_alone": true,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Incidental myocardial bone-tracer uptake'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1132,50 +1307,186 @@
         "codes": {
           "ICD10": [
             {
-              "value": "F50.00-F50.02",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "K31.84",
-              "can_fire_atom_alone": false
-            },
-            {
               "value": "R63.4",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R64",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.010",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.011",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.012",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.013",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.014",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.019",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.020",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.021",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.022",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.023",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.024",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F50.029",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
+              "value": "783.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "307.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "536.3",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "783.21",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "LOINC": [
             {
               "value": "29463-7",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             },
             {
               "value": "39156-5",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "89362005",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1307,99 +1618,112 @@
       "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
-            {
-              "value": "49526009",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
-            },
-            {
-              "value": "73415002",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
-            },
-            {
-              "value": "9062008",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
-            },
-            {
-              "value": "267677007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
-            },
-            {
-              "value": "13445001",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
-            }
-          ],
           "ICD10": [
             {
               "value": "H91.10",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H91.13",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H83.3X3",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H83.3X9",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H91.03",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H91.09",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H81.03",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H81.09",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal."
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "49526009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "73415002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "9062008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "267677007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "13445001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },

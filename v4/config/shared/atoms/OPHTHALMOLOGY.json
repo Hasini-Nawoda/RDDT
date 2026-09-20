@@ -12,22 +12,38 @@
         "codes": {
           "ICD10": [
             {
-              "value": "H04.123",
-              "can_fire_atom_alone": false
+              "value": "H40.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "H40.9",
-              "can_fire_atom_alone": false
+              "value": "H04.123",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "365.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "375.15",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -75,39 +91,71 @@
           "CPT_HCPCS": [
             {
               "value": "67036",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "92004",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "92014",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "H43.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.21",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.22",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.23",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "379.24",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -158,22 +206,38 @@
         "codes": {
           "ICD10": [
             {
-              "value": "H04.123",
-              "can_fire_atom_alone": false
+              "value": "H40.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "H40.9",
-              "can_fire_atom_alone": false
+              "value": "H04.123",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "365.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "375.15",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -217,13 +281,21 @@
           "ICD10": [
             {
               "value": "H21.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "364.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -251,13 +323,21 @@
           "ICD10": [
             {
               "value": "H21.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "364.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -309,39 +389,71 @@
           "CPT_HCPCS": [
             {
               "value": "67036",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "92004",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "92014",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "H43.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.21",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.22",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "H43.23",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "379.24",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },

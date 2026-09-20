@@ -45,73 +45,82 @@
       "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "80274001",
+              "value": "82565",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82575",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "N18.3",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "N18.4",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "N18.5",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "N18.9",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "82565",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "80274001",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "80069",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "80053",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "82575",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -158,59 +167,66 @@
       "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "119247004",
+              "value": "82040",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "E88.09",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "E88.0",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R77.8",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "82040",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "119247004",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "80053",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "80069",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -251,23 +267,39 @@
           "ICD10": [
             {
               "value": "R80.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match albuminuria/microalbumin-specific language. Generic proteinuria remains a separate renal atom; V17 combines persistent unexplained renal findings at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "791.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match albuminuria/microalbumin-specific language. Generic proteinuria remains a separate renal atom; V17 combines persistent unexplained renal findings at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "LOINC": [
             {
               "value": "14957-5",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match albuminuria/microalbumin-specific language. Generic proteinuria remains a separate renal atom; V17 combines persistent unexplained renal findings at the AST level.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             },
             {
               "value": "30003-8",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match albuminuria/microalbumin-specific language. Generic proteinuria remains a separate renal atom; V17 combines persistent unexplained renal findings at the AST level.",
+              "mapping_role": "RESULT_REQUIRED",
+              "match_mode": "EXACT"
             }
           ]
         },

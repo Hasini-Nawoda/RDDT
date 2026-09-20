@@ -63,44 +63,80 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "74230",
-              "can_fire_atom_alone": false
+              "value": "92610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92610",
-              "can_fire_atom_alone": false
+              "value": "74230",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R13.10",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R13.19",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R47.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R49.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
+              "value": "787.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "784.49",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "784.51",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "787.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -143,30 +179,54 @@
         "codes": {
           "ICD10": [
             {
-              "value": "K59.00",
-              "can_fire_atom_alone": false
+              "value": "R19.7",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "K59.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K59.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "K59.8",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R19.7",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
-              "value": "564.00",
-              "can_fire_atom_alone": false
+              "value": "564.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "564.5",
-              "can_fire_atom_alone": false
+              "value": "564.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -213,39 +273,71 @@
           "CPT_HCPCS": [
             {
               "value": "78264",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78265",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78266",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "K31.84",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R11.2",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R68.81",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "536.3",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "787.01",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -288,30 +380,54 @@
         "codes": {
           "ICD10": [
             {
-              "value": "K59.00",
-              "can_fire_atom_alone": false
+              "value": "R19.7",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "K59.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K59.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "K59.8",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R19.7",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
-              "value": "564.00",
-              "can_fire_atom_alone": false
+              "value": "564.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "564.5",
-              "can_fire_atom_alone": false
+              "value": "564.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -378,44 +494,80 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "74230",
-              "can_fire_atom_alone": false
+              "value": "92610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92610",
-              "can_fire_atom_alone": false
+              "value": "74230",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R13.10",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R13.19",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R47.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R49.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
+              "value": "787.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "784.49",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "784.51",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "787.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -454,44 +606,80 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "74230",
-              "can_fire_atom_alone": false
+              "value": "92610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92610",
-              "can_fire_atom_alone": false
+              "value": "74230",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R13.10",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R13.19",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R47.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R49.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
+              "value": "787.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "784.49",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "784.51",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "787.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -539,39 +727,71 @@
           "CPT_HCPCS": [
             {
               "value": "78264",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78265",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78266",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "K31.84",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R11.2",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R68.81",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "536.3",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "787.01",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -669,44 +889,80 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "74230",
-              "can_fire_atom_alone": false
+              "value": "92610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "92610",
-              "can_fire_atom_alone": false
+              "value": "74230",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R13.10",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R13.19",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R47.1",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R49.0",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
+              "value": "787.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "784.49",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "784.51",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "787.20",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -754,39 +1010,71 @@
           "CPT_HCPCS": [
             {
               "value": "78264",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78265",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78266",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "K31.84",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R11.2",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R68.81",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "536.3",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "787.01",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -885,39 +1173,71 @@
           "CPT_HCPCS": [
             {
               "value": "78264",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78265",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "78266",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "K31.84",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "R11.2",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "R68.81",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "536.3",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "787.01",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },

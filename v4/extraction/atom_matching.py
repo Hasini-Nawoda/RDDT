@@ -11,6 +11,14 @@ from dataclasses import asdict, dataclass, field
 from typing import Any, Mapping, Sequence
 
 from .extraction_contract import event_system_compatible, is_nlp_system, normalize_system
+from .code_semantics import (
+    CODE_IN_TEXT,
+    find_code_in_text,
+    match_code_value,
+    normalize_code_system,
+    PREFIX_FALLBACK,
+    prefix_fallback_supported,
+)
 from .source_events import SourceEvent
 from .temporal_context import resolve_temporal_context
 
@@ -83,6 +91,10 @@ class AtomMatch:
     span_start: int | None = None
     span_end: int | None = None
     matcher_label: str | None = None
+    # CODE_IN_TEXT keeps the exact mention in ``matched_source_value`` while
+    # retaining the full narrative for context qualification.  PhraseMatcher
+    # already uses the full text as its matched source value.
+    context_text: str | None = None
 
     def as_dict(self) -> dict[str, Any]:
         out = asdict(self)
@@ -121,32 +133,13 @@ def build_phrase_matcher(nlp: Any, terminology_rows: Sequence[Mapping[str, Any]]
     return matcher, labels
 
 
-def _structured_match(event: SourceEvent, term: Mapping[str, Any]) -> bool:
-    system = normalize_system(_get(term, "terminology_system", "system", "Terminology_System", default=""))
+def _structured_match(event: SourceEvent, term: Mapping[str, Any]) -> tuple[bool, str]:
+    system = normalize_code_system(_get(term, "terminology_system", "system", "Terminology_System", default=""))
     if _is_nlp(system):
-        return False
-    raw = _term_value(term)
-    source_code = _norm(event.code_value)
-    if not source_code or not _event_system_compatible(event, system):
-        return False
-    normalized_raw = _norm(raw)
-    if normalized_raw.endswith("."):
-        return source_code.startswith(normalized_raw) and bool(source_code)
-    if "-" in normalized_raw and normalized_raw.count("-") == 1:
-        start, end = (part.strip() for part in normalized_raw.split("-", 1))
-        # A range is deterministic when dotted code families or numeric
-        # bounds are present.  Hyphens inside an opaque code remain exact.
-        if start and end and ("." in start or "." in end or (start.isdigit() and end.isdigit())):
-            return start <= source_code <= end
-    configured = {normalized_raw}
-    # v3 normalized sheets expose STANDARD_CODE; retain deterministic parsing
-    # only when the parsed token is itself present in the workbook value.
-    raw = _term_value(term)
-    if ":" in raw:
-        token = raw.split(":", 1)[0].strip()
-        if token:
-            configured.add(_norm(token))
-    return source_code in configured
+        return False, "EXACT"
+    if not event.code_value or not _event_system_compatible(event, system):
+        return False, "EXACT"
+    return match_code_value(event.code_value, term)
 
 
 def _event_system_compatible(event: SourceEvent, system: str) -> bool:
@@ -180,6 +173,7 @@ def match_atom_events(
             "review_status": _get(term, "review_status", "Review_Status"),
             "context_guard": _get(term, "context_guard", "Context_Guard"),
             "can_fire_from_mapping": _get(term, "can_fire_from_mapping", "Can_Fire_From_This_Mapping"),
+            "mapping_role": _get(term, "mapping_role", "Mapping_Role"),
         }
     def source_hints(event: SourceEvent) -> tuple[str, str | None]:
         experiencer = event.experiencer_hint or ("FAMILY_MEMBER" if event.source_table.upper() == "FAMILY_HISTORY" else "PATIENT")
@@ -190,16 +184,58 @@ def match_atom_events(
             if not atom_id:
                 continue
             config_value = _term_value(term)
-            if _structured_match(event, term):
+            matched, match_mode = _structured_match(event, term)
+            if matched:
+                method = {
+                    "PREFIX": "PREFIX_NORMALIZED_CODE",
+                    "RANGE": "RANGE_NORMALIZED_CODE",
+                    PREFIX_FALLBACK: "PREFIX_FALLBACK_CODE",
+                }.get(match_mode, "EXACT_NORMALIZED_CODE")
                 experiencer_hint, stage_hint = source_hints(event)
                 out.append(AtomMatch(event.run_id, event.patient_id, atom_id, event.source_event_id,
-                                     "EXACT_NORMALIZED_CODE", config_value, event.code_value, "TRUE",
+                                     method, config_value, event.code_value, "TRUE",
                                      event.event_date, event.available_date, event.support_lineage_id,
                                      encounter_id=event.encounter_id,
                                      source_attributes=dict(event.attributes or {}), result_value=event.result_value,
                                      result_status=event.result_status,
-                                     config_restriction=restriction(term), config_hash=config_hash,
-                                     experiencer_hint=experiencer_hint, stage_hint=stage_hint))
+                                      config_restriction=restriction(term), config_hash=config_hash,
+                                      experiencer_hint=experiencer_hint, stage_hint=stage_hint))
+        # Explicit structured codes may also be mentioned in narrative text.
+        # Keep this as a distinct method so downstream consumers can audit the
+        # source and so a code mention cannot be mistaken for a native code
+        # column match.  The regex helper applies token boundaries and numeric
+        # ambiguity guards; no raw configuration value is interpolated.
+        if event.text_value not in (None, ""):
+            # Emit reviewed exact members before the dynamic second-stage
+            # fallback.  Both paths intentionally expose CODE_IN_TEXT, so
+            # deterministic ordering is what lets deduplication retain the
+            # reviewed configuration value when spans overlap.
+            text_terms = sorted(
+                structured_terms,
+                key=lambda term: 1 if prefix_fallback_supported(term) else 0,
+            )
+            for term in text_terms:
+                spans = find_code_in_text(event.text_value, term)
+                if not spans:
+                    continue
+                atom_id = str(_get(term, "atom_id", "Atom_ID", default=""))
+                if not atom_id:
+                    continue
+                config_value = _term_value(term)
+                experiencer_hint, stage_hint = source_hints(event)
+                for span in spans:
+                    out.append(AtomMatch(
+                        event.run_id, event.patient_id, atom_id, event.source_event_id,
+                        CODE_IN_TEXT, config_value, span.value, "TRUE",
+                        event.event_date, event.available_date, event.support_lineage_id,
+                        encounter_id=event.encounter_id,
+                        source_attributes=dict(event.attributes or {}), result_value=event.result_value,
+                        result_status=event.result_status,
+                        config_restriction=restriction(term), config_hash=config_hash,
+                        experiencer_hint=experiencer_hint, stage_hint=stage_hint,
+                        span_start=span.start, span_end=span.end,
+                        context_text=str(event.text_value),
+                    ))
         if not nlp_terms or event.text_value in (None, ""):
             continue
         if nlp_gap:
@@ -246,7 +282,50 @@ def match_atom_events(
                                  config_restriction=restriction(term), config_hash=config_hash,
                                  experiencer_hint=experiencer_hint, stage_hint=stage_hint,
                                  span_start=int(start), span_end=int(end), matcher_label=label))
-    return out
+    # A migrated package may retain an exact row alongside an expanded
+    # PREFIX/RANGE row containing the same reviewed member.  Emit that exact
+    # member once per source/atom/mention/restriction so downstream evidence
+    # cannot double-count duplicate CODE_IN_TEXT or structured hits.  Distinct
+    # mapping restrictions remain separate because qualification may treat
+    # them differently (for example DIRECT_TARGET versus SUPPORTING).
+    deduplicated: list[AtomMatch] = []
+    # Keep the best semantic match for a single source mention.  A dedicated
+    # PREFIX_FALLBACK row may be listed before a reviewed exact member; row
+    # order must not make the fallback method win over the exact evidence.
+    seen_code_emissions: dict[tuple[Any, ...], int] = {}
+    code_methods = {
+        "EXACT_NORMALIZED_CODE", "PREFIX_NORMALIZED_CODE", "PREFIX_FALLBACK_CODE",
+        "RANGE_NORMALIZED_CODE", CODE_IN_TEXT,
+    }
+    method_priority = {
+        "EXACT_NORMALIZED_CODE": 0,
+        CODE_IN_TEXT: 1,
+        "PREFIX_FALLBACK_CODE": 2,
+        "PREFIX_NORMALIZED_CODE": 3,
+        "RANGE_NORMALIZED_CODE": 3,
+    }
+    for match in out:
+        if match.match_method not in code_methods:
+            deduplicated.append(match)
+            continue
+        restriction = tuple(sorted((str(key), repr(value)) for key, value in (match.config_restriction or {}).items()))
+        key = (
+            match.source_event_id,
+            match.atom_id,
+            str(match.matched_source_value or "").strip().upper(),
+            match.span_start,
+            match.span_end,
+            restriction,
+        )
+        prior_index = seen_code_emissions.get(key)
+        if prior_index is not None:
+            prior = deduplicated[prior_index]
+            if method_priority.get(match.match_method, 99) < method_priority.get(prior.match_method, 99):
+                deduplicated[prior_index] = match
+            continue
+        seen_code_emissions[key] = len(deduplicated)
+        deduplicated.append(match)
+    return deduplicated
 
 
 __all__ = ["AtomMatch", "build_phrase_matcher", "match_atom_events"]

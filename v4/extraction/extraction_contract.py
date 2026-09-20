@@ -11,16 +11,59 @@ from __future__ import annotations
 from typing import Any
 
 
+_SYSTEM_ALIASES = {
+    "": "",
+    "ICD": "ICD",
+    "ICD9": "ICD9",
+    "ICD 9": "ICD9",
+    "ICD 9 CM": "ICD9",
+    "ICD9 CM": "ICD9",
+    "ICD9CM": "ICD9",
+    "ICD10": "ICD10",
+    "ICD 10": "ICD10",
+    "ICD 10 CM": "ICD10",
+    "ICD10 CM": "ICD10",
+    "ICD10CM": "ICD10",
+    "CPT": "CPT_HCPCS",
+    "HCPCS": "CPT_HCPCS",
+    "CPT HCPCS": "CPT_HCPCS",
+    "CPT/HCPCS": "CPT_HCPCS",
+    "CPT_HCPCS": "CPT_HCPCS",
+    "SNOMED": "SNOMED_CT",
+    "SNOMED CT": "SNOMED_CT",
+    "SNOMEDCT": "SNOMED_CT",
+    "SNOMED_CT": "SNOMED_CT",
+    "LOINC": "LOINC",
+    "KEYWORD": "NLP",
+    "PHRASE": "NLP",
+    "TEXT": "NLP",
+    "CLINICAL TEXT": "NLP",
+    "SNOMED TEXT": "NLP",
+    "NLP": "NLP",
+}
+
+
 def normalize_system(value: Any) -> str:
-    return " ".join(str(value or "").strip().upper().replace("_", " ").split())
+    """Return one canonical terminology-system name.
+
+    System names are configuration identifiers, not free text.  In
+    particular, ICD-10-CM and ICD-9-CM are aliases for the diagnosis families
+    used by the source contract; ICD-10-PCS is deliberately not collapsed into
+    ICD-10 because it is a different code system and route.
+    """
+    text = str(value or "").strip().upper().replace("-", " ").replace("/", " ")
+    text = " ".join(text.replace("_", " ").split())
+    return _SYSTEM_ALIASES.get(text, text)
 
 
-NLP_SYSTEMS = frozenset({"NLP", "TEXT", "PHRASE", "CLINICAL TEXT", "SNOMED TEXT"})
+NLP_SYSTEMS = frozenset({"NLP"})
 
 
 def is_nlp_system(value: Any) -> bool:
     normalized = normalize_system(value)
-    return not normalized or normalized in NLP_SYSTEMS
+    # An empty or unknown label is not permission to scan narrative fields.
+    # Only an explicit NLP alias may take the broad text route.
+    return normalized in NLP_SYSTEMS
 
 
 # Logical table/field names are resolved to physical warehouse identifiers by
@@ -29,41 +72,17 @@ def is_nlp_system(value: Any) -> bool:
 STRUCTURED_SOURCE_ROUTES: dict[str, tuple[tuple[str, str, str], ...]] = {
     "ICD": (
         ("claim", "diagnosis_code", "EXACT_CODE"),
-        ("claim", "other_diagnosis_9", "EXACT_CODE"),
-        ("claim", "other_diagnosis_10", "EXACT_CODE"),
     ),
     "ICD9": (
         ("claim", "diagnosis_code", "EXACT_CODE"),
         ("claim", "other_diagnosis_9", "EXACT_CODE"),
-        ("claim", "other_diagnosis_10", "EXACT_CODE"),
-    ),
-    "ICD-9": (
-        ("claim", "diagnosis_code", "EXACT_CODE"),
-        ("claim", "other_diagnosis_9", "EXACT_CODE"),
-        ("claim", "other_diagnosis_10", "EXACT_CODE"),
     ),
     "ICD10": (
         ("claim", "diagnosis_code", "EXACT_CODE"),
-        ("claim", "other_diagnosis_9", "EXACT_CODE"),
         ("claim", "other_diagnosis_10", "EXACT_CODE"),
     ),
-    "ICD-10": (
-        ("claim", "diagnosis_code", "EXACT_CODE"),
-        ("claim", "other_diagnosis_9", "EXACT_CODE"),
-        ("claim", "other_diagnosis_10", "EXACT_CODE"),
-    ),
-    "CPT": (("claim", "procedure_code", "EXACT_CODE"),),
-    "HCPCS": (("claim", "procedure_code", "EXACT_CODE"),),
-    "CPT HCPCS": (("claim", "procedure_code", "EXACT_CODE"),),
-    "CPT/HCPCS": (("claim", "procedure_code", "EXACT_CODE"),),
-    "SNOMED": (
-        ("medical_history", "snomed", "EXACT_CODE"),
-        ("medical_history", "secondary_snomed", "EXACT_CODE"),
-        ("surgical_history", "snomed", "EXACT_CODE"),
-        ("surgical_history", "secondary_snomed", "EXACT_CODE"),
-        ("family_history", "snomed", "EXACT_CODE"),
-    ),
-    "SNOMED CT": (
+    "CPT_HCPCS": (("claim", "procedure_code", "EXACT_CODE"),),
+    "SNOMED_CT": (
         ("medical_history", "snomed", "EXACT_CODE"),
         ("medical_history", "secondary_snomed", "EXACT_CODE"),
         ("surgical_history", "snomed", "EXACT_CODE"),
@@ -109,6 +128,20 @@ EVENT_SYSTEM_COMPATIBILITY: dict[str, frozenset[tuple[str, str]]] = {
 }
 
 
+# A missing or unrecognised DiagnosisType is retained as generic ICD evidence.
+# It must not be guessed as ICD-9 or ICD-10, and therefore cannot satisfy a
+# typed ICD9/ICD10 term until the source supplies an explicit type.
+UNKNOWN_DIAGNOSIS_TYPE_POLICY = "GENERIC_ICD"
+
+
+def diagnosis_system(value: Any) -> tuple[str, bool]:
+    """Return (canonical system, is_unknown) for a claim DiagnosisType."""
+    normalized = normalize_system(value)
+    if normalized in {"ICD9", "ICD10"}:
+        return normalized, False
+    return "ICD", True
+
+
 def event_system_compatible(
     source_table: Any,
     source_field: Any,
@@ -116,11 +149,11 @@ def event_system_compatible(
     source_code_system: Any = None,
 ) -> bool:
     system = normalize_system(terminology_system)
-    if system in {"ICD", "ICD9", "ICD-9", "ICD10", "ICD-10"}:
+    if system in {"ICD", "ICD9", "ICD10"}:
         family = "ICD"
-    elif system in {"CPT", "HCPCS", "CPT HCPCS", "CPT/HCPCS"}:
+    elif system == "CPT_HCPCS":
         family = "CPT_HCPCS"
-    elif system in {"SNOMED", "SNOMED CT"}:
+    elif system == "SNOMED_CT":
         family = "SNOMED_CT"
     elif system == "LOINC":
         family = "LOINC"
@@ -132,14 +165,21 @@ def event_system_compatible(
     observed = normalize_system(source_code_system)
     if family == "ICD":
         if table_field[1] == "other_diagnosis_9":
-            return system in {"ICD", "ICD9", "ICD-9"}
+            return system == "ICD9"
         if table_field[1] == "other_diagnosis_10":
-            return system in {"ICD", "ICD10", "ICD-10"}
-        if observed in {"ICD9", "ICD-9"}:
-            return system in {"ICD", "ICD9", "ICD-9"}
-        if observed in {"ICD10", "ICD-10"}:
-            return system in {"ICD", "ICD10", "ICD-10"}
-    return True
+            return system == "ICD10"
+        # The primary diagnosis field is only typed when DiagnosisType is
+        # present and recognised.  Generic ICD terms are reserved for
+        # unknown/blank types and must not widen a typed ICD9/ICD10 route.
+        if observed == "ICD9":
+            return system == "ICD9"
+        if observed == "ICD10":
+            return system == "ICD10"
+        return system == "ICD"
+    # Structured events carry their native system explicitly.  Do not let a
+    # malformed/local event satisfy a term merely because its source column
+    # happens to be in the right table.
+    return observed == family
 
 
 MEDSPACY_CONTEXT_ATTRIBUTES = (
@@ -170,6 +210,8 @@ __all__ = [
     "STRUCTURED_SOURCE_ROUTES",
     "MEDSPACY_CONTEXT_ATTRIBUTES",
     "normalize_system",
+    "diagnosis_system",
+    "UNKNOWN_DIAGNOSIS_TYPE_POLICY",
     "is_nlp_system",
     "routes_for_system",
     "event_system_compatible",

@@ -12,171 +12,194 @@
       "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "52734007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27130",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "443435007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27447",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "770606008",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27446",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "609588000",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27134",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "443681002",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27137",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "443682009",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27138",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "444463001",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "27486",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "27487",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "Z96.641",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.642",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.643",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.651",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.652",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.653",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.64",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "Z96.65",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "27130",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "52734007",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27447",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "443435007",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27446",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "770606008",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27134",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "609588000",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27137",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "443681002",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27138",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "443682009",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "27486",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "444463001",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "27487",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Hip or knee arthroplasty'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -230,98 +253,322 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "23410",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "23412",
-              "can_fire_atom_alone": false
-            },
-            {
               "value": "24342",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "26055",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "29827",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23410",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23412",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "26055",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
-              "value": "M65.30-M65.39",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M65.9",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M66.80",
-              "can_fire_atom_alone": false
-            },
-            {
               "value": "M66.821",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.822",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.829",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M66.80",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.89",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.9",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M75.100-M75.102",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.211A",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.221A",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M75.100",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M75.101",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M75.102",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.311",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.312",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.319",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.321",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.322",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.329",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.331",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.332",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.339",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.341",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.342",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.349",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.351",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.352",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.359",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
-              "value": "727.03",
-              "can_fire_atom_alone": false
+              "value": "727.63",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.61",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "727.63",
-              "can_fire_atom_alone": false
+              "value": "727.03",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "428883008",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "86128003",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match biceps-tendon rupture/Popeye-deformity language only. Rotator-cuff disease and trigger finger are separate orthopedic atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -368,36 +615,40 @@
       "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "Z98.890",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings."
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "64721",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "29848",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "64728",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "Z98.890",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -451,113 +702,128 @@
       "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "G56.00",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "G56.0",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "64721",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "29848",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "64728",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "20526",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95907",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95908",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95909",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95910",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95911",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95912",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95913",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95885",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "95886",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G56.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G56.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Carpal tunnel syndrome'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -597,7 +863,11 @@
           "ICD10": [
             {
               "value": "G56.03",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit bilateral/right-and-left wording. Recurrence, revision surgery, or persistent symptoms after release do not by themselves establish bilaterality.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -810,57 +1080,64 @@
       "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "ICD10": [
-            {
-              "value": "Z98.890",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
-            }
-          ],
           "CPT_HCPCS": [
             {
               "value": "63047",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "63048",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "63005",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "63017",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "63030",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "63035",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "Z98.890",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Lumbar decompression / laminectomy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -906,58 +1183,106 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "63030",
-              "can_fire_atom_alone": false
+              "value": "63047",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "63047",
-              "can_fire_atom_alone": false
+              "value": "63030",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
-              "value": "M48.00",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M48.06",
-              "can_fire_atom_alone": false
+              "value": "M48.062",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M48.061",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "M48.062",
-              "can_fire_atom_alone": false
+              "value": "M48.06",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M48.07",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M48.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
               "value": "724.02",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "18347007",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "302129007",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "303081002",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "76107001",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "303081002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "302129007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit lumbar spinal/canal stenosis language. Prior decompression or persistent postoperative symptoms alone do not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1038,82 +1363,266 @@
         "codes": {
           "CPT_HCPCS": [
             {
-              "value": "23410",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "23412",
-              "can_fire_atom_alone": false
+              "value": "29827",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "24342",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23410",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23412",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "26055",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "29827",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
-              "value": "M65.30-M65.39",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M65.9",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M66.821",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M66.822",
-              "can_fire_atom_alone": false
-            },
-            {
               "value": "M75.100",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M75.100-M75.102",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.101",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.102",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M66.821",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M66.822",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.311",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.312",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.319",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.321",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.322",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.329",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.331",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.332",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.339",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.341",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.342",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.349",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.351",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.352",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.359",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M65.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
-              "value": "727.03",
-              "can_fire_atom_alone": false
+              "value": "727.63",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.61",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "727.63",
-              "can_fire_atom_alone": false
+              "value": "727.03",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "926335004",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match rotator-cuff tear/repair language only. Biceps rupture, trigger finger, and generic tenosynovitis are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1152,115 +1661,130 @@
       "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "239960007",
+              "value": "23472",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
-              "value": "399114005",
+              "value": "23470",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "202856007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "M75.00",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.01",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.02",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.40",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.41",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.42",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.20",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.21",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.22",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M75.80",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "23472",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "239960007",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "23470",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "399114005",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "202856007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Other shoulder disorder'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1314,43 +1838,48 @@
       "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
-            {
-              "value": "414872006",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings."
-            }
-          ],
           "ICD10": [
             {
               "value": "M66.88",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.8",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.38",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.9",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "414872006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous / trivial-trauma rupture mechanism'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1424,158 +1953,314 @@
         "codes": {
           "CPT_HCPCS": [
             {
+              "value": "26055",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
               "value": "20550",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "23410",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "23412",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "24342",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "26055",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             },
             {
               "value": "29827",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23410",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "23412",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "M65.30",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "M65.30-M65.39",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.311",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.312",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.319",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.321",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.322",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.329",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.331",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.332",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.339",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.341",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.342",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.349",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.351",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.352",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.359",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.841",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.842",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.849",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M65.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.821",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "M66.822",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "M75.100-M75.102",
-              "can_fire_atom_alone": false
+              "value": "M75.100",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M75.101",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M75.102",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD9": [
             {
-              "value": "727.03",
-              "can_fire_atom_alone": false
+              "value": "727.63",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.61",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "727.63",
-              "can_fire_atom_alone": false
+              "value": "727.03",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "727.9",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "SNOMED_CT": [
             {
               "value": "1539003",
-              "can_fire_atom_alone": false
-            },
-            {
-              "value": "239267000",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "239987006",
-              "can_fire_atom_alone": false
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "239267000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trigger-digit/stenosing-tenosynovitis language only. Biceps rupture and rotator-cuff disease are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1630,80 +2315,90 @@
       "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "239267000",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "26055",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "1303621007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "26060",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "1303620008",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "20550",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "239268005",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "1303617000",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "1303614007",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "Z98.890",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "26055",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "239267000",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "26060",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "1303621007",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
-              "value": "20550",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "1303620008",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "239268005",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "1303617000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "1303614007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Trigger finger release procedure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -1750,66 +2445,74 @@
       "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "262979003",
+              "value": "24342",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "S46.11",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.21",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.12",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.22",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.1",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             },
             {
               "value": "S46.2",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "24342",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "262979003",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Traumatic biceps tendon rupture'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },

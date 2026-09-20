@@ -8,7 +8,12 @@ from dataclasses import asdict, dataclass, field, replace
 from typing import Any, Iterable, Mapping
 
 from ..warehouse.source_schema import default_source_config
-from .extraction_contract import derive_available_date, normalize_system
+from .extraction_contract import (
+    UNKNOWN_DIAGNOSIS_TYPE_POLICY,
+    derive_available_date,
+    diagnosis_system,
+    normalize_system,
+)
 
 
 def _json_default(value: Any) -> str:
@@ -38,16 +43,72 @@ def _physical(table_cfg: Mapping[str, Any], logical: str) -> str | None:
 
 
 def _split_declared_values(value: Any) -> list[str]:
-    """Split common multi-value warehouse delimiters without regex parsing."""
+    """Flatten arrays and common multi-value delimiters.
+
+    Warehouse exports represent repeated codes as lists, newline-delimited
+    strings, or delimiter-separated strings.  This helper is used only for
+    code-bearing fields, so comma is a safe legacy delimiter here.  Nested
+    arrays are flattened recursively and empty values are discarded.
+    """
     if value in (None, ""):
         return []
+    if isinstance(value, Mapping):
+        for key in ("values", "codes", "code", "value"):
+            if key in value:
+                return _split_declared_values(value[key])
+        return []
+    if isinstance(value, (list, tuple, set)):
+        output: list[str] = []
+        for item in value:
+            output.extend(_split_declared_values(item))
+        return output
     values = [str(value)]
-    for delimiter in ("|", ";", ",", "~"):
+    for delimiter in ("|", ";", ",", "~", "\r\n", "\n", "\r"):
         next_values: list[str] = []
         for item in values:
             next_values.extend(item.split(delimiter))
         values = next_values
     return [item.strip() for item in values if item.strip()]
+
+
+def _value_identity(logical: str, index: int, value: Any) -> str:
+    return hashlib.sha256(
+        f"{logical}|{index}|{value}".encode("utf-8")
+    ).hexdigest()[:16]
+
+
+def _observation_system(row: Mapping[str, Any]) -> tuple[str | None, bool]:
+    """Resolve an optional lab identifier-system declaration.
+
+    The warehouse contract exposes ``ObservationIdentifier`` but does not
+    itself declare that its values are LOINC.  A supplied system declaration
+    is therefore required before a lab identifier can take the LOINC route;
+    absent metadata remains untyped and cannot satisfy any structured term.
+    """
+    declared = _value(row, "ObservationIdentifierSystem", "observation_identifier_system")
+    normalized = normalize_system(declared)
+    if normalized:
+        return normalized, False
+    return None, False
+
+
+def _text_event(base: SourceEvent, *, source_field: str, text: Any) -> SourceEvent:
+    """Create a narrative event while retaining source/context provenance."""
+    return replace(
+        base,
+        source_field=source_field,
+        code_system=None,
+        code_value=None,
+        text_value=None if text in (None, "") else str(text),
+        attributes={
+            **dict(base.attributes or {}),
+            "match_mode": "CODE_IN_TEXT",
+            "code_in_text": True,
+            "context_available": text not in (None, ""),
+            "text_source_field": source_field,
+        },
+        value_identity=_value_identity(source_field, 0, text),
+    )
 
 
 @dataclass
@@ -181,6 +242,16 @@ def normalize_source_row(
     else:
         raise ValueError(f"unsupported source table: {table_key}")
     attrs = {"table_key": table_key, "physical_table": physical_name}
+    if table_key == "claim":
+        raw_type = _value(row, _physical(table, "diagnosis_type"), "diagnosis_type")
+        diagnosis_kind, diagnosis_unknown = diagnosis_system(raw_type)
+        attrs["diagnosis_type"] = raw_type
+        attrs["diagnosis_type_normalized"] = diagnosis_kind
+        attrs["diagnosis_type_unknown"] = diagnosis_unknown
+        attrs["unknown_diagnosis_type_policy"] = UNKNOWN_DIAGNOSIS_TYPE_POLICY
+        attrs["procedure_modifier_1"] = _value(row, _physical(table, "procedure_modifier_1"), "procedure_modifier_1")
+        attrs["procedure_modifier_2"] = _value(row, _physical(table, "procedure_modifier_2"), "procedure_modifier_2")
+        attrs["procedure_modifier_3"] = _value(row, _physical(table, "procedure_modifier_3"), "procedure_modifier_3")
     if table_key == "family_history":
         attrs["family_member"] = _value(row, _physical(table, "family_member"), "family_member")
         attrs["family_status"] = _value(row, _physical(table, "status"), "status")
@@ -188,12 +259,24 @@ def normalize_source_row(
         attrs["source_category"] = _value(row, _physical(table, "source_category"), "source_category")
     if table_key == "lab":
         attrs["result_status"] = result_status
+        observation_system, observation_assumed = _observation_system(row)
+        attrs["observation_identifier_system"] = observation_system
+        attrs["observation_identifier_system_declared"] = observation_system is not None
+        attrs["observation_identifier_system_assumed"] = observation_assumed
     return SourceEvent(
         run_id=str(run_id), patient_id=str(patient), encounter_id=None if encounter in (None, "") else str(encounter),
         source_table=physical_name, source_record_id=source_record_id, event_date=event_date,
         available_date=derive_available_date(_value(row, "available_date", "available_date"), event_date),
         source_specialty=None if specialty in (None, "") else str(specialty), source_field=source_field,
-        code_system=None, code_value=None if code_value in (None, "") else str(code_value),
+        code_system=(
+            diagnosis_system(_value(row, _physical(table, "diagnosis_type"), "diagnosis_type"))[0]
+            if table_key == "claim" and source_field == "diagnosis_code"
+            else "CPT_HCPCS" if table_key == "claim" and source_field == "procedure_code"
+            else _observation_system(row)[0] if table_key == "lab" and source_field == "lab"
+            else "SNOMED_CT" if table_key in {"medical_history", "surgical_history", "family_history"}
+            else None
+        ),
+        code_value=None if code_value in (None, "") else str(code_value),
         text_value=None if text_value in (None, "") else str(text_value), result_value=result_value,
         result_status=None if result_status in (None, "") else str(result_status),
         experiencer_hint="FAMILY_MEMBER" if table_key == "family_history" else "PATIENT",
@@ -226,8 +309,12 @@ def expand_source_row(
         return _value(row, _physical(table, logical), logical)
     value_events: list[SourceEvent] = []
     if table_key == "claim":
-        diagnosis_type = normalize_system(raw("diagnosis_type"))
-        primary_system = diagnosis_type if diagnosis_type in {"ICD9", "ICD-9", "ICD10", "ICD-10"} else "ICD"
+        primary_system, diagnosis_type_unknown = diagnosis_system(raw("diagnosis_type"))
+        base.attributes.update({
+            "diagnosis_type_normalized": primary_system,
+            "diagnosis_type_unknown": diagnosis_type_unknown,
+            "unknown_diagnosis_type_policy": UNKNOWN_DIAGNOSIS_TYPE_POLICY,
+        })
         for logical in ("diagnosis_code", "other_diagnosis_9", "other_diagnosis_10", "procedure_code"):
             system = {
                 "diagnosis_code": primary_system,
@@ -237,29 +324,46 @@ def expand_source_row(
             }[logical]
             for index, value in enumerate(_split_declared_values(raw(logical))):
                 value_events.append(replace(base, source_field=logical, code_system=system, code_value=value, text_value=None,
-                                            value_identity=hashlib.sha256(f"{logical}|{index}|{value}".encode()).hexdigest()[:16]))
+                                            value_identity=_value_identity(logical, index, value)))
         if raw("clinical_notes") not in (None, ""):
-            value_events.append(replace(base, source_field="clinical_notes", code_value=None, text_value=str(raw("clinical_notes"))))
+            value_events.append(_text_event(base, source_field="clinical_notes", text=raw("clinical_notes")))
     elif table_key == "lab":
-        if raw("observation_identifier") not in (None, "") or raw("observation_value") not in (None, ""):
-            value_events.append(replace(base, source_field="observation_identifier", code_system="LOINC", code_value=None if raw("observation_identifier") in (None, "") else str(raw("observation_identifier")), result_value=raw("observation_value")))
+        observation_system, observation_assumed = _observation_system(row)
+        base.attributes.update({
+            "observation_identifier_system": observation_system,
+            "observation_identifier_system_declared": observation_system is not None,
+            "observation_identifier_system_assumed": observation_assumed,
+        })
+        identifiers = _split_declared_values(raw("observation_identifier"))
+        if identifiers or raw("observation_value") not in (None, ""):
+            for index, value in enumerate(identifiers or [None]):
+                value_events.append(replace(
+                    base,
+                    source_field="observation_identifier",
+                    code_system=observation_system,
+                    code_value=value,
+                    text_value=None,
+                    result_value=raw("observation_value"),
+                    value_identity=_value_identity("observation_identifier", index, value),
+                ))
         if raw("lab_result_note") not in (None, ""):
-            value_events.append(replace(base, source_field="lab_result_note", code_value=None, text_value=str(raw("lab_result_note"))))
+            value_events.append(_text_event(base, source_field="lab_result_note", text=raw("lab_result_note")))
     elif table_key in {"medical_history", "surgical_history"}:
         for logical in ("snomed", "secondary_snomed"):
             for index, value in enumerate(_split_declared_values(raw(logical))):
                 value_events.append(replace(base, source_field=logical, code_system="SNOMED_CT", code_value=value, text_value=None,
-                                            value_identity=hashlib.sha256(f"{logical}|{index}|{value}".encode()).hexdigest()[:16]))
+                                            value_identity=_value_identity(logical, index, value)))
         if raw("value") not in (None, ""):
-            value_events.append(replace(base, source_field="value", code_value=None, text_value=str(raw("value"))))
+            value_events.append(_text_event(base, source_field="value", text=raw("value")))
     elif table_key == "family_history":
-        if raw("snomed") not in (None, ""):
-            value_events.append(replace(base, source_field="snomed", code_system="SNOMED_CT", code_value=str(raw("snomed")), text_value=None))
+        for index, value in enumerate(_split_declared_values(raw("snomed"))):
+            value_events.append(replace(base, source_field="snomed", code_system="SNOMED_CT", code_value=value, text_value=None,
+                                        value_identity=_value_identity("snomed", index, value)))
         if raw("condition") not in (None, ""):
-            value_events.append(replace(base, source_field="condition", code_value=None, text_value=str(raw("condition"))))
+            value_events.append(_text_event(base, source_field="condition", text=raw("condition")))
     elif table_key == "clinical_note":
         if raw("note_text") not in (None, ""):
-            value_events.append(replace(base, source_field="note_text", code_value=None, text_value=str(raw("note_text"))))
+            value_events.append(_text_event(base, source_field="note_text", text=raw("note_text")))
     if not value_events:
         value_events.append(base)
     return value_events

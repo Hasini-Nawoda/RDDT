@@ -99,38 +99,42 @@
       "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "61425002",
+              "value": "86140",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "86141",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R79.82",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "86140",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "61425002",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "86141",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -170,38 +174,42 @@
       "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
       "extraction": {
         "codes": {
-          "SNOMED_CT": [
+          "CPT_HCPCS": [
             {
-              "value": "416838001",
+              "value": "85652",
               "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85651",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
             }
           ],
           "ICD10": [
             {
               "value": "R70.0",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ],
-          "CPT_HCPCS": [
+          "SNOMED_CT": [
             {
-              "value": "85652",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "value": "416838001",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
-            },
-            {
-              "value": "85651",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
@@ -298,10 +306,11 @@
           "SNOMED_CT": [
             {
               "value": "40185008",
-              "can_fire_atom_alone": false,
-              "value_class": "STANDARD_CODE",
+              "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings."
+              "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
             }
           ]
         },
