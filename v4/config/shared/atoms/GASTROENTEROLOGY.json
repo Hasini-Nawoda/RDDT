@@ -1272,6 +1272,113 @@
           }
         ]
       }
+    },
+    {
+      "atom_id": "abdominal_pain",
+      "preferred_name": "Unexplained abdominal pain",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "GASTROENTEROLOGY",
+      "source_subdomain": "gi_hepatic",
+      "clinical_meaning": "Persistent/recurrent abdominal pain without a sufficient competing explanation.",
+      "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "43235",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "45378",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "74177",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R10.10",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R10.13",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R10.84",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R10.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "21522001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "abdominal discomfort",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "abdominal pain",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bloating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "epigastric pain",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stomach pain",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
     }
   ]
 }

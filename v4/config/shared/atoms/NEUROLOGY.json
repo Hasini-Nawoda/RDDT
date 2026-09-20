@@ -3600,6 +3600,85 @@
           }
         ]
       }
+    },
+    {
+      "atom_id": "sensory_loss",
+      "preferred_name": "Sensory loss",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEUROLOGY",
+      "source_subdomain": "neuro",
+      "clinical_meaning": "Documented peripheral sensory loss on examination/history.",
+      "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R20.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "decreased sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "numbness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced vibration",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sensory loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stocking distribution",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
     }
   ]
 }

@@ -2,6 +2,10 @@
   "shared_atoms": "shared/atoms",
   "phenotypes": {
     "ATTRV": "phenotypes/ATTRV",
-    "ATTRWT": "phenotypes/ATTRWT"
+    "ATTRWT": "phenotypes/ATTRWT",
+    "AL": {
+      "path": "phenotypes/AL",
+      "status": "LOADED"
+    }
   }
 }

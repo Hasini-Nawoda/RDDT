@@ -24,6 +24,11 @@ from .extraction.known_attr import (
     KnownAttrConfig,
     load_known_attr_config,
 )
+from .extraction.known_al import (
+    KnownALConfig,
+    load_known_al_config,
+    identify_known_al,
+)
 from .warehouse.snowflake_io import create_run_table, execute, insert_rows
 from .pipeline_steps.step_01_source_validation import load_config, validate_sources
 from .pipeline_steps.step_02_candidate_retrieval import candidate_records, retrieve_candidates
@@ -38,9 +43,13 @@ from .pipeline_steps.step_09_priority_guardrails import evaluate_guardrails_stag
 from .pipeline_steps.step_10_router import route_stage
 from .pipeline_steps.step_11_patient_profiles import (
     build_attr_profiles,
+    build_al_detected_profiles,
+    build_known_al_profiles,
     build_known_profiles,
     build_profiles,
     export_attr_profile_files,
+    export_al_detected_profile_files,
+    export_known_al_profile_files,
     export_known_profile_files,
     export_profile_files,
 )
@@ -50,6 +59,7 @@ from .warehouse.source_schema import default_source_config, qualified_table_name
 TEMP_TABLES = {
     "candidate_patients": "AMY_V4_CANDIDATE_PATIENT",
     "known_attr_patients": "AMY_V4_KNOWN_ATTR",
+    "known_al_patients": "AMY_V4_KNOWN_AL",
     "source_events": "AMY_V4_SOURCE_EVENT",
     "atom_matches": "AMY_V4_ATOM_MATCH",
     "evidence_events": "AMY_V4_EVIDENCE_EVENT",
@@ -72,6 +82,12 @@ TEMP_TABLE_SCHEMAS = {
         "CONFIRMATION_RULE_IDS", "MATCHED_CONFIG_VALUES", "EVENT_DATES",
         "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVIDENCE_IDS",
         "KNOWN_ATTR_CONFIG_HASH",
+    ),
+    "known_al_patients": (
+        "RUN_ID", "PATIENT_ID", "STATUS", "CONFIRMATION_SCOPE",
+        "CONFIRMATION_RULE_IDS", "MATCHED_CONFIG_VALUES", "EVENT_DATES",
+        "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVIDENCE_IDS",
+        "KNOWN_AL_CONFIG_HASH",
     ),
     "source_events": (
         "RUN_ID", "PATIENT_ID", "SOURCE_EVENT_ID", "SUPPORT_LINEAGE_ID",
@@ -133,13 +149,14 @@ class PipelineError(RuntimeError):
 
 
 ATTR_PHENOTYPES = ("ATTRV", "ATTRWT")
+SCREENED_PHENOTYPES = (*ATTR_PHENOTYPES, "AL")
 
 
 class AttrExtractionConfig:
     """Shared atom/terminology view for one-pass ATTRv plus ATTRwt extraction."""
 
     def __init__(self, configs: Mapping[str, Any]):
-        missing = [phenotype for phenotype in ATTR_PHENOTYPES if phenotype not in configs]
+        missing = [phenotype for phenotype in SCREENED_PHENOTYPES if phenotype not in configs]
         if missing:
             raise PipelineError(f"Combined ATTR run is missing phenotype configs: {missing}")
         baseline = configs[ATTR_PHENOTYPES[0]]
@@ -147,7 +164,7 @@ class AttrExtractionConfig:
             "atoms": baseline.rows("atoms"),
             "terminology": baseline.rows("terminology"),
         }
-        for phenotype in ATTR_PHENOTYPES[1:]:
+        for phenotype in SCREENED_PHENOTYPES[1:]:
             current = configs[phenotype]
             for table in ("atoms", "terminology"):
                 if current.rows(table) != self.tables[table]:
@@ -156,7 +173,7 @@ class AttrExtractionConfig:
                         "one-pass extraction would be unsafe"
                     )
         hash_payload = json.dumps(
-            {phenotype: configs[phenotype].config_hash for phenotype in ATTR_PHENOTYPES},
+            {phenotype: configs[phenotype].config_hash for phenotype in SCREENED_PHENOTYPES},
             sort_keys=True,
             separators=(",", ":"),
         )
@@ -178,8 +195,11 @@ class PipelineRun:
     config_gaps: list[dict[str, Any]] = field(default_factory=list)
     candidate_patients: list[Any] = field(default_factory=list)
     known_attr_patients: list[Any] = field(default_factory=list)
+    known_al_patients: list[Any] = field(default_factory=list)
     known_attr_profiles: list[dict[str, Any]] = field(default_factory=list)
+    known_al_profiles: list[dict[str, Any]] = field(default_factory=list)
     known_attr_exports: dict[str, str] = field(default_factory=dict)
+    known_al_exports: dict[str, str] = field(default_factory=dict)
     source_events: list[Any] = field(default_factory=list)
     atom_matches: list[Any] = field(default_factory=list)
     evidence_events: list[Any] = field(default_factory=list)
@@ -191,6 +211,8 @@ class PipelineRun:
     router_output: list[Any] = field(default_factory=list)
     patient_profiles: list[dict[str, Any]] = field(default_factory=list)
     profile_exports: dict[str, str] = field(default_factory=dict)
+    al_detected_profiles: list[dict[str, Any]] = field(default_factory=list)
+    al_detected_exports: dict[str, str] = field(default_factory=dict)
     temporary_tables: dict[str, str] = field(default_factory=lambda: dict(TEMP_TABLES))
 
     def summary(self) -> dict[str, Any]:
@@ -204,6 +226,9 @@ class PipelineRun:
             "temporary_tables": dict(self.temporary_tables),
             "profile_exports": dict(self.profile_exports),
             "known_attr_exports": dict(self.known_attr_exports),
+            "known_al_exports": dict(self.known_al_exports),
+            "al_detected_exports": dict(self.al_detected_exports),
+            "al_detected_profiles": len(self.al_detected_profiles),
         }
 
 
@@ -502,13 +527,14 @@ def run_attr_reference_pipeline(
     profile_output_dir: str | Path | None = None,
     profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
     known_attr_config: KnownAttrConfig | None = None,
+    known_al_config: KnownALConfig | None = None,
 ) -> PipelineRun:
-    """Run ATTRv and ATTRwt together after one shared extraction pass."""
+    """Run ATTRv, ATTRwt, and AL after one shared extraction pass."""
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     loaded_configs = dict(configs or {
         phenotype: _load_config(config_dir=config_dir, phenotype=phenotype)
-        for phenotype in ATTR_PHENOTYPES
+        for phenotype in SCREENED_PHENOTYPES
     })
     extraction_config = AttrExtractionConfig(loaded_configs)
     source_config = source_config or default_source_config()
@@ -523,6 +549,7 @@ def run_attr_reference_pipeline(
     if context_processor is None and nlp is not None:
         context_processor = ClinicalContextAdapter(nlp)
     known_config = known_attr_config or load_known_attr_config()
+    known_al = known_al_config or load_known_al_config()
     known_attr, events = separate_known_attr(
         all_events,
         run_id=run_id,
@@ -531,6 +558,19 @@ def run_attr_reference_pipeline(
         nlp=nlp,
         context_processor=context_processor,
     )
+    # Identify known AL on the full event set, then remove both known routes
+    # before shared extraction/evidence qualification.  This keeps confirmed
+    # patients out of all phenotype scoring and stage counts.
+    known_al_result = identify_known_al(
+        all_events,
+        run_id=run_id,
+        screening_cutoff=screening_cutoff,
+        nlp=nlp,
+        context_processor=context_processor,
+        config=known_al,
+    )
+    if known_al_result.patient_ids:
+        events = [event for event in events if event.patient_id not in known_al_result.patient_ids]
     matches = match_atoms(events, extraction_config, nlp=nlp)
     evidence = qualify_evidence(
         matches,
@@ -539,7 +579,8 @@ def run_attr_reference_pipeline(
         screening_cutoff=screening_cutoff,
     )
     patient_universe = set(candidate_patient_ids or {event.patient_id for event in all_events})
-    patients = sorted(patient_universe - known_attr.patient_ids)
+    excluded_ids = known_attr.patient_ids | known_al_result.patient_ids
+    patients = sorted(patient_universe - excluded_ids)
 
     signal_hits: list[Any] = []
     bucket_state: list[Any] = []
@@ -549,7 +590,7 @@ def run_attr_reference_pipeline(
     router_output: list[Any] = []
     for patient_id in patients:
         patient_evidence = [row for row in evidence if row.patient_id == patient_id]
-        for phenotype in ATTR_PHENOTYPES:
+        for phenotype in SCREENED_PHENOTYPES:
             config = loaded_configs[phenotype]
             patient_signals = evaluate_signals_stage(
                 config,
@@ -622,6 +663,19 @@ def run_attr_reference_pipeline(
         include_proprietary_trace=True,
         profile_suspicion_levels=profile_suspicion_levels,
     ) if include_profiles else []
+    al_detected_profiles = build_al_detected_profiles(
+        router_output,
+        config=extraction_config,
+        source_events=events,
+        evidence_events=evidence,
+        signal_hits=signal_hits,
+        bucket_state=bucket_state,
+        combination_hits=combination_hits,
+        guardrail_hits=guardrail_hits,
+        demographics=demographics,
+        run_id=run_id,
+        include_proprietary_trace=True,
+    ) if include_profiles else []
     known_profiles = build_known_profiles(
         known_attr.patients,
         known_config=known_config,
@@ -630,12 +684,25 @@ def run_attr_reference_pipeline(
         demographics=demographics,
         include_proprietary_trace=True,
     ) if include_profiles else []
+    known_al_profiles = build_known_al_profiles(
+        known_al_result.patients,
+        known_config=known_al,
+        source_events=all_events,
+        evidence_events=known_al_result.evidence,
+        demographics=demographics,
+        include_proprietary_trace=True,
+    ) if include_profiles else []
     exports = export_attr_profile_files(profiles, profile_output_dir)
+    al_detected_exports = export_al_detected_profile_files(al_detected_profiles, profile_output_dir)
     known_exports = export_known_profile_files(known_profiles, profile_output_dir)
+    known_al_exports = export_known_al_profile_files(known_al_profiles, profile_output_dir)
+    if known_al_result.config_gap:
+        gaps.append({"scope": "KNOWN_AL", "gap": known_al_result.config_gap})
     stages = {
         "candidate_patients": len(patients),
         "candidate_patients_total_retrieved": len(patient_universe),
         "known_attr_patients": len(known_attr.patients),
+        "known_al_patients": len(known_al_result.patients),
         "source_events": len(events),
         "atom_matches": len(matches),
         "evidence_events": len(evidence),
@@ -646,7 +713,10 @@ def run_attr_reference_pipeline(
         "phenotype_results": len(phenotype_results),
         "router_output": len(router_output),
         "patient_profiles": len(profiles),
+        "al_detected_profiles": len(al_detected_profiles),
+        "al_detected_patients": len(al_detected_profiles),
         "known_attr_profiles": len(known_profiles),
+        "known_al_profiles": len(known_al_profiles),
     }
     return PipelineRun(
         run_id=run_id,
@@ -654,11 +724,14 @@ def run_attr_reference_pipeline(
         implementation_version=IMPLEMENTATION_VERSION,
         source_validation=None,
         stage_counts=stages,
-        evaluated_phenotypes=list(ATTR_PHENOTYPES),
+        evaluated_phenotypes=list(SCREENED_PHENOTYPES),
         config_gaps=gaps,
         known_attr_patients=known_attr.patients,
+        known_al_patients=known_al_result.patients,
         known_attr_profiles=known_profiles,
+        known_al_profiles=known_al_profiles,
         known_attr_exports=known_exports,
+        known_al_exports=known_al_exports,
         source_events=events,
         atom_matches=matches,
         evidence_events=evidence,
@@ -670,6 +743,8 @@ def run_attr_reference_pipeline(
         router_output=router_output,
         patient_profiles=profiles,
         profile_exports=exports,
+        al_detected_profiles=al_detected_profiles,
+        al_detected_exports=al_detected_exports,
     )
 
 
@@ -814,16 +889,18 @@ def run_attr_v4_pipeline(
     profile_output_dir: str | Path | None = None,
     profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
     known_attr_config_path: str | Path | None = None,
+    known_al_config_path: str | Path | None = None,
 ) -> PipelineRun:
-    """Run ATTRv and ATTRwt for every candidate and emit one ATTR profile."""
+    """Run ATTRv, ATTRwt, and AL for every candidate in one extraction pass."""
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     configs = {
         phenotype: _load_config(config_dir=config_dir, phenotype=phenotype)
-        for phenotype in ATTR_PHENOTYPES
+        for phenotype in SCREENED_PHENOTYPES
     }
     extraction_config = AttrExtractionConfig(configs)
     known_config = load_known_attr_config(known_attr_config_path)
+    known_al_config = load_known_al_config(known_al_config_path)
     source_config = source_config or default_source_config()
     run_id = run_id or str(uuid.uuid4())
     validation = validate_sources(session, source_config)
@@ -832,7 +909,7 @@ def run_attr_v4_pipeline(
     if source_rows_by_table is None:
         candidates = retrieve_candidates(
             session,
-            CandidateConfigUnion(extraction_config, known_config),
+            CandidateConfigUnion(extraction_config, known_config, additional_configs=(known_al_config,)),
             run_id=run_id,
             source_config=source_config,
             nlp=nlp,
@@ -866,9 +943,11 @@ def run_attr_v4_pipeline(
         profile_output_dir=profile_output_dir,
         profile_suspicion_levels=profile_suspicion_levels,
         known_attr_config=known_config,
+        known_al_config=known_al_config,
     )
     result.candidate_patients = candidates
     known_ids = {str(row.patient_id) for row in result.known_attr_patients}
+    known_ids |= {str(row.patient_id) for row in result.known_al_patients}
     retrieved_ids = set(candidate_ids or {event.patient_id for event in result.source_events}) | known_ids
     result.stage_counts["candidate_patients"] = len(retrieved_ids - known_ids)
     result.stage_counts["candidate_patients_total_retrieved"] = len(retrieved_ids)
@@ -878,7 +957,8 @@ def run_attr_v4_pipeline(
         if source_rows_by_table is not None and not candidates:
             synthetic_ids = (
                 {event.patient_id for event in result.source_events}
-                | {str(row.patient_id) for row in result.known_attr_patients}
+                    | {str(row.patient_id) for row in result.known_attr_patients}
+                    | {str(row.patient_id) for row in result.known_al_patients}
             )
             _materialize_records(
                 session,
@@ -897,6 +977,7 @@ def run_attr_v4_pipeline(
             )
         stage_rows = {
             "known_attr_patients": result.known_attr_patients,
+            "known_al_patients": result.known_al_patients,
             "source_events": result.source_events,
             "atom_matches": result.atom_matches,
             "evidence_events": result.evidence_events,
@@ -961,6 +1042,7 @@ __all__ = [
     "PipelineError",
     "PipelineRun",
     "ATTR_PHENOTYPES",
+    "SCREENED_PHENOTYPES",
     "AttrExtractionConfig",
     "run_attr_reference_pipeline",
     "run_attr_v4_pipeline",

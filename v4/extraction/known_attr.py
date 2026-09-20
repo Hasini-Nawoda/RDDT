@@ -61,18 +61,22 @@ class KnownAttrConfig:
 class CandidateConfigUnion:
     """Candidate-only union of a phenotype package and known-ATTR vocabulary."""
 
-    def __init__(self, phenotype_config: Any, known_attr_config: KnownAttrConfig):
+    def __init__(self, phenotype_config: Any, known_attr_config: KnownAttrConfig, additional_configs: Iterable[Any] = ()):
         self.phenotype_config = phenotype_config
         self.known_attr_config = known_attr_config
+        self.additional_configs = tuple(additional_configs or ())
         self.config_hash = _canonical_hash({
             "phenotype": getattr(phenotype_config, "config_hash", None),
             "known_attr": known_attr_config.config_hash,
+            "additional": [getattr(config, "config_hash", None) for config in self.additional_configs],
         })
 
     def rows(self, table: str) -> list[dict[str, Any]]:
         base = list(self.phenotype_config.rows(table))
         if table in {"atoms", "terminology"}:
             base.extend(self.known_attr_config.rows(table))
+            for config in self.additional_configs:
+                base.extend(config.rows(table))
         return base
 
 

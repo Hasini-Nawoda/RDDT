@@ -240,6 +240,173 @@
           }
         ]
       }
+    },
+    {
+      "atom_id": "myeloma_therapy_exposure",
+      "preferred_name": "Anti-myeloma therapy exposure",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "HEMATOLOGY",
+      "source_subdomain": "heme",
+      "clinical_meaning": "Documented anti-plasma-cell/myeloma therapy exposure used as corroborating history, not proof of AL amyloid.",
+      "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "38206",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "38207",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "38241",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96401",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96402",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96413",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96415",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96417",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "Z51.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Z51.11",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Z92.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "363688001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Darzalex",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Revlimid",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Velcade",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autologous stem cell transplant",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bortezomib",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "carfilzomib",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "daratumumab",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dexamethasone",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lenalidomide",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "melphalan",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pomalidomide",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "thalidomide",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
     }
   ]
 }

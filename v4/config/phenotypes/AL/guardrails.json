@@ -1,0 +1,68 @@
+{
+  "phenotype": "AL",
+  "guardrails": [
+    {
+      "guardrail_id": "AL01_CLONE_NOT_TYPING",
+      "enabled": true,
+      "rule_ref": "AL01_CLONE_NOT_TYPING",
+      "action": "ROUTE_ONLY",
+      "route": "AMYLOID_TYPING",
+      "does_not_negate_attrv": true,
+      "message": "A clone raises AL suspicion but does not by itself prove the amyloid deposits are AL; ATTR may coexist with monoclonal gammopathy."
+    },
+    {
+      "guardrail_id": "AL22_ATTRWT_CTS_TRAJECTORY",
+      "enabled": true,
+      "rule_ref": "AL22_ATTRWT_CTS_TRAJECTORY",
+      "action": "ROUTE_ONLY",
+      "route": "ATTRWT_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "This timing pattern routes toward ATTRwt but does not absolutely exclude AL."
+    },
+    {
+      "guardrail_id": "AL23_ATTRWT_ORTHOPEDIC_PRODROME",
+      "enabled": true,
+      "rule_ref": "AL23_ATTRWT_ORTHOPEDIC_PRODROME",
+      "action": "ROUTE_ONLY",
+      "route": "ATTRWT_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "Cluster/timing favors ATTRwt pathway; individual degenerative conditions are nonspecific."
+    },
+    {
+      "guardrail_id": "AL25_AA_DIFFERENTIAL",
+      "enabled": true,
+      "rule_ref": "AL25_AA_DIFFERENTIAL",
+      "action": "ROUTE_ONLY",
+      "route": "AA_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "Evaluate AA; if a clone also exists, keep AL active until tissue typing resolves the amyloid type."
+    },
+    {
+      "guardrail_id": "AL27_MONOCLONAL_PROVENANCE",
+      "enabled": true,
+      "rule_ref": "AL27_MONOCLONAL_PROVENANCE",
+      "action": "ROUTE_ONLY",
+      "route": "AL_DIAGNOSTIC_PATHWAY",
+      "does_not_negate_attrv": true,
+      "message": "Use pre-existing independent results for pre-test context. Tests ordered because amyloid is suspected are diagnostic-stage evidence."
+    },
+    {
+      "guardrail_id": "AL30_CARDIAC_DOMINANT_ATTR_ROUTE",
+      "enabled": true,
+      "rule_ref": "AL30_CARDIAC_DOMINANT_ATTR_ROUTE",
+      "action": "ROUTE_ONLY",
+      "route": "ATTR_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "Missing tests are UNKNOWN, not negative; cardiac-only AL can occur, so this is not a hard exclusion."
+    },
+    {
+      "guardrail_id": "AL31_ATTRV_PATTERN",
+      "enabled": true,
+      "rule_ref": "AL31_ATTRV_PATTERN",
+      "action": "ROUTE_ONLY",
+      "route": "ATTRV_REVIEW_AND_TTR_GENOTYPING",
+      "does_not_negate_attrv": true,
+      "message": "Route toward ATTRv/genetic evaluation; absence of family history does not support AL."
+    }
+  ]
+}

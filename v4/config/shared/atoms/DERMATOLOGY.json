@@ -1,0 +1,335 @@
+{
+  "source_specialty": "DERMATOLOGY",
+  "atoms": [
+    {
+      "atom_id": "al08_competing_purpura",
+      "preferred_name": "Competing cause of purpura or bruising",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "DERMATOLOGY",
+      "source_subdomain": "mucosal_cutaneous",
+      "clinical_meaning": "Medication, thrombocytopenia, senile/steroid purpura, trauma or other adequate explanation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "85025",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85049",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85730",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "D69.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "D69.59",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "D69.6",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E54",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Z79.01",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Z79.52",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "109957002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "302215000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "415116008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "449681000124101",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "53751009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "711150003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "76169001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "81500003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "apixaban",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "aspirin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "clopidogrel",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low platelets",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prednisone",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rivaroxaban",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "senile purpura",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "steroid purpura",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "thrombocytopenia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "warfarin",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ecchymosis",
+      "preferred_name": "Spontaneous unexplained ecchymosis",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "DERMATOLOGY",
+      "source_subdomain": "mucosal_cutaneous",
+      "clinical_meaning": "Spontaneous/ecchymotic bruising without sufficient traumatic explanation.",
+      "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "85025",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85027",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85049",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85260",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85610",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85730",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "D69.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R23.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "1156411007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "302228007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "bruises easily",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "easy bruising",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ecchymoses",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spontaneous bruising",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unexplained bruises",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

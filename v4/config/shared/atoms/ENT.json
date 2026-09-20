@@ -1,0 +1,156 @@
+{
+  "source_specialty": "ENT",
+  "atoms": [
+    {
+      "atom_id": "al07_competing_macroglossia",
+      "preferred_name": "Competing cause of macroglossia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "ENT",
+      "source_subdomain": "mucosal_cutaneous",
+      "clinical_meaning": "Alternative cause of acquired tongue enlargement.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "83003",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84305",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84443",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E03.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E22.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Q90.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "T78.3XXA",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "403607004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "40930008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "41040004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "41291007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "448667002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "74107003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ACE inhibitor angioedema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Down syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "acromegaly",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "angioedema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypothyroidism",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lymphangioma",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

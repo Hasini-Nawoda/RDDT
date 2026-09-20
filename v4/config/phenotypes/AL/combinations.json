@@ -1,0 +1,146 @@
+{
+  "phenotype": "AL",
+  "combinations": [
+    {
+      "combination_id": "AL_COMBO01",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "AL_SUSPICION",
+      "priority_policy_id": "AL_PRI_A",
+      "temporal_policy": "NEW_ORGAN_TRANSITION",
+      "clinical_rationale": "Clone plus new independent organ abnormality.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1
+          ],
+          "signal_ids": [
+            "AL26"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Requires executable AL26: clone-only AL01/AL27 plus a distinct new organ witness."
+        }
+      ],
+      "clinical_note": "Requires AL26, whose executable rule is clone-only AL01/AL27 plus a distinct new organ witness; AL02 remains a standalone MGUS-plus-organ signal."
+    },
+    {
+      "combination_id": "AL_COMBO02",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "AL_SUSPICION",
+      "priority_policy_id": "AL_PRI_A",
+      "temporal_policy": "NONE",
+      "clinical_rationale": "Renal/soft-tissue AL-oriented phenotype with another independent AL domain.",
+      "requirements": [
+        {
+          "kind": "BUCKET",
+          "buckets": [
+            "RENAL",
+            "SOFT_TISSUE"
+          ],
+          "tiers": [
+            1
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Renal or soft-tissue AL-oriented domain."
+        },
+        {
+          "kind": "BUCKET",
+          "buckets": [
+            "CARDIAC",
+            "GI"
+          ],
+          "tiers": [
+            3
+          ],
+          "minimum_count": 1,
+          "context_witness_allowed": true,
+          "distinct_lineage_required": true,
+          "clinical_note": "Another independent AL domain."
+        },
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1,
+            2
+          ],
+          "signal_ids": [
+            "AL01",
+            "AL27"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Required clone-only context: AL01/AL27. Highest AL without clonal is not allowed; AL02 is not a clone witness because it includes an organ branch."
+        }
+      ],
+      "clinical_note": "Requires explicit clone-only context AL01/AL27; highest AL without clonal is not allowed. AL02 retains its own MGUS-plus-organ meaning and is not reused as a clone witness."
+    },
+    {
+      "combination_id": "AL_COMBO03",
+      "enabled": true,
+      "outcome": "ROUTE_ONLY",
+      "result_route": "ATTRWT_EVALUATION",
+      "priority_policy_id": "AL_PRI_A",
+      "temporal_policy": "ORTHOPEDIC_BEFORE_CARDIAC",
+      "clinical_rationale": "ATTRwt-oriented orthopedic/cardiac trajectory.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "signal_ids": [
+            "AL22",
+            "AL23"
+          ],
+          "minimum_count": 1,
+          "context_witness_allowed": true,
+          "clinical_note": "AL22/AL23 only; AL30 is disabled until documented negative-evidence events exist."
+        }
+      ],
+      "clinical_note": "Down-weight AL but do not hard-exclude."
+    },
+    {
+      "combination_id": "AL_COMBO04",
+      "enabled": true,
+      "outcome": "ROUTE_ONLY",
+      "result_route": "ATTRV_REVIEW_AND_TTR_GENOTYPING",
+      "priority_policy_id": "AL_PRI_A",
+      "temporal_policy": "NONE",
+      "clinical_rationale": "ATTRv-oriented neuropathic/autonomic/hereditary phenotype.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "signal_ids": [
+            "AL31"
+          ],
+          "minimum_count": 1,
+          "context_witness_allowed": true,
+          "clinical_note": "AL31."
+        }
+      ],
+      "clinical_note": "Genetic evaluation route."
+    },
+    {
+      "combination_id": "AL_COMBO05",
+      "enabled": true,
+      "outcome": "ROUTE_ONLY",
+      "result_route": "AA_EVALUATION",
+      "priority_policy_id": "AL_PRI_A",
+      "temporal_policy": "ORDERED_SEQUENCE",
+      "clinical_rationale": "AA-oriented inflammatory burden + renal transition.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "signal_ids": [
+            "AL25"
+          ],
+          "minimum_count": 1,
+          "context_witness_allowed": true,
+          "clinical_note": "AL25."
+        }
+      ],
+      "clinical_note": "Keep AL active when monoclonal clone coexists."
+    }
+  ]
+}

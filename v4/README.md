@@ -1,8 +1,8 @@
 # RDDT ATTR Phenotype V4
 
 V4 is a config-driven ATTR phenotype screening pipeline for a Snowflake
-workspace. ATTRv and ATTRwt are currently loaded; additional phenotype
-packages use the same runtime contract. The checked-in JSON files in
+workspace. ATTRv, ATTRwt, and AL are loaded by the production entrypoint;
+additional phenotype packages use the same runtime contract. The checked-in JSON files in
 `config/` are the deployable clinical configuration. Corrected workbooks and
 their compilers are build-time assets under `../v4_build_tools/`; Snowflake
 does not read Excel or run the build tooling.
@@ -27,7 +27,8 @@ does not read Excel or run the build tooling.
   evaluated by the clinical pipeline.
 - Before phenotype scoring, Step 03b separates patients with affirmed
   ATTR-specific documentation or the corroborated legacy E85/SNOMED known-
-  amyloidosis pattern. They are never evaluated by ATTRv or ATTRwt rules.
+  amyloidosis pattern. A separate configurable known-AL route is also applied;
+  unavailable known-AL configuration is an explicit fail-safe gap.
 - The workbook may contain missing structured codes. The runtime records gaps;
   it never invents or looks up a code.
 
@@ -38,7 +39,7 @@ Open `RDDT_ATTR_V4_Pipeline.ipynb` in the workspace, make this package and its
 in `requirements.txt`, and run the cells in order. The notebook obtains the
 active Snowpark session, loads medSpaCy, validates the physical source schema,
 then calls `run_attr_v4_pipeline`. Every candidate is extracted once and then
-evaluated by both the ATTRv and ATTRwt rule packages in the same run. There is
+evaluated by the ATTRv, ATTRwt, and AL rule packages in the same run. There is
 no phenotype selector in the notebook.
 
 If the physical tables are in a database/schema namespace, set
@@ -50,12 +51,13 @@ The run returns:
 - stage-level counts and the pinned configuration hash;
 - `AMY_V4_ROUTER_OUTPUT` for result-grid review and download;
 - `AMY_V4_KNOWN_ATTR` for patients removed before early-detection scoring;
-- six phenotype verdict slots per flagged profile; ATTRv and ATTRwt are both
-  evaluated, while the other four slots remain ready for future packages;
+- phenotype verdict slots including ATTRv, ATTRwt, and AL;
 - one combined ATTR suspicion verdict and output tier, selected from the
   highest real phenotype pass across ATTRv and ATTRwt;
+- a separate AL-detected output for every AL phenotype pass, including
+  concurrent ATTR passes, plus a separate known-AL exclusion route;
 - local-runtime JSONL and CSV exports for flagged patients. Both formats carry
-  the ATTRv and ATTRwt verdicts plus the single combined ATTR tier.
+  the ATTRv, ATTRwt, and AL verdicts plus the single combined ATTR tier.
 
 When `profile_output_dir` is supplied, local outputs are organized as:
 
@@ -64,10 +66,18 @@ profile_output_dir/
   confirmed/
     known_attr_patient_profiles.jsonl
     known_attr_patient_profiles.csv
+  known_al/
+    confirmed/
+      known_al_patient_profiles.jsonl
+      known_al_patient_profiles.csv
   detected/
     highest_suspicion/   # internal priority A
     high_suspicion/      # internal priority B
     moderate_suspicion/  # internal priority C
+  al_detected/
+    detected/
+      al_detected_patient_profiles.jsonl
+      al_detected_patient_profiles.csv
 ```
 
 The default configurable profile threshold is `HIGHEST_SUSPICION` plus

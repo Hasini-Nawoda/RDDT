@@ -1,0 +1,231 @@
+{
+  "source_specialty": "NUTRITION",
+  "atoms": [
+    {
+      "atom_id": "al09_competing_weight_loss",
+      "preferred_name": "Competing cause of unintentional weight loss",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NUTRITION",
+      "source_subdomain": "shared",
+      "clinical_meaning": "Malignancy, infection, hyperthyroidism, depression, malabsorption or other adequate explanation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "74177",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84443",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85025",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "A15.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "C80.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E05.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F32.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "F33.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K90.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "1240414004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "32230006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "34486009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "35489007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "56717001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "cancer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "depression",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hyperthyroid",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "infection",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "malabsorption",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "malignancy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "occult malignancy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "tuberculosis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "weight_result",
+      "preferred_name": "Body weight measurement",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "NUTRITION",
+      "source_subdomain": "shared",
+      "clinical_meaning": "Measured body weight used for longitudinal decline assessment.",
+      "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "363808001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "448765001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BMI",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "down from 78kg",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "weight",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "weight trend",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

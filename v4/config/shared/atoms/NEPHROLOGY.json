@@ -485,6 +485,1475 @@
           }
         ]
       }
+    },
+    {
+      "atom_id": "al03_competing_proteinuria",
+      "preferred_name": "Competing cause of proteinuria",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Alternative renal/systemic condition that can adequately explain proteinuria.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "50200",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "83036",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88313",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88342",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E10.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E11.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I12.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I13.10",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N05.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "236403004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "236407003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "236500003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "36171008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "38481006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "77182004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "CKD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "FSGS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IgA nephropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic nephropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertensive nephropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "membranous",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "primary glomerular disease",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "al04_competing_nephrotic",
+      "preferred_name": "Competing cause of nephrotic syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Alternative glomerular disease or systemic cause adequately explaining nephrotic syndrome.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "50200",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85652",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "86140",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88313",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88342",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E10.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E11.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E85.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "236403004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "236500003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "274945004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "44785005",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "77182004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "AA amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "FSGS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic nephropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "membranous nephropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "minimal change",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "primary glomerular disease",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "al05_competing_hypoalbuminemia",
+      "preferred_name": "Competing cause of hypoalbuminemia or edema",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Alternative explanation such as cirrhosis, malnutrition, protein-losing enteropathy, heart failure or medication effect.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "80076",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84484",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93970",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93971",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "E43",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E46",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I50.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I87.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K70.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K74.60",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K76.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "19943007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "20696009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "2492009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "328383001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "66972006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "709044004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84114007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "calcium channel blocker edema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cirrhosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "heart failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low albumin from illness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "malnutrition",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "protein-losing enteropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "venous insufficiency",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "creatinine_result",
+      "preferred_name": "Serum creatinine result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Serum creatinine measurement/result route.",
+      "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "166717003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Cr 1.8",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "creatinine",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated creatinine",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "serum creatinine",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "falling_egfr",
+      "preferred_name": "Falling eGFR / rising creatinine",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Longitudinal decline in renal filtration rather than an isolated CKD state.",
+      "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82575",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N17.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.4",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "863929001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "creatinine has gone up",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "declining GFR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "falling eGFR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive CKD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rising creatinine",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "worsening renal function",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "kidney_failure",
+      "preferred_name": "Kidney failure / end-stage renal disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Kidney failure or end-stage renal disease.",
+      "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "36821",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90935",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90937",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90945",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90947",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90966",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "90970",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N19",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "Z99.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "90688005",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ESRD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dialysis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "end stage renal disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "renal failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "renal replacement therapy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "nephrotic_syndrome",
+      "preferred_name": "Nephrotic syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Clinical nephrotic syndrome.",
+      "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "50200",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82040",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82043",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84156",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88313",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "88342",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N04.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N04.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "52254009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "heavy proteinuria with hypoalbuminemia and edema",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "nephrosis",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "nephrotic range",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "nephrotic syndrome",
+            "can_fire_atom_alone": true
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "peripheral_edema",
+      "preferred_name": "Peripheral edema / anasarca",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Peripheral edema or generalized edema; clinical meaning depends on renal/cardiac context.",
+      "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R60.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R60.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R60.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "271809000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "74011000119107",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "anasarca",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ankle swelling",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "generalised swelling",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "leg swelling",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pedal edema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "peripheral edema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pitting edema",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "puffy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "persistent_proteinuria",
+      "preferred_name": "Persistent proteinuria",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Proteinuria documented on repeated measurements over time.",
+      "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "81001",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "81003",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82043",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82570",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84156",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R80.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R80.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R80.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R80.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "12511000132108",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ongoing proteinuria",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "persistent proteinuria",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "proteinuria on repeat testing",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "still proteinuric",
+            "can_fire_atom_alone": true
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "progressive_proteinuria",
+      "preferred_name": "Progressive proteinuria",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Increasing magnitude of proteinuria over serial measurements.",
+      "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "82043",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82570",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84156",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R80.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R80.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "29738008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "increasing protein excretion",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "progressive proteinuria",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "protein has gone up",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "rising UPCR",
+            "can_fire_atom_alone": true
+          },
+          {
+            "value": "worsening proteinuria",
+            "can_fire_atom_alone": true
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "renal_dysfunction",
+      "preferred_name": "Renal dysfunction / chronic kidney disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEPHROLOGY",
+      "source_subdomain": "renal",
+      "clinical_meaning": "Documented chronic renal dysfunction/CKD.",
+      "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "80053",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N18.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.4",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N19",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "236423003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "CKD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic kidney disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "renal impairment",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "renal insufficiency",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stage 3 CKD",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
     }
   ]
 }

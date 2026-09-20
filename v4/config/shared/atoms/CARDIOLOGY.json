@@ -5075,6 +5075,1500 @@
           }
         ]
       }
+    },
+    {
+      "atom_id": "al17_competing_biomarker",
+      "preferred_name": "Competing cause of cardiac biomarker elevation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Renal dysfunction, AF, acute coronary syndrome or other adequate explanation for biomarker elevation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "80069",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "84484",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "A41.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I21.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I26.99",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I48.91",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.4",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "394659003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "49436004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "59282003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "709044004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "91302008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ACS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ATTR cardiac amyloidosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "CKD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "atrial fibrillation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "myocardial infarction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "renal failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sepsis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "al20_competing_dyspnea",
+      "preferred_name": "Competing cause of dyspnea",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Pulmonary, thromboembolic, obesity/deconditioning, anemia or other adequate explanation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "71046",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85025",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "94010",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "D64.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E66.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I26.99",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I50.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "J44.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "J45.909",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "J84.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "13645005",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "195967001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "233703007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "271737000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "414916001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "59282003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "COPD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ILD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anemia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "asthma",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "deconditioning",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "obesity",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pulmonary embolism",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "al29_competing_hypotension",
+      "preferred_name": "Competing cause of hypotension or syncope",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "shared",
+      "clinical_meaning": "Dehydration, medication effect, arrhythmia, sepsis, anemia, adrenal insufficiency or other adequate explanation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "82565",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85025",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93000",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93224",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "A41.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "D64.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E27.40",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E86.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "E86.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I49.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I95.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "234171009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "271737000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "34095006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "698247007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "766986002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "91302008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "alpha blocker",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anemia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antihypertensive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "arrhythmia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "deconditioning",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dehydration",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diuretic",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sepsis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "tamsulosin",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "al33_competing_cardiomyopathy",
+      "preferred_name": "Competing cause of cardiomyopathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Hypertensive, ischemic, sarcomeric, valvular, alcohol/toxic or other adequate explanation.",
+      "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I10",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I25.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I35.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I42.6",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "108701000119102",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "1234750000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "1354544003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "194849004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "233873004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "368009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "45227007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "471858004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "64715009",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "715655000",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ATTR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "HCM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alcohol",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypertensive heart disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ischemic",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prior MI",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "valvular",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cardiomegaly",
+      "preferred_name": "Cardiomegaly",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Cardiomegaly on imaging/documentation.",
+      "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "71045",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "71046",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I51.7",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "8186001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "big heart on chest x-ray",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cardiomegaly",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "enlarged cardiac silhouette",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased cardiothoracic ratio",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "dyspnea",
+      "preferred_name": "Dyspnea / shortness of breath",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Dyspnea or shortness of breath.",
+      "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R06.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R06.01",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R06.02",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R06.09",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "267036007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "PND",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "SOB",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "breathless",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cannot climb stairs",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dyspnea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "exertional dyspnea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthopnea",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "shortness of breath",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "hypotension",
+      "preferred_name": "Hypotension",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "shared",
+      "clinical_meaning": "Documented low blood pressure/hypotension.",
+      "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "45007003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "BP 88/54",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypotension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low blood pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistently low BP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "soft blood pressure",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ntprobnp_elevated",
+      "preferred_name": "Elevated NT-proBNP",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "NT-proBNP above the relevant reference/clinical context.",
+      "context_guard": "Match only the canonical clinical concept 'Elevated NT-proBNP'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Elevated NT-proBNP'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "NT-proBNP 4200",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated NT-proBNP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "markedly elevated natriuretic peptide",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "raised BNP",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ntprobnp_result",
+      "preferred_name": "NT-proBNP result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "NT-proBNP laboratory measurement/result route.",
+      "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "83880",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "414799001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "NT-proBNP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "proBNP",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "pericardial_effusion",
+      "preferred_name": "Pericardial effusion",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Pericardial fluid/effusion.",
+      "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "33016",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93307",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I31.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I31.39",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I31.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "373945007",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "pericardial effusion",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pericardial fluid",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small pericardial effusion",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "restrictive_cardiomyopathy",
+      "preferred_name": "Restrictive cardiomyopathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Documented restrictive cardiomyopathy phenotype.",
+      "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "75557",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "78466",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "78469",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93320",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93505",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I42.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I42.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "415295002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "RCM",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "infiltrative cardiomyopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "restrictive cardiomyopathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "restrictive_filling",
+      "preferred_name": "Restrictive filling / grade III diastolic dysfunction",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Restrictive ventricular filling pattern on echocardiography.",
+      "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "75561",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93306",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93320",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93325",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "395704004",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Restrictive filling / grade III diastolic dysfunction'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "E/A ratio",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "E/e prime",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated filling pressures",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "grade 3 diastolic dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "restrictive filling",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "restrictive physiology",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "troponin_elevated",
+      "preferred_name": "Persistent troponin elevation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Persistent rather than acute dynamic troponin elevation.",
+      "context_guard": "Match only the canonical clinical concept 'Persistent troponin elevation'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "84484",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Persistent troponin elevation'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "chronic troponin elevation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated troponin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "persistently elevated troponin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "troponin leak without ACS",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "troponin_result",
+      "preferred_name": "Troponin result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "LABORATORY",
+      "source_specialty": "CARDIOLOGY",
+      "source_subdomain": "cardio",
+      "clinical_meaning": "Cardiac troponin laboratory measurement/result route.",
+      "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "84484",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "105000003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "hs-troponin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "troponin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "troponin I",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "troponin T",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
     }
   ]
 }

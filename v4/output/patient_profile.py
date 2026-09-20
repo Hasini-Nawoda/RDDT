@@ -25,6 +25,7 @@ from ..reasoning.risk_labels import (
 
 PHENOTYPE_ORDER = PHENOTYPE_SLOTS
 ATTR_PHENOTYPES = ("ATTRV", "ATTRWT")
+AL_PHENOTYPE = "AL"
 _SUSPICION_RANK = {
     "HIGHEST_SUSPICION": 0,
     "HIGH_SUSPICION": 1,
@@ -197,6 +198,86 @@ def aggregate_attr_verdict(router_rows: Iterable[Any]) -> dict[str, Any]:
     }
 
 
+def _normalized_route(route: Any) -> str:
+    """Normalize configured route labels for cross-phenotype annotations.
+
+    Route labels are configuration-owned and may be emitted with a prefix or
+    separator.  The runtime only recognizes the approved route identifiers;
+    it never invents a diagnosis or a new route label.
+    """
+    text = "".join(ch for ch in str(route or "").upper() if ch.isalnum())
+    if text.startswith("V39"):
+        return "V39"
+    for value in ("WT25", "WT26", "WT27"):
+        if text.startswith(value):
+            return value
+    return text
+
+
+def cross_phenotype_attr_al_annotation(router_rows: Iterable[Any]) -> dict[str, Any]:
+    """Return the explicit ATTR/AL differential annotation for one patient.
+
+    AL is independently evaluated and always remains visible.  Concurrent
+    ATTR/AL evidence is labelled as concordant differential evidence when an
+    ATTR-side parallel route carries one of the configured AL differential
+    identifiers (V39 or WT25-WT27); neither result increases the certainty of
+    the other, and the ATTR risk tier/verdict remains unchanged.
+    """
+    rows = list(router_rows)
+    al_rows = [
+        row for row in rows
+        if str(_value(row, "phenotype", "")).upper() == AL_PHENOTYPE
+    ]
+    attr_rows = [
+        row for row in rows
+        if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
+    ]
+    al_pass = any(str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS" for row in al_rows)
+    attr_pass = any(str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS" for row in attr_rows)
+    routes = []
+    source_guardrail_ids = []
+    source_routes = []
+    approved_routes = {
+        "ALEVALUATIONORAMYLOIDTYPING": "V39",
+        "ALEVALUATION": "WT25",
+        "ALINTERPRETATIONREVIEW": "WT26",
+        "URGENTALEVALUATION": "WT27",
+    }
+    approved_guardrails = {"V39", "WT25", "WT26", "WT27"}
+    for row in attr_rows:
+        for guardrail_id in (_value(row, "guardrail_ids", ()) or ()):
+            normalized_guardrail = _normalized_route(guardrail_id)
+            if normalized_guardrail in approved_guardrails:
+                source_guardrail_ids.append(str(guardrail_id))
+                routes.append(normalized_guardrail)
+        for route in (_value(row, "parallel_routes", ()) or ()):
+            source_route = str(route)
+            normalized = approved_routes.get("".join(ch for ch in source_route.upper() if ch.isalnum()))
+            if normalized:
+                source_routes.append(source_route)
+                routes.append(normalized)
+    routes = list(dict.fromkeys(routes))
+    source_guardrail_ids = list(dict.fromkeys(source_guardrail_ids))
+    source_routes = list(dict.fromkeys(source_routes))
+    concurrence = al_pass and attr_pass
+    return {
+        "annotation": "ATTR_AL_DIFFERENTIAL",
+        "al_pass": al_pass,
+        "attr_pass": attr_pass,
+        "concurrent_pass": concurrence,
+        "normalized_attr_al_routes": routes,
+        "source_guardrail_ids": source_guardrail_ids,
+        "source_routes": source_routes,
+        "agreement_strength": (
+            "CONCORDANT_DIFFERENTIAL_EVIDENCE" if concurrence and routes
+            else "CROSS_PHENOTYPE_CONCURRENCE" if concurrence
+            else "AL_PASS_ONLY" if al_pass
+            else "NONE"
+        ),
+        "visible": al_pass,
+    }
+
+
 def _supporting_evidence_ids(witnesses: Iterable[Any]) -> set[str]:
     """Collect evidence IDs recursively from selected combination witnesses."""
     found: set[str] = set()
@@ -283,6 +364,7 @@ def build_patient_profile(
     patient_guardrails = _patient(guardrail_hits, patient_id)
     names = _atom_names(config)
     verdicts = _verdicts(patient_router)
+    differential = cross_phenotype_attr_al_annotation(patient_router)
     target = str(screening_target).upper()
     if target == "ATTR":
         target_verdict = aggregate_attr_verdict(patient_router)
@@ -363,6 +445,7 @@ def build_patient_profile(
             "summary": target_verdict.get("reason"),
             "findings": clinical_reasons,
             "parallel_routes": target_verdict.get("parallel_routes", []),
+            "cross_phenotype_annotations": [differential] if differential["visible"] else [],
         },
     }
     if include_proprietary_trace:
@@ -461,6 +544,27 @@ def flagged_attr_patient_ids(
     return output
 
 
+def flagged_al_detected_patient_ids(router_rows: Iterable[Any]) -> list[str]:
+    """Return every patient with an AL phenotype pass at any tier."""
+    rows = list(router_rows)
+    patient_ids = sorted({
+        str(_value(row, "patient_id"))
+        for row in rows
+        if _value(row, "patient_id") not in (None, "")
+    })
+    output: list[str] = []
+    for patient_id in patient_ids:
+        patient_rows = _patient(rows, patient_id)
+        al_pass = any(
+            str(_value(row, "phenotype", "")).upper() == AL_PHENOTYPE
+            and str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
+            for row in patient_rows
+        )
+        if al_pass:
+            output.append(patient_id)
+    return output
+
+
 def profiles_jsonl_bytes(profiles: Iterable[Mapping[str, Any]], *, include_proprietary_trace: bool = False) -> bytes:
     rows = [(_plain(profile) if include_proprietary_trace else strip_proprietary_trace(profile)) for profile in profiles]
     return ("\n".join(json.dumps(row, sort_keys=True, ensure_ascii=False) for row in rows) + ("\n" if rows else "")).encode("utf-8")
@@ -474,6 +578,7 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
         "review_route", "suspicion_level",
         "attrv_status", "attrv_suspicion_level", "attrv_review_route",
         "attrwt_status", "attrwt_suspicion_level", "attrwt_review_route",
+        "al_status", "al_suspicion_level", "al_review_route",
         "clinical_rationale",
     ]
     writer = csv.DictWriter(output, fieldnames=fields)
@@ -488,6 +593,7 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
         }
         attrv = verdicts.get("ATTRV", {})
         attrwt = verdicts.get("ATTRWT", {})
+        al = verdicts.get("AL", {})
         writer.writerow({
             "run_id": clean.get("run_id"),
             "patient_id": clean.get("patient_id"),
@@ -501,6 +607,9 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
             "attrwt_status": attrwt.get("status"),
             "attrwt_suspicion_level": attrwt.get("suspicion_level"),
             "attrwt_review_route": attrwt.get("result_route"),
+            "al_status": al.get("status"),
+            "al_suspicion_level": al.get("suspicion_level"),
+            "al_review_route": al.get("result_route"),
             "clinical_rationale": rationale.get("summary"),
         })
     return output.getvalue().encode("utf-8-sig")
@@ -541,6 +650,23 @@ def export_profiles(
         output[f"{key}_jsonl"] = str(tier_jsonl)
         output[f"{key}_csv"] = str(tier_csv)
     return output
+
+
+def export_al_detected_profiles(
+    profiles: Iterable[Mapping[str, Any]],
+    output_dir: str | Path,
+    *,
+    basename: str = "al_detected_patient_profiles",
+    include_proprietary_trace: bool = False,
+) -> dict[str, str]:
+    """Write every AL-detected profile under a separate output root."""
+    target = Path(output_dir).expanduser().resolve() / "al_detected"
+    return export_profiles(
+        list(profiles),
+        target,
+        basename=basename,
+        include_proprietary_trace=include_proprietary_trace,
+    )
 
 
 def build_known_attr_profile(
@@ -629,18 +755,111 @@ def export_known_attr_profiles(
     return {"jsonl": str(jsonl), "csv": str(csv_path)}
 
 
+def build_known_al_profile(
+    patient: Any,
+    *,
+    known_config: Any,
+    source_events: Iterable[Any],
+    evidence_events: Iterable[Any] = (),
+    demographics: Mapping[str, Any] | None = None,
+    include_proprietary_trace: bool = True,
+) -> dict[str, Any]:
+    """Build a separate profile for a known/confirmed AL recognition route."""
+    patient_id = str(_value(patient, "patient_id", ""))
+    patient_source = _patient(source_events, patient_id)
+    patient_evidence = _patient(evidence_events, patient_id)
+    names = _atom_names(known_config)
+    matched_values = list(_value(patient, "matched_config_values", ()) or ())
+    event_dates = list(_value(patient, "event_dates", ()) or ())
+    profile = {
+        "run_id": _value(patient, "run_id"),
+        "patient_id": patient_id,
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "demographics": _plain(dict(demographics or {})),
+        "medical_profile": {
+            "timeline": _medical_timeline(patient_source, patient_evidence, names),
+            "event_count": len(patient_source),
+        },
+        "known_diagnosis": {
+            "status": "KNOWN_AL",
+            "confirmation_scope": _value(patient, "confirmation_scope"),
+            "excluded_from_early_detection": True,
+            "source_recognition_not_new_diagnosis": True,
+        },
+        "clinical_rationale": {
+            "summary": "Existing AL-specific evidence was present before screening.",
+            "matched_source_values": matched_values,
+            "event_dates": event_dates,
+        },
+    }
+    if include_proprietary_trace:
+        profile["proprietary_pipeline_trace"] = {
+            "known_al_record": _plain(patient),
+            "known_al_evidence": _plain(patient_evidence),
+        }
+    return profile
+
+
+def known_al_profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
+    output = io.StringIO(newline="")
+    fields = [
+        "run_id", "patient_id", "status", "confirmation_scope",
+        "excluded_from_early_detection", "matched_source_values", "event_dates",
+    ]
+    writer = csv.DictWriter(output, fieldnames=fields)
+    writer.writeheader()
+    for profile in profiles:
+        clean = strip_proprietary_trace(profile)
+        diagnosis = clean.get("known_diagnosis", {})
+        rationale = clean.get("clinical_rationale", {})
+        writer.writerow({
+            "run_id": clean.get("run_id"),
+            "patient_id": clean.get("patient_id"),
+            "status": diagnosis.get("status"),
+            "confirmation_scope": diagnosis.get("confirmation_scope"),
+            "excluded_from_early_detection": diagnosis.get("excluded_from_early_detection"),
+            "matched_source_values": ";".join(str(value) for value in rationale.get("matched_source_values", [])),
+            "event_dates": ";".join(str(value) for value in rationale.get("event_dates", [])),
+        })
+    return output.getvalue().encode("utf-8-sig")
+
+
+def export_known_al_profiles(
+    profiles: Iterable[Mapping[str, Any]],
+    output_dir: str | Path,
+    *,
+    basename: str = "known_al_patient_profiles",
+    include_proprietary_trace: bool = False,
+) -> dict[str, str]:
+    rows = list(profiles)
+    target = Path(output_dir).expanduser().resolve() / "known_al" / "confirmed"
+    target.mkdir(parents=True, exist_ok=True)
+    jsonl = target / f"{basename}.jsonl"
+    csv_path = target / f"{basename}.csv"
+    jsonl.write_bytes(profiles_jsonl_bytes(rows, include_proprietary_trace=include_proprietary_trace))
+    csv_path.write_bytes(known_al_profiles_csv_bytes(rows))
+    return {"jsonl": str(jsonl), "csv": str(csv_path)}
+
+
 __all__ = [
     "PHENOTYPE_ORDER",
     "ATTR_PHENOTYPES",
+    "AL_PHENOTYPE",
     "aggregate_attr_verdict",
+    "cross_phenotype_attr_al_annotation",
     "build_patient_profile",
     "strip_proprietary_trace",
     "flagged_patient_ids",
     "flagged_attr_patient_ids",
+    "flagged_al_detected_patient_ids",
     "profiles_jsonl_bytes",
     "profiles_csv_bytes",
     "export_profiles",
+    "export_al_detected_profiles",
     "build_known_attr_profile",
     "known_attr_profiles_csv_bytes",
     "export_known_attr_profiles",
+    "build_known_al_profile",
+    "known_al_profiles_csv_bytes",
+    "export_known_al_profiles",
 ]

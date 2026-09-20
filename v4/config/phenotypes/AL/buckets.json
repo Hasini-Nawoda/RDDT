@@ -1,0 +1,71 @@
+{
+  "phenotype": "AL",
+  "buckets": [
+    {
+      "bucket": "AA_DIFFERENTIAL",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "Inflammatory/infectious driver + sustained inflammation + renal transition route."
+    },
+    {
+      "bucket": "ATTRV_DIFFERENTIAL",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "Hereditary neuropathic/autonomic/ocular route guardrail."
+    },
+    {
+      "bucket": "ATTRWT_DIFFERENTIAL",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "Orthopedic/cardiac ATTRwt-oriented route guardrails."
+    },
+    {
+      "bucket": "CARDIAC",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Cardiac amyloidosis clues and biomarkers."
+    },
+    {
+      "bucket": "CLONAL",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Plasma-cell clone/monoclonal precursor evidence."
+    },
+    {
+      "bucket": "GI",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Persistent gastrointestinal symptoms/motility findings."
+    },
+    {
+      "bucket": "HEPATIC",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Hepatomegaly/cholestatic pattern."
+    },
+    {
+      "bucket": "NEURO_AUTONOMIC",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Peripheral neuropathy and autonomic context."
+    },
+    {
+      "bucket": "RENAL",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Proteinuria, nephrotic syndrome, albumin/edema cluster and renal trajectory."
+    },
+    {
+      "bucket": "SOFT_TISSUE",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Macroglossia and characteristic purpura/ecchymotic soft-tissue clues."
+    },
+    {
+      "bucket": "SYSTEMIC",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Weight loss, constitutional symptoms, dyspnea, effusions, hypotension and multisystem accumulation."
+    }
+  ]
+}
