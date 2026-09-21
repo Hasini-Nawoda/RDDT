@@ -1,4 +1,4 @@
-"""End-to-end phenotype-generic V4 orchestration.
+"""End-to-end phenotype-generic V5 orchestration.
 
 The orchestrator reads source tables and, when requested, materializes
 intermediate results only as session-scoped Snowflake temporary tables.
@@ -70,19 +70,19 @@ from .extraction.extraction_contract import (
 
 
 TEMP_TABLES = {
-    "candidate_patients": "AMY_V4_CANDIDATE_PATIENT",
-    "known_attr_patients": "AMY_V4_KNOWN_ATTR",
-    "known_al_patients": "AMY_V4_KNOWN_AL",
-    "source_events": "AMY_V4_SOURCE_EVENT",
-    "atom_matches": "AMY_V4_ATOM_MATCH",
-    "evidence_events": "AMY_V4_EVIDENCE_EVENT",
-    "signal_hits": "AMY_V4_SIGNAL_HIT",
-    "bucket_state": "AMY_V4_BUCKET_STATE",
-    "combination_hits": "AMY_V4_COMBINATION_HIT",
-    "guardrail_hits": "AMY_V4_GUARDRAIL_HIT",
-    "phenotype_results": "AMY_V4_PHENOTYPE_RESULT",
-    "router_output": "AMY_V4_ROUTER_OUTPUT",
-    "patient_verdicts": "AMY_V4_PATIENT_VERDICT",
+    "candidate_patients": "AMY_V5_CANDIDATE_PATIENT",
+    "known_attr_patients": "AMY_V5_KNOWN_ATTR",
+    "known_al_patients": "AMY_V5_KNOWN_AL",
+    "source_events": "AMY_V5_SOURCE_EVENT",
+    "atom_matches": "AMY_V5_ATOM_MATCH",
+    "evidence_events": "AMY_V5_EVIDENCE_EVENT",
+    "signal_hits": "AMY_V5_SIGNAL_HIT",
+    "bucket_state": "AMY_V5_BUCKET_STATE",
+    "combination_hits": "AMY_V5_COMBINATION_HIT",
+    "guardrail_hits": "AMY_V5_GUARDRAIL_HIT",
+    "phenotype_results": "AMY_V5_PHENOTYPE_RESULT",
+    "router_output": "AMY_V5_ROUTER_OUTPUT",
+    "patient_verdicts": "AMY_V5_PATIENT_VERDICT",
 }
 
 TEMP_TABLE_SCHEMAS = {
@@ -1109,7 +1109,7 @@ def run_attr_reference_pipeline(
     )
 
 
-def _run_single_phenotype_v4_pipeline(
+def _run_single_phenotype_v5_pipeline(
     session: Any,
     phenotype: str,
     source_config: Mapping[str, Any] | None = None,
@@ -1203,7 +1203,7 @@ def _run_single_phenotype_v4_pipeline(
     return result
 
 
-def run_attr_v4_pipeline(
+def run_attr_v5_pipeline(
     session: Any,
     source_config: Mapping[str, Any] | None = None,
     run_id: str | None = None,
@@ -1326,7 +1326,7 @@ def run_attrv_reference_pipeline(
     return run_attr_reference_pipeline(rows_by_table, **kwargs)
 
 
-def run_attrv_v4_pipeline(
+def run_attrv_v5_pipeline(
     session: Any,
     source_config: Mapping[str, Any] | None = None,
     run_id: str | None = None,
@@ -1336,8 +1336,8 @@ def run_attrv_v4_pipeline(
     """Legacy name retained; production behavior now always runs both ATTR phenotypes."""
     requested = kwargs.pop("phenotype", "ATTRV")
     if str(requested).upper() != "ATTRV":
-        raise PipelineError("run_attrv_v4_pipeline only accepts the ATTRV phenotype")
-    return run_attr_v4_pipeline(
+        raise PipelineError("run_attrv_v5_pipeline only accepts the ATTRV phenotype")
+    return run_attr_v5_pipeline(
         session,
         source_config=source_config,
         run_id=run_id,
@@ -1354,7 +1354,7 @@ __all__ = [
     "SCREENED_PHENOTYPES",
     "AttrExtractionConfig",
     "run_attr_reference_pipeline",
-    "run_attr_v4_pipeline",
+    "run_attr_v5_pipeline",
     "run_attrv_reference_pipeline",
-    "run_attrv_v4_pipeline",
+    "run_attrv_v5_pipeline",
 ]

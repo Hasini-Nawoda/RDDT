@@ -1,5 +1,5 @@
-"""RDDT V4 workbook-driven amyloidosis screening pipeline."""
+"""RDDT V5 source-aware amyloidosis screening pipeline."""
 
-IMPLEMENTATION_VERSION = "4.0.0"
+IMPLEMENTATION_VERSION = "5.0.0"
 
 __all__ = ["IMPLEMENTATION_VERSION"]

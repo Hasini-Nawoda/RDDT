@@ -149,7 +149,7 @@ class ClinicalContextAdapter:
             doc = self.nlp.make_doc(window_text)
             try:
                 from spacy.tokens import Span
-                target_entity = Span(doc, int(target_start), int(target_end), label=target_label or "V4_TARGET")
+                target_entity = Span(doc, int(target_start), int(target_end), label=target_label or "V5_TARGET")
                 for component_name, component in getattr(self.nlp, "pipeline", ()):
                     if "context" in str(component_name).lower():
                         retained = [

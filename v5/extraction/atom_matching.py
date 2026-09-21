@@ -134,7 +134,7 @@ def build_phrase_matcher(nlp: Any, terminology_rows: Sequence[Mapping[str, Any]]
             continue
         # Unique matcher labels preserve duplicate terms mapped to distinct
         # atoms without merging workbook rows.
-        label = f"V4_TERM_{idx}"
+        label = f"V5_TERM_{idx}"
         matcher.add(label, [nlp.make_doc(phrase)])
         labels[label] = row
     return matcher, labels

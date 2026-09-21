@@ -158,7 +158,7 @@ def materialize_confirmed_icd10_profiles(
     session: Any,
     profiles: Iterable[ConfirmedICD10Profile],
     *,
-    table_name: str = "AMY_V4_CONFIRMED_ICD10",
+    table_name: str = "AMY_V5_CONFIRMED_ICD10",
 ) -> int:
     """Materialize profiles in a session-scoped temporary table only."""
     rows = [profile.as_dict() for profile in profiles]

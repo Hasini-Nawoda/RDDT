@@ -1,4 +1,4 @@
-"""Phenotype-generic V4 result and router output construction."""
+"""Phenotype-generic V5 result and router output construction."""
 from __future__ import annotations
 
 from typing import Any, Iterable
@@ -24,7 +24,7 @@ def route_results(
     phenotype: str | None = None,
     run_id: Any = None,
     config_hash: str | None = None,
-    implementation_version: str = "v4",
+    implementation_version: str = "v5",
     evaluation_mode: str = "STRICT",
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     evaluation_mode = normalize_evaluation_mode(evaluation_mode)
@@ -114,7 +114,7 @@ def route_results(
     result["explanation"] = build_explanation(result)
     result["pipeline_trace"] = build_trace(result, implementation_version=implementation_version)
     router = dict(result)
-    router["router_schema_version"] = "V4_PHENOTYPE_GENERIC"
+    router["router_schema_version"] = "V5_PHENOTYPE_GENERIC"
     return [result], [router]
 
 

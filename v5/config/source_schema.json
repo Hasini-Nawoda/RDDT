@@ -1,48 +1,28 @@
 {
-  "schema_version": "v4-source-schema-profiles-v1",
-  "active_profile": "sample_db_v1",
+  "schema_version": "v5-source-schema-profiles-v1",
+  "active_profile": "claims_only_v1",
   "profiles": {
-    "sample_db_v1": {
-      "schema_version": "v4-source-schema-sample-db-v1",
+    "claims_only_v1": {
+      "schema_version": "v5-source-schema-claims-only-v1",
       "namespace": "UHTX_RDDT_CLINICAL_DEV.PUBLIC",
-      "description": "Active mapping for the current Snowflake sample database. CLAIMS is the only enabled source table.",
+      "description": "Strict claims-only screening. No other table may contribute evidence, dates, candidates, or patient-profile content.",
       "tables": {
         "census": {
           "key": "census",
           "name": "CENSUS",
           "enabled": false,
           "required": false,
-          "profile_enabled": true,
-          "profile_required": true,
+          "profile_enabled": false,
+          "profile_required": false,
           "columns": {
             "patient_id": "PATIENTID",
             "birth_date": "BIRTHDATE",
             "gender": "GENDER",
-            "city": "CITY",
-            "state": "STATE"
+            "ethnicity": "OMBETHNICITY",
+            "race": "OMBRACE",
+            "death_date": "DEATHDATE"
           },
-          "required_columns": [
-            "patient_id"
-          ],
-          "mapping_notes": "CENSUS has no FAMILYID column in the supplied dictionary; optional demographics are mapped only when present."
-        },
-        "encounter": {
-          "key": "encounter",
-          "name": "ENCOUNTERS",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": true,
-          "profile_required": true,
-          "columns": {
-            "encounter_id": "VISITID",
-            "patient_id": "PATIENTID",
-            "encounter_date": "VISITDATE"
-          },
-          "required_columns": [
-            "encounter_id",
-            "patient_id",
-            "encounter_date"
-          ]
+          "required_columns": ["patient_id"]
         },
         "claim": {
           "key": "claim",
@@ -57,36 +37,135 @@
             "claim_no": "CLAIMNO",
             "claim_line_no": "CLAIMLINENO",
             "claim_status": "CLAIMSTATUS",
-            "service_from_date": "COLUMN5",
-            "service_to_date": "COLUMN6",
             "diagnosis_type": "DIAGNOSISTYPE",
-            "diagnosis_code": "DIAGNOSISCODE",
-            "provider_npi": "PROVIDERNPI",
-            "provider_name": "COLUMN10",
-            "provider_type": "COLUMN11",
-            "specialty_code": "COLUMN12",
-            "specialty_name": "COLUMN13",
-            "provider_tax_id": "COLUMN14",
-            "drg_code": "COLUMN15",
-            "rev_code": "COLUMN16",
-            "other_diagnosis_9": "COLUMN17",
-            "other_diagnosis_10": "COLUMN18",
-            "from_date": "COLUMN19",
-            "to_date": "COLUMN20",
-            "clinical_notes": "COLUMN21"
+            "diagnosis_code": "DIAGNOSISCODE"
           },
-          "required_columns": [
-            "patient_id",
-            "diagnosis_type",
-            "diagnosis_code"
-          ],
-          "mapping_notes": "CLAIMS uses a hybrid warehouse layout: core identifiers and diagnosis fields are named (PATIENTID, ENCOUNTERID, CLAIMNO, CLAIMLINENO, CLAIMSTATUS, DIAGNOSISTYPE, DIAGNOSISCODE, PROVIDERNPI); dates, provider detail, DRG/REV, secondary diagnoses, and notes remain COLUMN5-COLUMN21 until the warehouse owner relabels them."
+          "required_columns": ["patient_id", "diagnosis_type", "diagnosis_code"],
+          "mapping_notes": "Only verified populated claim fields are mapped. The supplied claim data has no usable date or narrative column."
+        },
+        "encounter": {
+          "key": "encounter",
+          "name": "ENCOUNTERS",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": false,
+          "profile_required": false,
+          "columns": {
+            "encounter_id": "VISITID",
+            "patient_id": "PATIENTID",
+            "encounter_date": "VISITDATE",
+            "encounter_type": "TYPE",
+            "encounter_status": "STATUS"
+          },
+          "required_columns": ["encounter_id", "patient_id", "encounter_date"]
         },
         "lab": {
           "key": "lab",
           "name": "LABS",
           "enabled": false,
           "required": false,
+          "profile_enabled": false,
+          "profile_required": false,
+          "columns": {
+            "lab_id": "LABTESTKEY",
+            "encounter_id": "ENCOUNTERKEY",
+            "patient_id": "PATIENTID",
+            "lab_request_id": "LABREQUESTID",
+            "lab_result_id": "LABRESULTID",
+            "observation_identifier": "OBSERVATIONIDENTIFIER",
+            "observation_identifier_common_name": "OBSERVATIONIDENTIFIERCOMMONNAME",
+            "observation_value": "OBSERVATIONVALUE",
+            "result_status": "OBSERVATIONRESULTSTATUS",
+            "observation_datetime": "OBSERVATIONDATETIME",
+            "performed_datetime": "PERFORMEDDATETIME",
+            "analysis_datetime": "ANALYSISDATETIME",
+            "lab_result_note": "LABRESULTNOTE"
+          },
+          "required_columns": ["lab_id", "patient_id", "observation_identifier", "observation_value", "observation_datetime"]
+        },
+        "surgical_history": {
+          "key": "surgical_history",
+          "name": "SURGICAL_HISTORY",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": false,
+          "profile_required": false,
+          "columns": {
+            "record_id": "SURGICALHISTORYID",
+            "encounter_id": "ENCOUNTERID",
+            "patient_id": "PATIENTID",
+            "source_category": "SOURCE",
+            "value": "CATEGORY",
+            "snomed": "SNOMED",
+            "secondary_snomed": "SECONDARY_SNOMED",
+            "event_date": "DATE"
+          },
+          "required_columns": ["record_id", "patient_id", "source_category", "value", "event_date"]
+        }
+      }
+    },
+    "all_available_v1": {
+      "schema_version": "v5-source-schema-all-available-v1",
+      "namespace": "UHTX_RDDT_CLINICAL_DEV.PUBLIC",
+      "description": "Screening and profile hydration using exactly CENSUS, CLAIMS, ENCOUNTERS, LABS, and SURGICAL_HISTORY.",
+      "tables": {
+        "census": {
+          "key": "census",
+          "name": "CENSUS",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "patient_id": "PATIENTID",
+            "birth_date": "BIRTHDATE",
+            "gender": "GENDER",
+            "ethnicity": "OMBETHNICITY",
+            "race": "OMBRACE",
+            "death_date": "DEATHDATE"
+          },
+          "required_columns": ["patient_id"]
+        },
+        "claim": {
+          "key": "claim",
+          "name": "CLAIMS",
+          "enabled": true,
+          "required": true,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "patient_id": "PATIENTID",
+            "encounter_id": "ENCOUNTERID",
+            "claim_no": "CLAIMNO",
+            "claim_line_no": "CLAIMLINENO",
+            "claim_status": "CLAIMSTATUS",
+            "diagnosis_type": "DIAGNOSISTYPE",
+            "diagnosis_code": "DIAGNOSISCODE"
+          },
+          "required_columns": ["patient_id", "diagnosis_type", "diagnosis_code"],
+          "mapping_notes": "Claim dates remain unavailable natively. V5 may enrich a claim date from ENCOUNTERS only after the patient-plus-encounter join is validated and uniquely resolves."
+        },
+        "encounter": {
+          "key": "encounter",
+          "name": "ENCOUNTERS",
+          "enabled": true,
+          "required": true,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "encounter_id": "VISITID",
+            "patient_id": "PATIENTID",
+            "encounter_date": "VISITDATE",
+            "encounter_type": "TYPE",
+            "encounter_status": "STATUS"
+          },
+          "required_columns": ["encounter_id", "patient_id", "encounter_date"]
+        },
+        "lab": {
+          "key": "lab",
+          "name": "LABS",
+          "enabled": true,
+          "required": true,
           "profile_enabled": true,
           "profile_required": true,
           "columns": {
@@ -96,367 +175,38 @@
             "lab_request_id": "LABREQUESTID",
             "lab_result_id": "LABRESULTID",
             "observation_identifier": "OBSERVATIONIDENTIFIER",
+            "observation_identifier_common_name": "OBSERVATIONIDENTIFIERCOMMONNAME",
             "observation_value": "OBSERVATIONVALUE",
             "result_status": "OBSERVATIONRESULTSTATUS",
             "observation_datetime": "OBSERVATIONDATETIME",
+            "performed_datetime": "PERFORMEDDATETIME",
+            "analysis_datetime": "ANALYSISDATETIME",
             "lab_result_note": "LABRESULTNOTE"
           },
-          "required_columns": [
-            "lab_id",
-            "encounter_id",
-            "patient_id",
-            "lab_request_id",
-            "lab_result_id",
-            "observation_identifier",
-            "observation_value",
-            "result_status",
-            "observation_datetime",
-            "lab_result_note"
-          ]
-        },
-        "medical_history": {
-          "key": "medical_history",
-          "name": "MEDICAL_HISTORY",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": false,
-          "profile_required": false,
-          "columns": {},
-          "required_columns": [],
-          "mapping_notes": "Table is not present in database_tables.csv; retained as a disabled legacy-compatible slot."
+          "required_columns": ["lab_id", "patient_id", "observation_identifier", "observation_value", "observation_datetime"],
+          "mapping_notes": "Observation identifiers are local free text, not LOINC. Test names are structured local labels; LABRESULTNOTE is sparse supporting context, not a general clinical-note corpus."
         },
         "surgical_history": {
           "key": "surgical_history",
           "name": "SURGICAL_HISTORY",
-          "enabled": false,
-          "required": false,
+          "enabled": true,
+          "required": true,
           "profile_enabled": true,
           "profile_required": true,
           "columns": {
-            "patient_id": "PATIENTID",
-            "encounter_id": "ENCOUNTERID",
             "record_id": "SURGICALHISTORYID",
+            "encounter_id": "ENCOUNTERID",
+            "patient_id": "PATIENTID",
             "source_category": "SOURCE",
             "value": "CATEGORY",
             "snomed": "SNOMED",
             "secondary_snomed": "SECONDARY_SNOMED",
             "event_date": "DATE"
           },
-          "required_columns": [
-            "record_id",
-            "encounter_id",
-            "patient_id",
-            "source_category",
-            "value",
-            "snomed",
-            "secondary_snomed",
-            "event_date"
-          ]
-        },
-        "family_history": {
-          "key": "family_history",
-          "name": "FAMILY_HISTORY",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": false,
-          "profile_required": false,
-          "columns": {},
-          "required_columns": [],
-          "mapping_notes": "Table is not present in database_tables.csv; retained as a disabled legacy-compatible slot."
-        },
-        "clinical_note": {
-          "key": "clinical_note",
-          "name": "CLINICAL_NOTE",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": false,
-          "profile_required": false,
-          "columns": {},
-          "required_columns": [],
-          "mapping_notes": "Table is not present in database_tables.csv; retained as a disabled legacy-compatible slot."
-        },
-        "social_history": {
-          "key": "social_history",
-          "name": "SOCIAL_HISTORY",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": false,
-          "profile_required": false,
-          "columns": {},
-          "required_columns": [],
-          "mapping_notes": "Table is not present in database_tables.csv; retained as a disabled legacy-compatible slot."
-        },
-        "medication": {
-          "key": "medication",
-          "name": "MEDICATIONS",
-          "enabled": false,
-          "required": false,
-          "profile_enabled": true,
-          "profile_required": true,
-          "columns": {
-            "patient_id": "PATIENTID",
-            "encounter_id": "VISITID",
-            "record_id": "MEDICATIONID",
-            "medication_name": "MEDICATIONNAME",
-            "status": "MEDICATIONSTATUS",
-            "event_date": "PRESCRIPTIONADMINISTRATIONTIME"
-          },
-          "required_columns": [
-            "record_id",
-            "encounter_id",
-            "patient_id",
-            "medication_name",
-            "status",
-            "event_date"
-          ]
+          "required_columns": ["record_id", "patient_id", "source_category", "value", "event_date"],
+          "mapping_notes": "Encounter IDs may be Unknown. Use patient ID and the surgical-history date; do not invent an encounter link."
         }
       }
-    },
-    "legacy_ehr_v1": {
-      "schema_version": "v4-source-schema-v1",
-      "namespace": null,
-      "tables": {
-        "census": {
-          "key": "census",
-          "name": "CENSUS",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "birth_date": "BirthDate",
-            "gender": "Gender",
-            "city": "City",
-            "state": "State",
-            "family_id": "FamilyId"
-          },
-          "required_columns": [
-            "patient_id",
-            "birth_date",
-            "gender",
-            "city",
-            "state",
-            "family_id"
-          ]
-        },
-        "encounter": {
-          "key": "encounter",
-          "name": "ENCOUNTER_VISIT",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "encounter_id": "EncounterId/VisitId",
-            "patient_id": "Member/PatientId",
-            "encounter_date": "Encounter/Visit Date"
-          },
-          "required_columns": [
-            "encounter_id",
-            "patient_id",
-            "encounter_date"
-          ]
-        },
-        "claim": {
-          "key": "claim",
-          "name": "CLAIM",
-          "enabled": true,
-          "required": true,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "diagnosis_code": "DiagnosisCode",
-            "other_diagnosis_9": "OtherDiagnosisCodes9",
-            "other_diagnosis_10": "OtherDiagnosisCodes10",
-            "procedure_code": "ProcedureCode",
-            "procedure_modifier_1": "ProcedureModifier1",
-            "procedure_modifier_2": "ProcedureModifier2",
-            "procedure_modifier_3": "ProcedureModifier3",
-            "diagnosis_type": "DiagnosisType",
-            "provider_type": "ProviderType",
-            "specialty_code": "SpecialtyCode",
-            "specialty_name": "SpecialtyName",
-            "drg_code": "DRGCode",
-            "clinical_notes": "ClinicalNotes",
-            "from_date": "FromDate",
-            "to_date": "ToDate"
-          },
-          "required_columns": [
-            "patient_id",
-            "encounter_id",
-            "diagnosis_code",
-            "other_diagnosis_9",
-            "other_diagnosis_10",
-            "procedure_code",
-            "procedure_modifier_1",
-            "procedure_modifier_2",
-            "procedure_modifier_3",
-            "diagnosis_type",
-            "provider_type",
-            "specialty_code",
-            "specialty_name",
-            "drg_code",
-            "clinical_notes",
-            "from_date",
-            "to_date"
-          ]
-        },
-        "lab": {
-          "key": "lab",
-          "name": "LAB",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "lab_id": "LabId",
-            "lab_request_id": "LabRequestId",
-            "lab_result_id": "LabResultId",
-            "observation_identifier": "ObservationIdentifier",
-            "observation_value": "ObservationValue",
-            "result_status": "ObservationResultStatus",
-            "observation_datetime": "ObservationDateTime",
-            "lab_result_note": "LabResultNote"
-          },
-          "required_columns": [
-            "lab_id",
-            "encounter_id",
-            "patient_id",
-            "lab_request_id",
-            "lab_result_id",
-            "observation_identifier",
-            "observation_value",
-            "result_status",
-            "observation_datetime",
-            "lab_result_note"
-          ]
-        },
-        "medical_history": {
-          "key": "medical_history",
-          "name": "MEDICAL_HISTORY",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "record_id": "MedicalHistoryId",
-            "source_category": "Source/Category",
-            "value": "Value",
-            "snomed": "SNOMED",
-            "secondary_snomed": "Secondary SNOMED",
-            "event_date": "Date"
-          },
-          "required_columns": [
-            "record_id",
-            "encounter_id",
-            "patient_id",
-            "source_category",
-            "value",
-            "snomed",
-            "secondary_snomed",
-            "event_date"
-          ]
-        },
-        "surgical_history": {
-          "key": "surgical_history",
-          "name": "SURGICAL_HISTORY",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "record_id": "SurgicalHistoryId",
-            "source_category": "Source/Category",
-            "value": "Value",
-            "snomed": "SNOMED",
-            "secondary_snomed": "Secondary SNOMED",
-            "event_date": "Date"
-          },
-          "required_columns": [
-            "record_id",
-            "encounter_id",
-            "patient_id",
-            "source_category",
-            "value",
-            "snomed",
-            "secondary_snomed",
-            "event_date"
-          ]
-        },
-        "family_history": {
-          "key": "family_history",
-          "name": "FAMILY_HISTORY",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "record_id": "FamilyHistoryId",
-            "condition": "Condition",
-            "status": "Status",
-            "family_member": "FamilyMember",
-            "snomed": "SNOMED",
-            "event_date": "Date"
-          },
-          "required_columns": [
-            "record_id",
-            "encounter_id",
-            "patient_id",
-            "snomed",
-            "condition",
-            "status",
-            "family_member",
-            "event_date"
-          ]
-        },
-        "clinical_note": {
-          "key": "clinical_note",
-          "name": "CLINICAL_NOTE",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "note_id": "NoteId",
-            "note_type": "NoteType",
-            "note_text": "Clinical Note Text",
-            "event_date": "Date"
-          },
-          "required_columns": [
-            "note_id",
-            "encounter_id",
-            "patient_id",
-            "note_type",
-            "note_text",
-            "event_date"
-          ]
-        },
-        "social_history": {
-          "key": "social_history",
-          "name": "SOCIAL_HISTORY",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "value": "Value",
-            "event_date": "Date"
-          },
-          "required_columns": []
-        },
-        "medication": {
-          "key": "medication",
-          "name": "MEDICATION",
-          "enabled": false,
-          "required": false,
-          "columns": {
-            "patient_id": "Member/PatientId",
-            "encounter_id": "EncounterId/VisitId",
-            "medication_name": "Medication Name",
-            "status": "Medication Status",
-            "event_date": "Date"
-          },
-          "required_columns": []
-        }
-      },
-      "description": "Preserved prior V4 mapping for the earlier warehouse schema. Select profile=legacy_ehr_v1 or set V4_SOURCE_SCHEMA_PROFILE to switch back."
     }
   }
 }

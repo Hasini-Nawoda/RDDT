@@ -1,4 +1,4 @@
-"""Physical Snowflake source contract for V4.
+"""Physical Snowflake source contract for V5.
 
 This module intentionally contains no ATTRv vocabulary.  It describes only the
 warehouse tables and columns supplied by the existing EHR data dictionary.
@@ -68,7 +68,7 @@ class SourceValidationReport:
 DEFAULT_SOURCE_CONFIG_PATH = (
     Path(__file__).resolve().parents[1] / "config" / "source_schema.json"
 )
-SOURCE_PROFILE_ENV = "V4_SOURCE_SCHEMA_PROFILE"
+SOURCE_PROFILE_ENV = "V5_SOURCE_SCHEMA_PROFILE"
 
 
 def _config_bool(value: Any, *, default: bool, field_name: str) -> bool:
@@ -101,7 +101,7 @@ def _select_profile(
     A profile file keeps the active warehouse mapping and the previous
     mapping together.  This is intentionally resolved before normalization so
     every downstream consumer still receives the same ``tables`` contract.
-    ``V4_SOURCE_SCHEMA_PROFILE`` is useful in Snowflake worksheets; callers
+    ``V5_SOURCE_SCHEMA_PROFILE`` is useful in Snowflake worksheets; callers
     can pass ``profile`` directly in tests or deployment code.
     """
     profiles = raw.get("profiles")
@@ -198,7 +198,7 @@ def _normalize_source_config(
         }
     return {
         "schema_version": str(
-            selected.get("schema_version", raw.get("schema_version", "v4-source-schema-v1"))
+            selected.get("schema_version", raw.get("schema_version", "v5-source-schema-v1"))
         ),
         "namespace": selected.get("namespace", raw.get("namespace")),
         "profile": selected_profile,

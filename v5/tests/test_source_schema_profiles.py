@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from types import SimpleNamespace
 
-from v4.pipeline import _fetch_candidate_source_rows
-from v4.warehouse.source_schema import (
+from v5.pipeline import _fetch_candidate_source_rows
+from v5.warehouse.source_schema import (
     DEFAULT_SOURCE_CONFIG_PATH,
     SOURCE_PROFILE_ENV,
     default_source_config,
@@ -13,35 +12,29 @@ from v4.warehouse.source_schema import (
     is_table_profile_required,
     load_source_config,
 )
-from v4.extraction.source_events import expand_source_row
-from v4.extraction.extraction_contract import event_system_compatible
+from v5.extraction.source_events import expand_source_row
+from v5.extraction.extraction_contract import event_system_compatible
 
 
-def test_active_profile_maps_sample_database_claim_columns() -> None:
+def test_active_profile_is_strict_claims_only() -> None:
     config = default_source_config()
 
-    assert config["profile"] == "sample_db_v1"
-    assert config["available_profiles"] == ("sample_db_v1", "legacy_ehr_v1")
+    assert config["profile"] == "claims_only_v1"
+    assert config["available_profiles"] == ("claims_only_v1", "all_available_v1")
+    assert set(config["tables"]) == {
+        "census", "claim", "encounter", "lab", "surgical_history"
+    }
     assert [key for key, table in config["tables"].items() if table["enabled"]] == ["claim"]
 
-    # Profile hydration is intentionally broader than algorithm participation:
-    # every table physically present in the sample database is hydrated, while
-    # absent legacy slots remain disabled.
     profile_enabled = {
         key for key, table in config["tables"].items()
         if is_table_profile_enabled(table)
     }
-    assert profile_enabled == {
-        "census", "claim", "encounter", "lab", "medication", "surgical_history"
-    }
+    assert profile_enabled == {"claim"}
     assert {
         key for key, table in config["tables"].items()
         if is_table_profile_required(table)
     } == profile_enabled
-    assert profile_enabled != {
-        key for key, table in config["tables"].items()
-        if table["enabled"]
-    }
 
     claim = config["tables"]["claim"]
     assert claim["name"] == "CLAIMS"
@@ -68,7 +61,8 @@ def test_active_profile_maps_sample_database_claim_columns() -> None:
     assert diagnosis[0].patient_id == "member-1"
     assert diagnosis[0].encounter_id == "visit-1"
     assert diagnosis[0].code_system == "ICD10"
-    assert diagnosis[0].event_date == "2026-01-02"
+    # Unmapped placeholder columns must not masquerade as claim dates.
+    assert diagnosis[0].event_date is None
     assert diagnosis[0].source_table == "CLAIM"
     assert diagnosis[0].attributes["physical_table"] == "CLAIMS"
     assert event_system_compatible(
@@ -79,28 +73,41 @@ def test_active_profile_maps_sample_database_claim_columns() -> None:
     )
 
 
-def test_legacy_profile_remains_selectable() -> None:
-    config = load_source_config(profile="legacy_ehr_v1")
+def test_all_available_profile_uses_exactly_five_authorized_tables() -> None:
+    config = load_source_config(profile="all_available_v1")
 
-    assert config["profile"] == "legacy_ehr_v1"
-    assert config["tables"]["claim"]["name"] == "CLAIM"
-    assert config["tables"]["claim"]["columns"]["patient_id"] == "Member/PatientId"
+    assert config["profile"] == "all_available_v1"
+    assert set(config["tables"]) == {
+        "census", "claim", "encounter", "lab", "surgical_history"
+    }
+    assert {
+        key for key, table in config["tables"].items() if table["enabled"]
+    } == {"claim", "encounter", "lab", "surgical_history"}
+    assert {
+        key for key, table in config["tables"].items()
+        if is_table_profile_enabled(table)
+    } == set(config["tables"])
+    assert "medication" not in config["tables"]
+    assert "social_history" not in config["tables"]
 
 
 def test_profile_can_be_selected_from_environment(monkeypatch) -> None:
-    monkeypatch.setenv(SOURCE_PROFILE_ENV, "legacy_ehr_v1")
+    monkeypatch.setenv(SOURCE_PROFILE_ENV, "all_available_v1")
 
-    assert default_source_config()["profile"] == "legacy_ehr_v1"
+    assert default_source_config()["profile"] == "all_available_v1"
 
 
-def test_profiled_file_keeps_legacy_mapping_in_json() -> None:
+def test_profiled_file_contains_only_authorized_tables() -> None:
     payload = json.loads(
         DEFAULT_SOURCE_CONFIG_PATH.read_text(encoding="utf-8")
     )
 
-    assert payload["active_profile"] == "sample_db_v1"
-    assert "legacy_ehr_v1" in payload["profiles"]
-    assert payload["profiles"]["legacy_ehr_v1"]["tables"]["claim"]["name"] == "CLAIM"
+    assert payload["active_profile"] == "claims_only_v1"
+    assert set(payload["profiles"]) == {"claims_only_v1", "all_available_v1"}
+    for profile in payload["profiles"].values():
+        assert set(profile["tables"]) == {
+            "census", "claim", "encounter", "lab", "surgical_history"
+        }
 
 
 def test_profile_toggle_helpers_parse_strict_values_and_remain_independent() -> None:
@@ -116,24 +123,8 @@ def test_profile_toggle_helpers_parse_strict_values_and_remain_independent() -> 
     assert is_table_profile_required(table) is False
 
 
-def test_confirmed_notebook_separates_claim_detection_from_ehr_hydration() -> None:
-    notebook_path = Path(__file__).parents[1] / "RDDT_ATTR_V4_Pipeline.ipynb"
-    notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
-    code = "\n".join(
-        "".join(cell.get("source", []))
-        for cell in notebook.get("cells", [])
-        if cell.get("cell_type") == "code"
-    )
-
-    assert "enabled_source_tables" in code
-    assert "for table_key, table_cfg in enabled_source_tables.items()" in code
-    assert "is_table_profile_enabled(table_cfg)" in code
-    assert "ehr_records_by_patient" in code
-    assert "build_patient_profile(" in code
-    assert "analysis_targets" not in code
-    assert "CREATE OR REPLACE TEMPORARY TABLE" not in code.upper()
-    assert "session.table(" not in code
-    assert "session.sql(confirmed_profile_sql).to_pandas()" in code
+def test_source_profile_environment_variable_is_v5_specific() -> None:
+    assert SOURCE_PROFILE_ENV == "V5_SOURCE_SCHEMA_PROFILE"
 
 
 def test_candidate_fetch_hydrates_profile_only_tables_without_enabling_detection() -> None:
