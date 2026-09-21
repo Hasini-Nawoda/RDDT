@@ -33,3 +33,9 @@ those definitions instead of silently rewriting the intended clinical logic.
 
 See [V5_DATA_CONTRACT_AND_ARCHITECTURE.md](docs/V5_DATA_CONTRACT_AND_ARCHITECTURE.md)
 for the verified data findings and implementation plan.
+
+The first end-to-end sample run is documented in
+[SAMPLE_PIPELINE_EVALUATION.md](docs/SAMPLE_PIPELINE_EVALUATION.md). Because
+the random samples contain no linked patients, use
+[extract_linked_evaluation_cohort.sql](sql/extract_linked_evaluation_cohort.sql)
+to retrieve a real five-table test cohort from Snowflake.
