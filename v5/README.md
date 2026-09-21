@@ -39,3 +39,7 @@ The first end-to-end sample run is documented in
 the random samples contain no linked patients, use
 [extract_linked_evaluation_cohort.sql](sql/extract_linked_evaluation_cohort.sql)
 to retrieve a real five-table test cohort from Snowflake.
+
+The resulting 20-patient warehouse run, its strict-versus-recall comparison,
+identified correctness defects, and the staged implementation plan are in
+[LINKED_COHORT_PIPELINE_EVALUATION.md](docs/LINKED_COHORT_PIPELINE_EVALUATION.md).
