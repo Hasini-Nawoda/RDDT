@@ -1,0 +1,168 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\raw\medical_history_data_analysis_outputs.xlsx
+SHEETS: ['Run Summary', 'current_context', 'find_table', 'describe_table', 'first_10_rows', 'volume_uniqueness', 'null_counts', 'source_category_counts', 'value_counts', 'source_by_value', 'value_word_counts', 'snomed_unique_counts', 'snomed_name_variations', 'snomed_value_pairs', 'value_with_many_snomed', 'secondary_snomed_values', 'snomed_pair_combinations', 'date_span', 'records_by_year', 'recency_ranges', 'conditions_per_patient', 'top_patients', 'one_patient_detail']
+
+================================================================================
+SHEET: Run Summary
+================================================================================
+R1: Cell Number || Cell Name || Sheet Name || Query || Status || Row Count || Truncated || Error ||  ||  ||  ||  ||  ||  ||  || 
+R2: 7 || current_context || current_context || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 8 || find_table || find_table || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM UHTX_RDDT_CLINICAL_DEV.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND TABLE_SCHEMA = 'PUBLIC' |   AND ( |         UPPER(TABLE_NAME) LIKE '%MEDICAL%' |      OR UPPER(TABLE_NAME) LIKE '%HISTORY%' |      OR UPPER(TABLE_NAME) LIKE '%CONDITION%' |   ) | ORDER BY TABLE_SCHEMA, TABLE... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 11 || describe_table || describe_table || SELECT 'MEDICAL_HISTORY' AS EXPECTED_TABLE, FALSE AS SOURCE_AVAILABLE, 'Not present in new-sample-db; no source rows analyzed.' AS STATUS; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 12 || first_10_rows || first_10_rows || SELECT * | FROM {{T}} | LIMIT 10; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 14 || volume_uniqueness || volume_uniqueness || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_ID}}) AS UNIQUE_MEDICAL_HISTORY_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_SRC}}) AS UNIQUE_SOURCE_CATEGORIES, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITION_VALUES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     COUNT(*) - ... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 16 || null_counts || null_counts || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_ID}} IS NULL, 1, 0)) AS NULL_MEDICAL_HISTORY_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_SRC}} IS NULL, 1, 0)) AS NULL_SOURCE_CATEGORY, |     SUM(IFF({{C_VAL}} IS NULL, 1, 0)) AS NULL_VALUE, |     SUM(IFF({{C_SNOMED}} IS NULL, 1, 0)) AS NULL_SNOME... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 18 || source_category_counts || source_category_counts || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS CONDITION_LIST, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY ROW_COUNT DESC; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 20 || value_counts || value_counts || SELECT |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES, |     COUNT(DISTINCT {{C_SNOMED2}}) AS DISTINCT_SECONDARY_SNOMED_CODES, |     LISTAGG(DISTINC... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 21 || source_by_value || source_by_value || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DESC; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 23 || value_word_counts || value_word_counts || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         {{C_ENC}} AS ENCOUNTER_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_VAL}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_VAL}} IS NOT NULL | ) | SELEC... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 25 || snomed_unique_counts || snomed_unique_counts || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED}}::STRING), '')) AS UNIQUE_SNOMED_CODES, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED2}}::STRING), '')) AS UNIQUE_SECONDARY_SNOMED_CODES, |     SUM(IFF({{C_SNOMED}} IS NOT NULL AND TRIM({{C_SNOMED}}::STRING) <> '', 1, 0)) AS ROWS_WITH_SNOMED, |     SUM(IFF({{C_SNOMED}} IS NULL OR TRIM({{C_SNOMED}}::STRING) = '', 1, 0)) ... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 26 || snomed_name_variations || snomed_name_variations || SELECT |     {{C_SNOMED}} AS SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     COUNT(DISTINCT UPPER(REGEXP_REPLACE(TRIM({{C_VAL}}::STRING), '\\s+', ' '))) AS UNIQUE_NAMES_NORMALIZED, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS | FROM {{T}} | WHERE {{C_SNOMED}} IS NOT NULL |   AND TR... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 27 || snomed_value_pairs || snomed_value_pairs || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(*) OVER (PARTITION BY {{C_SNOMED}}) AS NAMES_FOR_THIS_CODE, |     ROW_NUMBER() OVER (PARTITION BY {{C_SNOMED}} ORDER BY COUNT(*) DESC) AS NAME_NUMBER, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY {{C_SNOMED}}), 2) AS... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 28 || value_with_many_snomed || value_with_many_snomed || SELECT |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES | FROM {{T}} | WHERE {{C_VAL}} IS NOT NULL | GROUP BY 1 | HAVING COUNT(DISTINCT {{C_SNOMED}}) > 1 | ORDER BY UNIQUE_SNOMED_CODES DESC, ROW_COUNT DESC; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 29 || secondary_snomed_values || secondary_snomed_values || SELECT |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_PRIMARY_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS PRIMARY_SNOMED_CODES, |     RO... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 30 || snomed_pair_combinations || snomed_pair_combinations || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DE... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 32 || date_span || date_span || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DATE}}) AS MIN_DATE, |     MAX({{C_DATE}}) AS MAX_DATE, |     DATEDIFF('day', MIN({{C_DATE}})::DATE, MAX({{C_DATE}})::DATE) AS SPAN_DAYS, |     SUM(IFF({{C_DATE}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS, |     SUM(IFF({{C_DATE}} IS NULL, 1, 0)) AS MISSING_DATE_ROWS | FROM {{T}}; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 33 || records_by_year || records_by_year || SELECT |     YEAR({{C_DATE}}) AS RECORD_YEAR, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 34 || recency_ranges || recency_ranges || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DATE}} IS NULL THEN 90 |             WHEN {{C_DATE}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 180 THEN 3... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 36 || conditions_per_patient || conditions_per_patient || WITH per_patient AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         COUNT(*) AS ROW_COUNT |     FROM {{T}} |     WHERE {{C_PT}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     ROW_COUNT AS CONDITIONS_PER_PATIENT, |     COUNT(*) AS NUMBER_OF_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_PATIENTS | FROM per_patient | GROUP BY 1 | ORDER BY 1; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 37 || top_patients || top_patients || SELECT |     {{C_PT}} AS PATIENT_ID, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     MIN({{C_DATE}}) AS FIRST_DATE, |     MAX({{C_DATE}}) AS LAST_DATE | FROM {{T}} | WHERE {{C_PT}} IS NOT NULL | GROUP BY 1 | ORDER BY ROW_COUNT DESC | LIMIT 25; || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 38 || one_patient_detail || one_patient_detail || SELECT |     {{C_PT}} AS PATIENT_ID, |     {{C_ID}} AS MEDICAL_HISTORY_ID, |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS CONDITION_VALUE, |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     {{C_DATE}} AS RECORD_DATE | FROM {{T}} | WHERE {{C_PT}} = ( |         SELECT {{C_PT}} |         FROM {{T}} |         WHERE {{C_PT}} IS NOT NULL... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: current_context
+================================================================================
+R1: Query || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROLE || WAREHOUSE || DATABASE || SCHEMA ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: SYSADMIN || CHAMPSOFT_WH ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: find_table
+================================================================================
+R1: Query || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM UHTX_RDDT_CLINICAL_DEV.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND TABLE_SCHEMA = 'PUBLIC' |   AND ( |         UPPER(TABLE_NAME) LIKE '%MEDICAL%' |      OR UPPER(TABLE_NAME) LIKE '%HISTORY%' |      OR UPPER(TABLE_NAME) LIKE '%CONDITION%' |   ) | ORDER BY TABLE_SCHEMA, TABLE... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TABLE_CATALOG || TABLE_SCHEMA || TABLE_NAME || ROW_COUNT || BYTES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: UHTX_RDDT_CLINICAL_DEV || PUBLIC || SURGICAL_HISTORY || 10000 || 495104 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: describe_table
+================================================================================
+R1: Query || SELECT 'MEDICAL_HISTORY' AS EXPECTED_TABLE, FALSE AS SOURCE_AVAILABLE, 'Not present in new-sample-db; no source rows analyzed.' AS STATUS; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: EXPECTED_TABLE || SOURCE_AVAILABLE || STATUS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: MEDICAL_HISTORY || False || Not present in new-sample-db; no source rows analyzed. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: first_10_rows
+================================================================================
+R1: Query || SELECT * | FROM {{T}} | LIMIT 10; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SURGICALHISTORYID || ENCOUNTERID || PATIENTID || SOURCE || CATEGORY || SNOMED || SECONDARY_SNOMED || DATE ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: volume_uniqueness
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_ID}}) AS UNIQUE_MEDICAL_HISTORY_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_SRC}}) AS UNIQUE_SOURCE_CATEGORIES, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITION_VALUES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     COUNT(*) - ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || UNIQUE_MEDICAL_HISTORY_IDS || UNIQUE_ENCOUNTERS || UNIQUE_PATIENTS || UNIQUE_SOURCE_CATEGORIES || UNIQUE_CONDITION_VALUES || UNIQUE_SNOMED_CODES || EXTRA_ROWS_VS_UNIQUE_ID || AVG_CONDITIONS_PER_PATIENT ||  ||  ||  ||  ||  ||  || 
+R4: 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: null_counts
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_ID}} IS NULL, 1, 0)) AS NULL_MEDICAL_HISTORY_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_SRC}} IS NULL, 1, 0)) AS NULL_SOURCE_CATEGORY, |     SUM(IFF({{C_VAL}} IS NULL, 1, 0)) AS NULL_VALUE, |     SUM(IFF({{C_SNOMED}} IS NULL, 1, 0)) AS NULL_SNOME... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || NULL_MEDICAL_HISTORY_ID || NULL_ENCOUNTER_ID || NULL_PATIENT_ID || NULL_SOURCE_CATEGORY || NULL_VALUE || NULL_SNOMED || NULL_SECONDARY_SNOMED || NULL_DATE ||  ||  ||  ||  ||  ||  || 
+R4: 0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: source_category_counts
+================================================================================
+R1: Query || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS CONDITION_LIST, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SOURCE_CATEGORY || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_CONDITIONS || CONDITION_LIST || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_counts
+================================================================================
+R1: Query || SELECT |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES, |     COUNT(DISTINCT {{C_SNOMED2}}) AS DISTINCT_SECONDARY_SNOMED_CODES, |     LISTAGG(DISTINC... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: CONDITION_VALUE || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_ENCOUNTERS || DISTINCT_SNOMED_CODES || SNOMED_CODES || DISTINCT_SECONDARY_SNOMED_CODES || SECONDARY_SNOMED_CODES || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: source_by_value
+================================================================================
+R1: Query || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SOURCE_CATEGORY || CONDITION_VALUE || ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_word_counts
+================================================================================
+R1: Query || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         {{C_ENC}} AS ENCOUNTER_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_VAL}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_VAL}} IS NOT NULL | ) | SELEC... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: WORD || WORD_OCCURRENCES || UNIQUE_PATIENTS || UNIQUE_ENCOUNTERS || PCT_OF_WORD_OCCURRENCES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_unique_counts
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED}}::STRING), '')) AS UNIQUE_SNOMED_CODES, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED2}}::STRING), '')) AS UNIQUE_SECONDARY_SNOMED_CODES, |     SUM(IFF({{C_SNOMED}} IS NOT NULL AND TRIM({{C_SNOMED}}::STRING) <> '', 1, 0)) AS ROWS_WITH_SNOMED, |     SUM(IFF({{C_SNOMED}} IS NULL OR TRIM({{C_SNOMED}}::STRING) = '', 1, 0)) ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || UNIQUE_SNOMED_CODES || UNIQUE_SECONDARY_SNOMED_CODES || ROWS_WITH_SNOMED || ROWS_MISSING_SNOMED || PCT_ROWS_WITH_SNOMED || ROWS_WITH_SECONDARY_SNOMED ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 0 || 0 || 0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_name_variations
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     COUNT(DISTINCT UPPER(REGEXP_REPLACE(TRIM({{C_VAL}}::STRING), '\\s+', ' '))) AS UNIQUE_NAMES_NORMALIZED, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS | FROM {{T}} | WHERE {{C_SNOMED}} IS NOT NULL |   AND TR... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || ROW_COUNT || UNIQUE_NAMES || UNIQUE_NAMES_NORMALIZED || UNIQUE_PATIENTS || NAME_VARIATIONS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_value_pairs
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(*) OVER (PARTITION BY {{C_SNOMED}}) AS NAMES_FOR_THIS_CODE, |     ROW_NUMBER() OVER (PARTITION BY {{C_SNOMED}} ORDER BY COUNT(*) DESC) AS NAME_NUMBER, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY {{C_SNOMED}}), 2) AS... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || CONDITION_VALUE || ROW_COUNT || UNIQUE_PATIENTS || NAMES_FOR_THIS_CODE || NAME_NUMBER || PCT_WITHIN_CODE ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_with_many_snomed
+================================================================================
+R1: Query || SELECT |     {{C_VAL}} AS CONDITION_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES | FROM {{T}} | WHERE {{C_VAL}} IS NOT NULL | GROUP BY 1 | HAVING COUNT(DISTINCT {{C_SNOMED}}) > 1 | ORDER BY UNIQUE_SNOMED_CODES DESC, ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: CONDITION_VALUE || ROW_COUNT || UNIQUE_SNOMED_CODES || SNOMED_CODES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: secondary_snomed_values
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_PRIMARY_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS PRIMARY_SNOMED_CODES, |     RO... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SECONDARY_SNOMED || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_NAMES || NAME_VARIATIONS || DISTINCT_PRIMARY_SNOMED_CODES || PRIMARY_SNOMED_CODES || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_pair_combinations
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DE... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || SECONDARY_SNOMED || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_NAMES || NAME_VARIATIONS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: date_span
+================================================================================
+R1: Query || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DATE}}) AS MIN_DATE, |     MAX({{C_DATE}}) AS MAX_DATE, |     DATEDIFF('day', MIN({{C_DATE}})::DATE, MAX({{C_DATE}})::DATE) AS SPAN_DAYS, |     SUM(IFF({{C_DATE}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS, |     SUM(IFF({{C_DATE}} IS NULL, 1, 0)) AS MISSING_DATE_ROWS | FROM {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TODAY || MIN_DATE || MAX_DATE || SPAN_DAYS || FUTURE_ROWS || MISSING_DATE_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2026-09-21 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: records_by_year
+================================================================================
+R1: Query || SELECT |     YEAR({{C_DATE}}) AS RECORD_YEAR, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: RECORD_YEAR || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_CONDITIONS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: recency_ranges
+================================================================================
+R1: Query || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DATE}} IS NULL THEN 90 |             WHEN {{C_DATE}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 180 THEN 3... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SORT_ORDER || DATE_RANGE || ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: conditions_per_patient
+================================================================================
+R1: Query || WITH per_patient AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         COUNT(*) AS ROW_COUNT |     FROM {{T}} |     WHERE {{C_PT}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     ROW_COUNT AS CONDITIONS_PER_PATIENT, |     COUNT(*) AS NUMBER_OF_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_PATIENTS | FROM per_patient | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: CONDITIONS_PER_PATIENT || NUMBER_OF_PATIENTS || PCT_OF_PATIENTS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: top_patients
+================================================================================
+R1: Query || SELECT |     {{C_PT}} AS PATIENT_ID, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_CONDITIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     MIN({{C_DATE}}) AS FIRST_DATE, |     MAX({{C_DATE}}) AS LAST_DATE | FROM {{T}} | WHERE {{C_PT}} IS NOT NULL | GROUP BY 1 | ORDER BY ROW_COUNT DESC | LIMIT 25; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PATIENT_ID || ROW_COUNT || UNIQUE_CONDITIONS || UNIQUE_SNOMED_CODES || FIRST_DATE || LAST_DATE ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: one_patient_detail
+================================================================================
+R1: Query || SELECT |     {{C_PT}} AS PATIENT_ID, |     {{C_ID}} AS MEDICAL_HISTORY_ID, |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS CONDITION_VALUE, |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     {{C_DATE}} AS RECORD_DATE | FROM {{T}} | WHERE {{C_PT}} = ( |         SELECT {{C_PT}} |         FROM {{T}} |         WHERE {{C_PT}} IS NOT NULL... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PATIENT_ID || MEDICAL_HISTORY_ID || ENCOUNTER_ID || SOURCE_CATEGORY || CONDITION_VALUE || SNOMED || SECONDARY_SNOMED || RECORD_DATE ||  ||  ||  ||  ||  ||  ||  || 

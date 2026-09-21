@@ -1,0 +1,489 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\raw\lab_data_analysis_outputs.xlsx
+SHEETS: ['Run Summary', 'current_context', 'find_table', 'describe_table', 'first_10_rows', 'volume_uniqueness', 'null_counts', 'observation_identifier_summary', 'observation_identifier_counts', 'observation_identifier_words', 'result_status_counts', 'date_span', 'labs_by_year', 'recency_ranges', 'labs_per_encounter', 'top_encounters', 'one_encounter_detail']
+
+================================================================================
+SHEET: Run Summary
+================================================================================
+R1: Cell Number || Cell Name || Sheet Name || Query || Status || Row Count || Truncated || Error ||  ||  ||  ||  ||  ||  ||  || 
+R2: 8 || current_context || current_context || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 9 || find_table || find_table || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM {{DB}}.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND ( |         UPPER(TABLE_NAME) LIKE '%LAB%' |      OR UPPER(TABLE_NAME) LIKE '%OBSERVATION%' |   ) | ORDER BY TABLE_SCHEMA, TABLE_NAME; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 11 || describe_table || describe_table || DESCRIBE TABLE {{T}}; || SUCCESS || 13 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 12 || first_10_rows || first_10_rows || SELECT * | FROM {{T}} | LIMIT 10; || SUCCESS || 10 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 14 || volume_uniqueness || volume_uniqueness || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_LAB}}) AS UNIQUE_LAB_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_OBSERVATION_IDENTIFIERS, |     COUNT(*) - COUNT(DISTINCT {{C_LAB}}) AS EXTRA_ROWS_VS_UNIQUE_LAB_ID, |     ROUND(COUNT(*) / NULLIF(COUNT(DISTINCT {{C_ENC}}), 0), 2) AS... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 16 || null_counts || null_counts || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_LAB}} IS NULL, 1, 0)) AS NULL_LAB_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_REQ}} IS NULL, 1, 0)) AS NULL_LAB_REQUEST_ID, |     SUM(IFF({{C_RES}} IS NULL, 1, 0)) AS NULL_LAB_RESULT_ID, |     SUM(IFF({{C_OBS}} IS NULL, 1, 0)) AS NULL_OBSERVATION_... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 18 || observation_identifier_summary || observation_identifier_summary || SELECT |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_OBSERVATION_IDENTIFIERS, |     SUM(IFF({{C_OBS}} IS NULL, 1, 0)) AS NULL_NAME_ROWS, |     SUM(IFF(TRIM({{C_OBS}}::STRING) = '', 1, 0)) AS BLANK_NAME_ROWS | FROM {{T}}; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 19 || observation_identifier_counts || observation_identifier_counts || SELECT |     {{C_OBS}} AS OBSERVATION_IDENTIFIER, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC, OBSERVATION_IDENTIFIER; || SUCCESS || 7668 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 20 || observation_identifier_words || observation_identifier_words || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_OBS}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_OBS}} IS NOT NULL | ) | SELECT |     WORD, |     COUNT(*) AS WORD_... || SUCCESS || 4208 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 22 || result_status_counts || result_status_counts || SELECT |     {{C_STATUS}} AS OBSERVATION_RESULT_STATUS, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC; || SUCCESS || 4 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 24 || date_span || date_span || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DT}}) AS MIN_OBSERVATION_DATETIME, |     MAX({{C_DT}}) AS MAX_OBSERVATION_DATETIME, |     SUM(IFF({{C_DT}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS | FROM {{T}}; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 25 || labs_by_year || labs_by_year || SELECT |     YEAR({{C_DT}}) AS OBS_YEAR, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; || SUCCESS || 9 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 26 || recency_ranges || recency_ranges || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DT}} IS NULL THEN 90 |             WHEN {{C_DT}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 180 THEN 3 |        ... || SUCCESS || 8 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 28 || labs_per_encounter || labs_per_encounter || WITH per_enc AS ( |     SELECT |         {{C_ENC}} AS ENCOUNTER_ID, |         COUNT(*) AS LAB_ROW_COUNT |     FROM {{T}} |     WHERE {{C_ENC}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     LAB_ROW_COUNT AS LABS_ON_ENCOUNTER, |     COUNT(*) AS NUMBER_OF_ENCOUNTERS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ENCOUNTERS | FROM per_enc | GROUP BY 1 | ORDER BY 1; || SUCCESS || 3893 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 29 || top_encounters || top_encounters || SELECT |     {{C_ENC}} AS ENCOUNTER_ID, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_TEST_NAMES, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS | FROM {{T}} | WHERE {{C_ENC}} IS NOT NULL | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC | LIMIT 25; || SUCCESS || 25 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 30 || one_encounter_detail || one_encounter_detail || SELECT |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_PT}} AS PATIENT_ID, |     {{C_LAB}} AS LAB_ID, |     {{C_OBS}} AS OBSERVATION_IDENTIFIER, |     {{C_VAL}} AS OBSERVATION_VALUE, |     {{C_STATUS}} AS OBSERVATION_RESULT_STATUS, |     {{C_DT}} AS OBSERVATION_DATETIME | FROM {{T}} | WHERE {{C_ENC}} = ( |         SELECT {{C_ENC}} |         FROM {{T}} |         WHERE {{C_ENC}} IS NOT NULL |         GRO... || SUCCESS || 38432 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: current_context
+================================================================================
+R1: Query || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROLE || WAREHOUSE || DATABASE || SCHEMA ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: SYSADMIN || CHAMPSOFT_WH ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: find_table
+================================================================================
+R1: Query || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM {{DB}}.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND ( |         UPPER(TABLE_NAME) LIKE '%LAB%' |      OR UPPER(TABLE_NAME) LIKE '%OBSERVATION%' |   ) | ORDER BY TABLE_SCHEMA, TABLE_NAME; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TABLE_CATALOG || TABLE_SCHEMA || TABLE_NAME || ROW_COUNT || BYTES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: UHTX_RDDT_CLINICAL_DEV || PUBLIC || LABS || 133901152 || 6052174336 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: describe_table
+================================================================================
+R1: Query || DESCRIBE TABLE {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: "name" || "type" || "kind" || "null?" || "default" || "primary key" || "unique key" || "check" || "expression" || "comment" || "policy name" || "privacy domain" || "write default" ||  ||  || 
+
+================================================================================
+SHEET: first_10_rows
+================================================================================
+R1: Query || SELECT * | FROM {{T}} | LIMIT 10; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: LABTESTKEY || ENCOUNTERKEY || PATIENTID || LABREQUESTID || LABRESULTID || OBSERVATIONIDENTIFIER || OBSERVATIONVALUE || OBSERVATIONRESULTSTATUS || OBSERVATIONDATETIME || PERFORMEDDATETIME || ANALYSISDATETIME || LABRESULTNOTE || OBSERVATIONIDENTIFIERCOMMONNAME ||  ||  || 
+R4: 38638982 || 79702064 || {FD8527A6-5C75-4E1C-B6F2-AD070F48882E} ||  ||  || Lymphocytes Absolute Auto || 1.81 || Final result || 2026-01-25 19:48:00 || 2026-01-25 19:48:00 || 2026-01-25 19:30:00 ||  || LYMPHS ABS AUTO ||  ||  || 
+R5: 38957558 || 80556079 || {95CCC92C-6C7D-42F1-B282-E52EA823B4CA} ||  ||  || Device Location || ST-5ICU iSTAT || Final result || 2026-02-11 03:57:00 || 2026-02-11 03:57:00 || 2026-02-11 03:39:00 ||  || DEVICE LOCATION ||  ||  || 
+R6: 31185471 || 58178454 || {7B38AB44-4B16-4911-9547-D91840054EF0} ||  ||  || Potassium || 3.9 || Final result || 2024-11-14 06:45:00 || 2024-11-14 06:45:00 || 2024-11-14 04:54:00 || If testing received 2 hours after collection, CO2 can be affected If testing received 2 hours after collection, Total bilirubin can be affected. || POTASSIUM ||  ||  || 
+R7: 30699445 || 56924501 || {13EB60B9-F52F-4241-A366-1DD312A21B2C} ||  ||  || Neutrophils Absolute Auto || 8.72 || Final result || 2024-10-15 19:49:00 || 2024-10-15 19:49:00 || 2024-10-15 19:34:00 ||  || NEUTROS ABS ||  ||  || 
+R8: 31772381 || 59544124 || {5BF83F2D-79E7-42BC-8265-0CFEE4AE1746} ||  ||  || Red Blood Cell Count || 2.52 || Final result || 2024-12-22 06:32:00 || 2024-12-22 06:32:00 || 2024-12-22 04:36:00 || This is an appended report.  These results have been appended to a previously verified report. || RBC AUTO ||  ||  || 
+R9: 31777505 || 59864812 || {CC1A0C87-7918-4F6E-A131-482E5EBB4F61} ||  ||  || Platelet Count || 274 || Final result || 2024-12-22 01:06:00 || 2024-12-22 01:06:00 || 2024-12-22 00:22:00 ||  || PLATELETS AUTO ||  ||  || 
+R10: 37814882 || 75946551 || {351AFE73-5E31-4591-95DB-7B7B25D8E997} ||  ||  || NRBC Percent Auto || 0.0 || Final result || 2025-12-08 21:21:00 || 2025-12-08 21:21:00 || 2025-12-08 20:54:00 ||  || NRBC AUTO ||  ||  || 
+R11: 36237529 || 71713158 || {194B1C0E-85A5-407E-8D1D-999A23592F46} ||  ||  || Hematocrit || 22.4 || Final result || 2025-09-09 19:45:00 || 2025-09-09 19:45:00 || 2025-09-09 15:57:00 ||  || HEMATOCRIT ||  ||  || 
+R12: 24653560 || 44328648 || {A92C2566-6D40-46EC-8E40-84CDB1739F03} ||  ||  || Hematocrit || 32.0 || Final result || 2023-10-17 14:32:00 || 2023-10-17 14:32:00 || 2023-10-17 14:05:00 ||  || HEMATOCRIT ||  ||  || 
+R13: 25295562 || 44140992 || {00CA6AE6-84DD-4DE9-A885-65F2C4C7FE66} ||  ||  || Base Excess Capillary POC || -6 || Final result || 2023-11-16 18:03:00 || 2023-11-16 18:03:00 || 2023-11-16 18:01:00 ||  || BASE EXC CAP ||  ||  || 
+
+================================================================================
+SHEET: volume_uniqueness
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_LAB}}) AS UNIQUE_LAB_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_OBSERVATION_IDENTIFIERS, |     COUNT(*) - COUNT(DISTINCT {{C_LAB}}) AS EXTRA_ROWS_VS_UNIQUE_LAB_ID, |     ROUND(COUNT(*) / NULLIF(COUNT(DISTINCT {{C_ENC}}), 0), 2) AS... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || UNIQUE_LAB_IDS || UNIQUE_ENCOUNTERS || UNIQUE_PATIENTS || UNIQUE_OBSERVATION_IDENTIFIERS || EXTRA_ROWS_VS_UNIQUE_LAB_ID || AVG_LABS_PER_ENCOUNTER || AVG_LABS_PER_PATIENT ||  ||  ||  ||  ||  ||  ||  || 
+R4: 133901152 || 24483028 || 3856970 || 695413 || 7668 || 109418124 || 34.72 || 192.55 ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: null_counts
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_LAB}} IS NULL, 1, 0)) AS NULL_LAB_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_REQ}} IS NULL, 1, 0)) AS NULL_LAB_REQUEST_ID, |     SUM(IFF({{C_RES}} IS NULL, 1, 0)) AS NULL_LAB_RESULT_ID, |     SUM(IFF({{C_OBS}} IS NULL, 1, 0)) AS NULL_OBSERVATION_... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || NULL_LAB_ID || NULL_ENCOUNTER_ID || NULL_PATIENT_ID || NULL_LAB_REQUEST_ID || NULL_LAB_RESULT_ID || NULL_OBSERVATION_IDENTIFIER || NULL_OBSERVATION_VALUE || NULL_RESULT_STATUS || NULL_OBSERVATION_DATETIME || NULL_PERFORMED_DATETIME || NULL_ANALYSIS_DATETIME || NULL_LAB_RESULT_NOTE ||  ||  || 
+R4: 133901152 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 57545 || 0 ||  ||  || 
+
+================================================================================
+SHEET: observation_identifier_summary
+================================================================================
+R1: Query || SELECT |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_OBSERVATION_IDENTIFIERS, |     SUM(IFF({{C_OBS}} IS NULL, 1, 0)) AS NULL_NAME_ROWS, |     SUM(IFF(TRIM({{C_OBS}}::STRING) = '', 1, 0)) AS BLANK_NAME_ROWS | FROM {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: UNIQUE_OBSERVATION_IDENTIFIERS || NULL_NAME_ROWS || BLANK_NAME_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 7668 || 0 || 0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: observation_identifier_counts
+================================================================================
+R1: Query || SELECT |     {{C_OBS}} AS OBSERVATION_IDENTIFIER, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC, OBSERVATION_IDENTIFIER; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: OBSERVATION_IDENTIFIER || LAB_ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_ENCOUNTERS || PCT_OF_LABS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Calcium || 3053946 || 423115 || 1435665 || 2.28 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: Operator ID || 2587348 || 209190 || 563592 || 1.93 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: Device Location || 2567015 || 208736 || 561135 || 1.92 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Glucose Accuchek POC || 2442383 || 129387 || 254629 || 1.82 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: Potassium || 2424330 || 351824 || 1099024 || 1.81 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: Creatinine || 2415437 || 351951 || 1101701 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: Glucose || 2414545 || 353943 || 1103320 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: Sodium || 2411581 || 351699 || 1094102 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: Urea Nitrogen, Blood || 2408169 || 351942 || 1098569 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: Anion Gap || 2405103 || 351765 || 1094831 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: Chloride || 2404989 || 351643 || 1094523 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: Carbon Dioxide || 2403821 || 351871 || 1094474 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: Hematocrit || 2261860 || 368228 || 1103554 || 1.69 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: Hemoglobin || 2255027 || 367159 || 1103489 || 1.68 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: Platelet Count || 2185737 || 365309 || 1056598 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: MCHC || 2181695 || 365210 || 1056445 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: Mean Platelet Volume || 2180108 || 365134 || 1056147 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: MCH || 2179610 || 364892 || 1056083 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: Red Blood Cell Count || 2179351 || 364951 || 1056145 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: MCV || 2179257 || 364779 || 1055832 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: NRBC Absolute Auto || 2178859 || 364794 || 1055438 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: WBC || 2178786 || 364838 || 1055158 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: NRBC Percent Auto || 2178545 || 364599 || 1055884 || 1.63 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: Albumin || 1784977 || 324246 || 992348 || 1.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: Bilirubin, Total || 1636652 || 346215 || 1011827 || 1.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: RDW || 1619749 || 293471 || 783401 || 1.21 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: Total Protein || 1571905 || 322368 || 971032 || 1.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: Alanine Aminotransferase, ALT || 1565256 || 322686 || 971331 || 1.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: Aspartate Aminotransferase, AST || 1564565 || 322480 || 970637 || 1.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: Alkaline Phosphatase || 1561801 || 322222 || 968312 || 1.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: Basophils Absolute Auto || 1046995 || 261813 || 673956 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: Lymphocytes Absolute Auto || 1046686 || 261693 || 673557 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: Basophil Percent Auto || 1046565 || 261932 || 673772 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: Neutrophils Absolute Auto || 1046459 || 261803 || 673726 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: Immature Granulocyte Percent Auto || 1046370 || 261701 || 673557 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: Monocytes Percent Auto || 1046353 || 261867 || 673505 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: Monocytes Absolute Auto || 1046253 || 261660 || 673315 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: Eosinophils Absolute Auto || 1046109 || 261708 || 673515 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: Eosinophil Percent Auto || 1046033 || 261488 || 673316 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: Lymphocytes Percent Auto || 1045903 || 261835 || 673337 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: Neutrophils Percent Auto || 1045815 || 261544 || 673360 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: Immature Granulocytes Absolute Auto || 1045754 || 261590 || 673171 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: Phosphorus || 1020741 || 120925 || 278403 || 0.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: Magnesium || 1002301 || 136809 || 307524 || 0.75 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: Glomerular Filtration Rate Estimated || 960386 || 279428 || 877547 || 0.72 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: Neutrophils Absolute Preliminary || 937017 || 222053 || 551595 || 0.7 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: Specific Gravity, Urinalysis || 470982 || 213395 || 418706 || 0.35 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: INR || 468026 || 151100 || 291661 || 0.35 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: Ketones, Urinalysis || 446498 || 207679 || 406769 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: Ph, Urinalysis || 446406 || 207887 || 407140 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R54: Appearance, Urinalysis || 446404 || 207623 || 407027 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R55: Color, Urinalysis || 446293 || 207913 || 406940 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R56: Protein, Urinalysis || 446258 || 207651 || 406810 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R57: Nitrites, Urinalysis || 446237 || 207821 || 407043 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R58: Leukocyte Esterase, Urinalysis || 446151 || 207914 || 406749 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R59: Blood, Urinalysis || 446084 || 207602 || 406641 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R60: Urobilinogen, Urinalysis || 446057 || 207540 || 406794 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R61: Glucose, Urinalysis || 445956 || 207626 || 406602 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R62: Bilirubin, Urinalysis || 445594 || 207329 || 406377 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R63: Glucose i-STAT POC || 390707 || 48761 || 60934 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R64: Sodium i-STAT POC || 390413 || 48769 || 60974 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R65: Hematocrit POC || 390404 || 48845 || 60924 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R66: Potassium i-STAT POC || 389915 || 48620 || 60770 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R67: Hemoglobin POC || 387467 || 48544 || 60546 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R68: Calcium Ionized POC || 372087 || 47025 || 58524 || 0.28 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R69: Hemoglobin A1C || 363609 || 151556 || 360972 || 0.27 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R70: Fraction of Inspired O2 i-STAT POC || 346307 || 37794 || 44458 || 0.26 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R71: Triglycerides || 319637 || 133014 || 302521 || 0.24 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R72: pH Corrected i-STAT POC || 317442 || 34880 || 41245 || 0.24 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R73: Temperature POC || 317183 || 34896 || 41303 || 0.24 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R74: pO2 Corrected i-STAT POC || 316399 || 34729 || 41083 || 0.24 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R75: pCO2 Corrected i-STAT POC || 314366 || 34726 || 41106 || 0.23 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R76: Creatinine (External) || 308322 || 93634 || 302203 || 0.23 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R77: Thyroid Stimulating Hormone || 302367 || 157559 || 296669 || 0.23 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R78: Glucose (External) || 301501 || 93536 || 295906 || 0.23 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R79: Calcium (External) || 300974 || 93432 || 295448 || 0.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R80: Sodium (External) || 300453 || 93146 || 295124 || 0.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: observation_identifier_words
+================================================================================
+R1: Query || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_OBS}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_OBS}} IS NOT NULL | ) | SELECT |     WORD, |     COUNT(*) AS WORD_... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: WORD || WORD_OCCURRENCES || UNIQUE_PATIENTS || PCT_OF_WORD_OCCURRENCES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Auto || 16917949 || 391544 || 5.42 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: External || 13328579 || 147784 || 4.27 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: POC || 12924359 || 256768 || 4.14 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Absolute || 11738127 || 417794 || 3.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: Urinalysis || 11454587 || 287302 || 3.67 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: Percent || 8601994 || 382483 || 2.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: Glucose || 6361767 || 460054 || 2.04 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: Blood || 6292130 || 479105 || 2.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: Count || 4903469 || 434494 || 1.57 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: Platelet || 4844277 || 412453 || 1.55 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: Total || 4392807 || 430852 || 1.41 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: NRBC || 4357413 || 388612 || 1.4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: Calcium || 3769931 || 466998 || 1.21 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: Aminotransferase || 3687859 || 395669 || 1.18 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: Neutrophils || 3551588 || 339456 || 1.14 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: Hemoglobin || 3518694 || 436061 || 1.13 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: Creatinine || 3451945 || 405611 || 1.11 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: Carbon || 3186485 || 402744 || 1.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: Dioxide || 3186485 || 402744 || 1.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: Potassium || 3142860 || 399417 || 1.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: Sodium || 3137364 || 399546 || 1.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: Protein || 2990298 || 428355 || 0.96 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: Hematocrit || 2901069 || 428252 || 0.93 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: Lymphocytes || 2889637 || 337409 || 0.93 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: Bilirubin || 2851179 || 446958 || 0.91 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: WBC || 2820948 || 424220 || 0.9 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: Monocytes || 2811098 || 337208 || 0.9 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: Chloride || 2729357 || 397676 || 0.87 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: Urea || 2725053 || 397687 || 0.87 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: Nitrogen || 2724725 || 397653 || 0.87 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: Cell || 2711767 || 413224 || 0.87 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: ID || 2588091 || 209307 || 0.83 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: Operator || 2587348 || 209190 || 0.83 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: Location || 2567017 || 208738 || 0.82 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: Device || 2567015 || 208736 || 0.82 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: i || 2541627 || 67155 || 0.81 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: STAT || 2541586 || 67116 || 0.81 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: Accuchek || 2442383 || 129387 || 0.78 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: Anion || 2405109 || 351768 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: Gap || 2405109 || 351768 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: MCHC || 2401060 || 408318 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: MCH || 2399371 || 408067 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: Red || 2399054 || 408105 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: MCV || 2398814 || 407996 || 0.77 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: Immature || 2383686 || 311066 || 0.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: Albumin || 2341393 || 375995 || 0.75 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: Volume || 2322623 || 388823 || 0.74 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: Mean || 2274152 || 386868 || 0.73 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: Arterial || 1984739 || 37863 || 0.64 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: ALT || 1845437 || 370578 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R54: Alanine || 1844983 || 370614 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R55: AST || 1843392 || 370231 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R56: Aspartate || 1843203 || 370243 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R57: RDW || 1839189 || 344285 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R58: Phosphatase || 1839058 || 369851 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R59: Alkaline || 1838590 || 369844 || 0.59 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R60: Eosinophils || 1760761 || 318461 || 0.56 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R61: Basophils || 1759489 || 318333 || 0.56 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R62: Cholesterol || 1730844 || 196031 || 0.55 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R63: Urine || 1438692 || 213806 || 0.46 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R64: Venous || 1412190 || 52806 || 0.45 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R65: pH || 1244035 || 165506 || 0.4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R66: Corrected || 1243513 || 65084 || 0.4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R67: Granulocytes || 1202921 || 284759 || 0.39 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R68: Screen || 1176571 || 246232 || 0.38 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R69: Rate || 1074119 || 295798 || 0.34 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R70: Phosphorus || 1047338 || 125375 || 0.34 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R71: Basophil || 1046575 || 261936 || 0.34 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R72: Granulocyte || 1046370 || 261701 || 0.34 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R73: Eosinophil || 1046038 || 261492 || 0.34 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R74: Magnesium || 1028652 || 140808 || 0.33 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R75: RBC || 971218 || 274846 || 0.31 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R76: Estimated || 963410 || 280864 || 0.31 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R77: Glomerular || 960516 || 279477 || 0.31 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R78: Filtration || 960386 || 279428 || 0.31 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R79: Preliminary || 937017 || 222053 || 0.3 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R80: pO2 || 920131 || 70386 || 0.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: result_status_counts
+================================================================================
+R1: Query || SELECT |     {{C_STATUS}} AS OBSERVATION_RESULT_STATUS, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: OBSERVATION_RESULT_STATUS || LAB_ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_LABS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Final result || 133536744 || 694435 || 99.73 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: Edited Result - FINAL || 363806 || 45389 || 0.27 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: Edited || 505 || 230 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Preliminary result || 97 || 30 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: date_span
+================================================================================
+R1: Query || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DT}}) AS MIN_OBSERVATION_DATETIME, |     MAX({{C_DT}}) AS MAX_OBSERVATION_DATETIME, |     SUM(IFF({{C_DT}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS | FROM {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TODAY || MIN_OBSERVATION_DATETIME || MAX_OBSERVATION_DATETIME || FUTURE_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2026-09-21 || 2018-06-09T00:55:00 || 2026-09-10T00:05:00 || 0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: labs_by_year
+================================================================================
+R1: Query || SELECT |     YEAR({{C_DT}}) AS OBS_YEAR, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_LABS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: OBS_YEAR || LAB_ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_LABS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2018 || 339550 || 68840 || 0.25 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2019 || 640170 || 107305 || 0.48 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2020 || 7394886 || 128646 || 5.52 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 2021 || 17233926 || 185737 || 12.87 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 2022 || 18925628 || 194878 || 14.13 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 2023 || 21436400 || 193248 || 16.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 2024 || 23660053 || 204492 || 17.67 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 2025 || 25228921 || 210866 || 18.84 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 2026 || 19041618 || 183415 || 14.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: recency_ranges
+================================================================================
+R1: Query || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DT}} IS NULL THEN 90 |             WHEN {{C_DT}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DT}}::DATE, CURRENT_DATE()) <= 180 THEN 3 |        ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SORT_ORDER || DATE_RANGE || ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 1 || 0-30 days ago || 1420944 || 30597 || 1.06 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2 || 31-90 days ago || 4597849 || 71695 || 3.43 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 3 || 91-180 days ago || 6857786 || 93971 || 5.12 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 4 || 181-365 days ago || 13178112 || 145683 || 9.84 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 5 || 1-2 years ago || 41875901 || 285724 || 31.27 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 6 || 3-5 years ago || 57595954 || 376368 || 43.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 7 || 6-7 years ago || 8035056 || 189170 || 6.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 8 || 8-10 years ago || 339550 || 68840 || 0.25 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: labs_per_encounter
+================================================================================
+R1: Query || WITH per_enc AS ( |     SELECT |         {{C_ENC}} AS ENCOUNTER_ID, |         COUNT(*) AS LAB_ROW_COUNT |     FROM {{T}} |     WHERE {{C_ENC}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     LAB_ROW_COUNT AS LABS_ON_ENCOUNTER, |     COUNT(*) AS NUMBER_OF_ENCOUNTERS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ENCOUNTERS | FROM per_enc | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: LABS_ON_ENCOUNTER || NUMBER_OF_ENCOUNTERS || PCT_OF_ENCOUNTERS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 1 || 720807 || 18.69 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2 || 268468 || 6.96 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 3 || 218713 || 5.67 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 4 || 121199 || 3.14 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 5 || 76711 || 1.99 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 6 || 57023 || 1.48 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 7 || 39903 || 1.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 8 || 39297 || 1.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 9 || 47598 || 1.23 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 10 || 60089 || 1.56 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 11 || 71537 || 1.85 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 12 || 78056 || 2.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 13 || 77274 || 2.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 14 || 73117 || 1.9 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 15 || 69598 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 16 || 69442 || 1.8 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 17 || 65705 || 1.7 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 18 || 60339 || 1.56 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 19 || 54640 || 1.42 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 20 || 50422 || 1.31 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 21 || 46396 || 1.2 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 22 || 42588 || 1.1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 23 || 38874 || 1.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 24 || 36394 || 0.94 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 25 || 34280 || 0.89 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: 26 || 32921 || 0.85 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: 27 || 32823 || 0.85 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 28 || 34040 || 0.88 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 29 || 35204 || 0.91 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: 30 || 36407 || 0.94 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: 31 || 37584 || 0.97 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 32 || 38973 || 1.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: 33 || 41770 || 1.08 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 34 || 45411 || 1.18 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 35 || 49443 || 1.28 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: 36 || 52491 || 1.36 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: 37 || 54258 || 1.41 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 38 || 52593 || 1.36 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: 39 || 49841 || 1.29 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: 40 || 45768 || 1.19 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 41 || 41273 || 1.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: 42 || 36552 || 0.95 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: 43 || 32430 || 0.84 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: 44 || 28701 || 0.74 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 45 || 25555 || 0.66 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: 46 || 23313 || 0.6 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: 47 || 22149 || 0.57 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: 48 || 21241 || 0.55 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: 49 || 21044 || 0.55 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: 50 || 20869 || 0.54 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R54: 51 || 20553 || 0.53 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R55: 52 || 20229 || 0.52 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R56: 53 || 19398 || 0.5 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R57: 54 || 18100 || 0.47 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R58: 55 || 16868 || 0.44 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R59: 56 || 15296 || 0.4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R60: 57 || 13722 || 0.36 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R61: 58 || 12194 || 0.32 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R62: 59 || 10683 || 0.28 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R63: 60 || 9510 || 0.25 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R64: 61 || 8420 || 0.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R65: 62 || 7453 || 0.19 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R66: 63 || 6391 || 0.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R67: 64 || 5756 || 0.15 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R68: 65 || 5109 || 0.13 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R69: 66 || 4622 || 0.12 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R70: 67 || 4111 || 0.11 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R71: 68 || 3863 || 0.1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R72: 69 || 3593 || 0.09 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R73: 70 || 3408 || 0.09 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R74: 71 || 3073 || 0.08 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R75: 72 || 2834 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R76: 73 || 2725 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R77: 74 || 2673 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R78: 75 || 2599 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R79: 76 || 2367 || 0.06 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R80: 77 || 2211 || 0.06 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: top_encounters
+================================================================================
+R1: Query || SELECT |     {{C_ENC}} AS ENCOUNTER_ID, |     COUNT(*) AS LAB_ROW_COUNT, |     COUNT(DISTINCT {{C_OBS}}) AS UNIQUE_TEST_NAMES, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS | FROM {{T}} | WHERE {{C_ENC}} IS NOT NULL | GROUP BY 1 | ORDER BY LAB_ROW_COUNT DESC | LIMIT 25; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ENCOUNTER_ID || LAB_ROW_COUNT || UNIQUE_TEST_NAMES || UNIQUE_PATIENTS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 25483769 || 38432 || 282 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 26461948 || 38415 || 306 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 14396229 || 38390 || 268 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 24780052 || 28133 || 272 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 9810767 || 25825 || 261 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 33291687 || 25759 || 255 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 38537091 || 25082 || 276 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 50605455 || 22716 || 343 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 25213541 || 22174 || 205 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 73553052 || 22047 || 342 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 21713287 || 20628 || 251 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 63650339 || 18845 || 326 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 21913669 || 18223 || 262 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 45281473 || 18002 || 263 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 48853367 || 17981 || 289 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 60203480 || 16410 || 198 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 22330245 || 16111 || 273 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 35323364 || 15949 || 251 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 21868837 || 15494 || 273 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 57721532 || 15310 || 219 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 75413254 || 14976 || 351 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 38078969 || 14963 || 251 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 21789022 || 14748 || 216 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 32864283 || 14718 || 314 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 11263554 || 14031 || 305 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: one_encounter_detail
+================================================================================
+R1: Query || SELECT |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_PT}} AS PATIENT_ID, |     {{C_LAB}} AS LAB_ID, |     {{C_OBS}} AS OBSERVATION_IDENTIFIER, |     {{C_VAL}} AS OBSERVATION_VALUE, |     {{C_STATUS}} AS OBSERVATION_RESULT_STATUS, |     {{C_DT}} AS OBSERVATION_DATETIME | FROM {{T}} | WHERE {{C_ENC}} = ( |         SELECT {{C_ENC}} |         FROM {{T}} |         WHERE {{C_ENC}} IS NOT NULL |         GRO... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ENCOUNTER_ID || PATIENT_ID || LAB_ID || OBSERVATION_IDENTIFIER || OBSERVATION_VALUE || OBSERVATION_RESULT_STATUS || OBSERVATION_DATETIME ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15107393 || Glucose Accuchek POC || 313 || Final result || 2022-01-26T18:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || Temperature || 37.0 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || Carbon Dioxide Content Venous || 23 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pO2 Venous || 26 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pCO2 Corrected || 48 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pH Venous || 7.25 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || Oxygen Saturation Venous || 36.4 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pO2 Corrected || 26 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pH Corrected || 7.25 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || pCO2 Venous || 48 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15105453 || Base Excess Venous || -6 || Final result || 2022-01-26T19:24:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Red Blood Cell Count || 4.24 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Eosinophil Percent Auto || 0.0 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Neutrophils Absolute Auto || 6.88 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || NRBC Percent Auto || 0.0 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Mean Platelet Volume || 9.4 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || MCHC || 33.4 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Neutrophils Percent Auto || 75.6 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Immature Granulocytes Absolute Auto || 0.17 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || MCH || 28.5 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Hematocrit || 36.2 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Basophils Absolute Auto || 0.02 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Monocytes Percent Auto || 8.6 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Lymphocytes Percent Auto || 13.7 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Lymphocytes Absolute Auto || 1.25 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || NRBC Absolute Auto || 0.00 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Hemoglobin || 12.1 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Basophil Percent Auto || 0.2 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || WBC || 9.10 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Platelet Count || 459 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Monocytes Absolute Auto || 0.78 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || Eosinophils Absolute Auto || 0.00 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15111382 || MCV || 85.4 || Final result || 2022-01-26T19:35:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15106621 || INR || 1.1 || Final result || 2022-01-26T19:45:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15115305 || aPTT || 28 || Final result || 2022-01-26T19:45:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109390 || Lactic Acid || 1.9 || Final result || 2022-01-26T19:49:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Alanine Aminotransferase, ALT || 16 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Aspartate Aminotransferase, AST || 21 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Calcium || 8.2 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Total Protein || 7.2 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Glucose || 288 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Potassium || 4.3 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Carbon Dioxide || 21 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Sodium || 119 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Alkaline Phosphatase || 61 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Urea Nitrogen, Blood || 33 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Bilirubin, Total || 0.3 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Anion Gap || 8 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Glomerular Filtration Rate Estimated || 24 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15109844 || Chloride || 90 || Final result || 2022-01-26T19:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R54: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15102924 || HIV Ag/Ab Combo (CHIV) Assay || Nonreactive || Final result || 2022-01-26T21:15:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R55: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Human Metapneumovirus || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R56: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Coronavirus OC43 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R57: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Respiratory Syncytial Virus || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R58: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Parainfluenza Virus 2 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R59: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Parainfluenza Virus 4 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R60: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Influenza A || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R61: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Parainfluenza Virus 3 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R62: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Human Rhinovirus/Enterovirus || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R63: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Coronavirus HKU1 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R64: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Adenovirus || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R65: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Parainfluenza Virus 1 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R66: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Influenza B || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R67: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Bordetella pertussis || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R68: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Mycoplasma pneumoniae || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R69: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116161 || Coronavirus NL63 || Not Detected || Final result || 2022-01-26T22:13:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R70: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15116883 || Sodium || 122 || Final result || 2022-01-26T22:51:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R71: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Ph, Urinalysis || 5.0 || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R72: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Nitrites, Urinalysis || Negative || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R73: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Protein, Urinalysis || 1+ || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R74: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Appearance, Urinalysis || Cloudy || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R75: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Urobilinogen, Urinalysis || 0.2 || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R76: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Blood, Urinalysis || Negative || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R77: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Bilirubin, Urinalysis || Negative || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R78: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Glucose, Urinalysis || 1+ || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R79: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15120612 || Specific Gravity, Urinalysis || 1.021 || Final result || 2022-01-27T01:54:00 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R80: 25483769 || {A4BBFE8B-5D5A-4787-9661-C20DD205AA70} || 15132187 || Sodium || 121 || Final result || 2022-01-27T02:14:00 ||  ||  ||  ||  ||  ||  ||  ||  || 

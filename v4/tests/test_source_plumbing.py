@@ -6,13 +6,124 @@ import pytest
 
 from v4.config_loader import ConfigLoadError, _adapt_signal_atom_mappings, _as_bool, _term_row
 from v4.extraction.atom_matching import build_phrase_matcher, match_atom_events
+from v4.extraction.candidate_net import build_candidate_plan
 from v4.extraction.extraction_contract import (
     diagnosis_system,
     event_system_compatible,
     normalize_system,
     routes_for_system,
 )
-from v4.extraction.source_events import _split_declared_values, expand_source_row
+from v4.extraction.source_events import (
+    _split_declared_values,
+    expand_source_row,
+    iter_source_events,
+)
+from v4.warehouse.source_schema import (
+    default_source_config,
+    is_table_profile_enabled,
+    is_table_profile_required,
+    load_source_config,
+)
+
+
+def test_default_source_config_is_claim_only_and_exposes_logical_mapping() -> None:
+    config = default_source_config()
+    enabled = [key for key, table in config["tables"].items() if table["enabled"]]
+    assert enabled == ["claim"]
+    claim = config["tables"]["claim"]
+    assert claim["name"] == "CLAIMS"
+    assert claim["columns"]["patient_id"] == "COLUMN0"
+    assert claim["columns"]["diagnosis_code"] == "COLUMN8"
+    assert "diagnosis_code" in claim["required_columns"]
+
+
+def test_source_schema_mapping_can_be_loaded_from_an_operator_file(tmp_path) -> None:
+    path = tmp_path / "source_schema.json"
+    path.write_text(
+        '{"schema_version":"test", "namespace":"DB.SCHEMA", "tables": {'
+        '"claim": {"name":"NEW_CLAIMS", "enabled":true, "required":true, '
+        '"columns":{"patient_id":"MEMBER_ID", "diagnosis_code":"DX", '
+        '"diagnosis_type":"DX_SYSTEM", "from_date":"SERVICE_DATE"}, '
+        '"required_columns":["patient_id", "diagnosis_code"]}, '
+        '"lab": {"name":"NEW_LABS", "enabled":"false", "required":false, '
+        '"columns":{"patient_id":"MEMBER_ID"}, "required_columns":[]}'
+        '}}',
+        encoding="utf-8",
+    )
+    config = load_source_config(path)
+    assert config["namespace"] == "DB.SCHEMA"
+    assert config["tables"]["claim"]["columns"] == {
+        "patient_id": "MEMBER_ID",
+        "diagnosis_code": "DX",
+        "diagnosis_type": "DX_SYSTEM",
+        "from_date": "SERVICE_DATE",
+    }
+    assert config["tables"]["lab"]["enabled"] is False
+    # Legacy/custom files without the new fields inherit the old algorithm
+    # toggles, preserving compatibility for existing deployments.
+    assert config["tables"]["claim"]["profile_enabled"] is True
+    assert config["tables"]["claim"]["profile_required"] is True
+    assert config["tables"]["lab"]["profile_enabled"] is False
+    assert config["tables"]["lab"]["profile_required"] is False
+
+    independent = {
+        "key": "lab",
+        "enabled": False,
+        "required": False,
+        "profile_enabled": "true",
+        "profile_required": "false",
+    }
+    assert is_table_profile_enabled(independent) is True
+    assert is_table_profile_required(independent) is False
+
+    events = expand_source_row(
+        {
+            "MEMBER_ID": "p-new",
+            "DX": "E85.81",
+            "DX_SYSTEM": "ICD10",
+            "SERVICE_DATE": "2026-01-02",
+        },
+        "claim",
+        run_id="run",
+        config_hash="hash",
+        source_config=config,
+    )
+    assert [(event.patient_id, event.code_system, event.code_value) for event in events] == [
+        ("p-new", "ICD10", "E85.81")
+    ]
+
+
+def test_claim_only_toggle_limits_broad_text_candidate_plan() -> None:
+    config = SimpleNamespace(tables={
+        "terminology": [{
+            "atom_id": "a",
+            "terminology_system": "NLP",
+            "value": "amyloidosis",
+            "can_fire_atom_alone": True,
+        }]
+    })
+
+    plan = build_candidate_plan(
+        config,
+        config_hash="hash",
+        source_config=load_source_config(profile="legacy_ehr_v1"),
+    )
+
+    assert plan
+    assert {query.table_key for query in plan} == {"claim"}
+    assert {query.source_field for query in plan} == {"ClinicalNotes"}
+
+
+def test_disabled_source_tables_are_not_emitted_into_pipeline_events() -> None:
+    rows = {
+        "claim": [{"COLUMN0": "p1", "COLUMN7": "ICD10", "COLUMN8": "I10"}],
+        "lab": [{"PATIENTID": "p1", "OBSERVATIONIDENTIFIER": "14957-5"}],
+    }
+    events = list(
+        iter_source_events(rows, run_id="r", config_hash="h", source_config=default_source_config())
+    )
+    assert events
+    assert {event.attributes["table_key"] for event in events} == {"claim"}
 
 
 def test_terminology_aliases_are_canonical_and_routes_are_typed() -> None:
@@ -92,6 +203,7 @@ def test_legacy_minimal_nlp_rows_need_no_structured_metadata() -> None:
 
 
 def test_structured_exact_lookup_ignores_evidence_role() -> None:
+    legacy_source_config = load_source_config(profile="legacy_ehr_v1")
     events = expand_source_row(
         {
             "Member/PatientId": "p1",
@@ -101,6 +213,7 @@ def test_structured_exact_lookup_ignores_evidence_role() -> None:
         "claim",
         run_id="r",
         config_hash="h",
+        source_config=legacy_source_config,
     )
     config = SimpleNamespace(
         tables={
@@ -127,6 +240,7 @@ def test_multi_code_values_flatten_arrays_and_newlines() -> None:
 
 
 def test_claim_expansion_is_strict_and_preserves_text_context() -> None:
+    legacy_source_config = load_source_config(profile="legacy_ehr_v1")
     row = {
         "Member/PatientId": "p1",
         "ClaimId": "c1",
@@ -137,7 +251,9 @@ def test_claim_expansion_is_strict_and_preserves_text_context() -> None:
         "DiagnosisType": "ICD-10-CM",
         "ClinicalNotes": "I10 documented",
     }
-    events = expand_source_row(row, "claim", run_id="r", config_hash="h")
+    events = expand_source_row(
+        row, "claim", run_id="r", config_hash="h", source_config=legacy_source_config
+    )
     code_events = [event for event in events if event.code_value]
     assert [(event.source_field, event.code_system, event.code_value) for event in code_events] == [
         ("diagnosis_code", "ICD10", "I10"),
@@ -156,6 +272,7 @@ def test_claim_expansion_is_strict_and_preserves_text_context() -> None:
 
 
 def test_lab_and_family_history_expand_code_arrays() -> None:
+    legacy_source_config = load_source_config(profile="legacy_ehr_v1")
     lab = {
         "Member/PatientId": "p1",
         "LabId": "l1",
@@ -163,7 +280,9 @@ def test_lab_and_family_history_expand_code_arrays() -> None:
         "ObservationIdentifierSystem": "LOINC",
         "ObservationValue": "2.1",
     }
-    lab_events = expand_source_row(lab, "lab", run_id="r", config_hash="h")
+    lab_events = expand_source_row(
+        lab, "lab", run_id="r", config_hash="h", source_config=legacy_source_config
+    )
     assert [event.code_value for event in lab_events if event.code_value] == [
         "14957-5", "1848-9", "30003-8"
     ]
@@ -175,13 +294,20 @@ def test_lab_and_family_history_expand_code_arrays() -> None:
         "SNOMED": ["1", "2\n3"],
         "Condition": "family history",
     }
-    family_events = expand_source_row(family, "family_history", run_id="r", config_hash="h")
+    family_events = expand_source_row(
+        family,
+        "family_history",
+        run_id="r",
+        config_hash="h",
+        source_config=legacy_source_config,
+    )
     assert [event.code_value for event in family_events if event.code_value] == ["1", "2", "3"]
     assert all(event.text_value is None for event in family_events if event.code_value)
     assert all(event.experiencer_hint == "FAMILY_MEMBER" for event in family_events)
 
 
 def test_undeclared_lab_identifier_is_not_assumed_to_be_loinc() -> None:
+    legacy_source_config = load_source_config(profile="legacy_ehr_v1")
     events = expand_source_row(
         {
             "Member/PatientId": "p1",
@@ -192,6 +318,7 @@ def test_undeclared_lab_identifier_is_not_assumed_to_be_loinc() -> None:
         "lab",
         run_id="r",
         config_hash="h",
+        source_config=legacy_source_config,
     )
     code_events = [event for event in events if event.code_value]
     assert len(code_events) == 1

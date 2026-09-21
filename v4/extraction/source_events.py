@@ -7,7 +7,7 @@ import json
 from dataclasses import asdict, dataclass, field, replace
 from typing import Any, Iterable, Mapping
 
-from ..warehouse.source_schema import default_source_config
+from ..warehouse.source_schema import default_source_config, is_table_enabled
 from .extraction_contract import (
     UNKNOWN_DIAGNOSIS_TYPE_POLICY,
     derive_available_date,
@@ -265,7 +265,11 @@ def normalize_source_row(
         attrs["observation_identifier_system_assumed"] = observation_assumed
     return SourceEvent(
         run_id=str(run_id), patient_id=str(patient), encounter_id=None if encounter in (None, "") else str(encounter),
-        source_table=physical_name, source_record_id=source_record_id, event_date=event_date,
+        # Keep the stable logical table key in the event contract.  Physical
+        # names are deployment-specific (e.g. CLAIM vs CLAIMS) and would
+        # otherwise break typed routing; the physical name remains available
+        # in attributes for lineage and audit output.
+        source_table=table_key.upper(), source_record_id=source_record_id, event_date=event_date,
         available_date=derive_available_date(_value(row, "available_date", "available_date"), event_date),
         source_specialty=None if specialty in (None, "") else str(specialty), source_field=source_field,
         code_system=(
@@ -379,7 +383,7 @@ def iter_source_events(
 ) -> Iterable[SourceEvent]:
     for table_key, rows in rows_by_table.items():
         table_cfg = (source_config or default_source_config()).get("tables", {}).get(table_key, {})
-        if not table_cfg.get("enabled", True):
+        if not is_table_enabled(table_cfg):
             continue
         for row in rows:
             patient = _value(row, table_cfg.get("columns", {}).get("patient_id"), "patient_id")

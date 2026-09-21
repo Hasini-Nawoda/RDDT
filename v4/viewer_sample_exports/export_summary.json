@@ -1,0 +1,119 @@
+{
+  "output_dir": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports",
+  "patient_count": 10,
+  "patients": [
+    {
+      "case_id": "ATTRV_COMPLEX_PATIENT_V1",
+      "patient_id": "P-ATTRV-001",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": true,
+      "flagged_al": true
+    },
+    {
+      "case_id": "REPEATED_POLARITY_LONG_SENTENCE",
+      "patient_id": "P-ADV-002",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": false,
+      "flagged_al": false
+    },
+    {
+      "case_id": "FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY",
+      "patient_id": "P-ADV-003",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": true,
+      "flagged_al": false
+    },
+    {
+      "case_id": "UNCERTAINTY_RESOLVED_LATER_SAME_NOTE",
+      "patient_id": "P-ADV-004",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": true,
+      "flagged_al": false
+    },
+    {
+      "case_id": "NEGATED_CURRENT_AND_FUTURE_PLAN",
+      "patient_id": "P-ADV-005",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": true,
+      "flagged_al": false
+    },
+    {
+      "case_id": "MULTIPLE_RELATIVE_DATES_HISTORICAL_AND_RECENT",
+      "patient_id": "P-ADV-006",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": true,
+      "flagged_al": false
+    },
+    {
+      "case_id": "CLAUSE_LOCAL_DATES_AND_POLARITY",
+      "patient_id": "P-ADV-007",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": false,
+      "flagged_al": false
+    },
+    {
+      "case_id": "STRUCTURED_CODE_TEXT_CONFLICT",
+      "patient_id": "P-ADV-008",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": false,
+      "flagged_al": false
+    },
+    {
+      "case_id": "COPIED_FORWARD_HISTORY_VERSUS_CURRENT_DENIAL",
+      "patient_id": "P-ADV-009",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": false,
+      "flagged_al": false
+    },
+    {
+      "case_id": "LONG_MULTICLAUSE_CROSS_CONTEXT_AND_FUTURE_WORKUP",
+      "patient_id": "P-ADV-010",
+      "known_attr": false,
+      "known_al": false,
+      "flagged_attr": false,
+      "flagged_al": true
+    }
+  ],
+  "exports": {
+    "known_attr": {
+      "jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\confirmed\\known_attr_patient_profiles.jsonl",
+      "csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\confirmed\\known_attr_patient_profiles.csv"
+    },
+    "known_al": {
+      "jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\known_al\\confirmed\\known_al_patient_profiles.jsonl",
+      "csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\known_al\\confirmed\\known_al_patient_profiles.csv"
+    },
+    "flagged_attr": {
+      "jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\attr_flagged_patient_profiles.jsonl",
+      "csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\attr_flagged_patient_profiles.csv",
+      "highest_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\highest_suspicion\\attr_flagged_patient_profiles.jsonl",
+      "highest_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\highest_suspicion\\attr_flagged_patient_profiles.csv",
+      "high_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\high_suspicion\\attr_flagged_patient_profiles.jsonl",
+      "high_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\high_suspicion\\attr_flagged_patient_profiles.csv",
+      "moderate_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\moderate_suspicion\\attr_flagged_patient_profiles.jsonl",
+      "moderate_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\detected\\moderate_suspicion\\attr_flagged_patient_profiles.csv"
+    },
+    "flagged_al": {
+      "jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\al_detected_patient_profiles.jsonl",
+      "csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\al_detected_patient_profiles.csv",
+      "highest_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\highest_suspicion\\al_detected_patient_profiles.jsonl",
+      "highest_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\highest_suspicion\\al_detected_patient_profiles.csv",
+      "high_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\high_suspicion\\al_detected_patient_profiles.jsonl",
+      "high_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\high_suspicion\\al_detected_patient_profiles.csv",
+      "moderate_suspicion_jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\moderate_suspicion\\al_detected_patient_profiles.jsonl",
+      "moderate_suspicion_csv": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\al_detected\\detected\\moderate_suspicion\\al_detected_patient_profiles.csv"
+    },
+    "not_flagged": {
+      "jsonl": "C:\\Users\\PAMALI\\Desktop\\RDDT\\v4\\viewer_sample_exports\\reviewed\\not_flagged\\not_flagged_patient_profiles.jsonl"
+    }
+  }
+}

@@ -12,7 +12,12 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any, Iterable, Mapping, Sequence
 
-from ..warehouse.source_schema import default_source_config, qualified_table_name, quote_identifier
+from ..warehouse.source_schema import (
+    default_source_config,
+    is_table_enabled,
+    qualified_table_name,
+    quote_identifier,
+)
 from .code_semantics import (
     code_in_text_supported,
     expanded_values,
@@ -22,7 +27,14 @@ from .code_semantics import (
     prefix_fallback_supported,
     term_match_mode,
 )
-from .extraction_contract import NLP_SOURCE_ROUTES, normalize_system, routes_for_system
+from .extraction_contract import (
+    NLP_SOURCE_ROUTES,
+    normalize_system,
+    normalize_terminology_mode,
+    terminology_mode_for_systems,
+    routes_for_system,
+    terminology_allowed,
+)
 
 
 def _rows(config: Any, key: str) -> list[Mapping[str, Any]]:
@@ -107,7 +119,7 @@ def _route_for_system(system: str) -> list[tuple[str, str, str]]:
 
 def _physical_column(source_config: Mapping[str, Any], table_key: str, logical_field: str) -> tuple[str, str] | None:
     table = source_config.get("tables", {}).get(table_key)
-    if not table or not table.get("enabled", True):
+    if not table or not is_table_enabled(table):
         return None
     physical_table = str(table["name"])
     physical_field = table.get("columns", {}).get(logical_field)
@@ -145,13 +157,29 @@ def _code_sql(column_name: str, term: Mapping[str, Any]) -> tuple[str, tuple[Any
     return f"{expression} = ?", (configured,), "EXACT_CODE"
 
 
-def build_candidate_plan(config: Any, *, config_hash: str, source_config: Mapping[str, Any] | None = None) -> list[CandidateQuery]:
+def build_candidate_plan(
+    config: Any,
+    *,
+    config_hash: str,
+    source_config: Mapping[str, Any] | None = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Any = None,
+) -> list[CandidateQuery]:
     """Build parameterized retrieval queries from compiled terminology only."""
     source_config = source_config or default_source_config()
+    selected_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
     out: list[CandidateQuery] = []
     broad_groups: dict[tuple[str, str, str], list[CandidateReason]] = {}
     code_text_groups: dict[tuple[str, str, str], list[CandidateReason]] = {}
     for term in _rows(config, "terminology"):
+        if not terminology_allowed(
+            _get(term, "terminology_system", "system", "Terminology_System", default=""),
+            selected_mode,
+        ):
+            continue
         atom_id = str(_get(term, "atom_id", "Atom_ID", default=""))
         system = normalize_system(_get(term, "terminology_system", "system", "Terminology_System", default=""))
         canonical_system = normalize_code_system(system)

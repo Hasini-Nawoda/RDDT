@@ -7,7 +7,11 @@ from typing import Any, Mapping
 from ..extraction.atom_matching import build_phrase_matcher
 from ..extraction.code_semantics import find_code_in_text
 from ..extraction.candidate_net import CandidatePatient, CandidateReason, build_candidate_plan
-from ..extraction.extraction_contract import is_nlp_system
+from ..extraction.extraction_contract import (
+    is_nlp_system,
+    terminology_mode_for_systems,
+    terminology_allowed,
+)
 from ..warehouse.snowflake_io import execute
 
 
@@ -40,11 +44,33 @@ def _reason(term: Mapping[str, Any], config_hash: str) -> CandidateReason:
     )
 
 
-def retrieve_candidates(session: Any, config: Any, *, run_id: str, source_config: Mapping[str, Any], nlp: Any = None) -> list[CandidatePatient]:
+def retrieve_candidates(
+    session: Any,
+    config: Any,
+    *,
+    run_id: str,
+    source_config: Mapping[str, Any],
+    nlp: Any = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Any = None,
+) -> list[CandidatePatient]:
     """Execute the candidate plan; NLP candidates always come from PhraseMatcher spans."""
-    plan = build_candidate_plan(config, config_hash=config.config_hash, source_config=source_config)
+    selected_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
+    plan = build_candidate_plan(
+        config,
+        config_hash=config.config_hash,
+        source_config=source_config,
+        terminology_mode=selected_mode,
+    )
     terminology = config.rows("terminology")
-    nlp_terms = [row for row in terminology if is_nlp_system(row.get("terminology_system", ""))]
+    nlp_terms = [
+        row for row in terminology
+        if terminology_allowed(row.get("terminology_system", ""), selected_mode)
+        and is_nlp_system(row.get("terminology_system", ""))
+    ]
     if nlp_terms and nlp is None:
         raise RuntimeError("spaCy/medSpaCy NLP pipeline is required because NLP terminology is configured")
     matcher = labels = None

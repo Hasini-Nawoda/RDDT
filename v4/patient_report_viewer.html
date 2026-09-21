@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RDDT Confirmed Results</title>
+  <style>
+    :root {
+      --bg: #f3f5f7;
+      --ink: #1b2430;
+      --muted: #5b6775;
+      --line: #d7dee6;
+      --card: #ffffff;
+      --accent: #1d4f7c;
+      --accent-soft: #e8eef4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, h3 { margin: 0; font-weight: 600; }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .brand { font-size: 11px; color: var(--muted); }
+    .nav { display: flex; gap: 4px; }
+    .nav button, .ghost, .solid {
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 5px 10px;
+      background: #fff;
+    }
+    .nav button.active, .solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .load { display: flex; gap: 6px; align-items: center; }
+    .load input {
+      width: 260px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 5px 8px;
+      background: #fff;
+    }
+    .error { color: #8a1f2b; padding: 6px 16px; }
+    .status { color: var(--muted); padding: 6px 16px; }
+    .hidden { display: none !important; }
+
+    .page { padding: 16px 18px; }
+    #patients.page {
+      height: calc(100vh - 45px);
+      padding: 10px 12px;
+      overflow: hidden;
+    }
+    .kicker { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+    .lede { color: var(--muted); margin: 4px 0 10px; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .metric, .chart, .lookup, .detail {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+    .metric label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 2px; }
+    .metric strong { font-size: 22px; }
+
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bar { display: grid; grid-template-columns: 130px 1fr 32px; gap: 8px; align-items: center; margin-top: 6px; }
+    .track { height: 6px; background: #e6ebf0; overflow: hidden; }
+    .fill { height: 100%; background: var(--accent); }
+
+    .explorer {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 8px;
+      height: 100%;
+    }
+    .lookup, .detail { min-height: 0; overflow: auto; }
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 6px 8px;
+      margin: 8px 0;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .chip { border: 1px solid var(--line); border-radius: 3px; padding: 3px 7px; background: #fff; font-size: 12px; }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .counts { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .list { display: grid; gap: 2px; }
+    .item {
+      text-align: left;
+      border: 1px solid transparent;
+      background: #fff;
+      border-radius: 3px;
+      padding: 6px 8px;
+    }
+    .item.active { border-color: var(--accent); background: var(--accent-soft); }
+    .item strong { display: block; }
+    .item span { color: var(--muted); font-size: 12px; }
+
+    .flag {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .flag h2 { font-size: 18px; }
+    .badge { background: var(--accent-soft); color: var(--accent); border: 1px solid #c5d3e0; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+    .codes { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 8px; }
+    .code { background: #243041; color: #fff; padding: 2px 6px; font-size: 12px; }
+    .record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .panel { border: 1px solid var(--line); background: #fff; }
+    .panel header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafb;
+    }
+    .panel h3 { font-size: 13px; }
+    .panel header span { color: var(--muted); font-size: 11px; }
+    .panel table { width: 100%; border-collapse: collapse; }
+    .panel td { padding: 4px 8px; border-top: 1px solid #eef1f4; vertical-align: top; }
+    .panel td.n { width: 42px; text-align: right; color: var(--muted); }
+    .panel td.d { color: var(--muted); }
+    .more-btn {
+      width: 100%;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: #f8fafb;
+      padding: 5px;
+      color: var(--accent);
+    }
+    .snap { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; margin-bottom: 8px; }
+    .snap div { border: 1px solid var(--line); padding: 6px 8px; background: #f8fafb; }
+    .snap label { display: block; color: var(--muted); font-size: 10px; text-transform: uppercase; margin-bottom: 2px; }
+    .empty { color: var(--muted); padding: 16px 0; }
+    .span-2 { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <div class="brand">RDDT V4</div>
+      <strong>Confirmed amyloidosis</strong>
+    </div>
+    <div class="nav">
+      <button id="dashBtn" class="active" type="button">Dashboard</button>
+      <button id="patientBtn" type="button">Patients</button>
+    </div>
+    <div class="load">
+      <input id="folderPath" type="text" placeholder="File or folder path" />
+      <button class="ghost" id="fileBtn" type="button">Open file</button>
+      <button class="solid" id="loadBtn" type="button">Load</button>
+      <input id="folderInput" type="file" webkitdirectory directory multiple hidden />
+      <input id="fileInput" type="file" accept=".jsonl,.json" hidden />
+    </div>
+  </header>
+  <div class="error hidden" id="loadError"></div>
+  <div class="status hidden" id="loadStatus"></div>
+
+  <section class="page" id="dashboard">
+    <div class="kicker">Dashboard</div>
+    <h1>Cohort overview</h1>
+    <p class="lede" id="dashLede">Load the confirmed results file to see counts.</p>
+    <div class="metrics" id="metrics"></div>
+    <div class="charts">
+      <div class="chart">
+        <h3>By amyloidosis type</h3>
+        <div id="typeBars"></div>
+      </div>
+      <div class="chart">
+        <h3>By ICD-10 code</h3>
+        <div id="codeBars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page hidden" id="patients">
+    <div class="explorer">
+      <aside class="lookup">
+        <div class="kicker">Lookup</div>
+        <h2>Patients</h2>
+        <input class="search" id="search" type="search" placeholder="Search patient ID" disabled />
+        <div class="filters" id="filters"></div>
+        <div class="counts" id="counts">No patients loaded</div>
+        <div class="list" id="patientList"></div>
+      </aside>
+      <div class="detail" id="report">
+        <p class="empty">Choose a patient to see what was flagged and which claim it came from.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const FILTERS = [
+      { id: "all", label: "All" },
+      { id: "AA", label: "AA" },
+      { id: "ATTR", label: "ATTR" },
+      { id: "ATTRV", label: "ATTRv" },
+      { id: "ATTRWT", label: "ATTRwt" },
+      { id: "AL", label: "AL" },
+      { id: "E85.0", label: "E85.0" },
+      { id: "E85.1", label: "E85.1" },
+      { id: "E85.2", label: "E85.2" },
+      { id: "OTHER", label: "Other" },
+    ];
+
+    const ICD_TYPES = {
+      E85: "Amyloidosis, unspecified family",
+      "E85.0": "Non-neuropathic heredofamilial",
+      E850: "Non-neuropathic heredofamilial",
+      "E85.1": "Neuropathic heredofamilial",
+      E851: "Neuropathic heredofamilial",
+      "E85.2": "Heredofamilial, unspecified",
+      E852: "Heredofamilial, unspecified",
+      "E85.3": "AA",
+      E853: "AA",
+      "E85.4": "Localized",
+      E854: "Localized",
+      "E85.8": "Other amyloidosis",
+      E858: "Other amyloidosis",
+      "E85.81": "AL",
+      E8581: "AL",
+      "E85.82": "ATTR",
+      E8582: "ATTR",
+      "E85.89": "Other amyloidosis",
+      E8589: "Other amyloidosis",
+      "E85.9": "Unspecified",
+      E859: "Unspecified",
+    };
+
+    const state = { patients: [], selectedId: null, filter: "all", query: "", label: "" };
+
+    const folderPath = document.getElementById("folderPath");
+    const folderInput = document.getElementById("folderInput");
+    const fileInput = document.getElementById("fileInput");
+    const loadError = document.getElementById("loadError");
+    const loadStatus = document.getElementById("loadStatus");
+
+    document.getElementById("dashBtn").addEventListener("click", () => showPage("dashboard"));
+    document.getElementById("patientBtn").addEventListener("click", () => showPage("patients"));
+    document.getElementById("fileBtn").addEventListener("click", () => fileInput.click());
+    document.getElementById("loadBtn").addEventListener("click", loadFromPathOrBrowse);
+    folderInput.addEventListener("change", (event) => loadFiles(event.target.files));
+    fileInput.addEventListener("change", (event) => loadFiles(event.target.files));
+    folderPath.addEventListener("keydown", (event) => { if (event.key === "Enter") loadFromPathOrBrowse(); });
+    document.getElementById("search").addEventListener("input", (event) => {
+      state.query = event.target.value.trim().toLowerCase();
+      renderList();
+    });
+
+    const requested = new URLSearchParams(window.location.search).get("file")
+      || new URLSearchParams(window.location.search).get("folder");
+    if (requested) {
+      folderPath.value = requested;
+      loadFromServerPath(requested);
+    } else {
+      loadFromServerPath("/api/default", true);
+    }
+    renderFilters();
+
+    function showPage(name) {
+      document.getElementById("dashboard").classList.toggle("hidden", name !== "dashboard");
+      document.getElementById("patients").classList.toggle("hidden", name !== "patients");
+      document.getElementById("dashBtn").classList.toggle("active", name === "dashboard");
+      document.getElementById("patientBtn").classList.toggle("active", name === "patients");
+    }
+
+    function asList(value) {
+      if (value == null || value === "") return [];
+      if (Array.isArray(value)) return value.filter(Boolean);
+      return String(value).split(";").map((item) => item.trim()).filter(Boolean);
+    }
+
+    function pretty(value) {
+      return String(value || "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function shortId(id) {
+      const clean = String(id || "").replaceAll(/[{}]/g, "");
+      return clean.length > 12 ? clean.slice(0, 8) + "..." + clean.slice(-4) : clean;
+    }
+
+    function diagnosis(profile) {
+      return profile.known_diagnosis || profile.suspected_diagnosis || {};
+    }
+
+    function showError(message) {
+      loadError.textContent = message || "";
+      loadError.classList.toggle("hidden", !message);
+    }
+
+    function showStatus(message) {
+      loadStatus.textContent = message || "";
+      loadStatus.classList.toggle("hidden", !message);
+    }
+
+    function renderFilters() {
+      const present = new Set(state.patients.flatMap((patient) => patient.buckets));
+      const filters = FILTERS.filter((item) => (
+        item.id === "all" || item.id === "OTHER" || item.id === "AA" || item.id === "ATTR" || item.id === "AL"
+        || present.has(item.id)
+      ));
+      document.getElementById("filters").innerHTML = filters.map((item) => (
+        `<button class="chip ${item.id === state.filter ? "active" : ""}" data-filter="${item.id}" type="button">${item.label}</button>`
+      )).join("");
+      document.querySelectorAll("#filters .chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          state.filter = chip.dataset.filter;
+          renderFilters();
+          renderList();
+        });
+      });
+    }
+
+    async function loadFromPathOrBrowse() {
+      const path = folderPath.value.trim();
+      if (path && await loadFromServerPath(path)) return;
+      folderInput.click();
+    }
+
+    async function loadFromServerPath(path, isDefault) {
+      const url = isDefault || path === "/api/default"
+        ? "/api/default"
+        : "/api/load?path=" + encodeURIComponent(path);
+      try {
+        showStatus("Loading confirmed results...");
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(await response.text());
+        const payload = await response.json();
+        ingest(payload.records || [], payload.folder || path);
+        showStatus("");
+        return true;
+      } catch (error) {
+        showStatus("");
+        if (window.location.protocol === "file:") {
+          showError("This page was opened as a file. Run python v4/patient_report_viewer.py so the results can load.");
+        } else if (!isDefault) {
+          showError(error.message || "Could not load that path. Open the file from this page, or start patient_report_viewer.py.");
+        }
+        return false;
+      }
+    }
+
+    function splitRecords(text) {
+      const rows = [];
+      for (const line of text.split(/\r?\n/).map((item) => item.trim()).filter(Boolean)) {
+        try {
+          const parsed = JSON.parse(line);
+          Array.isArray(parsed) ? rows.push(...parsed) : rows.push(parsed);
+        } catch {}
+      }
+      return rows;
+    }
+
+    async function loadFiles(fileList) {
+      const files = Array.from(fileList || []).filter((file) => /\.jsonl?$/i.test(file.name || ""));
+      if (!files.length) return showError("No report file found.");
+      const tooLarge = files.find((file) => file.size > 40 * 1024 * 1024);
+      if (tooLarge) {
+        return showError("This file is too large for the browser to open directly. Run python v4/patient_report_viewer.py and it will load automatically.");
+      }
+      try {
+        showStatus("Reading file...");
+        const records = [];
+        for (const file of files) {
+          splitRecords(await file.text()).forEach((profile) => records.push({ profile, path: file.name }));
+        }
+        ingest(records, files[0].name);
+        showStatus("");
+      } catch (error) {
+        showStatus("");
+        showError(error.message || "Could not read that file.");
+      }
+    }
+
+    function ingest(records, label) {
+      try {
+        const grouped = new Map();
+        for (const record of records) {
+          const profile = slim(record.profile);
+          const id = String(profile.patient_id || "").trim();
+          if (!id) continue;
+          grouped.set(id, {
+            id,
+            profile,
+            buckets: filterBuckets(profile),
+            names: displayNames(profile),
+          });
+        }
+        state.label = label;
+        state.patients = Array.from(grouped.values());
+        state.selectedId = state.patients[0]?.id || null;
+        document.getElementById("search").disabled = !state.patients.length;
+        showError("");
+        renderFilters();
+        renderDashboard();
+        renderList();
+        renderPatient();
+        showPage("dashboard");
+      } catch (error) {
+        showError(error.message || "The file loaded, but the viewer could not draw the patients.");
+      }
+    }
+
+    function normalizeCode(code) {
+      return String(code || "").toUpperCase().replace(/\s/g, "");
+    }
+
+    function matchedCodes(profile) {
+      return asList(diagnosis(profile).matched_icd10_codes).map(normalizeCode);
+    }
+
+    function distinctTypes(profile) {
+      const fromCodes = matchedCodes(profile)
+        .map((code) => ICD_TYPES[code])
+        .filter(Boolean);
+      if (fromCodes.length) return Array.from(new Set(fromCodes));
+      return asList(diagnosis(profile).amyloidosis_types)
+        .map((type) => String(type).toUpperCase() === "HEREDOFAMILIAL" ? "Heredofamilial" : pretty(type));
+    }
+
+    function specificBuckets(profile) {
+      const kd = diagnosis(profile);
+      const types = asList(kd.amyloidosis_types).map((item) => String(item).toUpperCase());
+      const codes = matchedCodes(profile);
+      const text = [kd.amyloidosis_subtypes, kd.confirmation_scope].flatMap(asList).join(" ").toLowerCase();
+      const labels = new Set();
+      if (types.includes("AA") || codes.includes("E85.3") || codes.includes("E853")) labels.add("AA");
+      if (types.includes("AL") || codes.includes("E85.81") || codes.includes("E8581")) labels.add("AL");
+      const attrv = /attrv|hereditary attr|variant transthyretin/.test(text);
+      const attrwt = /attrwt|wild-type/.test(text) || codes.includes("E85.82") || codes.includes("E8582");
+      if (attrv) labels.add("ATTRV");
+      if (attrwt) labels.add("ATTRWT");
+      if (types.includes("ATTR") || attrv || attrwt) labels.add("ATTR");
+      if (codes.includes("E85.0") || codes.includes("E850")) labels.add("E85.0");
+      if (codes.includes("E85.1") || codes.includes("E851")) labels.add("E85.1");
+      if (codes.includes("E85.2") || codes.includes("E852")) labels.add("E85.2");
+      return labels;
+    }
+
+    function filterBuckets(profile) {
+      const labels = specificBuckets(profile);
+      if (![...labels].some((item) => ["AA", "AL", "ATTR", "ATTRV", "ATTRWT"].includes(item))) {
+        labels.add("OTHER");
+      }
+      return Array.from(labels);
+    }
+
+    function displayNames(profile) {
+      const buckets = specificBuckets(profile);
+      const names = [];
+      for (const type of distinctTypes(profile)) {
+        if (type === "ATTR") {
+          if (buckets.has("ATTRV")) names.push("ATTRv");
+          else if (buckets.has("ATTRWT")) names.push("ATTRwt");
+          else names.push("ATTR");
+          continue;
+        }
+        names.push(type);
+      }
+      return names.length ? Array.from(new Set(names)) : ["Confirmed amyloidosis"];
+    }
+
+    function slim(profile) {
+      if (!profile) return {};
+      const rawTables = ((profile.ehr || {}).records_by_table) || {};
+      const alreadySlim = Object.values(rawTables).every((payload) => !payload || !payload.records || payload.groups);
+      if (alreadySlim && Array.isArray((profile.clinical_rationale || {}).evidence)) {
+        return profile;
+      }
+      const tables = {};
+      for (const [key, payload] of Object.entries(rawTables)) {
+        const projected = (payload.records || []).map((row) => projectRow(row, payload.column_map || {}));
+        tables[key] = {
+          physical_table: payload.physical_table,
+          record_count: payload.record_count || projected.length,
+          enabled: payload.profile_enabled ?? payload.enabled,
+          records: key === "census" ? projected.slice(0, 1) : [],
+          groups: payload.groups || groupProjected(key, projected),
+        };
+      }
+      const rationale = profile.clinical_rationale || {};
+      const evidence = rationale.evidence || rationale.matched_claim_evidence || [];
+      const grouped = new Map();
+      for (const row of evidence) {
+        if (row.code && row.mentions != null) {
+          grouped.set(row.code, { code: row.code, mentions: row.mentions, unit: row.unit || "encounter" });
+          continue;
+        }
+        const claim = row.source_claim || {};
+        const code = row.matched_icd10_code || claim.diagnosis_code || "ICD-10";
+        const current = grouped.get(code) || { code, mentions: 0, unit: "encounter" };
+        current.mentions += 1;
+        grouped.set(code, current);
+      }
+      return {
+        patient_id: profile.patient_id,
+        run_id: profile.run_id,
+        diagnosis_state: profile.diagnosis_state,
+        demographics: profile.demographics || {},
+        known_diagnosis: profile.known_diagnosis || {},
+        phenotype_risk_assessments: profile.phenotype_risk_assessments || [],
+        clinical_rationale: {
+          evidence_count: rationale.evidence_count || evidence.length,
+          evidence: Array.from(grouped.values()),
+        },
+        ehr: {
+          completeness_status: (profile.ehr || {}).completeness_status,
+          total_record_count: (profile.ehr || {}).total_record_count,
+          table_count: (profile.ehr || {}).table_count,
+          records_by_table: tables,
+        },
+      };
+    }
+
+    function projectRow(row, columnMap) {
+      const out = {};
+      const used = new Set();
+      for (const [logical, physical] of Object.entries(columnMap || {})) {
+        const value = rowGet(row, physical);
+        used.add(String(physical || "").replaceAll('"', "").toUpperCase());
+        if (value != null && value !== "") out[logical] = value;
+      }
+      for (const [key, value] of Object.entries(row || {})) {
+        if (value == null || value === "") continue;
+        if (used.has(String(key).replaceAll('"', "").toUpperCase())) continue;
+        out[key] = value;
+      }
+      return out;
+    }
+
+    function rowGet(row, physical) {
+      if (!row || physical == null) return null;
+      if (physical in row) return row[physical];
+      const wanted = String(physical).replaceAll('"', "").toUpperCase();
+      for (const [key, value] of Object.entries(row)) {
+        if (String(key).replaceAll('"', "").toUpperCase() === wanted) return value;
+      }
+      return firstValue(row, [physical]);
+    }
+
+    function firstValue(row, names) {
+      if (!row) return "";
+      const wanted = names.map((name) => String(name).toUpperCase());
+      for (const [key, value] of Object.entries(row)) {
+        if (wanted.includes(String(key).toUpperCase()) && value != null && value !== "") return value;
+      }
+      return "";
+    }
+
+    function visible() {
+      return state.patients.filter((patient) => {
+        const typeOk = state.filter === "all" || patient.buckets.includes(state.filter);
+        const queryOk = !state.query || patient.id.toLowerCase().includes(state.query);
+        return typeOk && queryOk;
+      });
+    }
+
+    function counts() {
+      const types = {};
+      const codes = {};
+      let mixed = 0;
+      let evidence = 0;
+      for (const patient of state.patients) {
+        const kd = diagnosis(patient.profile);
+        const typeList = distinctTypes(patient.profile);
+        const codeList = asList(kd.matched_icd10_codes);
+        if (typeList.length > 1) mixed += 1;
+        typeList.forEach((item) => { types[item] = (types[item] || 0) + 1; });
+        codeList.forEach((item) => { codes[item] = (codes[item] || 0) + 1; });
+        evidence += Number((patient.profile.clinical_rationale || {}).evidence_count || 0);
+      }
+      return { types, codes, mixed, evidence };
+    }
+
+    function bars(data) {
+      const entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
+      const max = Math.max(1, ...entries.map((item) => item[1]));
+      return entries.map(([label, count]) => `
+        <div class="bar">
+          <span>${escapeHtml(pretty(label))}</span>
+          <div class="track"><div class="fill" style="width:${Math.round(100 * count / max)}%"></div></div>
+          <strong>${count}</strong>
+        </div>
+      `).join("") || `<p class="empty">No data yet.</p>`;
+    }
+
+    function renderDashboard() {
+      const stats = counts();
+      document.getElementById("dashLede").textContent = state.patients.length
+        ? `${state.patients.length} people were confirmed from ICD-10 claim codes.`
+        : "Load the confirmed results file to see counts.";
+      document.getElementById("metrics").innerHTML = state.patients.length ? `
+        <div class="metric"><label>Confirmed patients</label><strong>${state.patients.length}</strong></div>
+        <div class="metric"><label>More than one type</label><strong>${stats.mixed}</strong></div>
+        <div class="metric"><label>Matching claim rows</label><strong>${stats.evidence}</strong></div>
+        <div class="metric"><label>ICD-10 codes used</label><strong>${Object.keys(stats.codes).length}</strong></div>
+      ` : "";
+      document.getElementById("typeBars").innerHTML = bars(stats.types);
+      document.getElementById("codeBars").innerHTML = bars(stats.codes);
+    }
+
+    function renderList() {
+      const rows = visible();
+      document.getElementById("counts").textContent = state.patients.length
+        ? `${rows.length} of ${state.patients.length}`
+        : "No patients loaded";
+      document.getElementById("patientList").innerHTML = rows.map((patient) => `
+        <button class="item ${patient.id === state.selectedId ? "active" : ""}" data-id="${escapeHtml(patient.id)}" type="button">
+          <strong>${escapeHtml(shortId(patient.id))}</strong>
+          <span>${escapeHtml(patient.names.join(", "))}</span>
+        </button>
+      `).join("");
+      document.querySelectorAll(".item").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.selectedId = button.dataset.id;
+          renderList();
+          renderPatient();
+        });
+      });
+    }
+
+    function renderPatient() {
+      const patient = state.patients.find((item) => item.id === state.selectedId);
+      const root = document.getElementById("report");
+      if (!patient) {
+        root.innerHTML = `<p class="empty">Choose a patient to see what was flagged and which claim it came from.</p>`;
+        return;
+      }
+      const kd = diagnosis(patient.profile);
+      const codes = asList(kd.matched_icd10_codes);
+      const evidence = (patient.profile.clinical_rationale || {}).evidence || [];
+      root.innerHTML = `
+        <div class="flag">
+          <div>
+            <div class="kicker">Flagged as</div>
+            <h2>${escapeHtml(patient.names.join(" + "))}</h2>
+            <p class="lede">${escapeHtml(patient.id)}</p>
+          </div>
+          <span class="badge">${escapeHtml(pretty(patient.profile.diagnosis_state || "Confirmed"))}</span>
+        </div>
+        <div class="codes">${codes.map((code) => `<span class="code">${escapeHtml(code)}</span>`).join("")}</div>
+        ${renderSnapshot(patient.profile)}
+        ${section("Flagged codes", evidence.map((row) => ({
+          name: row.code,
+          count: row.mentions,
+          detail: `${row.unit || "mention"}${row.mentions === 1 ? "" : "s"}`,
+        })), evidence.length ? evidence.length + " matching codes" : "None attached", 12, true)}
+        ${renderMedical(patient.profile)}
+      `;
+      root.querySelectorAll("[data-expand]").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.closest(".panel").querySelectorAll(".extra").forEach((row) => row.classList.remove("hidden"));
+          button.remove();
+        });
+      });
+    }
+
+    function tableRecords(profile, key) {
+      return ((((profile.ehr || {}).records_by_table || {})[key] || {}).records) || [];
+    }
+
+    function tableMeta(profile, key) {
+      return (((profile.ehr || {}).records_by_table || {})[key]) || {};
+    }
+
+    function tableGroups(profile, key, nameFn, detailFn) {
+      const table = tableMeta(profile, key);
+      if (Array.isArray(table.groups) && table.groups.length) return table.groups;
+      return groupRows(table.records || [], nameFn, detailFn);
+    }
+
+    function groupProjected(table, records) {
+      const names = {
+        claim: ["diagnosis_code"],
+        encounter: ["TYPE", "type"],
+        lab: ["observation_identifier", "OBSERVATIONIDENTIFIERCOMMONNAME"],
+        medication: ["medication_name", "MEDICATIONNAME"],
+        clinical_note: ["note_type", "NoteType"],
+        medical_history: ["value", "Value"],
+        surgical_history: ["value", "Value"],
+        family_history: ["condition", "Condition"],
+        social_history: ["value", "Value"],
+      }[table] || ["name"];
+      const details = {
+        claim: ["diagnosis_type"],
+        encounter: ["VISITDATE", "encounter_date", "STATUS"],
+        lab: ["observation_value", "observation_datetime"],
+        medication: ["status", "MEDICATIONSTATUS", "DOSAGE"],
+        clinical_note: ["note_text"],
+        medical_history: ["event_date"],
+        surgical_history: ["event_date"],
+        family_history: ["family_member", "event_date"],
+        social_history: ["event_date"],
+      }[table] || [];
+      return groupRows(
+        records,
+        (row) => firstValue(row, names),
+        (row) => details.map((name) => firstValue(row, [name])).filter(Boolean).join(" · ").slice(0, 160),
+      );
+    }
+
+    function val(row, ...names) {
+      return firstValue(row, names);
+    }
+
+    function groupRows(rows, nameFn, detailFn) {
+      const groups = new Map();
+      for (const row of rows) {
+        const name = nameFn(row) || "Not recorded";
+        const current = groups.get(name) || { name, count: 0, detail: "" };
+        current.count += 1;
+        current.detail = detailFn ? (detailFn(row) || current.detail) : current.detail;
+        groups.set(name, current);
+      }
+      return Array.from(groups.values()).sort((a, b) => b.count - a.count);
+    }
+
+    function section(title, rows, countLabel, limit = 8, wide = false) {
+      if (!rows.length) return "";
+      return `
+        <section class="panel ${wide ? "span-2" : ""}">
+          <header>
+            <h3>${escapeHtml(title)}</h3>
+            <span>${escapeHtml(String(countLabel))}</span>
+          </header>
+          <table>
+            ${rows.map((item, index) => `
+              <tr class="${index >= limit ? "extra hidden" : ""}">
+                <td>${escapeHtml(item.name)}</td>
+                <td class="n">${item.count}</td>
+                <td class="d">${escapeHtml(item.detail || "")}</td>
+              </tr>
+            `).join("")}
+          </table>
+          ${rows.length > limit ? `<button class="more-btn" data-expand type="button">Show all ${rows.length}</button>` : ""}
+        </section>
+      `;
+    }
+
+    function renderSnapshot(profile) {
+      const demo = profile.demographics || {};
+      const census = tableRecords(profile, "census")[0] || {};
+      const items = [
+        ["Gender", demo.gender || val(census, "gender", "GENDER")],
+        ["Birth year", demo.birth_date || val(census, "birth_date", "BIRTHDATE")],
+        ["City", demo.city || val(census, "city", "CITY")],
+        ["State", demo.state || val(census, "state", "STATE")],
+        ["Death date", val(census, "DEATHDATE", "death_date")],
+      ].filter(([, value]) => value);
+      const risks = profile.phenotype_risk_assessments || [];
+      return `
+        ${items.length ? `<div class="snap">${items.map(([label, value]) => `<div><label>${escapeHtml(label)}</label><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>` : ""}
+        ${risks.length ? section("Risk assessments", risks.map((row) => ({
+          name: row.risk_for || row.status || "Confirmed",
+          count: 1,
+          detail: row.reason || row.review_route || "",
+        })), risks.length + " assessments", 4, true) : ""}
+      `;
+    }
+
+    function renderMedical(profile) {
+      const matched = new Set(asList(diagnosis(profile).matched_icd10_codes));
+      const claimGroups = markFlagged(tableGroups(profile, "claim", (row) => val(row, "diagnosis_code"), (row) => val(row, "diagnosis_type")), matched);
+      const encounterGroups = tableGroups(profile, "encounter", (row) => val(row, "TYPE", "type") || "Encounter", (row) => val(row, "VISITDATE", "encounter_date", "STATUS"));
+      const labGroups = tableGroups(profile, "lab", (row) => val(row, "observation_identifier") || "Lab result", (row) => [val(row, "observation_value") && ("latest " + val(row, "observation_value")), val(row, "observation_datetime")].filter(Boolean).join(" · "));
+      const noteGroups = tableGroups(profile, "clinical_note", (row) => val(row, "note_type") || "Clinical note", (row) => String(val(row, "note_text") || "").slice(0, 120));
+      const historyGroups = [
+        ...tableGroups(profile, "medical_history", (row) => val(row, "value") || "History item", (row) => val(row, "event_date")),
+        ...tableGroups(profile, "surgical_history", (row) => val(row, "value") || "History item", (row) => val(row, "event_date")),
+      ];
+      const familyGroups = tableGroups(profile, "family_history", (row) => val(row, "condition") || "Family history", (row) => val(row, "family_member"));
+      const socialGroups = tableGroups(profile, "social_history", (row) => val(row, "value") || "Social history", (row) => val(row, "event_date"));
+      const countOf = (key) => Number(tableMeta(profile, key).record_count || 0);
+      const shown = ["claim", "encounter", "lab", "clinical_note", "medical_history", "surgical_history", "family_history", "social_history"];
+      const total = shown.reduce((sum, key) => sum + countOf(key), 0);
+      return `
+        <p class="lede">${total} records in claims, encounters, labs, notes, and history</p>
+        <div class="record-grid">
+          ${section("Encounters", encounterGroups, countOf("encounter") + " rows")}
+          ${section("Claims", claimGroups, countOf("claim") + " rows")}
+          ${section("Labs", labGroups, countOf("lab") + " rows", 8, true)}
+          ${section("Clinical notes", noteGroups, countOf("clinical_note") + " notes")}
+          ${section("History", historyGroups, countOf("medical_history") + countOf("surgical_history") + " rows")}
+          ${section("Family history", familyGroups, countOf("family_history") + " rows")}
+          ${section("Social history", socialGroups, countOf("social_history") + " rows")}
+        </div>
+      `;
+    }
+
+    function markFlagged(rows, matched) {
+      return rows.map((item) => matched.has(item.name) ? { ...item, detail: item.detail ? item.detail + " · flagged" : "flagged" } : item);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+  </script>
+</body>
+</html>

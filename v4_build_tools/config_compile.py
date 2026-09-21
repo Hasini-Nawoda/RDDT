@@ -80,7 +80,7 @@ REQUIRED_HEADERS: Dict[str, Tuple[str, ...]] = {
 OPTIONAL_HEADERS: Dict[str, Tuple[str, ...]] = {
     "Signal_Rules": ("Phenotype", "Signal_ID", "Root_Group_ID", "Rule_Outcome", "Three_Valued_Logic",
                       "Missing_Data_Policy", "Blocker_Policy", "Runtime_Executability", "Enabled",
-                      "Clinical_Source_IDs"),
+                      "Clinical_Source_IDs", "Temporal_Policy"),
     "Signal_Rule_Groups": ("Phenotype", "Signal_ID", "Group_ID", "Parent_Group_ID", "Evaluation_Order",
                             "Operator", "Minimum_Count", "Linkage_Type", "Require_Independent_Lineage", "Notes"),
     "Signal_Rule_Members": ("Phenotype", "Signal_ID", "Group_ID", "Evaluation_Order", "Member_Type",

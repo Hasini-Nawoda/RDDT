@@ -8,7 +8,7 @@ Those remain entirely in the deployable JSON configuration.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Iterable
 
 
 _SYSTEM_ALIASES = {
@@ -57,6 +57,47 @@ def normalize_system(value: Any) -> str:
 
 
 NLP_SYSTEMS = frozenset({"NLP"})
+TERMINOLOGY_MODE_ALL = "ALL"
+TERMINOLOGY_MODE_ICD_ONLY = "ICD_ONLY"
+
+
+def normalize_terminology_mode(value: Any) -> str:
+    """Normalize the explicit terminology subset used for a pipeline run."""
+    normalized = str(value or TERMINOLOGY_MODE_ALL).strip().upper().replace("-", "_")
+    aliases = {"ICD": TERMINOLOGY_MODE_ICD_ONLY, "ICD10": TERMINOLOGY_MODE_ICD_ONLY}
+    normalized = aliases.get(normalized, normalized)
+    if normalized not in {TERMINOLOGY_MODE_ALL, TERMINOLOGY_MODE_ICD_ONLY}:
+        raise ValueError(
+            f"unsupported terminology mode {value!r}; expected ALL or ICD_ONLY"
+        )
+    return normalized
+
+
+def terminology_mode_for_systems(
+    systems: Iterable[Any] | None,
+    *,
+    default: str = TERMINOLOGY_MODE_ALL,
+) -> str:
+    """Resolve an explicit system allow-list to the supported run mode.
+
+    The initial warehouse run intentionally supports an ICD-family-only
+    allow-list. Other terminology systems require their own extraction mode
+    and are rejected rather than silently broadened.
+    """
+    if systems is None:
+        return normalize_terminology_mode(default)
+    selected = {normalize_system(value) for value in systems if str(value).strip()}
+    if not selected or not selected.issubset({"ICD", "ICD9", "ICD10"}):
+        raise ValueError("terminology_systems must contain one or more ICD-family systems")
+    return TERMINOLOGY_MODE_ICD_ONLY
+
+
+def terminology_allowed(value: Any, mode: str = TERMINOLOGY_MODE_ALL) -> bool:
+    """Return whether one terminology system is active for ``mode``."""
+    selected = normalize_terminology_mode(mode)
+    if selected == TERMINOLOGY_MODE_ALL:
+        return True
+    return normalize_system(value) in {"ICD", "ICD9", "ICD10"}
 
 
 def is_nlp_system(value: Any) -> bool:
@@ -213,6 +254,11 @@ __all__ = [
     "diagnosis_system",
     "UNKNOWN_DIAGNOSIS_TYPE_POLICY",
     "is_nlp_system",
+    "normalize_terminology_mode",
+    "terminology_mode_for_systems",
+    "terminology_allowed",
+    "TERMINOLOGY_MODE_ALL",
+    "TERMINOLOGY_MODE_ICD_ONLY",
     "routes_for_system",
     "event_system_compatible",
     "derive_available_date",

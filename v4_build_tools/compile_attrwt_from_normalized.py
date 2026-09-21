@@ -14,6 +14,11 @@ from typing import Any
 
 from openpyxl import load_workbook
 
+try:
+    from .terminology_normalization import normalize_atom_provenance, normalize_term, source_terminology
+except ImportError:  # pragma: no cover - supports direct build-tool invocation
+    from terminology_normalization import normalize_atom_provenance, normalize_term, source_terminology
+
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK = ROOT / "v4_build_tools" / "source" / "ATTRwt_Normalized_Clinical_Filtering_Config_FINAL.xlsx"
@@ -24,11 +29,14 @@ WT = ROOT / "v4" / "config" / "phenotypes" / "ATTRWT"
 def rows(wb: Any, sheet: str) -> list[dict[str, Any]]:
     values = list(wb[sheet].values)
     header = [str(value).strip() if value is not None else "" for value in values[0]]
-    return [
-        dict(zip(header, row))
-        for row in values[1:]
-        if any(value is not None for value in row)
-    ]
+    output = []
+    for row_number, row in enumerate(values[1:], 2):
+        if not any(value is not None for value in row):
+            continue
+        item = dict(zip(header, row))
+        item["_source_row"] = row_number
+        output.append(item)
+    return output
 
 
 def as_bool(value: Any, default: bool = False) -> bool:
@@ -107,6 +115,7 @@ def specialty_file(specialty: Any) -> str:
 def build_atoms(wb: Any, signal_atoms: list[dict[str, Any]], signal_members: list[dict[str, Any]], blockers: list[dict[str, Any]]) -> None:
     workbook_atoms = {str(row["Atom_ID"]): row for row in rows(wb, "Atoms")}
     terminology = rows(wb, "Terminology")
+    source_rows, exact_values = source_terminology()
     terms_by_atom: dict[str, list[dict[str, Any]]] = {}
     for row in terminology:
         terms_by_atom.setdefault(str(row["Atom_ID"]), []).append(row)
@@ -149,14 +158,17 @@ def build_atoms(wb: Any, signal_atoms: list[dict[str, Any]], signal_members: lis
                 "context_guard": source["Context_Guard"],
                 "extraction": {"codes": {}, "nlp_terms": []},
             }
+            source_term = next((source_rows[key] for key in source_rows if key[0] == atom_id), None)
+            if source_term:
+                atom_source = dict(source)
+                atom_source.update({
+                    "_source_workbook": source_term.get("_source_workbook"),
+                    "_workbook_hash": source_term.get("_workbook_hash"),
+                })
+                entry = normalize_atom_provenance(entry, atom_source)
             for term in terms_by_atom.get(atom_id, []):
-                term_payload = {
-                    "value": str(term["Value"]),
-                    "can_fire_atom_alone": as_bool(term["Can_Fire_Atom_Alone"]),
-                    "value_class": term["Value_Class"],
-                    "review_status": term["Review_Status"],
-                    "context_guard": term["Context_Guard"],
-                }
+                source_term = source_rows[(atom_id, str(term["Terminology_System"]), str(term["Value"]))]
+                term_payload = normalize_term(source_term, atom_id=atom_id, exact_values=exact_values)
                 system = str(term["Terminology_System"])
                 if system.upper() == "NLP":
                     entry["extraction"]["nlp_terms"].append(term_payload)
@@ -177,17 +189,15 @@ def build_atoms(wb: Any, signal_atoms: list[dict[str, Any]], signal_members: lis
                 "source_specialty": "MULTISPECIALTY",
                 "source_subdomain": "guardrail",
             }))
+            source_term = next((source_rows[key] for key in source_rows if key[0] == atom_id), None)
+            if source_term:
+                entry = normalize_atom_provenance(entry, source_term)
             entry["extraction"] = {"codes": {}, "nlp_terms": []}
             if blocker_terms:
                 entry["context_guard"] = blocker_terms[0]["Context_Guard"]
             for term in blocker_terms:
-                payload = {
-                    "value": str(term["Value"]),
-                    "can_fire_atom_alone": as_bool(term["Can_Fire_Atom_Alone"]),
-                    "value_class": term["Value_Class"],
-                    "review_status": term["Review_Status"],
-                    "context_guard": term["Context_Guard"],
-                }
+                source_term = source_rows[(atom_id, str(term["Terminology_System"]), str(term["Value"]))]
+                payload = normalize_term(source_term, atom_id=atom_id, exact_values=exact_values)
                 if str(term["Terminology_System"]).upper() == "NLP":
                     entry["extraction"]["nlp_terms"].append(payload)
                 else:

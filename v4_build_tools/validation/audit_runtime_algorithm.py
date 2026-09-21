@@ -3,7 +3,14 @@
 from __future__ import annotations
 
 import json
+import sys
+from pathlib import Path
 from typing import Any
+
+# Support both ``python -m v4_build_tools.validation.audit_runtime_algorithm``
+# and direct execution from the repository root.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from v4.config_loader import load_phenotype_config, load_phenotype_configs
 from v4.output.patient_profile import aggregate_attr_verdict
@@ -88,21 +95,27 @@ def _candidate_for_signal(config: Any, signal_id: str, index: int) -> dict[str, 
 
 def audit() -> dict[str, Any]:
     config = load_phenotype_config("ATTRV")
-    registered = load_phenotype_configs(("ATTRV", "ATTRWT"))
+    registered = load_phenotype_configs(("ATTRV", "ATTRWT", "AL"))
     atoms = {row["atom_id"] for row in config.rows("atoms")}
     term_atoms = {row["atom_id"] for row in config.rows("terminology")}
     # The atom registry is shared across all loaded phenotypes.  An atom used
     # only by ATTRwt is not an orphan merely because this audit's reachability
     # scenarios below are ATTRv-specific.
     referenced_atoms: set[str] = set()
-    for phenotype_config in registered.values():
-        referenced_atoms.update(row["atom_id"] for row in phenotype_config.rows("signal_atoms"))
-        referenced_atoms.update(
+    per_phenotype_references: dict[str, set[str]] = {}
+    for phenotype, phenotype_config in registered.items():
+        phenotype_references: set[str] = set()
+        phenotype_references.update(row["atom_id"] for row in phenotype_config.rows("signal_atoms"))
+        phenotype_references.update(
             row["member_id"]
             for row in phenotype_config.rows("signal_rule_members")
             if row.get("member_type") == "ATOM"
         )
-        referenced_atoms.update(row["atom_id"] for row in phenotype_config.rows("signal_blockers"))
+        phenotype_references.update(row["atom_id"] for row in phenotype_config.rows("signal_blockers"))
+        unknown = phenotype_references - atoms
+        assert not unknown, {"phenotype": phenotype, "unknown_atom_refs": sorted(unknown)}
+        per_phenotype_references[phenotype] = phenotype_references
+        referenced_atoms.update(phenotype_references)
     assert atoms == term_atoms, {"atoms_without_terms": sorted(atoms - term_atoms), "unknown_term_atoms": sorted(term_atoms - atoms)}
     assert atoms == referenced_atoms, {"orphan_atoms": sorted(atoms - referenced_atoms), "unknown_refs": sorted(referenced_atoms - atoms)}
 
@@ -221,6 +234,10 @@ def audit() -> dict[str, Any]:
         "combined_attr_suspicion_level": aggregate["suspicion_level"],
         "cross_phenotype_route_does_not_promote": route_only["status"],
         "shared_atom_reference_scope": sorted(registered),
+        "per_phenotype_atom_reference_counts": {
+            phenotype: len(references)
+            for phenotype, references in sorted(per_phenotype_references.items())
+        },
     }
 
 

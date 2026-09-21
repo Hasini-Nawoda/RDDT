@@ -1,0 +1,2 @@
+﻿run_id,patient_id,screening_target,screening_status,review_route,suspicion_level,attrv_status,attrv_suspicion_level,attrv_review_route,attrwt_status,attrwt_suspicion_level,attrwt_review_route,al_status,al_suspicion_level,al_review_route,clinical_rationale
+VIEWER:FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY,P-ADV-003,ATTR,ATTR_SUSPICION,ATTR_EARLY_DETECTION_REVIEW,HIGH_SUSPICION,PHENOTYPE_PASS,HIGH_SUSPICION,ATTRV_REVIEW,NO_MATCH,,NO_MATCH,HOLD,,AL_SUSPICION,ATTR early-detection criteria were met by ATTRV; the combined tier uses the highest phenotype suspicion.

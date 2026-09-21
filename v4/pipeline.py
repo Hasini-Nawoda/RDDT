@@ -1,9 +1,7 @@
 """End-to-end phenotype-generic V4 orchestration.
 
-The orchestrator loads the compiled configuration, validates the
-Snowflake source contract, creates only session temporary tables, preserves
-long-form evidence, and delegates clinical reasoning to the generic reference
-engine.  It contains no clinical terms, codes, thresholds, or fallback rules.
+The orchestrator reads source tables and, when requested, materializes
+intermediate results only as session-scoped Snowflake temporary tables.
 """
 
 from __future__ import annotations
@@ -17,7 +15,7 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from . import IMPLEMENTATION_VERSION
-from .extraction.candidate_net import CandidatePatient
+from .extraction.candidate_net import CandidatePatient, CandidateQuery, build_candidate_plan
 from .extraction.evidence_qualification import ClinicalContextAdapter
 from .extraction.known_attr import (
     CandidateConfigUnion,
@@ -31,7 +29,7 @@ from .extraction.known_al import (
 )
 from .warehouse.snowflake_io import create_run_table, execute, insert_rows
 from .pipeline_steps.step_01_source_validation import load_config, validate_sources
-from .pipeline_steps.step_02_candidate_retrieval import candidate_records, retrieve_candidates
+from .pipeline_steps.step_02_candidate_retrieval import retrieve_candidates
 from .pipeline_steps.step_03_source_events import build_source_events
 from .pipeline_steps.step_03b_known_attr_exclusion import separate_known_attr
 from .pipeline_steps.step_04_atom_matching import match_atoms
@@ -53,7 +51,17 @@ from .pipeline_steps.step_11_patient_profiles import (
     export_known_profile_files,
     export_profile_files,
 )
-from .warehouse.source_schema import default_source_config, qualified_table_name, quote_identifier
+from .warehouse.source_schema import (
+    default_source_config,
+    is_table_enabled,
+    is_table_profile_enabled,
+    qualified_table_name,
+    quote_identifier,
+)
+from .extraction.extraction_contract import (
+    normalize_terminology_mode,
+    terminology_mode_for_systems,
+)
 
 
 TEMP_TABLES = {
@@ -129,19 +137,37 @@ TEMP_TABLE_SCHEMAS = {
     ),
     "phenotype_results": (
         "RUN_ID", "PATIENT_ID", "PHENOTYPE", "STATUS", "RESULT_ROUTE",
-        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
-        "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVENT_DATES",
-        "GUARDRAIL_IDS", "PARALLEL_ROUTES", "EXPLANATION", "CONFIG_HASH",
-        "IMPLEMENTATION_VERSION",
+        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID",
+        "SUPPORTING_SIGNAL_IDS", "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS",
+        "SUPPORTING_EVENT_DATES", "GUARDRAIL_IDS", "PARALLEL_ROUTES",
+        "EXPLANATION", "CONFIG_HASH", "IMPLEMENTATION_VERSION",
     ),
     "router_output": (
         "RUN_ID", "PATIENT_ID", "PHENOTYPE", "STATUS", "RESULT_ROUTE",
-        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID", "SUPPORTING_SIGNAL_IDS",
-        "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS", "SUPPORTING_EVENT_DATES",
-        "GUARDRAIL_IDS", "PARALLEL_ROUTES", "EXPLANATION", "CONFIG_HASH",
-        "IMPLEMENTATION_VERSION", "ROUTER_SCHEMA_VERSION",
+        "PRIORITY_CLASS", "SUSPICION_LEVEL", "MATCHED_COMBINATION_ID",
+        "SUPPORTING_SIGNAL_IDS", "SUPPORTING_BUCKETS", "SUPPORT_LINEAGE_IDS",
+        "SUPPORTING_EVENT_DATES", "GUARDRAIL_IDS", "PARALLEL_ROUTES",
+        "EXPLANATION", "CONFIG_HASH", "IMPLEMENTATION_VERSION",
+        "ROUTER_SCHEMA_VERSION",
     ),
 }
+
+
+WORKSPACE_RESULT_COLLECTIONS = (
+    "candidate_patients",
+    "known_attr_patients",
+    "known_al_patients",
+    "source_events",
+    "atom_matches",
+    "evidence_events",
+    "signal_hits",
+    "bucket_state",
+    "combination_hits",
+    "guardrail_hits",
+    "phenotype_results",
+    "router_output",
+    "patient_profiles",
+)
 
 
 class PipelineError(RuntimeError):
@@ -214,6 +240,7 @@ class PipelineRun:
     al_detected_profiles: list[dict[str, Any]] = field(default_factory=list)
     al_detected_exports: dict[str, str] = field(default_factory=dict)
     temporary_tables: dict[str, str] = field(default_factory=lambda: dict(TEMP_TABLES))
+    warehouse_objects_created: tuple[str, ...] = ()
 
     def summary(self) -> dict[str, Any]:
         return {
@@ -224,6 +251,8 @@ class PipelineRun:
             "stage_counts": dict(self.stage_counts),
             "config_gaps": list(self.config_gaps),
             "temporary_tables": dict(self.temporary_tables),
+            "warehouse_objects_created": list(self.warehouse_objects_created),
+            "workspace_result_collections": list(WORKSPACE_RESULT_COLLECTIONS),
             "profile_exports": dict(self.profile_exports),
             "known_attr_exports": dict(self.known_attr_exports),
             "known_al_exports": dict(self.known_al_exports),
@@ -266,6 +295,68 @@ def _get(row: Mapping[str, Any], name: str, default: Any = None) -> Any:
     return default
 
 
+def _materialize_records(
+    session: Any,
+    table_name: str,
+    records: Iterable[Any],
+    *,
+    required_columns: Sequence[str] = (),
+    run_id: str | None = None,
+) -> int:
+    """Materialize one pipeline stage as a session-scoped temporary table."""
+    rows = [_plain(record) for record in records]
+    keys = [str(key).upper() for key in required_columns]
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, Mapping):
+            raise TypeError(f"Cannot materialize non-object row in {table_name}")
+        normalized = {str(key).upper(): value for key, value in row.items()}
+        if run_id is not None:
+            normalized.setdefault("RUN_ID", run_id)
+        for key in normalized:
+            if key not in keys:
+                keys.append(key)
+        normalized_rows.append(normalized)
+    if not keys:
+        keys = ["RUN_ID", "EMPTY_REASON"]
+    create_run_table(session, table_name, {key: "VARCHAR" for key in keys})
+    values = []
+    for row in normalized_rows:
+        values.append(tuple(
+            json.dumps(row.get(key), sort_keys=True, ensure_ascii=False)
+            if isinstance(row.get(key), (dict, list, tuple, set))
+            else row.get(key)
+            for key in keys
+        ))
+    return insert_rows(session, table_name, keys, values)
+
+
+def _materialize_pipeline_run(session: Any, result: PipelineRun) -> None:
+    stages = {
+        "candidate_patients": result.candidate_patients,
+        "known_attr_patients": result.known_attr_patients,
+        "known_al_patients": result.known_al_patients,
+        "source_events": result.source_events,
+        "atom_matches": result.atom_matches,
+        "evidence_events": result.evidence_events,
+        "signal_hits": result.signal_hits,
+        "bucket_state": result.bucket_state,
+        "combination_hits": result.combination_hits,
+        "guardrail_hits": result.guardrail_hits,
+        "phenotype_results": result.phenotype_results,
+        "router_output": result.router_output,
+    }
+    for key, records in stages.items():
+        _materialize_records(
+            session,
+            TEMP_TABLES[key],
+            records,
+            required_columns=TEMP_TABLE_SCHEMAS[key],
+            run_id=result.run_id,
+        )
+    result.warehouse_objects_created = tuple(TEMP_TABLES[key] for key in stages)
+
+
 def _load_config(*, config_dir: str | Path | None, phenotype: str) -> Any:
     return load_config(
         config_dir=str(config_dir) if config_dir is not None else None,
@@ -293,61 +384,60 @@ def _execute_candidate_plan(
     run_id: str,
     source_config: Mapping[str, Any],
     nlp: Any,
+    terminology_mode: str = "ALL",
 ) -> list[CandidatePatient]:
-    return retrieve_candidates(session, config, run_id=run_id, source_config=source_config, nlp=nlp)
-
-
-def _candidate_records(candidates: Iterable[CandidatePatient]) -> list[dict[str, Any]]:
-    return candidate_records(list(candidates))
-
-
-def _materialize_records(
-    session: Any,
-    table_name: str,
-    records: Iterable[Any],
-    *,
-    required_columns: Sequence[str] = (),
-    run_id: str | None = None,
-) -> int:
-    rows = [_plain(record) for record in records]
-    if not rows:
-        empty_columns = list(required_columns) or ["RUN_ID", "EMPTY_REASON"]
-        create_run_table(session, table_name, {key: "VARCHAR" for key in empty_columns})
-        return 0
-    keys: list[str] = list(required_columns)
-    for row in rows:
-        if not isinstance(row, Mapping):
-            raise TypeError(f"Cannot materialize non-object row in {table_name}")
-        for key in row:
-            upper = str(key).upper()
-            if upper not in keys:
-                keys.append(upper)
-    create_run_table(session, table_name, {key: "VARCHAR" for key in keys})
-    values = []
-    for row in rows:
-        normalized = {str(key).upper(): value for key, value in row.items()}
-        if run_id is not None:
-            normalized.setdefault("RUN_ID", run_id)
-        values.append(tuple(
-            json.dumps(normalized.get(key), sort_keys=True, ensure_ascii=False)
-            if isinstance(normalized.get(key), (dict, list, tuple, set))
-            else None if normalized.get(key) is None
-            else str(normalized.get(key))
-            for key in keys
-        ))
-    return insert_rows(session, table_name, keys, values)
+    return retrieve_candidates(
+        session,
+        config,
+        run_id=run_id,
+        source_config=source_config,
+        nlp=nlp,
+        terminology_mode=terminology_mode,
+    )
 
 
 def _fetch_candidate_source_rows(
     session: Any,
     source_config: Mapping[str, Any],
     *,
-    candidate_table: str,
+    candidate_plan: Sequence[CandidateQuery],
 ) -> dict[str, list[dict[str, Any]]]:
+    """Read detection inputs and full EHR rows without a Snowflake work table.
+
+    Candidate queries are combined into one read-only CTE. The CTE exists only
+    for the duration of each SELECT statement and is not a catalog object.
+    Broader NLP seed queries can return a superset; the in-memory event builder
+    applies the exact candidate-id set before clinical evaluation.
+
+    ``enabled`` controls algorithm participation. ``profile_enabled`` controls
+    EHR hydration. A profile-only table is fetched here but is ignored by the
+    event builder, so adding it to the patient record cannot change detection.
+    """
     rows_by_table: dict[str, list[dict[str, Any]]] = {}
+    if not candidate_plan:
+        return {
+            key: []
+            for key, table in source_config.get("tables", {}).items()
+            if is_table_enabled(table) or is_table_profile_enabled(table)
+        }
+
+    seed_queries: list[str] = []
+    params: list[Any] = []
+    for index, query in enumerate(candidate_plan):
+        seed_queries.append(
+            "SELECT CAST(PATIENT_ID AS VARCHAR) AS PATIENT_ID "
+            f"FROM ({query.sql}) CANDIDATE_SEED_{index}"
+        )
+        params.extend(query.params)
+    candidate_sql = (
+        "SELECT DISTINCT PATIENT_ID FROM ("
+        + " UNION ALL ".join(seed_queries)
+        + ") CANDIDATE_UNION"
+    )
+
     namespace = source_config.get("namespace")
     for table_key, table in source_config.get("tables", {}).items():
-        if not table.get("enabled", True):
+        if not (is_table_enabled(table) or is_table_profile_enabled(table)):
             continue
         patient_column = table.get("columns", {}).get("patient_id")
         if not patient_column:
@@ -355,11 +445,14 @@ def _fetch_candidate_source_rows(
         table_name = str(table["name"])
         physical = qualified_table_name(table, str(namespace) if namespace else None)
         sql = (
+            f"WITH CANDIDATE_IDS AS ({candidate_sql}) "
             f"SELECT SRC.* FROM {physical} SRC "
-            f"JOIN (SELECT DISTINCT PATIENT_ID FROM {quote_identifier(candidate_table)}) CAND "
+            "JOIN CANDIDATE_IDS CAND "
             f"ON CAST(SRC.{quote_identifier(str(patient_column))} AS VARCHAR) = CAND.PATIENT_ID"
         )
-        rows_by_table[table_key] = [_row_dict(row) for row in execute(session, sql)]
+        rows_by_table[table_key] = [
+            _row_dict(row) for row in execute(session, sql, tuple(params))
+        ]
     return rows_by_table
 
 
@@ -388,6 +481,8 @@ def _run_single_phenotype_reference_pipeline(
     run_id: str | None = None,
     candidate_patient_ids: set[str] | None = None,
     nlp: Any = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Sequence[str] | None = None,
     context_processor: Any = None,
     screening_cutoff: Any = None,
     include_profiles: bool = True,
@@ -400,6 +495,10 @@ def _run_single_phenotype_reference_pipeline(
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     source_config = source_config or default_source_config()
+    terminology_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
     run_id = run_id or str(uuid.uuid4())
     selected_phenotype = _selected_phenotype(config, phenotype)
     all_events = build_source_events(
@@ -419,9 +518,17 @@ def _run_single_phenotype_reference_pipeline(
         known_attr_config=known_config,
         nlp=nlp,
         context_processor=context_processor,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
     )
     known_ids = known_attr.patient_ids
-    matches = match_atoms(events, config, nlp=nlp)
+    matches = match_atoms(
+        events,
+        config,
+        nlp=nlp,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
+    )
     evidence = qualify_evidence(
         matches,
         config,
@@ -460,13 +567,15 @@ def _run_single_phenotype_reference_pipeline(
             gaps.append({"patient_id": row.get("patient_id"), "signal_id": row.get("signal_id"), "gap": explanation})
 
     demographics = _demographics(rows_by_table, source_config)
-    profiles = build_profiles(router_output, config=config, phenotype=selected_phenotype, source_events=events, evidence_events=evidence, signal_hits=signal_hits, bucket_state=bucket_state, combination_hits=combination_hits, guardrail_hits=guardrail_hits, demographics=demographics, run_id=run_id, include_proprietary_trace=True, profile_priority_classes=profile_priority_classes, profile_suspicion_levels=profile_suspicion_levels) if include_profiles else []
+    profiles = build_profiles(router_output, config=config, phenotype=selected_phenotype, source_events=events, evidence_events=evidence, signal_hits=signal_hits, bucket_state=bucket_state, combination_hits=combination_hits, guardrail_hits=guardrail_hits, demographics=demographics, run_id=run_id, ehr_records_by_table=rows_by_table, source_config=source_config, include_proprietary_trace=True, profile_priority_classes=profile_priority_classes, profile_suspicion_levels=profile_suspicion_levels) if include_profiles else []
     known_profiles = build_known_profiles(
         known_attr.patients,
         known_config=known_config,
         source_events=all_events,
         evidence_events=known_attr.evidence,
         demographics=demographics,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
         include_proprietary_trace=True,
     ) if include_profiles else []
     exports = export_profile_files(profiles, profile_output_dir, phenotype=selected_phenotype)
@@ -521,6 +630,8 @@ def run_attr_reference_pipeline(
     run_id: str | None = None,
     candidate_patient_ids: set[str] | None = None,
     nlp: Any = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Sequence[str] | None = None,
     context_processor: Any = None,
     screening_cutoff: Any = None,
     include_profiles: bool = True,
@@ -537,6 +648,10 @@ def run_attr_reference_pipeline(
         for phenotype in SCREENED_PHENOTYPES
     })
     extraction_config = AttrExtractionConfig(loaded_configs)
+    terminology_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
     source_config = source_config or default_source_config()
     run_id = run_id or str(uuid.uuid4())
     all_events = build_source_events(
@@ -557,6 +672,8 @@ def run_attr_reference_pipeline(
         known_attr_config=known_config,
         nlp=nlp,
         context_processor=context_processor,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
     )
     # Identify known AL on the full event set, then remove both known routes
     # before shared extraction/evidence qualification.  This keeps confirmed
@@ -568,10 +685,18 @@ def run_attr_reference_pipeline(
         nlp=nlp,
         context_processor=context_processor,
         config=known_al,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
     )
     if known_al_result.patient_ids:
         events = [event for event in events if event.patient_id not in known_al_result.patient_ids]
-    matches = match_atoms(events, extraction_config, nlp=nlp)
+    matches = match_atoms(
+        events,
+        extraction_config,
+        nlp=nlp,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
+    )
     evidence = qualify_evidence(
         matches,
         extraction_config,
@@ -660,6 +785,8 @@ def run_attr_reference_pipeline(
         guardrail_hits=guardrail_hits,
         demographics=demographics,
         run_id=run_id,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
         include_proprietary_trace=True,
         profile_suspicion_levels=profile_suspicion_levels,
     ) if include_profiles else []
@@ -674,6 +801,8 @@ def run_attr_reference_pipeline(
         guardrail_hits=guardrail_hits,
         demographics=demographics,
         run_id=run_id,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
         include_proprietary_trace=True,
     ) if include_profiles else []
     known_profiles = build_known_profiles(
@@ -682,6 +811,8 @@ def run_attr_reference_pipeline(
         source_events=all_events,
         evidence_events=known_attr.evidence,
         demographics=demographics,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
         include_proprietary_trace=True,
     ) if include_profiles else []
     known_al_profiles = build_known_al_profiles(
@@ -690,6 +821,8 @@ def run_attr_reference_pipeline(
         source_events=all_events,
         evidence_events=known_al_result.evidence,
         demographics=demographics,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
         include_proprietary_trace=True,
     ) if include_profiles else []
     exports = export_attr_profile_files(profiles, profile_output_dir)
@@ -753,11 +886,13 @@ def _run_single_phenotype_v4_pipeline(
     phenotype: str,
     source_config: Mapping[str, Any] | None = None,
     run_id: str | None = None,
-    persist_intermediates: bool = True,
+    persist_intermediates: bool = False,
     *,
     config_dir: str | Path | None = None,
     source_rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]] | None = None,
     nlp: Any = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Sequence[str] | None = None,
     context_processor: Any = None,
     screening_cutoff: Any = None,
     include_profiles: bool = True,
@@ -766,11 +901,11 @@ def _run_single_phenotype_v4_pipeline(
     profile_suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
     known_attr_config_path: str | Path | None = None,
 ) -> PipelineRun:
-    """Run one configured phenotype pipeline against a Snowpark-like session.
-
-    ``persist_intermediates`` controls session-table materialization only.
-    No code path creates permanent or transient warehouse objects.
-    """
+    """Run one configured phenotype pipeline against a Snowpark-like session."""
+    terminology_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     selected_phenotype = str(phenotype).upper()
@@ -783,25 +918,26 @@ def _run_single_phenotype_v4_pipeline(
 
     candidates: list[CandidatePatient] = []
     if source_rows_by_table is None:
+        candidate_config = CandidateConfigUnion(config, known_config)
         candidates = retrieve_candidates(
             session,
-            CandidateConfigUnion(config, known_config),
+            candidate_config,
             run_id=run_id,
             source_config=source_config,
             nlp=nlp,
-        )
-        candidate_rows = candidate_records(candidates)
-        _materialize_records(
-            session,
-            TEMP_TABLES["candidate_patients"],
-            candidate_rows,
-            required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
-            run_id=run_id,
+            terminology_mode=terminology_mode,
+            terminology_systems=terminology_systems,
         )
         source_rows_by_table = _fetch_candidate_source_rows(
             session,
             source_config,
-            candidate_table=TEMP_TABLES["candidate_patients"],
+            candidate_plan=build_candidate_plan(
+                candidate_config,
+                config_hash=candidate_config.config_hash,
+                source_config=source_config,
+                terminology_mode=terminology_mode,
+                terminology_systems=terminology_systems,
+            ),
         )
         candidate_ids = {candidate.patient_id for candidate in candidates}
     else:
@@ -815,6 +951,8 @@ def _run_single_phenotype_v4_pipeline(
         run_id=run_id,
         candidate_patient_ids=candidate_ids,
         nlp=nlp,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
         context_processor=context_processor,
         screening_cutoff=screening_cutoff,
         include_profiles=include_profiles,
@@ -829,48 +967,9 @@ def _run_single_phenotype_v4_pipeline(
     result.stage_counts["candidate_patients"] = len(retrieved_ids - known_ids)
     result.stage_counts["candidate_patients_total_retrieved"] = len(retrieved_ids)
     result.source_validation = _plain(validation)
-
     if persist_intermediates:
-        if source_rows_by_table is not None and not candidates:
-            synthetic = [
-                {
-                    "run_id": run_id,
-                    "patient_id": patient_id,
-                    "candidate_reason_type": "CALLER_SUPPLIED_CANDIDATE_ROWS",
-                    "config_hash": config.config_hash,
-                }
-                for patient_id in sorted(
-                    {event.patient_id for event in result.source_events}
-                    | {str(row.patient_id) for row in result.known_attr_patients}
-                )
-            ]
-            _materialize_records(
-                session,
-                TEMP_TABLES["candidate_patients"],
-                synthetic,
-                required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
-                run_id=run_id,
-            )
-        stage_rows = {
-            "known_attr_patients": result.known_attr_patients,
-            "source_events": result.source_events,
-            "atom_matches": result.atom_matches,
-            "evidence_events": result.evidence_events,
-            "signal_hits": result.signal_hits,
-            "bucket_state": result.bucket_state,
-            "combination_hits": result.combination_hits,
-            "guardrail_hits": result.guardrail_hits,
-            "phenotype_results": result.phenotype_results,
-            "router_output": result.router_output,
-        }
-        for stage, records in stage_rows.items():
-            _materialize_records(
-                session,
-                TEMP_TABLES[stage],
-                records,
-                required_columns=TEMP_TABLE_SCHEMAS[stage],
-                run_id=run_id,
-            )
+        _materialize_pipeline_run(session, result)
+
     return result
 
 
@@ -878,11 +977,13 @@ def run_attr_v4_pipeline(
     session: Any,
     source_config: Mapping[str, Any] | None = None,
     run_id: str | None = None,
-    persist_intermediates: bool = True,
+    persist_intermediates: bool = False,
     *,
     config_dir: str | Path | None = None,
     source_rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]] | None = None,
     nlp: Any = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Sequence[str] | None = None,
     context_processor: Any = None,
     screening_cutoff: Any = None,
     include_profiles: bool = True,
@@ -891,7 +992,11 @@ def run_attr_v4_pipeline(
     known_attr_config_path: str | Path | None = None,
     known_al_config_path: str | Path | None = None,
 ) -> PipelineRun:
-    """Run ATTRv, ATTRwt, and AL for every candidate in one extraction pass."""
+    """Run ATTRv, ATTRwt, and AL using read-only sources and temp outputs."""
+    terminology_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     configs = {
@@ -907,24 +1012,30 @@ def run_attr_v4_pipeline(
 
     candidates: list[CandidatePatient] = []
     if source_rows_by_table is None:
+        candidate_config = CandidateConfigUnion(
+            extraction_config,
+            known_config,
+            additional_configs=(known_al_config,),
+        )
         candidates = retrieve_candidates(
             session,
-            CandidateConfigUnion(extraction_config, known_config, additional_configs=(known_al_config,)),
+            candidate_config,
             run_id=run_id,
             source_config=source_config,
             nlp=nlp,
-        )
-        _materialize_records(
-            session,
-            TEMP_TABLES["candidate_patients"],
-            candidate_records(candidates),
-            required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
-            run_id=run_id,
+            terminology_mode=terminology_mode,
+            terminology_systems=terminology_systems,
         )
         source_rows_by_table = _fetch_candidate_source_rows(
             session,
             source_config,
-            candidate_table=TEMP_TABLES["candidate_patients"],
+            candidate_plan=build_candidate_plan(
+                candidate_config,
+                config_hash=candidate_config.config_hash,
+                source_config=source_config,
+                terminology_mode=terminology_mode,
+                terminology_systems=terminology_systems,
+            ),
         )
         candidate_ids = {candidate.patient_id for candidate in candidates}
     else:
@@ -937,6 +1048,8 @@ def run_attr_v4_pipeline(
         run_id=run_id,
         candidate_patient_ids=candidate_ids,
         nlp=nlp,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
         context_processor=context_processor,
         screening_cutoff=screening_cutoff,
         include_profiles=include_profiles,
@@ -952,50 +1065,9 @@ def run_attr_v4_pipeline(
     result.stage_counts["candidate_patients"] = len(retrieved_ids - known_ids)
     result.stage_counts["candidate_patients_total_retrieved"] = len(retrieved_ids)
     result.source_validation = _plain(validation)
-
     if persist_intermediates:
-        if source_rows_by_table is not None and not candidates:
-            synthetic_ids = (
-                {event.patient_id for event in result.source_events}
-                    | {str(row.patient_id) for row in result.known_attr_patients}
-                    | {str(row.patient_id) for row in result.known_al_patients}
-            )
-            _materialize_records(
-                session,
-                TEMP_TABLES["candidate_patients"],
-                [
-                    {
-                        "run_id": run_id,
-                        "patient_id": patient_id,
-                        "candidate_reason_type": "CALLER_SUPPLIED_CANDIDATE_ROWS",
-                        "config_hash": extraction_config.config_hash,
-                    }
-                    for patient_id in sorted(synthetic_ids)
-                ],
-                required_columns=TEMP_TABLE_SCHEMAS["candidate_patients"],
-                run_id=run_id,
-            )
-        stage_rows = {
-            "known_attr_patients": result.known_attr_patients,
-            "known_al_patients": result.known_al_patients,
-            "source_events": result.source_events,
-            "atom_matches": result.atom_matches,
-            "evidence_events": result.evidence_events,
-            "signal_hits": result.signal_hits,
-            "bucket_state": result.bucket_state,
-            "combination_hits": result.combination_hits,
-            "guardrail_hits": result.guardrail_hits,
-            "phenotype_results": result.phenotype_results,
-            "router_output": result.router_output,
-        }
-        for stage, records in stage_rows.items():
-            _materialize_records(
-                session,
-                TEMP_TABLES[stage],
-                records,
-                required_columns=TEMP_TABLE_SCHEMAS[stage],
-                run_id=run_id,
-            )
+        _materialize_pipeline_run(session, result)
+
     return result
 
 
@@ -1020,7 +1092,7 @@ def run_attrv_v4_pipeline(
     session: Any,
     source_config: Mapping[str, Any] | None = None,
     run_id: str | None = None,
-    persist_intermediates: bool = True,
+    persist_intermediates: bool = False,
     **kwargs: Any,
 ) -> PipelineRun:
     """Legacy name retained; production behavior now always runs both ATTR phenotypes."""
@@ -1037,8 +1109,7 @@ def run_attrv_v4_pipeline(
 
 
 __all__ = [
-    "TEMP_TABLES",
-    "TEMP_TABLE_SCHEMAS",
+    "WORKSPACE_RESULT_COLLECTIONS",
     "PipelineError",
     "PipelineRun",
     "ATTR_PHENOTYPES",

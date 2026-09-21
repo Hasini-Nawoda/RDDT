@@ -18,6 +18,17 @@ Contents:
   ATTRwt workbook source of truth used by `compile_attrwt_from_normalized.py`.
 - `compile_attrwt_from_normalized.py`: deterministic ATTRwt compiler that
   reuses the shared atom universe and emits only runtime clinical JSON.
+- `terminology_normalization.py`: shared explicit code-matching and provenance
+  policy used by both workbook compilers.
+- `migrate_combined_terminology.py`: applies the combined ATTRv + ATTRwt
+  terminology registry to `v4/config/shared/atoms/` and emits a migration
+  report with safe-range and unresolved-range classifications.
+- `validate_combined_terminology.py`: validates explicit `match_mode`, safe
+  range expansions, LOINC exactness, provenance, and procedure mapping roles.
+
+Workbook coordinates, hashes, cell formatting, and other authoring metadata are
+kept only in build-time audit reports; they are not emitted into runtime atom
+JSON.
 - `config_compile.py` and `config_validation.py`: deterministic compiler and
   structural workbook validation.
 - `tools/`: workbook correction, audit, compilation, and bundle validation
@@ -43,6 +54,8 @@ python -m pip install -r v4_build_tools\requirements-build.txt
 python v4_build_tools\tools\audit_attrv_workbook.py v4_build_tools\source\ATTRv_Normalized_Clinical_Filtering_Config_v3.xlsx
 python v4_build_tools\tools\compile_workbook.py
 python v4_build_tools\migrate_runtime_layout.py
+python v4_build_tools\migrate_combined_terminology.py
+python v4_build_tools\validate_combined_terminology.py
 ```
 
 The compiler writes a flat intermediate bundle to `v4_build_tools/compiled_flat`

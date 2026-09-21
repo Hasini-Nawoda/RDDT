@@ -1,0 +1,259 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\analysis\schema_and_data_impact_analysis.xlsx
+SHEETS: ['Executive_Summary', 'Table_CLAIMS', 'Table_ENCOUNTERS', 'Table_CENSUS', 'Table_LABS', 'Table_SURGICAL_HISTORY', 'Missing_Tables']
+
+================================================================================
+SHEET: Executive_Summary
+================================================================================
+R1: ATTR AMYLOIDOSIS PIPELINE: SCHEMA & DATA IMPACT ANALYSIS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R2: Evaluation of Old Schema (legacy_ehr_v1) vs New Schema (sample_db_v1) and Data Quality Impacts on Algorithm Stages ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: CRITICAL ARCHITECTURAL FINDINGS: | 1. CLAIMS (53.3M rows): 100% of date columns are NULL. While Confirmed Amyloidosis ICD-10 extraction succeeds, the Early Detection Suspicion Pipeline completely halts because evidence qualification discards any row with UNKNOWN_AVAILABILITY_DATE. | 2. ENCOUNTERS (17.4M rows): 99.99999% date population with VISITID linking to CLAIMS.COLUMN1. This provides an immed... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 1. TABLE STATUS & IMPACT MATRIX ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: Table Name || Old Schema Name || New Schema Status || Total Row Count || Distinct Patients || Primary Schema & Data Issues || Pipeline Severity || Operational Impact & Feasibility ||  ||  ||  ||  ||  ||  ||  || 
+R9: CENSUS || CENSUS || PRESENT (Active) || 2,794,815 || 2,794,815 || FAMILYID removed in new schema; demographics largely blank; age clustered in 51-60 bracket. || MEDIUM || Proceed with demographics caveats; family pedigree cannot be established. ||  ||  ||  ||  ||  ||  ||  || 
+R10: CLAIMS || CLAIM || PRESENT (Active) || 53,311,842 || 929,356 || 100% NULL dates (FROM_DATE, TO_DATE); 100% NULL procedure codes; 100% NULL notes; 22 generic COLUMN0-21 names. || FATAL BLOCKER || Confirmed extractor succeeds; Early Detection halts completely due to missing dates. ||  ||  ||  ||  ||  ||  ||  || 
+R11: ENCOUNTERS || ENCOUNTER_VISIT || PRESENT (Active) || 17,429,113 || 1,056,034 || Table renamed; 5 new columns added; 99.99999% date population; 38K future dates. || LOW / OPPORTUNITY || Serve as master date bridge to backfill CLAIMS dates via VISITID join. ||  ||  ||  ||  ||  ||  ||  || 
+R12: LABS || LAB || PRESENT (Active) || 133,901,152 || 695,413 || ObservationIdentifier contains text names ('Calcium'), NOT LOINC; no system declaration; empty notes. || HIGH || Biomarker elevation signals (Troponin, BNP) fail to match LOINC codes. ||  ||  ||  ||  ||  ||  ||  || 
+R13: SURGICAL_HISTORY || SURGICAL_HISTORY || PRESENT (Active) || 10,000 || 8,329 || 7.53% NULL dates; 92.4% generic category text; 100% blank secondary SNOMED; 94% unknown encounters. || MEDIUM || SNOMED codes match, but 753 rows dropped due to null dates. ||  ||  ||  ||  ||  ||  ||  || 
+R14: CLINICAL_NOTE || CLINICAL_NOTE || MISSING (Absent) || 0 || 0 || Table completely absent in new database (SOURCE_AVAILABLE = FALSE). || FATAL BLOCKER || Entire NLP pipeline (spaCy / medSpaCy) cannot proceed; all note-derived findings lost. ||  ||  ||  ||  ||  ||  ||  || 
+R15: MEDICAL_HISTORY || MEDICAL_HISTORY || MISSING (Absent) || 0 || 0 || Table completely absent in new database (SOURCE_AVAILABLE = FALSE). || FATAL BLOCKER || All historical SNOMED conditions and past diagnoses cannot proceed. ||  ||  ||  ||  ||  ||  ||  || 
+R16: FAMILY_HISTORY || FAMILY_HISTORY || MISSING (Absent) || 0 || 0 || Table completely absent in new database (SOURCE_AVAILABLE = FALSE). || FATAL BLOCKER || All family history amyloidosis and neuropathy flags cannot proceed. ||  ||  ||  ||  ||  ||  ||  || 
+R17: SOCIAL_HISTORY || SOCIAL_HISTORY || MISSING (Absent) || 0 || 0 || Table absent; explicitly excluded from analysis per user instruction. || N/A || Excluded from scope per user request. ||  ||  ||  ||  ||  ||  ||  || 
+R18: MEDICATIONS || MEDICATIONS || PRESENT (Inactive) || 55,652,835 || 649,736 || Table present but disabled; explicitly excluded from analysis per user instruction. || N/A || Excluded from scope per user request. ||  ||  ||  ||  ||  ||  ||  || 
+R20: 2. ALGORITHM STAGE IMPACT SUMMARY ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: Stage ID || Pipeline Stage Name || Key Component || Expected Input || Actual Received Input || Stage Status || Failure Mechanism & Consequence || Required Remediation ||  ||  ||  ||  ||  ||  ||  || 
+R22: Step 01 || Source Validation || source_schema.py || Declared physical tables & required columns || 4 tables missing; CLAIMS has COLUMN0-21; CENSUS lacks FAMILYID || WARNING || Fails if legacy_ehr_v1 profile is active; succeeds under sample_db_v1 only because missing tables are disabled. || Keep missing tables disabled; maintain sample_db_v1 profile. ||  ||  ||  ||  ||  ||  ||  || 
+R23: Step 02 || Candidate Retrieval || candidate_net.py || ICD-10, LOINC, SNOMED codes & NLP seed terms || ICD-10 codes found in CLAIMS; SNOMED found in SURGICAL; LOINC missing; NLP text missing || PARTIAL || Retrieves 929K candidates from CLAIMS ICD-10 and 8.3K from SURGICAL SNOMED. Zero candidates from NLP or Labs. || Proceed with claims candidates; accept reduced sensitivity. ||  ||  ||  ||  ||  ||  ||  || 
+R24: Step 03 || Source Events Normalization || source_events.py || Normalized SourceEvents with dates, codes, text || CLAIMS events have event_date=None, text=None; LABS has code_system=None || PARTIAL || Events materialized but lack dates and LOINC code systems. || Join CLAIMS with ENCOUNTERS to assign event_date. ||  ||  ||  ||  ||  ||  ||  || 
+R25: Step 03b || Confirmed Amyloidosis Exclusion || known_attr.py / known_al.py || Exact ICD-10 codes (E85.82, E85.81, etc.) || ICD-10 codes 100% available in CLAIMS.COLUMN8 || SUCCESS || Succeeds completely! Confirmed extractor requires no dates, NLP, or procedures. || No changes needed for confirmed-only pass. ||  ||  ||  ||  ||  ||  ||  || 
+R26: Step 04 || Atom Matching || atom_matching.py || Structured codes & medSpaCy PhraseMatcher || ICD-10 atoms match; SNOMED atoms match; CPT, LOINC, and NLP atoms fail || PARTIAL || Matches only claims ICD-10 and surgical SNOMED. Cannot match CPT or clinical narrative. || Map text lab names to LOINC; translate CPT rules to ICD-10. ||  ||  ||  ||  ||  ||  ||  || 
+R27: Step 05 || Evidence Qualification || evidence_qualification.py || Qualified evidence with valid availability_date <= cutoff || CLAIMS availability_date is None (from null dates) || FATAL BLOCKER || All CLAIMS evidence marked UNKNOWN ('UNKNOWN_AVAILABILITY_DATE') and discarded! || Backfill CLAIMS dates from ENCOUNTERS.VISITDATE. ||  ||  ||  ||  ||  ||  ||  || 
+R28: Step 06 || Signal Evaluation || signal_engine.py || Qualified TRUE evidence grouped by clinical signal || Only surgical SNOMED evidence (with valid dates) survives || CRITICAL || Almost all specialty signals (CTS, HF, Neuropathy) from claims fail to fire. || Resolved once CLAIMS dates are backfilled. ||  ||  ||  ||  ||  ||  ||  || 
+R29: Step 07 || Reasoning Buckets || bucket_engine.py || Buckets satisfied by qualified signals || Insufficient signals survive evidence qualification || CRITICAL || Buckets cannot reach eligible thresholds. || Resolved once CLAIMS dates are backfilled. ||  ||  ||  ||  ||  ||  ||  || 
+R30: Step 08 || Combination Matching || match_engine.py || Multi-specialty rule combinations (A, B, C) || No combinations match due to empty buckets || CRITICAL || Patients route to NO_MATCH or HOLD. || Resolved once CLAIMS dates are backfilled. ||  ||  ||  ||  ||  ||  ||  || 
+R31: Step 09-10 || Router & Verdicts || router.py || Phenotype verdicts (ATTRv, ATTRwt, AL) || No phenotype passes generated for non-confirmed patients || CRITICAL || Early detection produces 0 flagged patients. || Resolved once CLAIMS dates are backfilled. ||  ||  ||  ||  ||  ||  ||  || 
+R32: Step 11 || Patient Profiles & Export || patient_profile.py || Rich medical profiles, timeline, demographics || Timeline has empty dates; demographics lack family_id/city || DEGRADED || Profiles lack clinical depth and family linkages. || Impute dates and display available demographics. ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Table_CLAIMS
+================================================================================
+R1: TABLE ANALYSIS: CLAIMS (CLAIM vs CLAIMS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. EMPIRICAL DATA & RUNTIME OVERVIEW ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Total Rows: 53,311,842 | Unique Patients: 929,356 | Unique Claims: 11,103,649 | Distinct ICD-10 Codes: 26,653 | Dates Populated: 0% (53.3M NULLS) | Procedure Codes: 0% (53.3M NULLS) | Notes: 0% (53.3M BLANK) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2. PREVIOUS SCHEMA VS CURRENT SCHEMA (SIDE-BY-SIDE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Logical Field Name || Previous Physical Column || Current Physical Column || Previous Data Type || Current Data Type || Schema Change Status || Pipeline Role & Expectation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: patient_id || Member/PatientId || COLUMN0 || TEXT || TEXT || Renamed (Positional) || Primary patient identifier; 100% populated (929,356 distinct patients). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: encounter_id || EncounterId/VisitId || COLUMN1 || TEXT || TEXT || Renamed (Positional) || Encounter link; 100% populated (8,153,451 distinct). Links directly to ENCOUNTERS.VISITID. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: claim_no || N/A || COLUMN2 || N/A || TEXT || Added in New || Claim number; 100% populated (11,103,649 distinct). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: claim_line_no || N/A || COLUMN3 || N/A || TEXT || Added in New || Claim line number; 100% populated (53,311,842 unique lines). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: claim_status || N/A || COLUMN4 || N/A || TEXT || Added in New || Claim status; 100% populated (93.16% 'Closed'). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: date_incurred_from || FromDate || COLUMN5 || TEXT || TEXT || Renamed (Positional) || Service start date; 100% NULL in current data (53,311,842 nulls). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: date_incurred_to || ToDate || COLUMN6 || TEXT || TEXT || Renamed (Positional) || Service end date; 100% NULL in current data (53,311,842 nulls). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: diagnosis_type || DiagnosisType || COLUMN7 || TEXT || TEXT || Renamed (Positional) || Diagnosis code system; 100% populated with 'ICD-10-CM'. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: diagnosis_code || DiagnosisCode || COLUMN8 || TEXT || TEXT || Renamed (Positional) || Primary diagnosis code; 100% populated with 26,653 distinct ICD-10 codes. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: provider_npi || N/A || COLUMN9 || N/A || TEXT || Added in New || Rendering NPI; 100% populated (5,511 distinct, 6.2M '*Unspecified'). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: provider_name || N/A || COLUMN10 || N/A || TEXT || Added in New || Provider name; 100% empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: provider_type || ProviderType || COLUMN11 || TEXT || TEXT || Renamed (Positional) || Provider taxonomy/type; 100% empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: specialty_code || SpecialtyCode || COLUMN12 || TEXT || TEXT || Renamed (Positional) || Specialty code; 100% empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: specialty_name || SpecialtyName || COLUMN13 || TEXT || TEXT || Renamed (Positional) || Specialty name; 100% empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: provider_tax_id || N/A || COLUMN14 || N/A || TEXT || Added in New || Tax ID; 100% empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: drg_code || DRGCode || COLUMN15 || TEXT || TEXT || Renamed (Positional) || Inpatient DRG; 100% NULL / empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: rev_code || N/A || COLUMN16 || N/A || TEXT || Added in New || Revenue code; 100% NULL / empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: other_diagnosis_9 || OtherDiagnosisCodes9 || COLUMN17 || TEXT || TEXT || Renamed (Positional) || Secondary ICD-9 codes; 100% NULL. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: other_diagnosis_10 || OtherDiagnosisCodes10 || COLUMN18 || TEXT || TEXT || Renamed (Positional) || Secondary ICD-10 codes; 100% NULL. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: from_date || FromDate || COLUMN19 || TEXT || TEXT || Renamed (Positional) || Pipeline encounter window from_date; 100% NULL. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: to_date || ToDate || COLUMN20 || TEXT || TEXT || Renamed (Positional) || Pipeline encounter window to_date; 100% NULL. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: clinical_notes || ClinicalNotes || COLUMN21 || TEXT || TEXT || Renamed (Positional) || Free text clinical narrative on claim; 100% NULL / empty string. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: procedure_code || ProcedureCode || UNMAPPED || TEXT || N/A || REMOVED / UNMAPPED || CPT/HCPCS procedure codes; completely absent/unmapped in new schema. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: procedure_modifier_1 || ProcedureModifier1 || UNMAPPED || TEXT || N/A || REMOVED / UNMAPPED || Procedure modifier 1; completely unmapped / 100% null. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: procedure_modifier_2 || ProcedureModifier2 || UNMAPPED || TEXT || N/A || REMOVED / UNMAPPED || Procedure modifier 2; completely unmapped / 100% null. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: procedure_modifier_3 || ProcedureModifier3 || UNMAPPED || TEXT || N/A || REMOVED / UNMAPPED || Procedure modifier 3; completely unmapped / 100% null. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 3. ISSUES WITH CURRENT SCHEMA (AS PER ALGORITHM REQUIREMENTS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: • Generic positional column naming (COLUMN0..COLUMN21) replaces meaningful clinical column names, making queries highly brittle to upstream schema shifts. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: • No procedure code (CPT/HCPCS) column is mapped or exposed in the new schema. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: • Procedure modifiers (1, 2, 3) are completely unmapped. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: • Both primary service dates (COLUMN5, COLUMN6) and encounter window dates (COLUMN19, COLUMN20) exist as columns but are entirely unpopulated. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 4. ISSUES WITH CURRENT DATA (EMPIRICAL FINDINGS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: • 100% NULL Dates: Every single date field (COLUMN5, COLUMN6, COLUMN19, COLUMN20) is NULL across all 53,311,842 rows. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: • 100% NULL Procedure Codes: 0 procedure codes are present, preventing CPT-based surgical or diagnostic identification. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: • 100% NULL Clinical Notes: COLUMN21 is entirely blank, providing zero narrative text for NLP PhraseMatcher. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: • 100% Blank Provider Specialty: COLUMN12 and COLUMN13 are empty strings, preventing provider specialty routing (Cardiology vs Orthopedics vs Neurology). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: • 100% NULL Secondary Diagnoses: COLUMN17 (ICD-9) and COLUMN18 (ICD-10) are completely unpopulated. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 5. HOW IT AFFECTS OUR CURRENT ALGORITHM & PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: • Confirmed Amyloidosis Extractor (First-Run): SUCCEEDS. Matches exact ICD-10 codes (E85.82, E85.81, E85.4, etc.) in COLUMN8. It does not require dates, NLP, or CPT codes. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: • Early Detection Suspicion Pipeline: COMPLETELY BLOCKS / FAILS. In source_events.py, event_date is None. In extraction_contract.py, available_date is None. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: • In evidence_qualification.py (lines 465-467): _on_or_before(available_date, cutoff) evaluates to None. All evidence is assigned status UNKNOWN with reason 'UNKNOWN_AVAILABILITY_DATE'. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: • Because evidence status is UNKNOWN, eligible_evidence() returns None. No clinical atom can ever fire from claims data. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: • CPT Atoms Blocked: Atoms requiring procedure codes (e.g. Carpal Tunnel Release CPT 64721, Heart Biopsy CPT 93505) cannot match at all. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R54: • Specialty Routing Blocked: The algorithm cannot verify whether a claim originated from a Cardiologist or Neurologist. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R56: 6. WHAT CHANGES WE NEED TO MAKE TO OUR ALGORITHM / PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R57: • DATE BACKFILL BRIDGE: Join CLAIMS with ENCOUNTERS on CLAIMS.COLUMN1 = ENCOUNTERS.VISITID and impute event_date and available_date from ENCOUNTERS.VISITDATE. (Verified: 100% of CLAIMS have COLUMN1, and ENCOUNTERS is 99.99999% populated with valid dates). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R58: • RELAX REQUIRED COLUMNS: In v4/config/source_schema.json, remove from_date and to_date from required_columns for claims so that initial validation does not fail. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R59: • DIAGNOSIS-BASED SPECIALTY INFERENCE: Infer clinical specialty from ICD-10 code chapters (e.g., I44/I50 -> Cardiology; M75/G56 -> Orthopedics; G60/G62 -> Neurology) rather than relying on empty specialty columns. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R60: • CPT TO ICD-10 FALLBACK: For procedure atoms, allow equivalent ICD-10 diagnosis codes (e.g. bilateral CTS diagnosis G56.03 instead of CPT 64721) to satisfy the clinical signal. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Table_ENCOUNTERS
+================================================================================
+R1: TABLE ANALYSIS: ENCOUNTERS (ENCOUNTER_VISIT vs ENCOUNTERS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. EMPIRICAL DATA & RUNTIME OVERVIEW ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Total Rows: 17,429,113 | Unique Encounters: 16,334,743 | Unique Patients: 1,056,034 | Date Population: 99.99999% (1 NULL) | Date Span: 2004-06-11 to 2027-09-09 | Future Dates: 38,878 rows ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2. PREVIOUS SCHEMA VS CURRENT SCHEMA (SIDE-BY-SIDE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Logical Field Name || Previous Physical Column || Current Physical Column || Previous Data Type || Current Data Type || Schema Change Status || Pipeline Role & Expectation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: encounter_id || EncounterId/VisitId || VISITID || TEXT || TEXT || Renamed || Primary visit identifier; 100% populated (16,334,743 unique encounters). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: patient_id || Member/PatientId || PATIENTID || TEXT || TEXT || Renamed || Patient identifier; 100% populated (1,056,034 unique patients). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: encounter_date || Encounter/Visit Date || VISITDATE || TEXT || TEXT || Renamed || Clinical encounter date; 99.99999% populated (only 1 null out of 17.4M rows!). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: facility_id || N/A || FACILITYID || N/A || TEXT || Added in New || Facility identifier; 100% populated (690 distinct facilities). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: physician_id || N/A || PHYSICIANID || N/A || TEXT || Added in New || Physician identifier; 100% populated (3,753 distinct physicians). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: visit_type || N/A || TYPE || N/A || TEXT || Added in New || Visit setting/type (e.g. Inpatient, Outpatient, Emergency, Hemodialysis). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: financial_class || N/A || FINANCIALCLASS || N/A || TEXT || Added in New || Payer financial class (e.g. Medicaid Managed Care, Medicare). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: status || N/A || STATUS || N/A || TEXT || Added in New || Encounter status (73.32% 'Completed', 'Cancelled', etc.). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 3. ISSUES WITH CURRENT SCHEMA (AS PER ALGORITHM REQUIREMENTS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: • Table renamed from ENCOUNTER_VISIT to ENCOUNTERS. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: • Column names renamed from mixed-case slashes ('EncounterId/VisitId') to clean uppercase ('VISITID', 'VISITDATE'). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: • 5 new columns added (FACILITYID, PHYSICIANID, TYPE, FINANCIALCLASS, STATUS) which provide valuable context but were not in the legacy schema. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 4. ISSUES WITH CURRENT DATA (EMPIRICAL FINDINGS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: • 38,878 future dates (dates after 2026-09-21, up to 2027-09-09) representing future scheduled visits. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: • 1,094,370 duplicate encounter IDs where multiple rows share the same VISITID across different service types or statuses. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 5. HOW IT AFFECTS OUR CURRENT ALGORITHM & PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: • Table is currently disabled (enabled: false) in sample_db_v1 because V4 did not directly extract clinical atoms from encounters. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: • Future dates, if ingested without filtering, would be flagged as is_future=True and marked 'FUTURE_OR_PLANNED_MENTION' (UNKNOWN) in evidence qualification. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: • Encounter dates are the critical missing link for CLAIMS. Because CLAIMS.COLUMN1 connects to ENCOUNTERS.VISITID, keeping ENCOUNTERS disabled deprives CLAIMS of its only date source. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 6. WHAT CHANGES WE NEED TO MAKE TO OUR ALGORITHM / PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: • ENABLE TABLE: In v4/config/source_schema.json, set encounter.enabled = true. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: • IMPLEMENT DATE BRIDGE JOIN: Use ENCOUNTERS as a date lookup table to populate CLAIMS event_date and available_date. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: • FILTER FUTURE DATES: Add WHERE VISITDATE <= CURRENT_DATE() when querying ENCOUNTERS to exclude future scheduled appointments. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: • DE-DUPLICATE GRAIN: Aggregate by VISITID taking MIN(VISITDATE) to ensure clean 1:1 encounter date mapping. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Table_CENSUS
+================================================================================
+R1: TABLE ANALYSIS: CENSUS (CENSUS vs CENSUS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. EMPIRICAL DATA & RUNTIME OVERVIEW ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Total Rows: 2,794,815 | Unique Patients: 2,794,815 (1:1 Grain) | Gender: 51.3% F, 48.1% M | Birth Date: 96.64% populated (94K null) | Family ID: 0% (Column Absent) | Demographics: 100% Blank Strings ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2. PREVIOUS SCHEMA VS CURRENT SCHEMA (SIDE-BY-SIDE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Logical Field Name || Previous Physical Column || Current Physical Column || Previous Data Type || Current Data Type || Schema Change Status || Pipeline Role & Expectation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: patient_id || Member/PatientId || PATIENTID || TEXT || TEXT || Renamed || Unique patient identifier; 100% populated (2,794,815 distinct patients). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: birth_date || BirthDate || BIRTHDATE || TEXT || TEXT || Renamed || Patient birth date; 96.64% populated (94,045 missing). Clustered in 51-60 age group. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: gender || Gender || GENDER || TEXT || TEXT || Renamed || Patient gender; 100% populated (51.29% F, 48.05% M, 0.66% U). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: city || City || CITY || TEXT || TEXT || Renamed || Patient city; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: state || State || STATE || TEXT || TEXT || Renamed || Patient state; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: family_id || FamilyId || UNMAPPED || TEXT || N/A || REMOVED IN NEW || Family/household identifier; COMPLETELY ABSENT in new schema. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: firstname || N/A || FIRSTNAME || N/A || TEXT || Added in New || First name; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: lastname || N/A || LASTNAME || N/A || TEXT || Added in New || Last name; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: middleinitial || N/A || MIDDLEINITIAL || N/A || TEXT || Added in New || Middle initial; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: address || N/A || ADDRESS || N/A || TEXT || Added in New || Street address; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: county || N/A || COUNTY || N/A || TEXT || Added in New || County; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: country || N/A || COUNTRY || N/A || TEXT || Added in New || Country; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: zipcode || N/A || ZIPCODE || N/A || TEXT || Added in New || Zip code; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: deathdate || N/A || DEATHDATE || N/A || TEXT || Added in New || Date of death; 100% blank strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: ombethnicity || N/A || OMBETHNICITY || N/A || TEXT || Added in New || Ethnicity (Hispanic or Latino, Not Hispanic, Unknown). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: ombrace || N/A || OMBRACE || N/A || TEXT || Added in New || Race (White, Black, Asian, Unknown). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: begineffectivedate || N/A || BEGINEFFECTIVEDATE || N/A || TEXT || Added in New || Enrollment start date; mostly blank. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: endeffectivedate || N/A || ENDEFFECTIVEDATE || N/A || TEXT || Added in New || Enrollment end date; mostly blank. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 3. ISSUES WITH CURRENT SCHEMA (AS PER ALGORITHM REQUIREMENTS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: • FAMILYID column is completely removed from the new CENSUS schema. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: • legacy_ehr_v1 profile had family_id in required_columns; running legacy config immediately fails schema validation. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: • Numerous new demographic columns added (FIRSTNAME, LASTNAME, ADDRESS, etc.) but not populated with real data. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 4. ISSUES WITH CURRENT DATA (EMPIRICAL FINDINGS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: • 94,045 patients (3.36%) have missing birth dates. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: • 96.64% of patients fall into a single age band (51-60 years, clustered around 1970 birth dates) due to synthetic generation. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: • All geographic columns (CITY, STATE, ZIPCODE, ADDRESS) are empty strings. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: • Complete absence of family linkage across all 2.79M patients. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 5. HOW IT AFFECTS OUR CURRENT ALGORITHM & PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: • Schema Validation: Handled in sample_db_v1 by removing family_id from required_columns. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: • Hereditary ATTRv Pedigree Scoring: Cannot link index patients to relatives with amyloidosis or cardiomyopathy. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: • Age-based Gates: The heavy 51-60 clustering means almost all patients satisfy the adult/elderly age gates for ATTRwt/ATTRv. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: • Patient Profile Reports: Demographics section in viewer JSONL/CSV exports will show blank city, state, and family_id. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 6. WHAT CHANGES WE NEED TO MAKE TO OUR ALGORITHM / PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: • CONFIRM OPTIONAL DEMOGRAPHICS: Keep family_id, city, and state strictly optional in all pipeline schemas. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: • ADJUST ATTRv HEREDITARY RULES: Evaluate ATTRv suspicion based purely on clinical symptom combinations (neuropathy + CTS + cardiomyopathy) rather than expecting family pedigree corroboration. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: • SAFE AGE HANDLING: For the 94,045 patients with missing birth dates, treat age gates as non-blocking UNKNOWN rather than disqualifying. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Table_LABS
+================================================================================
+R1: TABLE ANALYSIS: LABS (LAB vs LABS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. EMPIRICAL DATA & RUNTIME OVERVIEW ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Total Rows: 133,901,152 | Unique Patients: 695,413 | Unique Encounters: 3,856,970 | Dates Populated: 100% (0 NULLS) | Observation Values: 100% Populated | Identifier Format: Plain Text (7,668 names) | Notes: 100% Empty ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2. PREVIOUS SCHEMA VS CURRENT SCHEMA (SIDE-BY-SIDE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Logical Field Name || Previous Physical Column || Current Physical Column || Previous Data Type || Current Data Type || Schema Change Status || Pipeline Role & Expectation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: patient_id || Member/PatientId || PATIENTID || TEXT || TEXT || Renamed || Patient identifier; 100% populated (695,413 unique patients). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: encounter_id || EncounterId/VisitId || ENCOUNTERKEY || TEXT || TEXT || Renamed || Encounter key; 100% populated (3,856,970 unique encounters). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: lab_id || LabId || LABTESTKEY || TEXT || TEXT || Renamed || Lab test key; 100% populated (24,483,028 unique). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: lab_request_id || LabRequestId || LABREQUESTID || TEXT || TEXT || Renamed || Order request ID; 100% empty strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: lab_result_id || LabResultId || LABRESULTID || TEXT || TEXT || Renamed || Result ID; 100% empty strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: observation_identifier || ObservationIdentifier || OBSERVATIONIDENTIFIER || TEXT || TEXT || Unchanged || Test identifier; contains TEXT NAMES ('Calcium', 'Troponin'), NOT LOINC codes! ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: observation_value || ObservationValue || OBSERVATIONVALUE || TEXT || TEXT || Unchanged || Test numeric/text result value; 100% populated. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: result_status || ObservationResultStatus || OBSERVATIONRESULTSTATUS || TEXT || TEXT || Renamed || Result status; 99.73% 'Final result'. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: observation_datetime || ObservationDateTime || OBSERVATIONDATETIME || TEXT || TEXT || Renamed || Observation timestamp; 100% populated (0 nulls). Range: 2018 to 2026. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: lab_result_note || LabResultNote || LABRESULTNOTE || TEXT || TEXT || Renamed || Lab narrative note; 100% empty strings in data. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: performed_datetime || N/A || PERFORMEDDATETIME || N/A || TEXT || Added in New || Test performed timestamp; 100% populated. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: analysis_datetime || N/A || ANALYSISDATETIME || N/A || TEXT || Added in New || Test analysis timestamp; 57,545 nulls. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: common_name || N/A || OBSERVATIONIDENTIFIERCOMMONNAME || N/A || TEXT || Added in New || Short abbreviation name (e.g. 'LYMPHS ABS AUTO'). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 3. ISSUES WITH CURRENT SCHEMA (AS PER ALGORITHM REQUIREMENTS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: • No ObservationIdentifierSystem column exists to indicate whether the test is LOINC, local hospital code, or CPT. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: • LABREQUESTID and LABRESULTID exist as columns but are 100% empty strings. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: • LABRESULTNOTE exists as a column but is 100% empty strings. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 4. ISSUES WITH CURRENT DATA (EMPIRICAL FINDINGS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: • OBSERVATIONIDENTIFIER contains free-text test names (e.g., 'Calcium', 'Glucose Accuchek POC', 'Troponin I') instead of standardized LOINC codes (e.g. 2160-0, 10839-9). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: • 100% Empty Notes: LABRESULTNOTE contains zero narrative text, preventing any NLP keyword or PhraseMatcher extraction. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: • String Formatted Values: OBSERVATIONVALUE contains numeric strings, requiring explicit casting before threshold comparisons. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 5. HOW IT AFFECTS OUR CURRENT ALGORITHM & PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: • LOINC Structured Matching Fails: In extraction_contract.py, LOINC routes expect exact code matches. In source_events.py, code_system is set to None because no system is declared. All LOINC atoms fail to match. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: • Cardiac Biomarker Gates Fail: ATTRwt and AL biomarker criteria (elevated Troponin, elevated NT-proBNP) cannot fire through structured LOINC rules. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: • Lab Narrative NLP Fails: The secondary route for clinical notes via lab_result_note produces zero matches because all note fields are empty strings. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 6. WHAT CHANGES WE NEED TO MAKE TO OUR ALGORITHM / PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: • TEXT-TO-LOINC MAPPING TABLE: Create a translation dictionary mapping top test names in OBSERVATIONIDENTIFIER to standard LOINC codes (e.g., 'Troponin I' -> 10839-9, 'NT-proBNP' -> 33762-6, 'Protein, Urine' -> 2888-6). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: • OVERRIDE CODE SYSTEM: In source_events.py, set code_system = 'LOINC' whenever a recognized test name is mapped. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: • SAFE NUMERIC CASTING: Apply TRY_TO_DOUBLE(OBSERVATIONVALUE) in Snowflake SQL queries to enable numeric biomarker thresholding. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: • ENABLE LABS IN CONFIG: Once the mapping is in place, set lab.enabled = true in source_schema.json. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Table_SURGICAL_HISTORY
+================================================================================
+R1: TABLE ANALYSIS: SURGICAL_HISTORY (SURGICAL_HISTORY vs SURGICAL_HISTORY) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. EMPIRICAL DATA & RUNTIME OVERVIEW ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Total Rows: 10,000 | Unique Patients: 8,329 | Unique Encounters: 608 (94% 'Unknown') | SNOMED Population: 100% (48 unique codes) | Date Population: 92.47% (753 NULLS) | Secondary SNOMED: 100% Empty ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2. PREVIOUS SCHEMA VS CURRENT SCHEMA (SIDE-BY-SIDE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: Logical Field Name || Previous Physical Column || Current Physical Column || Previous Data Type || Current Data Type || Schema Change Status || Pipeline Role & Expectation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: patient_id || Member/PatientId || PATIENTID || TEXT || TEXT || Renamed || Patient identifier; 100% populated (8,329 unique patients). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: encounter_id || EncounterId/VisitId || ENCOUNTERID || TEXT || TEXT || Renamed || Encounter link; 608 distinct, but ~94% are 'Unknown'. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: record_id || SurgicalHistoryId || SURGICALHISTORYID || TEXT || TEXT || Renamed || Surgical record ID; 100% populated (8,732 unique). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: source_category || Source/Category || SOURCE || TEXT || TEXT || Renamed || Source category; 92.47% 'Surgical History Procedure'. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: value || Value || CATEGORY || TEXT || TEXT || Renamed || Procedure text; 92.4% generic string 'SURGICAL HISTORY PROCEDURES'. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: snomed || SNOMED || SNOMED || TEXT || TEXT || Unchanged || SNOMED CT procedure code; 100% populated (48 unique codes). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: secondary_snomed || Secondary SNOMED || SECONDARY_SNOMED || TEXT || TEXT || Renamed || Secondary SNOMED code; 100% empty strings. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: event_date || Date || DATE || TEXT || TEXT || Renamed || Procedure date; 753 rows (7.53%) are NULL! Populated: 2020 to 2026. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 3. ISSUES WITH CURRENT SCHEMA (AS PER ALGORITHM REQUIREMENTS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: • Physical column names normalized to uppercase without slashes. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: • value is mapped to CATEGORY in sample_db_v1, which only contains generic text ('SURGICAL HISTORY PROCEDURES'). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: • SECONDARY_SNOMED exists as a column but has 0 populated values. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 4. ISSUES WITH CURRENT DATA (EMPIRICAL FINDINGS) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: • 753 rows (7.53%) have NULL DATE, which causes them to be dropped by the pipeline. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: • 94% of encounter IDs are 'Unknown', preventing linkage to encounter metadata. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: • Procedure descriptions in CATEGORY lack clinical specificity (92.4% generic text). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 5. HOW IT AFFECTS OUR CURRENT ALGORITHM & PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: • SNOMED Code Matching SUCCEEDS: For the 9,247 rows with valid dates, the 48 SNOMED codes match configured orthopedic/cardiac procedure atoms. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: • Null Date Drop: The 753 rows with NULL DATE fail evidence qualification with UNKNOWN_AVAILABILITY_DATE. 753 surgical procedures are lost. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: • Secondary SNOMED and Narrative: Zero secondary SNOMED matches and zero NLP text matches from this table. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 6. WHAT CHANGES WE NEED TO MAKE TO OUR ALGORITHM / PIPELINE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: • DATE IMPUTATION FOR SURGICAL HISTORY: For the 753 rows with null dates, allow an imputation strategy (e.g. earliest encounter date or census effective date) or allow non-recency-gated atoms to fire without strict dates. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: • ENABLE SURGICAL HISTORY IN CONFIG: Set surgical_history.enabled = true in source_schema.json so it participates in candidate retrieval and event normalization. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: • MAP TO SNOMED DIRECTLY: Ensure SNOMED CT is the primary extraction route for surgical history rather than relying on the generic CATEGORY text. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Missing_Tables
+================================================================================
+R1: ANALYSIS OF MISSING TABLES (SOURCE_AVAILABLE = FALSE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. STATUS OF EXPECTED VS RECEIVED TABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Expected Table Name || Previous Role || Current Status || Row Count || Key Clinical Features Lost || Algorithm Impact || Feasibility / Recommendation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: CLINICAL_NOTE || Unstructured EHR narrative (physician notes, discharge summaries, cardiology consults) || MISSING || 0 rows || All medSpaCy / spaCy PhraseMatcher NLP text. Loss of bilateral CTS text, apical sparing, neuropathy, gastrointestinal symptoms, negation/uncertainty context. || FATAL BLOCKER: Entire narrative pipeline cannot run. No NLP-derived clinical atoms can be qualified. || CANNOT PROCEED with NLP features. Only structured claims/surgical history can be used. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: MEDICAL_HISTORY || Past medical history conditions, diagnoses, and procedures || MISSING || 0 rows || Historical SNOMED codes (heart failure, neuropathy, autonomic dysfunction, spinal stenosis) and free-text condition descriptions. || FATAL BLOCKER: No historical SNOMED conditions can be loaded or matched. || CANNOT PROCEED with medical history features. Pipeline must rely solely on CLAIMS billing diagnoses. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: FAMILY_HISTORY || Family medical history and pedigree relations || MISSING || 0 rows || SNOMED codes and condition terms for family members (hereditary amyloidosis, sudden cardiac death, neuropathy). || FATAL BLOCKER: Family history amyloidosis screening route cannot fire. || CANNOT PROCEED with family history rules. ATTRv must be scored on individual findings alone. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: SOCIAL_HISTORY || Social habits, smoking, alcohol, lifestyle || MISSING || 0 rows || Excluded from scope per user request. || NO IMPACT: Excluded from analysis. || No action needed (out of scope). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 2. CORE CONCLUSION & ARCHITECTURAL DIRECTIVE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: • As confirmed by the data analysis workbooks in results/, CLINICAL_NOTE, MEDICAL_HISTORY, and FAMILY_HISTORY are completely absent from the current database snapshot (SOURCE_AVAILABLE = FALSE). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: • The current V4 algorithm was originally designed expecting a complete EHR data lake where clinical text notes and past histories corroborate billing codes. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: • BECAUSE THESE TABLES ARE MISSING, WE CANNOT PROCEED with any pipeline features, signals, or rules that depend on them. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: • Specifically: (1) The spaCy/medSpaCy narrative extraction pipeline cannot be executed; (2) Historical SNOMED conditions cannot be retrieved; (3) Family pedigree risk rules cannot fire. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: • Operational Directive: The algorithm must be adapted to run strictly on structured CLAIMS, ENCOUNTERS, LABS, and SURGICAL_HISTORY. All clinical atoms that rely exclusively on NLP or medical history must be disabled or flagged as unfulfillable gaps. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 

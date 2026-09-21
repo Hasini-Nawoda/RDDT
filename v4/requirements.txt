@@ -1,4 +1,6 @@
-# Workbook/build dependencies are intentionally kept in
+# Full NLP-enabled runtime only. Do not install this file for the initial
+# Warehouse Runtime, CLAIMS-only, ICD-only run; that mode needs no spaCy or
+# medSpaCy packages. Workbook/build dependencies are intentionally kept in
 # ../v4_build_tools/requirements-build.txt.
 spacy>=3.7,<4
 medspacy>=1.2,<2

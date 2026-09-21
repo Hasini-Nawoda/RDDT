@@ -1,0 +1,32 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\raw\schema_counts_summary_outputs.xlsx
+SHEETS: ['Run Summary', 'Cell 003', 'Cell 004']
+
+================================================================================
+SHEET: Run Summary
+================================================================================
+R1: Cell Number || Cell Name || Sheet Name || Query || Status || Row Count || Truncated || Error ||  ||  ||  ||  ||  ||  ||  || 
+R2: 3 || Cell 003 || Cell 003 || WITH counts AS ( |     SELECT 'CENSUS' AS TABLE_NAME, TRUE AS SOURCE_AVAILABLE, |            COUNT(*) AS TOTAL_ROW_COUNT, |            COUNT(DISTINCT PATIENTID) AS DISTINCT_PATIENT_COUNT |     FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CENSUS |     UNION ALL |     SELECT 'CLAIMS', TRUE, COUNT(*), COUNT(DISTINCT COLUMN0) |     FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CLAIMS |     UNION ALL |     SELECT 'ENCOUNTE... || SUCCESS || 10 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 4 || Cell 004 || Cell 004 || -- CENSUS is the authoritative current-schema patient roster. | SELECT COUNT(DISTINCT PATIENTID) AS TOTAL_PATIENT_COUNT | FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CENSUS; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Cell 003
+================================================================================
+R1: Query || WITH counts AS ( |     SELECT 'CENSUS' AS TABLE_NAME, TRUE AS SOURCE_AVAILABLE, |            COUNT(*) AS TOTAL_ROW_COUNT, |            COUNT(DISTINCT PATIENTID) AS DISTINCT_PATIENT_COUNT |     FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CENSUS |     UNION ALL |     SELECT 'CLAIMS', TRUE, COUNT(*), COUNT(DISTINCT COLUMN0) |     FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CLAIMS |     UNION ALL |     SELECT 'ENCOUNTE... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TABLE_NAME || SOURCE_AVAILABLE || TOTAL_ROW_COUNT || DISTINCT_PATIENT_COUNT ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: CENSUS || True || 2794815 || 2794815 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: CLAIMS || True || 53311842 || 929356 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: CLINICAL_NOTE || False ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: ENCOUNTERS || True || 17429113 || 1056034 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: FAMILY_HISTORY || False ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: LABS || True || 133901152 || 695413 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: MEDICAL_HISTORY || False ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: MEDICATIONS || True || 55652835 || 649736 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: SOCIAL_HISTORY || False ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: SURGICAL_HISTORY || True || 10000 || 8329 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: Cell 004
+================================================================================
+R1: Query || -- CENSUS is the authoritative current-schema patient roster. | SELECT COUNT(DISTINCT PATIENTID) AS TOTAL_PATIENT_COUNT | FROM UHTX_RDDT_CLINICAL_DEV.PUBLIC.CENSUS; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TOTAL_PATIENT_COUNT ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2794815 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 

@@ -1,5 +1,11 @@
 # V4 deployable pipeline stages
 
+The urgent first run does **not** execute the numbered suspicion stages below.
+`RDDT_ATTR_V4_Pipeline.ipynb` performs only table/patient counts and exact
+CLAIMS ICD-10 matching through `routes.ALL_AMYLOIDOSIS`, writes two
+session-scoped temporary confirmed-patient tables, and stops. Dates, ICD-9,
+NLP, and non-confirmed patients are out of scope for that run.
+
 The Snowflake runtime is intentionally readable as a numbered sequence. The
 production entry point is `v4.pipeline.run_attr_v4_pipeline`; it always loads
 both ATTRv and ATTRwt. Candidate retrieval, source normalization, known-patient
@@ -27,6 +33,7 @@ truth. Clinical atoms, terminology, signals, combinations, priorities, and
 guardrails continue to come only from `v4/config`. The compiler and
 workbook correction tools are outside this deployable runtime contract.
 
-Runtime persistence is session-scoped only. Intermediate materialization uses
-`CREATE OR REPLACE TEMPORARY TABLE`; no permanent or transient warehouse table
-is created.
+Snowflake source access is read-only. The runtime may materialize only
+session-scoped `TEMPORARY` `AMY_V4_*` tables when
+`persist_intermediates=True`; it does not create permanent, transient, shared,
+view, or stage objects.

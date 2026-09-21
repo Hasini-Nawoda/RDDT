@@ -15,6 +15,11 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
+try:
+    from .terminology_normalization import normalize_atom_provenance, normalize_term, source_terminology
+except ImportError:  # pragma: no cover - supports direct build-tool invocation
+    from terminology_normalization import normalize_atom_provenance, normalize_term, source_terminology
+
 ROOT = Path(__file__).resolve().parents[1]
 PHENOTYPE_SLOTS = ("GENERAL_AMYLOID", "ATTR_COMMON", "ATTRWT", "ATTRV", "AL", "AA")
 
@@ -61,6 +66,7 @@ def build_shared_atoms(
     tables: Dict[str, List[Dict[str, Any]]],
     used_atom_ids: set[str] | None = None,
 ) -> Dict[str, List[Dict[str, Any]]]:
+    _, exact_values = source_terminology()
     terminology: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     for row in tables["terminology"]:
         terminology[str(row["atom_id"])].append(row)
@@ -76,6 +82,7 @@ def build_shared_atoms(
             "stage": source["stage"],
             "experiencer": source["experiencer"],
         }
+        atom = normalize_atom_provenance(atom, source)
         if source.get("clinical_meaning") != source.get("preferred_clinical_name"):
             add_if(atom, "clinical_meaning", source.get("clinical_meaning"))
         add_if(atom, "context_guard", source.get("context_guard"))
@@ -86,10 +93,11 @@ def build_shared_atoms(
             terminology.get(atom_id, []),
             key=lambda row: (str(row.get("terminology_system", "")), str(row.get("value", ""))),
         ):
-            item = {
-                "value": term["value"],
-                "can_fire_atom_alone": bool(term.get("can_fire_atom_alone", False)),
-            }
+            item = normalize_term(
+                term,
+                atom_id=atom_id,
+                exact_values=exact_values,
+            )
             if str(term.get("value_class", "")).upper() == "NLP_TERM" or str(
                 term.get("terminology_system", "")
             ).upper() == "NLP":
@@ -162,6 +170,7 @@ def nested_signal_rule(
     rule["missing_data_policy"] = rule_row["missing_data_policy"]
     rule["truth_model"] = rule_row["three_valued_logic"]
     rule["outcome"] = rule_row["rule_outcome"]
+    add_if(rule, "temporal_policy", rule_row.get("temporal_policy"))
     add_if(rule, "blocker_policy", rule_row.get("blocker_policy"))
     return rule
 

@@ -10,7 +10,14 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any, Mapping, Sequence
 
-from .extraction_contract import event_system_compatible, is_nlp_system, normalize_system
+from .extraction_contract import (
+    event_system_compatible,
+    is_nlp_system,
+    normalize_system,
+    normalize_terminology_mode,
+    terminology_mode_for_systems,
+    terminology_allowed,
+)
 from .code_semantics import (
     CODE_IN_TEXT,
     find_code_in_text,
@@ -153,9 +160,18 @@ def match_atom_events(
     config_hash: str,
     nlp: Any = None,
     max_unknown_nlp_matches: int = 10000,
+    terminology_mode: str = "ALL",
+    terminology_systems: Any = None,
 ) -> list[AtomMatch]:
     """Match source events against only workbook ``Terminology`` rows."""
-    terms = _rows(config, "terminology")
+    selected_mode = terminology_mode_for_systems(
+        terminology_systems,
+        default=terminology_mode,
+    )
+    terms = [
+        row for row in _rows(config, "terminology")
+        if terminology_allowed(_get(row, "terminology_system", "system", "Terminology_System", default=""), selected_mode)
+    ]
     atoms = {str(_get(row, "atom_id", "Atom_ID", default="")): row for row in _rows(config, "atoms")}
     out: list[AtomMatch] = []
     matcher = labels = None

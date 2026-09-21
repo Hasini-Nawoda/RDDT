@@ -10,9 +10,10 @@ The deployable configuration is:
 
 ```text
 config/
+  source_schema.json             # table toggles + logical-to-physical column mapping
   phenotype_registry.json
   shared/
-    known_attr.json              # pre-screen recognition/exclusion contract
+    confirmed_patients.json      # all-amyloidosis ICD-10 + ATTR/AL contracts together
     atoms/*.json                 # specialty-partitioned shared atoms
   phenotypes/
     ATTRV/
@@ -41,22 +42,39 @@ connectors, active rule ASTs, blockers, and guardrail rules.
 
 ## Runtime flow
 
+The immediate first-run path is deliberately smaller than the full phenotype
+flow below:
+
+```text
+CLAIMS COLUMN7/COLUMN8 (ICD-10 type/code only)
+  -> exact normalized join to routes.ALL_AMYLOIDOSIS
+  -> session TEMPORARY row-level evidence table
+  -> session TEMPORARY deduplicated patient-profile table
+  -> stop; do not run suspicion scoring
+```
+
+This path ignores dates and evaluates no non-confirmed patients. The complete
+future suspicion flow remains:
+
 ```text
 checked-in generated JSON bundle
   -> validate source tables and columns
-  -> retrieve the union of ATTRv, ATTRwt, and known-ATTR candidates once
+  -> retrieve the union of ATTRv, ATTRwt, AL, and confirmed-patient candidates once
   -> create long-form source events once
-  -> pre-screen known ATTR/amyloidosis recognition
-       -> confirmed/known profile + AMY_V4_KNOWN_ATTR
+  -> pre-screen known ATTR/amyloidosis and known AL recognition
+       -> workspace-only confirmed/known ATTR collection and profile
+       -> workspace-only confirmed AL collection and profile
        -> remove patient from early-detection scoring
   -> match shared atoms once with spaCy PhraseMatcher + medSpaCy context
   -> qualify shared evidence once with TRUE/FALSE/UNKNOWN and lineage
-  -> evaluate ATTRv and ATTRwt rule trees for every remaining patient
+  -> evaluate ATTRv, ATTRwt, and AL rule trees for every remaining patient
        -> one ATTRv phenotype verdict
        -> one ATTRwt phenotype verdict
+       -> one AL phenotype verdict
        -> cross-phenotype guardrails remain parallel routes only
   -> aggregate the two real phenotype verdicts using their highest suspicion
   -> one combined ATTR patient profile and suspicion-tiered output
+  -> separate AL-detected profile and output for AL phenotype passes
   -> confirmed/ and suspicion-tiered detected/ profile downloads
 ```
 
@@ -64,6 +82,11 @@ Candidate retrieval is an efficiency stage, not positive evidence. Structured
 codes use only workbook code values and configured exact/prefix/range
 semantics. NLP never uses regex or simple substring matching. Missing NLP
 components cause an auditable gap, not a fallback match.
+
+Source tables remain read-only. When materialization is requested, V4 creates
+only session-scoped `TEMPORARY` `AMY_V4_*` tables, which are invisible to other
+sessions and disappear at session end. It never creates permanent, transient,
+shared, view, or stage output objects.
 
 ## Evidence and lineage
 

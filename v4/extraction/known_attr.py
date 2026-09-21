@@ -20,7 +20,9 @@ from .evidence_qualification import QualifiedEvidence, qualify_atom_matches
 from .source_events import SourceEvent
 
 
-DEFAULT_KNOWN_ATTR_CONFIG = Path(__file__).resolve().parents[1] / "config" / "shared" / "known_attr.json"
+DEFAULT_KNOWN_CONFIRMATIONS_CONFIG = Path(__file__).resolve().parents[1] / "config" / "shared" / "confirmed_patients.json"
+# Kept as a public compatibility alias for callers that used the old name.
+DEFAULT_KNOWN_ATTR_CONFIG = DEFAULT_KNOWN_CONFIRMATIONS_CONFIG
 
 
 def _canonical_hash(value: Any) -> str:
@@ -108,16 +110,27 @@ class KnownAttrResult:
         return {row.patient_id for row in self.patients}
 
 
-def load_known_attr_config(path: str | Path | None = None) -> KnownAttrConfig:
-    source = Path(path or DEFAULT_KNOWN_ATTR_CONFIG).expanduser().resolve()
-    payload = json.loads(source.read_text(encoding="utf-8"))
-    if not isinstance(payload, Mapping):
-        raise ValueError(f"Known-ATTR configuration must be an object: {source}")
+def _route_payload(payload: Mapping[str, Any], route: str, source: Path) -> Mapping[str, Any]:
+    """Select a route from the consolidated config, or accept the old flat shape."""
+    routes = payload.get("routes")
+    if routes is None:
+        return payload
+    if not isinstance(routes, Mapping):
+        raise ValueError(f"Confirmed-patient routes must be an object: {source}")
+    selected = routes.get(route)
+    if not isinstance(selected, Mapping):
+        raise ValueError(f"Confirmed-patient config is missing {route} route: {source}")
+    return selected
+
+
+def _validate_route_payload(payload: Mapping[str, Any], *, label: str, source: Path) -> Mapping[str, Any]:
     required = {"atoms", "terminology", "confirmation_rules"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"Known-ATTR configuration is missing {missing}: {source}")
+        raise ValueError(f"Known-{label} configuration is missing {missing}: {source}")
     terminology = payload.get("terminology", [])
+    if not isinstance(terminology, list) or not all(isinstance(row, Mapping) for row in terminology):
+        raise ValueError(f"Known-{label} terminology must be a list of objects: {source}")
     keys = [
         (
             str(row.get("atom_id", "")),
@@ -127,19 +140,31 @@ def load_known_attr_config(path: str | Path | None = None) -> KnownAttrConfig:
         for row in terminology
     ]
     if len(keys) != len(set(keys)):
-        raise ValueError(f"Known-ATTR configuration contains duplicate terminology: {source}")
+        raise ValueError(f"Known-{label} configuration contains duplicate terminology: {source}")
     configured_values = {str(row.get("value", "")) for row in terminology}
+    rules = payload.get("confirmation_rules", [])
+    if not isinstance(rules, list) or not all(isinstance(rule, Mapping) for rule in rules):
+        raise ValueError(f"Known-{label} confirmation_rules must be a list of objects: {source}")
     unknown_rule_values = sorted({
         str(value)
-        for rule in payload.get("confirmation_rules", [])
-        for value in rule.get("values", [])
+        for rule in rules
+        for value in (rule.get("values", []) or [])
         if str(value) not in configured_values
     })
     if unknown_rule_values:
         raise ValueError(
-            f"Known-ATTR confirmation rules reference unknown values {unknown_rule_values}: {source}"
+            f"Known-{label} confirmation rules reference unknown values {unknown_rule_values}: {source}"
         )
-    return KnownAttrConfig(payload, path=source)
+    return payload
+
+
+def load_known_attr_config(path: str | Path | None = None) -> KnownAttrConfig:
+    source = Path(path or DEFAULT_KNOWN_ATTR_CONFIG).expanduser().resolve()
+    payload = json.loads(source.read_text(encoding="utf-8"))
+    if not isinstance(payload, Mapping):
+        raise ValueError(f"Known-ATTR configuration must be an object: {source}")
+    route = _validate_route_payload(_route_payload(payload, "ATTR", source), label="ATTR", source=source)
+    return KnownAttrConfig(route, path=source)
 
 
 def _available_before(match: AtomMatch, screening_cutoff: Any) -> bool:
@@ -166,6 +191,8 @@ def identify_known_attr(
     nlp: Any = None,
     context_processor: Any = None,
     config: KnownAttrConfig | None = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Any = None,
 ) -> KnownAttrResult:
     """Identify and aggregate confirmed/known patients before phenotype scoring."""
     known_config = config or load_known_attr_config()
@@ -175,6 +202,8 @@ def identify_known_attr(
         known_config,
         config_hash=known_config.config_hash,
         nlp=nlp,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
     ))
     evidence = list(qualify_atom_matches(
         matches,
@@ -186,6 +215,12 @@ def identify_known_attr(
         str(row.get("value")): str(row.get("confirmation_scope") or "KNOWN_AMYLOIDOSIS")
         for row in known_config.rows("terminology")
     }
+    affirmed_rules_by_value: dict[str, list[Mapping[str, Any]]] = {}
+    for rule in known_config.rows("confirmation_rules"):
+        if str(rule.get("operator", "")).upper() != "ANY_AFFIRMED_NLP_TERM":
+            continue
+        for value in rule.get("values", []) or []:
+            affirmed_rules_by_value.setdefault(str(value), []).append(rule)
     evidence_by_patient: dict[str, list[QualifiedEvidence]] = {}
     for row in evidence:
         if row.status == "TRUE":
@@ -206,15 +241,21 @@ def identify_known_attr(
     patient_ids = set(evidence_by_patient) | set(structured_by_patient)
     patients: list[KnownAttrPatient] = []
     for patient_id in sorted(patient_ids):
-        positive_evidence = evidence_by_patient.get(patient_id, [])
+        positive_evidence: list[QualifiedEvidence] = []
         selected_matches: list[AtomMatch] = []
         rule_ids: list[str] = []
         scopes: list[str] = []
-        for row in positive_evidence:
+        for row in evidence_by_patient.get(patient_id, []):
             matched_value = str(row.source_provenance.get("matched_config_value") or "")
-            if matched_value:
-                scopes.append(term_scope.get(matched_value, "KNOWN_AMYLOIDOSIS"))
-            rule_ids.append("KNOWN_ATTR_TEXT")
+            matching_rules = affirmed_rules_by_value.get(matched_value, [])
+            if not matching_rules:
+                continue
+            positive_evidence.append(row)
+            scopes.append(term_scope.get(matched_value, "KNOWN_AMYLOIDOSIS"))
+            for rule in matching_rules:
+                rule_ids.append(str(rule.get("rule_id")))
+                if rule.get("confirmation_scope") not in (None, ""):
+                    scopes.append(str(rule.get("confirmation_scope")))
 
         matches_by_value = structured_by_patient.get(patient_id, {})
         for rule in known_config.rows("confirmation_rules"):
@@ -233,7 +274,12 @@ def identify_known_attr(
             (match.source_event_id, match.matched_config_value): match
             for match in selected_matches
         }
-        scope = "ATTR_SPECIFIC" if "ATTR_SPECIFIC" in scopes else "KNOWN_AMYLOIDOSIS"
+        if "ATTR_SPECIFIC" in scopes:
+            scope = "ATTR_SPECIFIC"
+        elif "AL_SPECIFIC" in scopes:
+            scope = "AL_SPECIFIC"
+        else:
+            scope = "KNOWN_AMYLOIDOSIS"
         matched_values = {
             str(row.source_provenance.get("matched_config_value") or "")
             for row in positive_evidence
@@ -263,6 +309,7 @@ def identify_known_attr(
 
 
 __all__ = [
+    "DEFAULT_KNOWN_CONFIRMATIONS_CONFIG",
     "DEFAULT_KNOWN_ATTR_CONFIG",
     "KnownAttrConfig",
     "CandidateConfigUnion",

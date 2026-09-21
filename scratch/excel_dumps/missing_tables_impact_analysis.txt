@@ -1,0 +1,19 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\analysis\missing_tables_impact_analysis.xlsx
+SHEETS: ['Missing_Tables']
+
+================================================================================
+SHEET: Missing_Tables
+================================================================================
+R1: ANALYSIS OF MISSING TABLES (SOURCE_AVAILABLE = FALSE) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 1. STATUS OF EXPECTED VS RECEIVED TABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Expected Table Name || Previous Role || Current Status || Row Count || Key Clinical Features Lost || Algorithm Impact || Feasibility / Recommendation ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: CLINICAL_NOTE || Unstructured EHR narrative (physician notes, discharge summaries, cardiology consults) || MISSING || 0 rows || All medSpaCy / spaCy PhraseMatcher NLP text. Loss of bilateral CTS text, apical sparing, neuropathy, gastrointestinal symptoms, negation/uncertainty context. || FATAL BLOCKER: Entire narrative pipeline cannot run. No NLP-derived clinical atoms can be qualified. || CANNOT PROCEED with NLP features. Only structured claims/surgical history can be used. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: MEDICAL_HISTORY || Past medical history conditions, diagnoses, and procedures || MISSING || 0 rows || Historical SNOMED codes (heart failure, neuropathy, autonomic dysfunction, spinal stenosis) and free-text condition descriptions. || FATAL BLOCKER: No historical SNOMED conditions can be loaded or matched. || CANNOT PROCEED with medical history features. Pipeline must rely solely on CLAIMS billing diagnoses. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: FAMILY_HISTORY || Family medical history and pedigree relations || MISSING || 0 rows || SNOMED codes and condition terms for family members (hereditary amyloidosis, sudden cardiac death, neuropathy). || FATAL BLOCKER: Family history amyloidosis screening route cannot fire. || CANNOT PROCEED with family history rules. ATTRv must be scored on individual findings alone. ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: SOCIAL_HISTORY || Social habits, smoking, alcohol, lifestyle || MISSING || 0 rows || Excluded from scope per user request. || NO IMPACT: Excluded from analysis. || No action needed (out of scope). ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 2. CORE CONCLUSION & ARCHITECTURAL DIRECTIVE ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: • As confirmed by the data analysis workbooks in results/, CLINICAL_NOTE, MEDICAL_HISTORY, and FAMILY_HISTORY are completely absent from the current database snapshot (SOURCE_AVAILABLE = FALSE). ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: • The current V4 algorithm was originally designed expecting a complete EHR data lake where clinical text notes and past histories corroborate billing codes. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: • BECAUSE THESE TABLES ARE MISSING, WE CANNOT PROCEED with any pipeline features, signals, or rules that depend on them. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: • Specifically: (1) The spaCy/medSpaCy narrative extraction pipeline cannot be executed; (2) Historical SNOMED conditions cannot be retrieved; (3) Family pedigree risk rules cannot fire. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: • Operational Directive: The algorithm must be adapted to run strictly on structured CLAIMS, ENCOUNTERS, LABS, and SURGICAL_HISTORY. All clinical atoms that rely exclusively on NLP or medical history must be disabled or flagged as unfulfillable gaps. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 

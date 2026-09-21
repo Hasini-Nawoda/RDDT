@@ -6,7 +6,24 @@
     "true_signals": ["V04", "V13"],
     "matched_combination": "V_COMBO11",
     "status": "PHENOTYPE_PASS",
-    "priority_class": "B"
+    "priority_class": "B",
+    "expect_al_pass": true,
+    "expect_concurrent": true,
+    "expected_router_statuses": {
+      "ATTRV": "PHENOTYPE_PASS",
+      "ATTRWT": "PHENOTYPE_PASS",
+      "AL": "PHENOTYPE_PASS",
+      "main_attr": true,
+      "al_detected": true
+    },
+    "expected_router_details": {
+      "ATTRV": {"matched_combination_id": "V_COMBO11", "priority_class": "B", "suspicion_level": "HIGH_SUSPICION", "result_route": "ATTRV_REVIEW"},
+      "ATTRWT": {"matched_combination_id": "WT_COMBO02", "priority_class": "A", "suspicion_level": "HIGHEST_SUSPICION", "result_route": "CARDIAC_AMYLOIDOSIS_EVALUATION"},
+      "AL": {"matched_combination_id": "AL_COMBO01", "priority_class": null, "suspicion_level": null, "result_route": "AL_SUSPICION"}
+    },
+    "expected_combined_attr_tier": "HIGHEST_SUSPICION",
+    "expected_combined_passed_phenotypes": ["ATTRWT", "ATTRV"],
+    "expected_combined_highest_phenotypes": ["ATTRWT"]
   },
   "rows_by_table": {
     "census": [
@@ -24,7 +41,10 @@
       {"EncounterId/VisitId": "E2", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-06-21"},
       {"EncounterId/VisitId": "E3", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-08-10"},
       {"EncounterId/VisitId": "E4", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-10-10"},
-      {"EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2026-02-10"}
+      {"EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2026-02-10"},
+      {"EncounterId/VisitId": "E6", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-11-01"},
+      {"EncounterId/VisitId": "E7", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-11-02"},
+      {"EncounterId/VisitId": "E8", "Member/PatientId": "P-ATTRV-001", "Encounter/Visit Date": "2025-11-03"}
     ],
     "claim": [
       {
@@ -50,6 +70,22 @@
         "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "NEPHRO",
         "SpecialtyName": "NEPHROLOGY", "DRGCode": "", "ClinicalNotes": "",
         "FromDate": "2026-02-10", "ToDate": "2026-02-10"
+      },
+      {
+        "Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E6",
+        "DiagnosisCode": "C90.00", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "",
+        "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "",
+        "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "HEME",
+        "SpecialtyName": "HEMATOLOGY", "DRGCode": "", "ClinicalNotes": "",
+        "FromDate": "2025-11-01", "ToDate": "2025-11-01"
+      },
+      {
+        "Member/PatientId": "P-ATTRV-001", "EncounterId/VisitId": "E7",
+        "DiagnosisCode": "N04.9", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "",
+        "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "",
+        "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "NEPHRO",
+        "SpecialtyName": "NEPHROLOGY", "DRGCode": "", "ClinicalNotes": "",
+        "FromDate": "2025-11-02", "ToDate": "2025-11-02"
       }
     ],
     "lab": [
@@ -107,6 +143,14 @@
       {
         "NoteId": "N5", "EncounterId/VisitId": "E5", "Member/PatientId": "P-ATTRV-001",
         "NoteType": "NEPHROLOGY", "Clinical Note Text": "Persistent proteinuria after the screening date.", "Date": "2026-02-10"
+      },
+      {
+        "NoteId": "N6", "EncounterId/VisitId": "E8", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "CARDIOLOGY", "Clinical Note Text": "Signed final echocardiography interpretation confirms relative apical sparing.", "Date": "2025-11-03"
+      },
+      {
+        "NoteId": "N7", "EncounterId/VisitId": "E7", "Member/PatientId": "P-ATTRV-001",
+        "NoteType": "CARDIOLOGY", "Clinical Note Text": "Preliminary copied-forward echo text says there is no confirmed relative apical sparing; the interpretation remains pending and is not a final result.", "Date": "2025-11-02"
       }
     ],
     "social_history": [

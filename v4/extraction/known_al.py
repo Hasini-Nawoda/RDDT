@@ -1,8 +1,8 @@
 """Configurable pre-screen recognition for known/confirmed AL.
 
-AL recognition is intentionally fail-safe.  No diagnosis codes are embedded
-here: when an approved known-AL vocabulary is unavailable, the route is an
-explicit empty route and the pipeline reports the configuration gap.
+AL recognition is intentionally fail-safe. The editable vocabulary lives in
+the shared confirmed-patient config; when that route is unavailable or
+invalid, the pipeline reports an explicit configuration gap.
 """
 
 from __future__ import annotations
@@ -12,10 +12,19 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-from .known_attr import KnownAttrConfig, KnownAttrResult, identify_known_attr
+from .known_attr import (
+    DEFAULT_KNOWN_CONFIRMATIONS_CONFIG,
+    KnownAttrConfig,
+    KnownAttrResult,
+    _route_payload,
+    _validate_route_payload,
+    identify_known_attr,
+)
 
 
-DEFAULT_KNOWN_AL_CONFIG = Path(__file__).resolve().parents[1] / "config" / "shared" / "known_al.json"
+# Both confirmation routes are intentionally edited in one file.  Keep the
+# old constant name so callers can continue to override the path explicitly.
+DEFAULT_KNOWN_AL_CONFIG = DEFAULT_KNOWN_CONFIRMATIONS_CONFIG
 
 
 class KnownALConfig(KnownAttrConfig):
@@ -86,14 +95,9 @@ def load_known_al_config(path: str | Path | None = None) -> KnownALConfig:
         return _empty_config(gap=f"KNOWN_AL_CONFIG_INVALID:{source}:{exc}")
     if not isinstance(payload, Mapping):
         return _empty_config(gap=f"KNOWN_AL_CONFIG_INVALID:{source}:expected_object")
-    # The shape mirrors known_attr.json, but unlike known ATTR no fallback
-    # values are accepted or inferred.
-    required = {"atoms", "terminology", "confirmation_rules"}
-    missing = sorted(required - set(payload))
-    if missing:
-        return _empty_config(gap=f"KNOWN_AL_CONFIG_INVALID:{source}:missing={','.join(missing)}")
     try:
-        return KnownALConfig(payload, path=source, available=True)
+        route = _validate_route_payload(_route_payload(payload, "AL", source), label="AL", source=source)
+        return KnownALConfig(route, path=source, available=True)
     except (TypeError, ValueError) as exc:
         return _empty_config(gap=f"KNOWN_AL_CONFIG_INVALID:{source}:{exc}")
 
@@ -106,6 +110,8 @@ def identify_known_al(
     nlp: Any = None,
     context_processor: Any = None,
     config: KnownALConfig | None = None,
+    terminology_mode: str = "ALL",
+    terminology_systems: Any = None,
 ) -> KnownALResult:
     known_config = config or load_known_al_config()
     if not known_config.available:
@@ -117,6 +123,8 @@ def identify_known_al(
         nlp=nlp,
         context_processor=context_processor,
         config=known_config,
+        terminology_mode=terminology_mode,
+        terminology_systems=terminology_systems,
     )
     patients = [
         KnownALPatient(

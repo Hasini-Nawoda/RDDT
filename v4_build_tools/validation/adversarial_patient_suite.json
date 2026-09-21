@@ -1,6 +1,75 @@
 {
   "suite_id": "ATTR_ADVERSARIAL_EHR_V1",
   "screening_cutoff": "2025-12-31",
+  "expected_router_statuses": {
+    "REPEATED_POLARITY_LONG_SENTENCE": {"ATTRV": "HOLD", "ATTRWT": "NO_MATCH", "AL": "HOLD", "main_attr": false, "al_detected": false},
+    "FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY": {"ATTRV": "PHENOTYPE_PASS", "ATTRWT": "NO_MATCH", "AL": "HOLD", "main_attr": true, "al_detected": false},
+    "UNCERTAINTY_RESOLVED_LATER_SAME_NOTE": {"ATTRV": "HOLD", "ATTRWT": "PHENOTYPE_PASS", "AL": "HOLD", "main_attr": true, "al_detected": false},
+    "NEGATED_CURRENT_AND_FUTURE_PLAN": {"ATTRV": "HOLD", "ATTRWT": "PHENOTYPE_PASS", "AL": "HOLD", "main_attr": true, "al_detected": false},
+    "MULTIPLE_RELATIVE_DATES_HISTORICAL_AND_RECENT": {"ATTRV": "HOLD", "ATTRWT": "PHENOTYPE_PASS", "AL": "HOLD", "main_attr": true, "al_detected": false},
+    "CLAUSE_LOCAL_DATES_AND_POLARITY": {"ATTRV": "HOLD", "ATTRWT": "NO_MATCH", "AL": "HOLD", "main_attr": false, "al_detected": false},
+    "STRUCTURED_CODE_TEXT_CONFLICT": {"ATTRV": "HOLD", "ATTRWT": "HOLD", "AL": "HOLD", "main_attr": false, "al_detected": false},
+    "COPIED_FORWARD_HISTORY_VERSUS_CURRENT_DENIAL": {"ATTRV": "HOLD", "ATTRWT": "NO_MATCH", "AL": "HOLD", "main_attr": false, "al_detected": false},
+    "LONG_MULTICLAUSE_CROSS_CONTEXT_AND_FUTURE_WORKUP": {"ATTRV": "HOLD", "ATTRWT": "NO_MATCH", "AL": "PHENOTYPE_PASS", "main_attr": false, "al_detected": true}
+  },
+  "expected_router_details": {
+    "REPEATED_POLARITY_LONG_SENTENCE": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY": {
+      "ATTRV": {"matched_combination_id": "V_COMBO11", "priority_class": "B", "suspicion_level": "HIGH_SUSPICION", "result_route": "ATTRV_REVIEW"},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "UNCERTAINTY_RESOLVED_LATER_SAME_NOTE": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": "WT_COMBO02", "priority_class": "A", "suspicion_level": "HIGHEST_SUSPICION", "result_route": "CARDIAC_AMYLOIDOSIS_EVALUATION"},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "NEGATED_CURRENT_AND_FUTURE_PLAN": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": "WT_COMBO02", "priority_class": "A", "suspicion_level": "HIGHEST_SUSPICION", "result_route": "CARDIAC_AMYLOIDOSIS_EVALUATION"},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "MULTIPLE_RELATIVE_DATES_HISTORICAL_AND_RECENT": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": "WT_COMBO01", "priority_class": "A", "suspicion_level": "HIGHEST_SUSPICION", "result_route": "ATTRWT_SUSPICION"},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "CLAUSE_LOCAL_DATES_AND_POLARITY": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "STRUCTURED_CODE_TEXT_CONFLICT": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "COPIED_FORWARD_HISTORY_VERSUS_CURRENT_DENIAL": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null}
+    },
+    "LONG_MULTICLAUSE_CROSS_CONTEXT_AND_FUTURE_WORKUP": {
+      "ATTRV": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "ATTRWT": {"matched_combination_id": null, "priority_class": null, "suspicion_level": null},
+      "AL": {"matched_combination_id": "AL_COMBO01", "priority_class": null, "suspicion_level": null, "result_route": "AL_SUSPICION"}
+    }
+  },
+  "expected_combined_attr": {
+    "REPEATED_POLARITY_LONG_SENTENCE": {"present": false},
+    "FAMILY_PATIENT_SWITCH_AND_RELATIVE_DAY": {"present": true, "suspicion_level": "HIGH_SUSPICION", "passed_phenotypes": ["ATTRV"], "highest_suspicion_phenotypes": ["ATTRV"]},
+    "UNCERTAINTY_RESOLVED_LATER_SAME_NOTE": {"present": true, "suspicion_level": "HIGHEST_SUSPICION", "passed_phenotypes": ["ATTRWT"], "highest_suspicion_phenotypes": ["ATTRWT"]},
+    "NEGATED_CURRENT_AND_FUTURE_PLAN": {"present": true, "suspicion_level": "HIGHEST_SUSPICION", "passed_phenotypes": ["ATTRWT"], "highest_suspicion_phenotypes": ["ATTRWT"]},
+    "MULTIPLE_RELATIVE_DATES_HISTORICAL_AND_RECENT": {"present": true, "suspicion_level": "HIGHEST_SUSPICION", "passed_phenotypes": ["ATTRWT"], "highest_suspicion_phenotypes": ["ATTRWT"]},
+    "CLAUSE_LOCAL_DATES_AND_POLARITY": {"present": false},
+    "STRUCTURED_CODE_TEXT_CONFLICT": {"present": false},
+    "COPIED_FORWARD_HISTORY_VERSUS_CURRENT_DENIAL": {"present": false},
+    "LONG_MULTICLAUSE_CROSS_CONTEXT_AND_FUTURE_WORKUP": {"present": false}
+  },
   "patients": [
     {
       "case_id": "REPEATED_POLARITY_LONG_SENTENCE",
@@ -22,15 +91,25 @@
       "patient_id": "P-ADV-003",
       "rows_by_table": {
         "census": [{"Member/PatientId": "P-ADV-003", "BirthDate": "1967-09-07", "Gender": "M", "City": "Galle", "State": "SP", "FamilyId": "ADV-3"}],
-        "encounter": [{"EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "Encounter/Visit Date": "2025-04-10"}],
+        "encounter": [
+          {"EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "Encounter/Visit Date": "2025-04-10"},
+          {"EncounterId/VisitId": "ADV3-E2", "Member/PatientId": "P-ADV-003", "Encounter/Visit Date": "2024-01-01"},
+          {"EncounterId/VisitId": "ADV3-E3", "Member/PatientId": "P-ADV-003", "Encounter/Visit Date": "2025-04-11"}
+        ],
+        "claim": [{"Member/PatientId": "P-ADV-003", "EncounterId/VisitId": "ADV3-E2", "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2024-01-01", "ToDate": "2024-01-01"}],
         "family_history": [{"FamilyHistoryId": "ADV3-F1", "EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "SNOMED": "", "Condition": "mother with peripheral neuropathy", "Status": "CONFIRMED", "FamilyMember": "mother", "Date": "2025-04-10"}],
-        "clinical_note": [{"NoteId": "ADV3-N1", "EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "NoteType": "NEUROLOGY", "Clinical Note Text": "His mother has peripheral neuropathy and his brother has no neurologic diagnosis; the patient himself denies peripheral neuropathy, yet he clearly reports that burning feet began yesterday after an otherwise ordinary day and persisted through the night.", "Date": "2025-04-10"}]
+        "clinical_note": [
+          {"NoteId": "ADV3-N1", "EncounterId/VisitId": "ADV3-E1", "Member/PatientId": "P-ADV-003", "NoteType": "NEUROLOGY", "Clinical Note Text": "His mother has peripheral neuropathy and his brother has no neurologic diagnosis; the patient himself denies peripheral neuropathy, yet he clearly reports that burning feet began yesterday after an otherwise ordinary day and persisted through the night.", "Date": "2025-04-10"},
+          {"NoteId": "ADV3-N2", "EncounterId/VisitId": "ADV3-E3", "Member/PatientId": "P-ADV-003", "NoteType": "NEUROLOGY", "Clinical Note Text": "At follow-up, the patient reports burning feet with reduced pinprick in a length-dependent pattern.", "Date": "2025-04-11"}
+        ]
       },
       "expectations": {
         "not_known_attr": true,
         "evidence": [
           {"atom_id": "polyneuropathy", "forbid_status": "TRUE"},
-          {"atom_id": "burning_feet", "statuses_include": ["TRUE"], "event_dates_include": ["2025-04-09"]}
+          {"atom_id": "burning_feet", "statuses_include": ["TRUE"], "event_dates_include": ["2025-04-09", "2025-04-11"]},
+          {"atom_id": "cts_bilateral", "statuses_include": ["TRUE"], "event_dates_include": ["2024-01-01"]},
+          {"atom_id": "pain_temperature_loss", "statuses_include": ["TRUE"], "event_dates_include": ["2025-04-11"]}
         ]
       }
     },
@@ -39,13 +118,25 @@
       "patient_id": "P-ADV-004",
       "rows_by_table": {
         "census": [{"Member/PatientId": "P-ADV-004", "BirthDate": "1949-12-19", "Gender": "F", "City": "Jaffna", "State": "NP", "FamilyId": "ADV-4"}],
-        "encounter": [{"EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2025-05-06"}],
-        "clinical_note": [{"NoteId": "ADV4-N1", "EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "NoteType": "CARDIOLOGY", "Clinical Note Text": "At triage the irregular pulse raised possible atrial fibrillation, which the resident explicitly described as uncertain while awaiting the tracing; several hours later, after the twelve-lead study was reviewed by cardiology, the signed final assessment confirmed atrial fibrillation rather than artifact.", "Date": "2025-05-06"}]
+        "encounter": [
+          {"EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2025-05-06"},
+          {"EncounterId/VisitId": "ADV4-E2", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2014-01-01"},
+          {"EncounterId/VisitId": "ADV4-E3", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2025-05-07"},
+          {"EncounterId/VisitId": "ADV4-E4", "Member/PatientId": "P-ADV-004", "Encounter/Visit Date": "2025-05-08"}
+        ],
+        "claim": [{"Member/PatientId": "P-ADV-004", "EncounterId/VisitId": "ADV4-E2", "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2014-01-01", "ToDate": "2014-01-01"}],
+        "clinical_note": [
+          {"NoteId": "ADV4-N1", "EncounterId/VisitId": "ADV4-E1", "Member/PatientId": "P-ADV-004", "NoteType": "CARDIOLOGY", "Clinical Note Text": "At triage the irregular pulse raised possible atrial fibrillation, which the resident explicitly described as uncertain while awaiting the tracing; several hours later, after the twelve-lead study was reviewed by cardiology, the signed final assessment confirmed atrial fibrillation rather than artifact.", "Date": "2025-05-06"},
+          {"NoteId": "ADV4-N2", "EncounterId/VisitId": "ADV4-E3", "Member/PatientId": "P-ADV-004", "NoteType": "CARDIOLOGY", "Clinical Note Text": "Preliminary copied-forward echo text says there is no confirmed relative apical sparing; the interpretation remains pending and is not a final result.", "Date": "2025-05-07"},
+          {"NoteId": "ADV4-N3", "EncounterId/VisitId": "ADV4-E4", "Member/PatientId": "P-ADV-004", "NoteType": "CARDIOLOGY", "Clinical Note Text": "Signed final echocardiography interpretation confirms relative apical sparing.", "Date": "2025-05-08"}
+        ]
       },
       "expectations": {
         "not_known_attr": true,
         "evidence": [
-          {"atom_id": "af", "statuses_include": ["UNKNOWN", "TRUE"], "minimum_phrase_matches": 2}
+          {"atom_id": "af", "statuses_include": ["UNKNOWN", "TRUE"], "minimum_phrase_matches": 2},
+          {"atom_id": "cts_bilateral", "statuses_include": ["TRUE"], "event_dates_include": ["2014-01-01"]},
+          {"atom_id": "apical_sparing", "statuses_include": ["FALSE", "TRUE"], "minimum_phrase_matches": 2, "event_dates_include": ["2025-05-07", "2025-05-08"]}
         ]
       }
     },
@@ -54,13 +145,25 @@
       "patient_id": "P-ADV-005",
       "rows_by_table": {
         "census": [{"Member/PatientId": "P-ADV-005", "BirthDate": "1971-06-23", "Gender": "M", "City": "Matara", "State": "SP", "FamilyId": "ADV-5"}],
-        "encounter": [{"EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2025-06-02"}],
-        "clinical_note": [{"NoteId": "ADV5-N1", "EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "NoteType": "CARDIOLOGY", "Clinical Note Text": "There is no cardiomyopathy on today's assessment, and the chart should not be read as establishing that diagnosis; cardiac MRI is scheduled for next month only to evaluate possible cardiomyopathy if the unexplained symptoms continue.", "Date": "2025-06-02"}]
+        "encounter": [
+          {"EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2025-06-02"},
+          {"EncounterId/VisitId": "ADV5-E2", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2014-01-01"},
+          {"EncounterId/VisitId": "ADV5-E3", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2025-06-03"},
+          {"EncounterId/VisitId": "ADV5-E4", "Member/PatientId": "P-ADV-005", "Encounter/Visit Date": "2025-06-04"}
+        ],
+        "claim": [{"Member/PatientId": "P-ADV-005", "EncounterId/VisitId": "ADV5-E2", "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2014-01-01", "ToDate": "2014-01-01"}],
+        "clinical_note": [
+          {"NoteId": "ADV5-N1", "EncounterId/VisitId": "ADV5-E1", "Member/PatientId": "P-ADV-005", "NoteType": "CARDIOLOGY", "Clinical Note Text": "There is no cardiomyopathy on today's assessment, and the chart should not be read as establishing that diagnosis; cardiac MRI is scheduled for next month only to evaluate possible cardiomyopathy if the unexplained symptoms continue.", "Date": "2025-06-02"},
+          {"NoteId": "ADV5-N2", "EncounterId/VisitId": "ADV5-E3", "Member/PatientId": "P-ADV-005", "NoteType": "CARDIOLOGY", "Clinical Note Text": "Preliminary copied-forward echo text says there is no confirmed relative apical sparing; the interpretation remains pending and is not a final result.", "Date": "2025-06-03"},
+          {"NoteId": "ADV5-N3", "EncounterId/VisitId": "ADV5-E4", "Member/PatientId": "P-ADV-005", "NoteType": "CARDIOLOGY", "Clinical Note Text": "Signed final echocardiography interpretation confirms relative apical sparing.", "Date": "2025-06-04"}
+        ]
       },
       "expectations": {
         "not_known_attr": true,
         "evidence": [
-          {"atom_id": "cardiomyopathy", "forbid_status": "TRUE", "minimum_phrase_matches": 2}
+          {"atom_id": "cardiomyopathy", "forbid_status": "TRUE", "minimum_phrase_matches": 2},
+          {"atom_id": "cts_bilateral", "statuses_include": ["TRUE"], "event_dates_include": ["2014-01-01"]},
+          {"atom_id": "apical_sparing", "statuses_include": ["FALSE", "TRUE"], "minimum_phrase_matches": 2, "event_dates_include": ["2025-06-03", "2025-06-04"]}
         ]
       }
     },
@@ -69,14 +172,27 @@
       "patient_id": "P-ADV-006",
       "rows_by_table": {
         "census": [{"Member/PatientId": "P-ADV-006", "BirthDate": "1955-04-02", "Gender": "F", "City": "Kurunegala", "State": "NW", "FamilyId": "ADV-6"}],
-        "encounter": [{"EncounterId/VisitId": "ADV6-E1", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2025-05-20"}],
+        "encounter": [
+          {"EncounterId/VisitId": "ADV6-E1", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2025-05-20"},
+          {"EncounterId/VisitId": "ADV6-E2", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2014-01-01"},
+          {"EncounterId/VisitId": "ADV6-E3", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2016-01-01"},
+          {"EncounterId/VisitId": "ADV6-E4", "Member/PatientId": "P-ADV-006", "Encounter/Visit Date": "2025-01-01"}
+        ],
+        "claim": [
+          {"Member/PatientId": "P-ADV-006", "EncounterId/VisitId": "ADV6-E2", "DiagnosisCode": "G56.03", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2014-01-01", "ToDate": "2014-01-01"},
+          {"Member/PatientId": "P-ADV-006", "EncounterId/VisitId": "ADV6-E3", "DiagnosisCode": "M75.41", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "ORTHO", "SpecialtyName": "ORTHOPEDICS", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2016-01-01", "ToDate": "2016-01-01"},
+          {"Member/PatientId": "P-ADV-006", "EncounterId/VisitId": "ADV6-E4", "DiagnosisCode": "I44.2", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "CARDIO", "SpecialtyName": "CARDIOLOGY", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2025-01-01", "ToDate": "2025-01-01"}
+        ],
         "clinical_note": [{"NoteId": "ADV6-N1", "EncounterId/VisitId": "ADV6-E1", "Member/PatientId": "P-ADV-006", "NoteType": "ORTHOPEDICS", "Clinical Note Text": "Three years ago she underwent carpal tunnel release after prolonged symptoms and recovered uneventfully; yesterday she returned because a new trigger finger began locking during ordinary household tasks, while today the opposite hand remains unaffected.", "Date": "2025-05-20"}]
       },
       "expectations": {
         "not_known_attr": true,
         "evidence": [
           {"atom_id": "ctr_any", "statuses_include": ["TRUE"], "event_dates_include": ["2022-05-20"]},
-          {"atom_id": "trigger_finger", "statuses_include": ["TRUE"], "event_dates_include": ["2025-05-19"]}
+          {"atom_id": "trigger_finger", "statuses_include": ["TRUE"], "event_dates_include": ["2025-05-19"]},
+          {"atom_id": "cts_bilateral", "statuses_include": ["TRUE"], "event_dates_include": ["2014-01-01"]},
+          {"atom_id": "shoulder_disorder", "statuses_include": ["TRUE"], "event_dates_include": ["2016-01-01"]},
+          {"atom_id": "conduction_disease", "statuses_include": ["TRUE"], "event_dates_include": ["2025-01-01"]}
         ]
       }
     },
@@ -132,12 +248,22 @@
       "patient_id": "P-ADV-010",
       "rows_by_table": {
         "census": [{"Member/PatientId": "P-ADV-010", "BirthDate": "1952-11-05", "Gender": "F", "City": "Colombo", "State": "WP", "FamilyId": "ADV-10"}],
-        "encounter": [{"EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "Encounter/Visit Date": "2025-10-20"}],
+        "encounter": [
+          {"EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "Encounter/Visit Date": "2025-10-20"},
+          {"EncounterId/VisitId": "ADV10-E2", "Member/PatientId": "P-ADV-010", "Encounter/Visit Date": "2025-11-01"},
+          {"EncounterId/VisitId": "ADV10-E3", "Member/PatientId": "P-ADV-010", "Encounter/Visit Date": "2025-11-02"}
+        ],
+        "claim": [
+          {"Member/PatientId": "P-ADV-010", "EncounterId/VisitId": "ADV10-E2", "DiagnosisCode": "C90.00", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "HEME", "SpecialtyName": "HEMATOLOGY", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2025-11-01", "ToDate": "2025-11-01"},
+          {"Member/PatientId": "P-ADV-010", "EncounterId/VisitId": "ADV10-E3", "DiagnosisCode": "N04.9", "OtherDiagnosisCodes9": "", "OtherDiagnosisCodes10": "", "ProcedureCode": "", "ProcedureModifier1": "", "ProcedureModifier2": "", "ProcedureModifier3": "", "DiagnosisType": "ICD10", "ProviderType": "PHYSICIAN", "SpecialtyCode": "NEPHRO", "SpecialtyName": "NEPHROLOGY", "DRGCode": "", "ClinicalNotes": "", "FromDate": "2025-11-02", "ToDate": "2025-11-02"}
+        ],
         "family_history": [{"FamilyHistoryId": "ADV10-F1", "EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "SNOMED": "", "Condition": "father with ATTR amyloidosis", "Status": "CONFIRMED", "FamilyMember": "father", "Date": "2025-10-20"}],
         "clinical_note": [{"NoteId": "ADV10-N1", "EncounterId/VisitId": "ADV10-E1", "Member/PatientId": "P-ADV-010", "NoteType": "MULTISPECIALTY", "Clinical Note Text": "The patient's father had ATTR amyloidosis, but this family statement is not a diagnosis for the patient; she denies peripheral neuropathy and has never had chronic diarrhea, yet yesterday the hand specialist documented bilateral carpal tunnel syndrome, while three months ago cardiology recorded low QRS voltage during an unrelated evaluation, and next month an echocardiogram is planned only because possible cardiomyopathy remains under consideration rather than confirmed.", "Date": "2025-10-20"}]
       },
       "expectations": {
         "not_known_attr": true,
+        "expect_al_pass": true,
+        "expect_al_detected_only": true,
         "evidence": [
           {"atom_id": "polyneuropathy", "forbid_status": "TRUE"},
           {"atom_id": "diarrhea", "forbid_status": "TRUE", "statuses_include": ["FALSE"]},

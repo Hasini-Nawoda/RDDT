@@ -1,0 +1,464 @@
+FILE: c:\Users\PAMALI\Desktop\RDDT\results\raw\surgical_history_data_analysis_outputs.xlsx
+SHEETS: ['Run Summary', 'current_context', 'find_table', 'describe_table', 'first_10_rows', 'volume_uniqueness', 'null_counts', 'source_category_counts', 'value_counts', 'source_by_value', 'value_word_counts', 'snomed_unique_counts', 'snomed_name_variations', 'snomed_value_pairs', 'value_with_many_snomed', 'secondary_snomed_values', 'snomed_pair_combinations', 'date_span', 'records_by_year', 'recency_ranges', 'procedures_per_patient', 'top_patients', 'one_patient_detail']
+
+================================================================================
+SHEET: Run Summary
+================================================================================
+R1: Cell Number || Cell Name || Sheet Name || Query || Status || Row Count || Truncated || Error ||  ||  ||  ||  ||  ||  ||  || 
+R2: 8 || current_context || current_context || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: 9 || find_table || find_table || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM {{DB}}.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND ( |         UPPER(TABLE_NAME) LIKE '%SURG%' |      OR UPPER(TABLE_NAME) LIKE '%PROCEDURE%' |      OR UPPER(TABLE_NAME) LIKE '%HISTORY%' |   ) | ORDER BY TABLE_SCHEMA, TABLE_NAME; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 11 || describe_table || describe_table || DESCRIBE TABLE {{T}}; || SUCCESS || 8 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 12 || first_10_rows || first_10_rows || SELECT * | FROM {{T}} | LIMIT 10; || SUCCESS || 10 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 14 || volume_uniqueness || volume_uniqueness || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_ID}}) AS UNIQUE_SURGICAL_HISTORY_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_SRC}}) AS UNIQUE_SOURCE_CATEGORIES, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURE_VALUES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     COUNT(*) -... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 16 || null_counts || null_counts || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_ID}} IS NULL, 1, 0)) AS NULL_SURGICAL_HISTORY_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_SRC}} IS NULL, 1, 0)) AS NULL_SOURCE_CATEGORY, |     SUM(IFF({{C_VAL}} IS NULL, 1, 0)) AS NULL_VALUE, |     SUM(IFF({{C_SNOMED}} IS NULL, 1, 0)) AS NULL_SNOM... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 18 || source_category_counts || source_category_counts || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS PROCEDURE_LIST, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY ROW_COUNT DESC; || SUCCESS || 2 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 20 || value_counts || value_counts || SELECT |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES, |     COUNT(DISTINCT {{C_SNOMED2}}) AS DISTINCT_SECONDARY_SNOMED_CODES, |     LISTAGG(DISTINC... || SUCCESS || 17 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 21 || source_by_value || source_by_value || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DESC; || SUCCESS || 17 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 23 || value_word_counts || value_word_counts || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         {{C_ENC}} AS ENCOUNTER_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_VAL}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_VAL}} IS NOT NULL | ) | SELEC... || SUCCESS || 29 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 25 || snomed_unique_counts || snomed_unique_counts || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED}}::STRING), '')) AS UNIQUE_SNOMED_CODES, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED2}}::STRING), '')) AS UNIQUE_SECONDARY_SNOMED_CODES, |     SUM(IFF({{C_SNOMED}} IS NOT NULL AND TRIM({{C_SNOMED}}::STRING) <> '', 1, 0)) AS ROWS_WITH_SNOMED, |     SUM(IFF({{C_SNOMED}} IS NULL OR TRIM({{C_SNOMED}}::STRING) = '', 1, 0)) ... || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 26 || snomed_name_variations || snomed_name_variations || SELECT |     {{C_SNOMED}} AS SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     COUNT(DISTINCT UPPER(REGEXP_REPLACE(TRIM({{C_VAL}}::STRING), '\\s+', ' '))) AS UNIQUE_NAMES_NORMALIZED, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS | FROM {{T}} | WHERE {{C_SNOMED}} IS NOT NULL |   AND TR... || SUCCESS || 48 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 27 || snomed_value_pairs || snomed_value_pairs || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(*) OVER (PARTITION BY {{C_SNOMED}}) AS NAMES_FOR_THIS_CODE, |     ROW_NUMBER() OVER (PARTITION BY {{C_SNOMED}} ORDER BY COUNT(*) DESC) AS NAME_NUMBER, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY {{C_SNOMED}}), 2) AS... || SUCCESS || 50 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 28 || value_with_many_snomed || value_with_many_snomed || SELECT |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES | FROM {{T}} | WHERE {{C_VAL}} IS NOT NULL | GROUP BY 1 | HAVING COUNT(DISTINCT {{C_SNOMED}}) > 1 | ORDER BY UNIQUE_SNOMED_CODES DESC, ROW_COUNT DESC; || SUCCESS || 6 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 29 || secondary_snomed_values || secondary_snomed_values || SELECT |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_PRIMARY_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS PRIMARY_SNOMED_CODES, |     RO... || SUCCESS || 0 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 30 || snomed_pair_combinations || snomed_pair_combinations || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DE... || SUCCESS || 48 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 32 || date_span || date_span || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DATE}}) AS MIN_DATE, |     MAX({{C_DATE}}) AS MAX_DATE, |     DATEDIFF('day', MIN({{C_DATE}})::DATE, MAX({{C_DATE}})::DATE) AS SPAN_DAYS, |     SUM(IFF({{C_DATE}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS, |     SUM(IFF({{C_DATE}} IS NULL, 1, 0)) AS MISSING_DATE_ROWS | FROM {{T}}; || SUCCESS || 1 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 33 || records_by_year || records_by_year || SELECT |     YEAR({{C_DATE}}) AS RECORD_YEAR, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; || SUCCESS || 8 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 34 || recency_ranges || recency_ranges || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DATE}} IS NULL THEN 90 |             WHEN {{C_DATE}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 180 THEN 3... || SUCCESS || 8 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 36 || procedures_per_patient || procedures_per_patient || WITH per_patient AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         COUNT(*) AS ROW_COUNT |     FROM {{T}} |     WHERE {{C_PT}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     ROW_COUNT AS PROCEDURES_PER_PATIENT, |     COUNT(*) AS NUMBER_OF_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_PATIENTS | FROM per_patient | GROUP BY 1 | ORDER BY 1; || SUCCESS || 11 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 37 || top_patients || top_patients || SELECT |     {{C_PT}} AS PATIENT_ID, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     MIN({{C_DATE}}) AS FIRST_DATE, |     MAX({{C_DATE}}) AS LAST_DATE | FROM {{T}} | WHERE {{C_PT}} IS NOT NULL | GROUP BY 1 | ORDER BY ROW_COUNT DESC | LIMIT 25; || SUCCESS || 25 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 38 || one_patient_detail || one_patient_detail || SELECT |     {{C_PT}} AS PATIENT_ID, |     {{C_ID}} AS SURGICAL_HISTORY_ID, |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS PROCEDURE_VALUE, |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     {{C_DATE}} AS RECORD_DATE | FROM {{T}} | WHERE {{C_PT}} = ( |         SELECT {{C_PT}} |         FROM {{T}} |         WHERE {{C_PT}} IS NOT NUL... || SUCCESS || 18 || False ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: current_context
+================================================================================
+R1: Query || SELECT |     CURRENT_ROLE() AS ROLE, |     CURRENT_WAREHOUSE() AS WAREHOUSE, |     CURRENT_DATABASE() AS DATABASE, |     CURRENT_SCHEMA() AS SCHEMA; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROLE || WAREHOUSE || DATABASE || SCHEMA ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: SYSADMIN || CHAMPSOFT_WH ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: find_table
+================================================================================
+R1: Query || SELECT |     TABLE_CATALOG, |     TABLE_SCHEMA, |     TABLE_NAME, |     ROW_COUNT, |     BYTES | FROM {{DB}}.INFORMATION_SCHEMA.TABLES | WHERE TABLE_TYPE = 'BASE TABLE' |   AND ( |         UPPER(TABLE_NAME) LIKE '%SURG%' |      OR UPPER(TABLE_NAME) LIKE '%PROCEDURE%' |      OR UPPER(TABLE_NAME) LIKE '%HISTORY%' |   ) | ORDER BY TABLE_SCHEMA, TABLE_NAME; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TABLE_CATALOG || TABLE_SCHEMA || TABLE_NAME || ROW_COUNT || BYTES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: UHTX_RDDT_CLINICAL_DEV || PUBLIC || SURGICAL_HISTORY || 10000 || 495104 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: describe_table
+================================================================================
+R1: Query || DESCRIBE TABLE {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: "name" || "type" || "kind" || "null?" || "default" || "primary key" || "unique key" || "check" || "expression" || "comment" || "policy name" || "privacy domain" || "write default" ||  ||  || 
+
+================================================================================
+SHEET: first_10_rows
+================================================================================
+R1: Query || SELECT * | FROM {{T}} | LIMIT 10; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SURGICALHISTORYID || ENCOUNTERID || PATIENTID || SOURCE || CATEGORY || SNOMED || SECONDARY_SNOMED || DATE ||  ||  ||  ||  ||  ||  ||  || 
+R4: 10630062 || Unknown || {3CF1CEC6-047E-4420-89B5-77E86AE13819} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2020-07-03 ||  ||  ||  ||  ||  ||  ||  || 
+R5: 92693980 || Unknown || {63538CB1-18E5-4514-92F2-B35FDF2B4267} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2026-04-03 ||  ||  ||  ||  ||  ||  ||  || 
+R6: 76328816 || Unknown || {4AA7EC1A-D7D8-444B-8397-EE0B8D3CF33A} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2025-04-28 ||  ||  ||  ||  ||  ||  ||  || 
+R7: 43769960 || Unknown || {CAF31E3D-D0D8-4F16-9328-DC5BCB9E0790} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2023-02-27 ||  ||  ||  ||  ||  ||  ||  || 
+R8: 50278457 || Unknown || {B11697C0-FDCE-4B4B-B450-563DA905D353} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 11466000 ||  || 2023-08-17 ||  ||  ||  ||  ||  ||  ||  || 
+R9: 10174325 || Unknown || {FA9618F1-7370-4BD1-AF5E-4EFCDB4AE70C} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 11466000 ||  || 2020-06-25 ||  ||  ||  ||  ||  ||  ||  || 
+R10: 25672837 || Unknown || {1A1AD9FB-19C2-4DDA-8CA0-5F23769A6264} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 11466000 ||  || 2021-10-20 ||  ||  ||  ||  ||  ||  ||  || 
+R11: 40809482 || Unknown || {EA44E4E5-93B6-405E-81D4-2A88CD13E0A3} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2022-12-06 ||  ||  ||  ||  ||  ||  ||  || 
+R12: 92693840 || Unknown || {AD2D113B-0738-49E4-880C-6DD19A168240} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2026-04-03 ||  ||  ||  ||  ||  ||  ||  || 
+R13: 67169955 || Unknown || {9B3699C5-303F-4F6D-9985-8FA8E2373086} || Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 84195007 ||  || 2024-10-04 ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: volume_uniqueness
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_ID}}) AS UNIQUE_SURGICAL_HISTORY_IDS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_SRC}}) AS UNIQUE_SOURCE_CATEGORIES, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURE_VALUES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     COUNT(*) -... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || UNIQUE_SURGICAL_HISTORY_IDS || UNIQUE_ENCOUNTERS || UNIQUE_PATIENTS || UNIQUE_SOURCE_CATEGORIES || UNIQUE_PROCEDURE_VALUES || UNIQUE_SNOMED_CODES || EXTRA_ROWS_VS_UNIQUE_ID || AVG_PROCEDURES_PER_PATIENT ||  ||  ||  ||  ||  ||  || 
+R4: 10000 || 8732 || 608 || 8329 || 2 || 17 || 48 || 1268 || 1.2 ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: null_counts
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     SUM(IFF({{C_ID}} IS NULL, 1, 0)) AS NULL_SURGICAL_HISTORY_ID, |     SUM(IFF({{C_ENC}} IS NULL, 1, 0)) AS NULL_ENCOUNTER_ID, |     SUM(IFF({{C_PT}} IS NULL, 1, 0)) AS NULL_PATIENT_ID, |     SUM(IFF({{C_SRC}} IS NULL, 1, 0)) AS NULL_SOURCE_CATEGORY, |     SUM(IFF({{C_VAL}} IS NULL, 1, 0)) AS NULL_VALUE, |     SUM(IFF({{C_SNOMED}} IS NULL, 1, 0)) AS NULL_SNOM... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || NULL_SURGICAL_HISTORY_ID || NULL_ENCOUNTER_ID || NULL_PATIENT_ID || NULL_SOURCE_CATEGORY || NULL_VALUE || NULL_SNOMED || NULL_SECONDARY_SNOMED || NULL_DATE ||  ||  ||  ||  ||  ||  || 
+R4: 10000 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 753 ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: source_category_counts
+================================================================================
+R1: Query || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS PROCEDURE_LIST, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SOURCE_CATEGORY || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_PROCEDURES || PROCEDURE_LIST || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Surgical History Procedure || 9247 || 7746 || 4 || SURGICAL HISTORY PROCEDURES | IV THERAPY ORDERABLES | TRANSPLANT PROCEDURES | IN CLINIC/BEDSIDE ORDERABLES || 92.47 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: General Procedure || 753 || 588 || 13 || OPHTH PHOTOGRAPHY | IMG BI PROCEDURES | IMG CT PROCEDURES | CV ECHO PROCEDURES | LAB URINE ORDERABLES | IMG MR PROCEDURES | PFT ORDERABLES | GI PROCEDURE ORDERABLES | IMG XR PROCEDURES | LAB BLOOD ORDERABLES | LAB BLOOD BANK TEST ORDERABLES | IMG US PROCEDURES | OPHTH TOMOGRAPHY || 7.53 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_counts
+================================================================================
+R1: Query || SELECT |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_ENC}}) AS UNIQUE_ENCOUNTERS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES, |     COUNT(DISTINCT {{C_SNOMED2}}) AS DISTINCT_SECONDARY_SNOMED_CODES, |     LISTAGG(DISTINC... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PROCEDURE_VALUE || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_ENCOUNTERS || DISTINCT_SNOMED_CODES || SNOMED_CODES || DISTINCT_SECONDARY_SNOMED_CODES || SECONDARY_SNOMED_CODES || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  || 
+R4: SURGICAL HISTORY PROCEDURES || 9240 || 7739 || 1 || 17 || 232965003 | 161805006 | 70536003 | 116143008 | 767610009 | 26390003 | 236891001 | 11466000 | 116144002 | 428663009 | 6471000179103 | 116140006 | 73359007 | 14106009 | 76876009 | 84195007 | 116142003 || 1 ||  || 92.4 ||  ||  ||  ||  ||  ||  || 
+R5: IMG XR PROCEDURES || 497 || 398 || 411 || 2 || 168702005 | 399208008 || 1 ||  || 4.97 ||  ||  ||  ||  ||  ||  || 
+R6: LAB BLOOD ORDERABLES || 191 || 160 || 166 || 11 || 26604007 | 17814008 | 104408008 | 52377006 | 53479004 | 84663005 | 313587003 | 9564003 | 104934005 | 5113004 | 427765008 || 1 ||  || 1.91 ||  ||  ||  ||  ||  ||  || 
+R7: LAB BLOOD BANK TEST ORDERABLES || 22 || 22 || 22 || 1 || 81228005 || 1 ||  || 0.22 ||  ||  ||  ||  ||  ||  || 
+R8: IMG US PROCEDURES || 10 || 7 || 7 || 5 || 306005 | 24848001 | 45036003 | 241455000 | 169250003 || 1 ||  || 0.1 ||  ||  ||  ||  ||  ||  || 
+R9: IMG BI PROCEDURES || 8 || 4 || 4 || 1 || 24623002 || 1 ||  || 0.08 ||  ||  ||  ||  ||  ||  || 
+R10: IMG CT PROCEDURES || 8 || 4 || 4 || 2 || 419394006 | 169069000 || 1 ||  || 0.08 ||  ||  ||  ||  ||  ||  || 
+R11: IMG MR PROCEDURES || 6 || 4 || 4 || 2 || 241646009 | 241648005 || 1 ||  || 0.06 ||  ||  ||  ||  ||  ||  || 
+R12: OPHTH TOMOGRAPHY || 4 || 2 || 2 || 1 || 274798009 || 1 ||  || 0.04 ||  ||  ||  ||  ||  ||  || 
+R13: IN CLINIC/BEDSIDE ORDERABLES || 3 || 3 || 1 || 1 || 226005007 || 1 ||  || 0.03 ||  ||  ||  ||  ||  ||  || 
+R14: TRANSPLANT PROCEDURES || 3 || 3 || 1 || 1 || 70536003 || 1 ||  || 0.03 ||  ||  ||  ||  ||  ||  || 
+R15: CV ECHO PROCEDURES || 2 || 2 || 2 || 1 || 178776005 || 1 ||  || 0.02 ||  ||  ||  ||  ||  ||  || 
+R16: LAB URINE ORDERABLES || 2 || 1 || 1 || 1 || 27171005 || 1 ||  || 0.02 ||  ||  ||  ||  ||  ||  || 
+R17: GI PROCEDURE ORDERABLES || 1 || 1 || 1 || 1 || 76009000 || 1 ||  || 0.01 ||  ||  ||  ||  ||  ||  || 
+R18: IV THERAPY ORDERABLES || 1 || 1 || 1 || 1 || 266765001 || 1 ||  || 0.01 ||  ||  ||  ||  ||  ||  || 
+R19: OPHTH PHOTOGRAPHY || 1 || 1 || 1 || 1 || 274798009 || 1 ||  || 0.01 ||  ||  ||  ||  ||  ||  || 
+R20: PFT ORDERABLES || 1 || 1 || 1 || 1 || 23426006 || 1 ||  || 0.01 ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: source_by_value
+================================================================================
+R1: Query || SELECT |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SOURCE_CATEGORY || PROCEDURE_VALUE || ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: Surgical History Procedure || SURGICAL HISTORY PROCEDURES || 9240 || 7739 || 92.4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: General Procedure || IMG XR PROCEDURES || 497 || 398 || 4.97 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: General Procedure || LAB BLOOD ORDERABLES || 191 || 160 || 1.91 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: General Procedure || LAB BLOOD BANK TEST ORDERABLES || 22 || 22 || 0.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: General Procedure || IMG US PROCEDURES || 10 || 7 || 0.1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: General Procedure || IMG BI PROCEDURES || 8 || 4 || 0.08 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: General Procedure || IMG CT PROCEDURES || 8 || 4 || 0.08 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: General Procedure || IMG MR PROCEDURES || 6 || 4 || 0.06 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: General Procedure || OPHTH TOMOGRAPHY || 4 || 2 || 0.04 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: Surgical History Procedure || IN CLINIC/BEDSIDE ORDERABLES || 3 || 3 || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: Surgical History Procedure || TRANSPLANT PROCEDURES || 3 || 3 || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: General Procedure || LAB URINE ORDERABLES || 2 || 1 || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: General Procedure || CV ECHO PROCEDURES || 2 || 2 || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: General Procedure || OPHTH PHOTOGRAPHY || 1 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: General Procedure || GI PROCEDURE ORDERABLES || 1 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: General Procedure || PFT ORDERABLES || 1 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: Surgical History Procedure || IV THERAPY ORDERABLES || 1 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_word_counts
+================================================================================
+R1: Query || WITH tokens AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         {{C_ENC}} AS ENCOUNTER_ID, |         TRIM(f.VALUE::STRING) AS WORD |     FROM {{T}}, |          LATERAL FLATTEN( |              INPUT => SPLIT( |                  TRIM(REGEXP_REPLACE({{C_VAL}}::STRING, '[^A-Za-z0-9]+', ' ')), |                  ' ' |              ) |          ) f |     WHERE {{C_VAL}} IS NOT NULL | ) | SELEC... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: WORD || WORD_OCCURRENCES || UNIQUE_PATIENTS || UNIQUE_ENCOUNTERS || PCT_OF_WORD_OCCURRENCES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: PROCEDURES || 9774 || 8149 || 426 || 32.54 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: HISTORY || 9240 || 7739 || 1 || 30.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: SURGICAL || 9240 || 7739 || 1 || 30.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: IMG || 529 || 410 || 423 || 1.76 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: XR || 497 || 398 || 411 || 1.65 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: ORDERABLES || 221 || 186 || 189 || 0.74 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: LAB || 215 || 180 || 186 || 0.72 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: BLOOD || 213 || 180 || 186 || 0.71 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: BANK || 22 || 22 || 22 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: TEST || 22 || 22 || 22 || 0.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: US || 10 || 7 || 7 || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: BI || 8 || 4 || 4 || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: CT || 8 || 4 || 4 || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: MR || 6 || 4 || 4 || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: OPHTH || 5 || 2 || 2 || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: TOMOGRAPHY || 4 || 2 || 2 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: BEDSIDE || 3 || 3 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: CLINIC || 3 || 3 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: IN || 3 || 3 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: TRANSPLANT || 3 || 3 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: CV || 2 || 2 || 2 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: ECHO || 2 || 2 || 2 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: URINE || 2 || 1 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: GI || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: IV || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: PFT || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: PHOTOGRAPHY || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: PROCEDURE || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: THERAPY || 1 || 1 || 1 || 0.0 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_unique_counts
+================================================================================
+R1: Query || SELECT |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED}}::STRING), '')) AS UNIQUE_SNOMED_CODES, |     COUNT(DISTINCT NULLIF(TRIM({{C_SNOMED2}}::STRING), '')) AS UNIQUE_SECONDARY_SNOMED_CODES, |     SUM(IFF({{C_SNOMED}} IS NOT NULL AND TRIM({{C_SNOMED}}::STRING) <> '', 1, 0)) AS ROWS_WITH_SNOMED, |     SUM(IFF({{C_SNOMED}} IS NULL OR TRIM({{C_SNOMED}}::STRING) = '', 1, 0)) ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: ROW_COUNT || UNIQUE_SNOMED_CODES || UNIQUE_SECONDARY_SNOMED_CODES || ROWS_WITH_SNOMED || ROWS_MISSING_SNOMED || PCT_ROWS_WITH_SNOMED || ROWS_WITH_SECONDARY_SNOMED ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 10000 || 48 || 0 || 10000 || 0 || 100.0 || 0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_name_variations
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     COUNT(DISTINCT UPPER(REGEXP_REPLACE(TRIM({{C_VAL}}::STRING), '\\s+', ' '))) AS UNIQUE_NAMES_NORMALIZED, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS | FROM {{T}} | WHERE {{C_SNOMED}} IS NOT NULL |   AND TR... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || ROW_COUNT || UNIQUE_NAMES || UNIQUE_NAMES_NORMALIZED || UNIQUE_PATIENTS || NAME_VARIATIONS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 70536003 || 266 || 2 || 2 || 264 || TRANSPLANT PROCEDURES | SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 274798009 || 5 || 2 || 2 || 2 || OPHTH TOMOGRAPHY | OPHTH PHOTOGRAPHY ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 116140006 || 2969 || 1 || 1 || 2957 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 161805006 || 2270 || 1 || 1 || 2226 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 11466000 || 1326 || 1 || 1 || 1305 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 73359007 || 831 || 1 || 1 || 823 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 84195007 || 514 || 1 || 1 || 503 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 399208008 || 494 || 1 || 1 || 396 || IMG XR PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 26390003 || 367 || 1 || 1 || 367 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 76876009 || 269 || 1 || 1 || 268 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 116144002 || 157 || 1 || 1 || 157 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 116143008 || 133 || 1 || 1 || 133 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 5113004 || 108 || 1 || 1 || 104 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 767610009 || 58 || 1 || 1 || 58 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 14106009 || 53 || 1 || 1 || 53 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 52377006 || 47 || 1 || 1 || 45 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 81228005 || 22 || 1 || 1 || 22 || LAB BLOOD BANK TEST ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 116142003 || 15 || 1 || 1 || 15 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 26604007 || 11 || 1 || 1 || 3 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 9564003 || 9 || 1 || 1 || 2 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 24623002 || 8 || 1 || 1 || 4 || IMG BI PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 169069000 || 5 || 1 || 1 || 2 || IMG CT PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 428663009 || 5 || 1 || 1 || 5 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 236891001 || 5 || 1 || 1 || 5 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 84663005 || 4 || 1 || 1 || 4 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: 241648005 || 4 || 1 || 1 || 3 || IMG MR PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: 306005 || 3 || 1 || 1 || 2 || IMG US PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 168702005 || 3 || 1 || 1 || 3 || IMG XR PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 427765008 || 3 || 1 || 1 || 3 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: 104408008 || 3 || 1 || 1 || 3 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: 45036003 || 3 || 1 || 1 || 3 || IMG US PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 226005007 || 3 || 1 || 1 || 3 || IN CLINIC/BEDSIDE ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: 419394006 || 3 || 1 || 1 || 3 || IMG CT PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 6471000179103 || 3 || 1 || 1 || 3 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 178776005 || 2 || 1 || 1 || 2 || CV ECHO PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: 27171005 || 2 || 1 || 1 || 1 || LAB URINE ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: 232965003 || 2 || 1 || 1 || 2 || SURGICAL HISTORY PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 241646009 || 2 || 1 || 1 || 2 || IMG MR PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: 104934005 || 2 || 1 || 1 || 1 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: 24848001 || 2 || 1 || 1 || 1 || IMG US PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 17814008 || 2 || 1 || 1 || 1 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: 313587003 || 1 || 1 || 1 || 1 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: 23426006 || 1 || 1 || 1 || 1 || PFT ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: 76009000 || 1 || 1 || 1 || 1 || GI PROCEDURE ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 266765001 || 1 || 1 || 1 || 1 || IV THERAPY ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: 241455000 || 1 || 1 || 1 || 1 || IMG US PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: 169250003 || 1 || 1 || 1 || 1 || IMG US PROCEDURES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: 53479004 || 1 || 1 || 1 || 1 || LAB BLOOD ORDERABLES ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_value_pairs
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(*) OVER (PARTITION BY {{C_SNOMED}}) AS NAMES_FOR_THIS_CODE, |     ROW_NUMBER() OVER (PARTITION BY {{C_SNOMED}} ORDER BY COUNT(*) DESC) AS NAME_NUMBER, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY {{C_SNOMED}}), 2) AS... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || PROCEDURE_VALUE || ROW_COUNT || UNIQUE_PATIENTS || NAMES_FOR_THIS_CODE || NAME_NUMBER || PCT_WITHIN_CODE ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 274798009 || OPHTH TOMOGRAPHY || 4 || 2 || 2 || 1 || 80.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 274798009 || OPHTH PHOTOGRAPHY || 1 || 1 || 2 || 2 || 20.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 70536003 || SURGICAL HISTORY PROCEDURES || 263 || 261 || 2 || 1 || 98.87 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 70536003 || TRANSPLANT PROCEDURES || 3 || 3 || 2 || 2 || 1.13 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 104408008 || LAB BLOOD ORDERABLES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 104934005 || LAB BLOOD ORDERABLES || 2 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 11466000 || SURGICAL HISTORY PROCEDURES || 1326 || 1305 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 116140006 || SURGICAL HISTORY PROCEDURES || 2969 || 2957 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 116142003 || SURGICAL HISTORY PROCEDURES || 15 || 15 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 116143008 || SURGICAL HISTORY PROCEDURES || 133 || 133 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 116144002 || SURGICAL HISTORY PROCEDURES || 157 || 157 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 14106009 || SURGICAL HISTORY PROCEDURES || 53 || 53 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 161805006 || SURGICAL HISTORY PROCEDURES || 2270 || 2226 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 168702005 || IMG XR PROCEDURES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 169069000 || IMG CT PROCEDURES || 5 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 169250003 || IMG US PROCEDURES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 17814008 || LAB BLOOD ORDERABLES || 2 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 178776005 || CV ECHO PROCEDURES || 2 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 226005007 || IN CLINIC/BEDSIDE ORDERABLES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 232965003 || SURGICAL HISTORY PROCEDURES || 2 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 23426006 || PFT ORDERABLES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 236891001 || SURGICAL HISTORY PROCEDURES || 5 || 5 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 241455000 || IMG US PROCEDURES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 241646009 || IMG MR PROCEDURES || 2 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 241648005 || IMG MR PROCEDURES || 4 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: 24623002 || IMG BI PROCEDURES || 8 || 4 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: 24848001 || IMG US PROCEDURES || 2 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 26390003 || SURGICAL HISTORY PROCEDURES || 367 || 367 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 26604007 || LAB BLOOD ORDERABLES || 11 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: 266765001 || IV THERAPY ORDERABLES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: 27171005 || LAB URINE ORDERABLES || 2 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 306005 || IMG US PROCEDURES || 3 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: 313587003 || LAB BLOOD ORDERABLES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 399208008 || IMG XR PROCEDURES || 494 || 396 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 419394006 || IMG CT PROCEDURES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: 427765008 || LAB BLOOD ORDERABLES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: 428663009 || SURGICAL HISTORY PROCEDURES || 5 || 5 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 45036003 || IMG US PROCEDURES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: 5113004 || LAB BLOOD ORDERABLES || 108 || 104 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: 52377006 || LAB BLOOD ORDERABLES || 47 || 45 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 53479004 || LAB BLOOD ORDERABLES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: 6471000179103 || SURGICAL HISTORY PROCEDURES || 3 || 3 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: 73359007 || SURGICAL HISTORY PROCEDURES || 831 || 823 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: 76009000 || GI PROCEDURE ORDERABLES || 1 || 1 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 767610009 || SURGICAL HISTORY PROCEDURES || 58 || 58 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: 76876009 || SURGICAL HISTORY PROCEDURES || 269 || 268 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: 81228005 || LAB BLOOD BANK TEST ORDERABLES || 22 || 22 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: 84195007 || SURGICAL HISTORY PROCEDURES || 514 || 503 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R52: 84663005 || LAB BLOOD ORDERABLES || 4 || 4 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R53: 9564003 || LAB BLOOD ORDERABLES || 9 || 2 || 1 || 1 || 100.0 ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: value_with_many_snomed
+================================================================================
+R1: Query || SELECT |     {{C_VAL}} AS PROCEDURE_VALUE, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS SNOMED_CODES | FROM {{T}} | WHERE {{C_VAL}} IS NOT NULL | GROUP BY 1 | HAVING COUNT(DISTINCT {{C_SNOMED}}) > 1 | ORDER BY UNIQUE_SNOMED_CODES DESC, ROW_COUNT DESC; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PROCEDURE_VALUE || ROW_COUNT || UNIQUE_SNOMED_CODES || SNOMED_CODES ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: SURGICAL HISTORY PROCEDURES || 9240 || 17 || 767610009 | 428663009 | 76876009 | 84195007 | 6471000179103 | 11466000 | 70536003 | 14106009 | 116140006 | 116143008 | 73359007 | 26390003 | 116142003 | 161805006 | 116144002 | 236891001 | 232965003 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: LAB BLOOD ORDERABLES || 191 || 11 || 9564003 | 53479004 | 427765008 | 84663005 | 104934005 | 26604007 | 313587003 | 52377006 | 104408008 | 5113004 | 17814008 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: IMG US PROCEDURES || 10 || 5 || 24848001 | 306005 | 169250003 | 45036003 | 241455000 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: IMG XR PROCEDURES || 497 || 2 || 399208008 | 168702005 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: IMG CT PROCEDURES || 8 || 2 || 419394006 | 169069000 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: IMG MR PROCEDURES || 6 || 2 || 241648005 | 241646009 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: secondary_snomed_values
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     COUNT(DISTINCT {{C_SNOMED}}) AS DISTINCT_PRIMARY_SNOMED_CODES, |     LISTAGG(DISTINCT {{C_SNOMED}}::STRING, ' | ') AS PRIMARY_SNOMED_CODES, |     RO... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SECONDARY_SNOMED || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_NAMES || NAME_VARIATIONS || DISTINCT_PRIMARY_SNOMED_CODES || PRIMARY_SNOMED_CODES || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: snomed_pair_combinations
+================================================================================
+R1: Query || SELECT |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_NAMES, |     LISTAGG(DISTINCT {{C_VAL}}::STRING, ' | ') AS NAME_VARIATIONS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1, 2 | ORDER BY ROW_COUNT DE... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SNOMED || SECONDARY_SNOMED || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_NAMES || NAME_VARIATIONS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 116140006 ||  || 2969 || 2957 || 1 || SURGICAL HISTORY PROCEDURES || 29.69 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 161805006 ||  || 2270 || 2226 || 1 || SURGICAL HISTORY PROCEDURES || 22.7 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 11466000 ||  || 1326 || 1305 || 1 || SURGICAL HISTORY PROCEDURES || 13.26 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 73359007 ||  || 831 || 823 || 1 || SURGICAL HISTORY PROCEDURES || 8.31 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 84195007 ||  || 514 || 503 || 1 || SURGICAL HISTORY PROCEDURES || 5.14 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 399208008 ||  || 494 || 396 || 1 || IMG XR PROCEDURES || 4.94 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 26390003 ||  || 367 || 367 || 1 || SURGICAL HISTORY PROCEDURES || 3.67 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 76876009 ||  || 269 || 268 || 1 || SURGICAL HISTORY PROCEDURES || 2.69 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 70536003 ||  || 266 || 264 || 2 || SURGICAL HISTORY PROCEDURES | TRANSPLANT PROCEDURES || 2.66 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 116144002 ||  || 157 || 157 || 1 || SURGICAL HISTORY PROCEDURES || 1.57 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 116143008 ||  || 133 || 133 || 1 || SURGICAL HISTORY PROCEDURES || 1.33 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: 5113004 ||  || 108 || 104 || 1 || LAB BLOOD ORDERABLES || 1.08 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: 767610009 ||  || 58 || 58 || 1 || SURGICAL HISTORY PROCEDURES || 0.58 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: 14106009 ||  || 53 || 53 || 1 || SURGICAL HISTORY PROCEDURES || 0.53 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: 52377006 ||  || 47 || 45 || 1 || LAB BLOOD ORDERABLES || 0.47 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: 81228005 ||  || 22 || 22 || 1 || LAB BLOOD BANK TEST ORDERABLES || 0.22 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: 116142003 ||  || 15 || 15 || 1 || SURGICAL HISTORY PROCEDURES || 0.15 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: 26604007 ||  || 11 || 3 || 1 || LAB BLOOD ORDERABLES || 0.11 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: 9564003 ||  || 9 || 2 || 1 || LAB BLOOD ORDERABLES || 0.09 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: 24623002 ||  || 8 || 4 || 1 || IMG BI PROCEDURES || 0.08 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: 169069000 ||  || 5 || 2 || 1 || IMG CT PROCEDURES || 0.05 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: 428663009 ||  || 5 || 5 || 1 || SURGICAL HISTORY PROCEDURES || 0.05 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: 274798009 ||  || 5 || 2 || 2 || OPHTH PHOTOGRAPHY | OPHTH TOMOGRAPHY || 0.05 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: 236891001 ||  || 5 || 5 || 1 || SURGICAL HISTORY PROCEDURES || 0.05 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: 241648005 ||  || 4 || 3 || 1 || IMG MR PROCEDURES || 0.04 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R29: 84663005 ||  || 4 || 4 || 1 || LAB BLOOD ORDERABLES || 0.04 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R30: 45036003 ||  || 3 || 3 || 1 || IMG US PROCEDURES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R31: 427765008 ||  || 3 || 3 || 1 || LAB BLOOD ORDERABLES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R32: 104408008 ||  || 3 || 3 || 1 || LAB BLOOD ORDERABLES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R33: 226005007 ||  || 3 || 3 || 1 || IN CLINIC/BEDSIDE ORDERABLES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R34: 6471000179103 ||  || 3 || 3 || 1 || SURGICAL HISTORY PROCEDURES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R35: 419394006 ||  || 3 || 3 || 1 || IMG CT PROCEDURES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R36: 168702005 ||  || 3 || 3 || 1 || IMG XR PROCEDURES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R37: 306005 ||  || 3 || 2 || 1 || IMG US PROCEDURES || 0.03 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R38: 232965003 ||  || 2 || 2 || 1 || SURGICAL HISTORY PROCEDURES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R39: 27171005 ||  || 2 || 1 || 1 || LAB URINE ORDERABLES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R40: 241646009 ||  || 2 || 2 || 1 || IMG MR PROCEDURES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R41: 104934005 ||  || 2 || 1 || 1 || LAB BLOOD ORDERABLES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R42: 24848001 ||  || 2 || 1 || 1 || IMG US PROCEDURES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R43: 178776005 ||  || 2 || 2 || 1 || CV ECHO PROCEDURES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R44: 17814008 ||  || 2 || 1 || 1 || LAB BLOOD ORDERABLES || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R45: 23426006 ||  || 1 || 1 || 1 || PFT ORDERABLES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R46: 169250003 ||  || 1 || 1 || 1 || IMG US PROCEDURES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R47: 53479004 ||  || 1 || 1 || 1 || LAB BLOOD ORDERABLES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R48: 76009000 ||  || 1 || 1 || 1 || GI PROCEDURE ORDERABLES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R49: 266765001 ||  || 1 || 1 || 1 || IV THERAPY ORDERABLES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R50: 313587003 ||  || 1 || 1 || 1 || LAB BLOOD ORDERABLES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+R51: 241455000 ||  || 1 || 1 || 1 || IMG US PROCEDURES || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: date_span
+================================================================================
+R1: Query || SELECT |     CURRENT_DATE() AS TODAY, |     MIN({{C_DATE}}) AS MIN_DATE, |     MAX({{C_DATE}}) AS MAX_DATE, |     DATEDIFF('day', MIN({{C_DATE}})::DATE, MAX({{C_DATE}})::DATE) AS SPAN_DAYS, |     SUM(IFF({{C_DATE}}::DATE > CURRENT_DATE(), 1, 0)) AS FUTURE_ROWS, |     SUM(IFF({{C_DATE}} IS NULL, 1, 0)) AS MISSING_DATE_ROWS | FROM {{T}}; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: TODAY || MIN_DATE || MAX_DATE || SPAN_DAYS || FUTURE_ROWS || MISSING_DATE_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2026-09-21 || 2020-05-25 || 2026-09-15 || 2304 || 0 || 753 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: records_by_year
+================================================================================
+R1: Query || SELECT |     YEAR({{C_DATE}}) AS RECORD_YEAR, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_PT}}) AS UNIQUE_PATIENTS, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_ROWS | FROM {{T}} | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: RECORD_YEAR || ROW_COUNT || UNIQUE_PATIENTS || UNIQUE_PROCEDURES || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 2020 || 1747 || 1382 || 2 || 17.47 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2021 || 2022 || 1792 || 2 || 20.22 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 2022 || 1502 || 1272 || 1 || 15.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 2023 || 1015 || 839 || 2 || 10.15 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 2024 || 1107 || 909 || 3 || 11.07 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 2025 || 1017 || 834 || 1 || 10.17 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 2026 || 837 || 762 || 1 || 8.37 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11:  || 753 || 588 || 13 || 7.53 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: recency_ranges
+================================================================================
+R1: Query || WITH bucketed AS ( |     SELECT |         CASE |             WHEN {{C_DATE}} IS NULL THEN 90 |             WHEN {{C_DATE}}::DATE > CURRENT_DATE() THEN 80 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 30 THEN 1 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 90 THEN 2 |             WHEN DATEDIFF('day', {{C_DATE}}::DATE, CURRENT_DATE()) <= 180 THEN 3... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: SORT_ORDER || DATE_RANGE || ROW_COUNT || UNIQUE_PATIENTS || PCT_OF_ROWS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 1 || 0-30 days ago || 190 || 177 || 1.9 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2 || 31-90 days ago || 164 || 160 || 1.64 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 3 || 91-180 days ago || 349 || 302 || 3.49 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 4 || 181-365 days ago || 410 || 348 || 4.1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 5 || 1-2 years ago || 1848 || 1521 || 18.48 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 6 || 3-5 years ago || 4539 || 3901 || 45.39 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 7 || 6-7 years ago || 1747 || 1382 || 17.47 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 90 || Unknown (missing date) || 753 || 588 || 7.53 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: procedures_per_patient
+================================================================================
+R1: Query || WITH per_patient AS ( |     SELECT |         {{C_PT}} AS PATIENT_ID, |         COUNT(*) AS ROW_COUNT |     FROM {{T}} |     WHERE {{C_PT}} IS NOT NULL |     GROUP BY 1 | ) | SELECT |     ROW_COUNT AS PROCEDURES_PER_PATIENT, |     COUNT(*) AS NUMBER_OF_PATIENTS, |     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS PCT_OF_PATIENTS | FROM per_patient | GROUP BY 1 | ORDER BY 1; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PROCEDURES_PER_PATIENT || NUMBER_OF_PATIENTS || PCT_OF_PATIENTS ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: 1 || 7269 || 87.27 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: 2 || 550 || 6.6 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: 3 || 477 || 5.73 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: 4 || 12 || 0.14 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: 5 || 8 || 0.1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: 6 || 7 || 0.08 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: 7 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: 9 || 2 || 0.02 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: 12 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: 15 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: 18 || 1 || 0.01 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: top_patients
+================================================================================
+R1: Query || SELECT |     {{C_PT}} AS PATIENT_ID, |     COUNT(*) AS ROW_COUNT, |     COUNT(DISTINCT {{C_VAL}}) AS UNIQUE_PROCEDURES, |     COUNT(DISTINCT {{C_SNOMED}}) AS UNIQUE_SNOMED_CODES, |     MIN({{C_DATE}}) AS FIRST_DATE, |     MAX({{C_DATE}}) AS LAST_DATE | FROM {{T}} | WHERE {{C_PT}} IS NOT NULL | GROUP BY 1 | ORDER BY ROW_COUNT DESC | LIMIT 25; ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PATIENT_ID || ROW_COUNT || UNIQUE_PROCEDURES || UNIQUE_SNOMED_CODES || FIRST_DATE || LAST_DATE ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R4: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 18 || 5 || 6 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: {5AC4FBF9-5795-4603-83F1-587795B65449} || 15 || 3 || 5 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: {15B54257-E31E-4F93-854F-FAEC7585E738} || 12 || 2 || 4 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: {1A2E6A1F-604A-4348-ABCD-F864A09D56EE} || 9 || 1 || 3 || 2023-04-14 || 2023-04-14 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: {FDD85590-6E24-4114-911F-A6CD64B7527C} || 9 || 4 || 6 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: {DE14B05E-3CF9-4395-AE4C-3DFDAC486153} || 7 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: {EE75B0E6-5932-48C2-9E6B-9B7FD6B7375E} || 6 || 1 || 3 || 2020-07-10 || 2020-07-10 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: {056A1497-788B-4D0D-84BB-3A3FF5F1A896} || 6 || 1 || 3 || 2025-07-18 || 2025-07-18 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: {121A923F-D54A-4686-98ED-49F2912D0B21} || 6 || 1 || 3 || 2020-06-27 || 2020-06-27 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: {DBE39769-7148-4FEC-8803-79544466CEA0} || 6 || 1 || 3 || 2020-07-08 || 2020-07-08 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: {C9CCC543-04A7-457A-B152-0F7C83FBC66A} || 6 || 1 || 3 || 2021-06-24 || 2021-06-24 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: {CDD36725-996B-4D80-A841-A2B145384DF5} || 6 || 1 || 3 || 2020-08-26 || 2020-08-26 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: {298B2FD8-6047-45F0-8F2A-9B738DA5EDC7} || 6 || 1 || 3 || 2020-09-11 || 2020-09-11 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: {BC714D64-50A8-4237-8BEF-6D904591F953} || 5 || 3 || 3 || 2026-09-14 || 2026-09-14 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: {88364D27-395A-49F8-8EE3-A93FD9289C87} || 5 || 1 || 3 || 2020-06-06 || 2020-06-06 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: {BD30D590-716E-41B4-9E1A-45F1A0BA58EC} || 5 || 1 || 3 || 2020-09-30 || 2020-09-30 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: {E3AE7B3B-3650-4DEE-B8A0-315D209E7C0B} || 5 || 1 || 3 || 2020-06-06 || 2020-06-06 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: {00FC2030-45C6-403B-B054-667B16F0850D} || 5 || 1 || 3 || 2020-10-30 || 2020-10-30 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R22: {2AEB29B8-396A-4BFE-8D95-BCAA2D6AB131} || 5 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R23: {73539B75-78F0-4865-88F8-DE514B774526} || 5 || 1 || 3 || 2023-05-30 || 2026-01-26 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R24: {7793BD9A-450B-4725-A084-871D1B7DAE8A} || 5 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R25: {09581B85-6DFF-461F-BC67-1B127468722F} || 4 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R26: {CB836155-E8E3-4F36-9B46-CA1D92ADC2BE} || 4 || 2 || 2 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R27: {32D4CFD9-5A06-4C2B-8753-ED2F133E0E91} || 4 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R28: {FDCB0E26-DB5D-4364-9691-2B8367939652} || 4 || 1 || 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+
+================================================================================
+SHEET: one_patient_detail
+================================================================================
+R1: Query || SELECT |     {{C_PT}} AS PATIENT_ID, |     {{C_ID}} AS SURGICAL_HISTORY_ID, |     {{C_ENC}} AS ENCOUNTER_ID, |     {{C_SRC}} AS SOURCE_CATEGORY, |     {{C_VAL}} AS PROCEDURE_VALUE, |     {{C_SNOMED}} AS SNOMED, |     {{C_SNOMED2}} AS SECONDARY_SNOMED, |     {{C_DATE}} AS RECORD_DATE | FROM {{T}} | WHERE {{C_PT}} = ( |         SELECT {{C_PT}} |         FROM {{T}} |         WHERE {{C_PT}} IS NOT NUL... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R3: PATIENT_ID || SURGICAL_HISTORY_ID || ENCOUNTER_ID || SOURCE_CATEGORY || PROCEDURE_VALUE || SNOMED || SECONDARY_SNOMED || RECORD_DATE ||  ||  ||  ||  ||  ||  ||  || 
+R4: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203060 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R5: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203074 || 93318844 || General Procedure || IMG MR PROCEDURES || 241648005 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R6: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203125 || 93318844 || General Procedure || IMG CT PROCEDURES || 169069000 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R7: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203131 || 93318844 || General Procedure || IMG CT PROCEDURES || 419394006 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R8: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203153 || 93318844 || General Procedure || IMG CT PROCEDURES || 169069000 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R9: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203167 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R10: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203194 || 93318844 || General Procedure || IMG MR PROCEDURES || 241648005 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R11: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203378 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R12: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203384 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R13: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203437 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R14: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203478 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R15: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203493 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R16: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203524 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R17: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203535 || 93318844 || General Procedure || IMG XR PROCEDURES || 399208008 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R18: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203653 || 93318844 || General Procedure || IMG BI PROCEDURES || 24623002 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R19: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203658 || 93318844 || General Procedure || IMG US PROCEDURES || 306005 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R20: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203667 || 93318844 || General Procedure || IMG CT PROCEDURES || 169069000 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+R21: {98B3D2FB-81A9-4F82-BD40-A74A9071052D} || 101203751 || 93318844 || General Procedure || IMG US PROCEDURES || 306005 ||  ||  ||  ||  ||  ||  ||  ||  ||  || 

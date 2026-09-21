@@ -29,6 +29,11 @@ The workbook passes structural, cross-sheet, controlled-vocabulary, relationship
 
 ## Runtime dependencies
 
+The first CLAIMS-only confirmed-patient run needs only Snowflake Warehouse
+Runtime and its active Snowpark session. It does not install or import spaCy or
+medSpaCy. The dependencies below apply only when the later NLP-enabled
+suspicion pipeline is deliberately enabled.
+
 - Python 3.10 or newer
 - `openpyxl` is build-only and is intentionally excluded from the runtime;
   see `../v4_build_tools/requirements-build.txt`.
@@ -40,4 +45,8 @@ The runtime does not substitute regex, SQL `LIKE`/`ILIKE`, or Python substring m
 
 ## Output and download
 
-Snowflake output objects are session temporary tables prefixed `AMY_V4_`. The notebook previews `AMY_V4_ROUTER_OUTPUT`, which Snowflake can download from the result grid. The Python profile exporter also writes a local-runtime JSONL profile file and trace-free CSV index. Proprietary traces are excluded from export by default.
+The confirmed-only notebook writes session-temporary
+`AMY_V4_CONFIRMED_AMYLOIDOSIS` and
+`AMY_V4_CONFIRMED_AMYLOIDOSIS_PROFILES` tables. They are visible only in the
+creating session and are automatically removed at session end. The later full
+pipeline uses additional `AMY_V4_*` temporary tables, including router output.

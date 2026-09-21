@@ -5,6 +5,17 @@ runtime phenotype packages. The generated runtime package is intentionally
 minimal: workbook/compiler provenance stays in the build artifacts and is not
 duplicated in deployable clinical JSON.
 
+Two runtime files are intentionally operator-managed rather than generated:
+
+- `config/source_schema.json` selects source tables and maps stable logical
+  fields to the current physical warehouse columns.
+- `config/shared/confirmed_patients.json` keeps the ATTR and AL confirmed-
+  patient recognition routes together.
+
+These are the files to edit for a source-schema/table-selection change or an
+approved confirmed-patient vocabulary change. The phenotype package files
+listed below remain generated clinical rule artifacts.
+
 For ATTRV, the generated files are:
 
 ```text

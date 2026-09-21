@@ -1,7 +1,10 @@
 # RDDT ATTR Phenotype V4
 
-V4 is a config-driven ATTR phenotype screening pipeline for a Snowflake
-workspace. ATTRv, ATTRwt, and AL are loaded by the production entrypoint;
+V4 contains a config-driven confirmed-patient extractor and the later ATTR
+phenotype screening pipeline for a Snowflake workspace. The immediate first
+run is confirmed-only: CLAIMS ICD-10 codes are matched against the exact
+`ALL_AMYLOIDOSIS` allow-list, and no non-confirmed patient is scored. ATTRv,
+ATTRwt, and AL remain available for the later full-pipeline run;
 additional phenotype packages use the same runtime contract. The checked-in JSON files in
 `config/` are the deployable clinical configuration. Corrected workbooks and
 their compilers are build-time assets under `../v4_build_tools/`; Snowflake
@@ -9,10 +12,17 @@ does not read Excel or run the build tooling.
 
 ## Safety and data boundary
 
-- Source warehouse tables are read only.
-- All V4 warehouse objects are session `TEMPORARY TABLE` objects named
-  `AMY_V4_*`; no permanent or transient table is created.
-- Social-history and medication tables are disabled.
+- Source warehouse tables are read only. The confirmed-only first-run notebook
+  detects from the enabled CLAIMS source, then uses read-only `SELECT` queries
+  to hydrate each confirmed patient's full EHR from all profile-enabled
+  sources. It keeps the profile in notebook memory and creates no Snowflake
+  table, view, or stage object.
+- The confirmed-only run requires no event date, ICD-9, NLP, spaCy, or
+  medSpaCy. Blank CLAIMS dates block only the later suspicion pipeline.
+- Source-table selection is config-driven. The checked-in
+  `config/source_schema.json` currently algorithm-enables only `claim`.
+  `profile_enabled` independently controls whether a table contributes raw
+  rows to final patient profiles.
 - NLP terminology is applied with spaCy `PhraseMatcher` and medSpaCy clinical
   context. Regex, substring matching, and SQL text `LIKE`/`ILIKE` are not NLP
   fallbacks.
@@ -27,30 +37,46 @@ does not read Excel or run the build tooling.
   evaluated by the clinical pipeline.
 - Before phenotype scoring, Step 03b separates patients with affirmed
   ATTR-specific documentation or the corroborated legacy E85/SNOMED known-
-  amyloidosis pattern. A separate configurable known-AL route is also applied;
-  unavailable known-AL configuration is an explicit fail-safe gap.
+  amyloidosis pattern. A separate configurable known-AL route is also applied.
+  Both confirmed-patient vocabularies are maintained together in
+  `config/shared/confirmed_patients.json`; a missing or invalid AL route remains
+  an explicit fail-safe gap.
 - The workbook may contain missing structured codes. The runtime records gaps;
   it never invents or looks up a code.
 
 ## Run in Snowflake
 
-Open `RDDT_ATTR_V4_Pipeline.ipynb` in the workspace, make this package and its
-`config` directory available to the notebook, install the dependencies listed
-in `requirements.txt`, and run the cells in order. The notebook obtains the
-active Snowpark session, loads medSpaCy, validates the physical source schema,
-then calls `run_attr_v4_pipeline`. Every candidate is extracted once and then
-evaluated by the ATTRv, ATTRwt, and AL rule packages in the same run. There is
-no phenotype selector in the notebook.
+Open `RDDT_ATTR_V4_Pipeline.ipynb` with Snowflake Warehouse Runtime and run the
+cells in order. Do not install `requirements.txt` for this first pass. The
+notebook reports total rows/distinct patients, reads the exact ICD-10 code and
+type metadata from `config/shared/confirmed_patients.json`, and returns the
+patient-level summary as the notebook-memory `confirmed_profiles_df`. It then
+hydrates the full EHR only for confirmed patient IDs; profile-only tables do
+not affect detection. The suspicion pipeline and non-confirmed patients are
+not evaluated. See
+`docs/SNOWFLAKE_RUNBOOK.md` for the exact sequence.
 
-If the physical tables are in a database/schema namespace, set
-`source_config["namespace"]` to `DATABASE.SCHEMA`. The table and column names
-remain those in `source_schema.default_source_config()`.
+The operator-editable `config/source_schema.json` file is the source of truth
+for the database/schema namespace, table toggles, and physical column mappings.
+The active `sample_db_v1` profile points to
+`UHTX_RDDT_CLINICAL_DEV.PUBLIC`, algorithm-enables only `CLAIMS`, and
+profile-enables all six physical tables in the current warehouse; the preserved
+`legacy_ehr_v1` profile can be selected with
+`load_source_config(profile="legacy_ehr_v1")` or the
+`V4_SOURCE_SCHEMA_PROFILE` environment variable. Under `columns`, the left
+side is the stable pipeline field (`patient_id`, `diagnosis_code`, etc.) and
+the right side is the current warehouse column name. When a warehouse schema
+changes, update the profile rather than extraction code. Add a logical field
+to `required_columns` only when the pipeline must reject a source table that
+lacks it. See `docs/SNOWFLAKE_RUNBOOK.md` for the deployment and validation
+sequence.
 
 The run returns:
 
 - stage-level counts and the pinned configuration hash;
-- `AMY_V4_ROUTER_OUTPUT` for result-grid review and download;
-- `AMY_V4_KNOWN_ATTR` for patients removed before early-detection scoring;
+- `run.router_output` for workspace-only result review and download;
+- `run.known_attr_patients` and `run.known_al_patients` for confirmed patients
+  removed before early-detection scoring;
 - phenotype verdict slots including ATTRv, ATTRwt, and AL;
 - one combined ATTR suspicion verdict and output tier, selected from the
   highest real phenotype pass across ATTRv and ATTRwt;
@@ -99,10 +125,10 @@ independently evaluated verdict. The combined ATTR result uses only actual
 ATTRv/ATTRwt phenotype passes. V4 does not invent a
 numeric probability or risk score when the workbook does not define one.
 
-JSONL/CSV exports exclude proprietary algorithm trace and internal rule IDs by
-default. The full in-memory profile stores the internal reasoning under the one
-top-level key `proprietary_pipeline_trace`, which can be deleted without
-removing the medical profile, clinical rationale, or verdicts.
+JSONL/CSV exports exclude the duplicate `proprietary_pipeline_trace` payload by
+default, while review-facing `algorithm_analysis` retains the exact stages and
+rule identifiers needed to explain why the patient was flagged. Every profile
+also contains raw EHR rows grouped by table under `ehr.records_by_table`.
 
 ## Build tooling
 
@@ -116,13 +142,16 @@ parity on warehouse data.
 
 ## Key modules
 
-- `warehouse/source_schema.py`: allowed source tables and columns.
+- `warehouse/source_schema.py` and `config/source_schema.json`: source-table
+  toggles plus the physical-to-logical source schema mapping.
 - `extraction/extraction_contract.py`: the single extraction routing, code-system,
   availability-date, and medSpaCy context-attribute policy file.
 - `extraction/candidate_net.py`: structured candidate retrieval and broad text retrieval.
 - `extraction/source_events.py`: normalized source evidence and lineage.
-- `extraction/known_attr.py`: source-verbatim pre-screen known-ATTR vocabulary,
-  structured-code corroboration, and exclusion records.
+- `config/shared/confirmed_patients.json`: one editable contract containing the
+  ATTR and AL confirmed-patient routes, terminology, and corroboration rules.
+- `extraction/known_attr.py` / `extraction/known_al.py`: pre-screen vocabulary
+  loading, structured-code corroboration, and exclusion records.
 - `extraction/atom_matching.py` / `extraction/evidence_qualification.py`: workbook terminology,
   per-occurrence PhraseMatcher evidence, and clause-local medSpaCy context.
 - `extraction/temporal_context.py`: token-based mention-level clinical-date
