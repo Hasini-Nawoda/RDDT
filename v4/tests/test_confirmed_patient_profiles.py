@@ -24,8 +24,8 @@ def test_confirmed_profile_keeps_all_claims_and_exact_match_evidence(tmp_path) -
         "PRIORITY_LABEL": "CONFIRMED",
     }
     claims = [
-        {"SOURCE_CLAIM": {"COLUMN0": "p1", "COLUMN7": "ICD10", "COLUMN8": "E85.81", "COLUMN21": "note"}, "MATCHED_CODE": "E85.81", "AMYLOIDOSIS_TYPE": "AL"},
-        {"COLUMN0": "p1", "COLUMN7": "ICD10", "COLUMN8": "I10", "COLUMN21": "other"},
+        {"SOURCE_CLAIM": {"PATIENTID": "p1", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "E85.81", "COLUMN21": "note"}, "MATCHED_CODE": "E85.81", "AMYLOIDOSIS_TYPE": "AL"},
+        {"PATIENTID": "p1", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "I10", "COLUMN21": "other"},
     ]
 
     profile = build_confirmed_icd10_patient_profile(summary, claims)
@@ -37,9 +37,9 @@ def test_confirmed_profile_keeps_all_claims_and_exact_match_evidence(tmp_path) -
     assert profile["clinical_rationale"]["evidence_count"] == 1
     evidence = profile["clinical_rationale"]["matched_claim_evidence"][0]
     assert evidence["matched_icd10_code"] == "E85.81"
-    assert evidence["source_claim"]["COLUMN8"] == "E85.81"
+    assert evidence["source_claim"]["DIAGNOSISCODE"] == "E85.81"
     assert len(profile["medical_profile"]["timeline"]) == 2
-    assert profile["medical_profile"]["timeline"][1]["raw_record"]["COLUMN8"] == "I10"
+    assert profile["medical_profile"]["timeline"][1]["raw_record"]["DIAGNOSISCODE"] == "I10"
 
     paths = export_confirmed_icd10_profiles([profile], tmp_path)
     exported = json.loads((tmp_path / "confirmed" / "confirmed_amyloidosis_patient_profiles.jsonl").read_text())
@@ -110,7 +110,7 @@ def test_canonical_builder_preserves_complete_multitable_ehr_and_confirmation_tr
     source_config = {
         "tables": {
             "census": {"name": "CENSUS", "enabled": False, "profile_enabled": True, "columns": {"patient_id": "COLUMN0"}},
-            "claim": {"name": "CLAIMS", "enabled": True, "profile_enabled": True, "columns": {"patient_id": "COLUMN0", "diagnosis_type": "COLUMN7", "diagnosis_code": "COLUMN8"}},
+            "claim": {"name": "CLAIMS", "enabled": True, "profile_enabled": True, "columns": {"patient_id": "PATIENTID", "diagnosis_type": "DIAGNOSISTYPE", "diagnosis_code": "DIAGNOSISCODE"}},
             "lab": {"name": "LABS", "enabled": False, "profile_enabled": True, "columns": {"patient_id": "COLUMN0", "observation_identifier": "COLUMN4", "observation_value": "COLUMN7"}},
             "medication": {"name": "MEDICATIONS", "enabled": False, "profile_enabled": True, "columns": {"patient_id": "COLUMN0", "medication_name": "COLUMN4"}},
         }
@@ -118,8 +118,8 @@ def test_canonical_builder_preserves_complete_multitable_ehr_and_confirmation_tr
     ehr = {
         "census": [{"COLUMN0": "p-full", "COLUMN2": "1980-01-01"}],
         "claim": [
-            {"COLUMN0": "p-full", "COLUMN7": "ICD10", "COLUMN8": "E85.81"},
-            {"COLUMN0": "p-full", "COLUMN7": "ICD10", "COLUMN8": "I10"},
+            {"PATIENTID": "p-full", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "E85.81"},
+            {"PATIENTID": "p-full", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "I10"},
         ],
         "lab": [{"COLUMN0": "p-full", "COLUMN4": "BNP", "COLUMN7": 500}],
         "medication": [{"COLUMN0": "p-full", "COLUMN4": "tafamidis"}],

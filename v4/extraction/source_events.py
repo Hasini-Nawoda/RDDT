@@ -381,15 +381,71 @@ def iter_source_events(
     source_config: Mapping[str, Any] | None = None,
     candidate_patient_ids: set[str] | None = None,
 ) -> Iterable[SourceEvent]:
-    for table_key, rows in rows_by_table.items():
-        table_cfg = (source_config or default_source_config()).get("tables", {}).get(table_key, {})
+    cfg = source_config or default_source_config()
+    materialized = {
+        table_key: rows if isinstance(rows, list) else list(rows)
+        for table_key, rows in rows_by_table.items()
+    }
+
+    # In the all-table profile, an encounter row may be the only reliable date
+    # for an otherwise undated claim.  Join conservatively on both patient and
+    # encounter identifier.  Ambiguous encounter dates remain unknown.  When
+    # the encounter table is disabled (the claims-only profile), no enrichment
+    # occurs even if profile-hydration rows happen to be present.
+    encounter_cfg = cfg.get("tables", {}).get("encounter", {})
+    encounter_dates: dict[tuple[str, str], set[Any]] = {}
+    if is_table_enabled(encounter_cfg):
+        encounter_columns = encounter_cfg.get("columns", {})
+        for row in materialized.get("encounter", ()):
+            patient = _value(row, encounter_columns.get("patient_id"), "patient_id")
+            encounter = _value(row, encounter_columns.get("encounter_id"), "encounter_id")
+            encounter_date = _value(
+                row,
+                encounter_columns.get("encounter_date"),
+                "encounter_date",
+            )
+            if patient in (None, "") or encounter in (None, "") or encounter_date in (None, ""):
+                continue
+            encounter_dates.setdefault((str(patient), str(encounter)), set()).add(encounter_date)
+
+    for table_key, rows in materialized.items():
+        table_cfg = cfg.get("tables", {}).get(table_key, {})
         if not is_table_enabled(table_cfg):
             continue
         for row in rows:
             patient = _value(row, table_cfg.get("columns", {}).get("patient_id"), "patient_id")
             if candidate_patient_ids is not None and str(patient) not in candidate_patient_ids:
                 continue
-            yield from expand_source_row(row, table_key, run_id=run_id, config_hash=config_hash, source_config=source_config)
+            for event in expand_source_row(
+                row,
+                table_key,
+                run_id=run_id,
+                config_hash=config_hash,
+                source_config=cfg,
+            ):
+                if table_key == "claim" and event.event_date in (None, "") and event.encounter_id:
+                    dates = encounter_dates.get((event.patient_id, event.encounter_id), set())
+                    if len(dates) == 1:
+                        encounter_date = next(iter(dates))
+                        event = replace(
+                            event,
+                            event_date=encounter_date,
+                            available_date=derive_available_date(None, encounter_date),
+                            attributes={
+                                **dict(event.attributes or {}),
+                                "date_enrichment_source": "ENCOUNTER",
+                                "date_enrichment_key": "PATIENT_ID+ENCOUNTER_ID",
+                            },
+                        )
+                    elif len(dates) > 1:
+                        event = replace(
+                            event,
+                            attributes={
+                                **dict(event.attributes or {}),
+                                "date_enrichment_status": "AMBIGUOUS_ENCOUNTER_DATE",
+                            },
+                        )
+                yield event
 
 
 __all__ = ["SourceEvent", "stable_row_hash", "normalize_source_row", "expand_source_row", "iter_source_events"]

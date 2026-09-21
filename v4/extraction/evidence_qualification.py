@@ -6,6 +6,11 @@ from dataclasses import asdict, dataclass, field, replace
 from datetime import date, datetime, timezone
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
+from ..evaluation_policy import (
+    is_claims_recall,
+    is_native_claim_code,
+    normalize_evaluation_mode,
+)
 from .atom_matching import AtomMatch
 from .extraction_contract import MEDSPACY_CONTEXT_ATTRIBUTES
 
@@ -318,6 +323,9 @@ class QualifiedEvidence:
     config_restriction: dict[str, Any] = field(default_factory=dict)
     reason: str | None = None
     config_hash: str = ""
+    evaluation_mode: str = "STRICT"
+    provisional: bool = False
+    relaxations: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -414,18 +422,31 @@ def _apply_atom_firing_precedence(evidence: Sequence[QualifiedEvidence]) -> list
                 "atom_firing_precedence": "NLP_OVER_CODE",
                 "code_fallback_suppressed": True,
             })
+            attrs.pop("recall_provisional", None)
+            attrs.pop("recall_relaxations", None)
             out.append(replace(
                 item,
                 status=UNKNOWN,
                 support_lineage_ids=[],
                 attributes=attrs,
                 reason="NLP_PRECEDENCE_CODE_SUPPRESSED",
+                provisional=False,
+                relaxations=[],
             ))
     return out
 
 
-def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor: Any = None, cutoff: Any = None) -> QualifiedEvidence:
+def _qualify_one(
+    match: AtomMatch,
+    atom: Mapping[str, Any],
+    *,
+    context_processor: Any = None,
+    cutoff: Any = None,
+    evaluation_mode: str = "STRICT",
+) -> QualifiedEvidence:
+    evaluation_mode = normalize_evaluation_mode(evaluation_mode)
     attrs = dict(match.source_attributes or {})
+    attrs["evaluation_mode"] = evaluation_mode
     context_text = match.context_text or match.matched_source_value
     attrs.update(_processor_attributes(context_processor, context_text, match))
     if match.result_value not in (None, ""):
@@ -444,6 +465,16 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         attrs["stage"] = "PRETEST_SIGNAL"
     status = match.match_status if match.match_status in {TRUE, FALSE, UNKNOWN} else UNKNOWN
     reason = None
+    relaxations: list[str] = []
+    recall_eligible = is_claims_recall(evaluation_mode) and is_native_claim_code(match)
+
+    def relax_or_downgrade(relaxation: str, strict_reason: str) -> None:
+        nonlocal status, reason
+        if recall_eligible:
+            relaxations.append(relaxation)
+        else:
+            status, reason = UNKNOWN, strict_reason
+
     if status == TRUE and match.match_method in {"PHRASEMATCHER", "CODE_IN_TEXT"} and context_processor is None:
         status, reason = UNKNOWN, "CONFIG_GAP_CONTEXT_ANNOTATOR_UNAVAILABLE"
     if status == TRUE and str(attrs.get("context_processing_status", "")).startswith("CONFIG_GAP"):
@@ -453,23 +484,38 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         # A structured code marked candidate-only can retrieve and label the
         # source event, but it cannot be silently promoted to affirmative atom
         # evidence without the contextual qualification available to NLP.
-        status, reason = UNKNOWN, "CONFIG_RESTRICTION_TERM_CANNOT_FIRE_ALONE"
+        relax_or_downgrade(
+            "TERM_REQUIRES_CONTEXT_OR_CORROBORATION",
+            "CONFIG_RESTRICTION_TERM_CANNOT_FIRE_ALONE",
+        )
     mapping_role = _mapping_role(attrs)
     if status == TRUE and match.match_method in _CODE_MATCH_METHODS and mapping_role in _NON_STANDALONE_MAPPING_ROLES:
         # Supporting/result-required rows may retrieve or annotate an event,
         # but cannot establish an atom on their own.  This is qualification,
         # not code matching.
-        status, reason = UNKNOWN, "CONFIG_RESTRICTION_MAPPING_ROLE_CANNOT_FIRE_ALONE"
+        relax_or_downgrade(
+            f"NON_STANDALONE_MAPPING_ROLE:{mapping_role}",
+            "CONFIG_RESTRICTION_MAPPING_ROLE_CANNOT_FIRE_ALONE",
+        )
     if status == TRUE and not match.support_lineage_id:
         status, reason = UNKNOWN, "MISSING_SUPPORT_LINEAGE"
     available_ok = _on_or_before(match.available_date, cutoff)
     if status == TRUE and available_ok is not True:
-        status, reason = UNKNOWN, "UNKNOWN_AVAILABILITY_DATE" if available_ok is None else "AFTER_SCREENING_CUTOFF"
+        if available_ok is None:
+            relax_or_downgrade(
+                "MISSING_AVAILABILITY_DATE",
+                "UNKNOWN_AVAILABILITY_DATE",
+            )
+        else:
+            status, reason = UNKNOWN, "AFTER_SCREENING_CUTOFF"
     required_stage = _get(atom, "stage", "Stage", "evidence_stage", "Evidence_Stage")
     observed_stage = attrs.get("stage", attrs.get("evidence_stage"))
     if status == TRUE and required_stage not in (None, ""):
         if observed_stage in (None, ""):
-            status, reason = UNKNOWN, "MISSING_REQUIRED_STAGE"
+            relax_or_downgrade(
+                f"MISSING_REQUIRED_STAGE:{required_stage}",
+                "MISSING_REQUIRED_STAGE",
+            )
         elif _stage_class(observed_stage) != _stage_class(required_stage):
             status, reason = FALSE, "STAGE_MISMATCH"
     required_exp = _get(atom, "experiencer", "Experiencer")
@@ -496,16 +542,32 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
     for qualifier in _list_value(_get(atom, "required_qualifiers", "Required_Qualifiers")):
         present = _truth(attrs.get(qualifier))
         if present is None:
-            status, reason = UNKNOWN, f"MISSING_REQUIRED_QUALIFIER:{qualifier}"
+            relax_or_downgrade(
+                f"MISSING_REQUIRED_QUALIFIER:{qualifier}",
+                f"MISSING_REQUIRED_QUALIFIER:{qualifier}",
+            )
             break
         if present is False:
             status, reason = FALSE, f"FAILED_REQUIRED_QUALIFIER:{qualifier}"
             break
+    relaxations = list(dict.fromkeys(relaxations))
+    if status == TRUE and relaxations:
+        reason = "CLAIMS_RECALL_PROVISIONAL"
+        attrs["recall_provisional"] = True
+        attrs["recall_relaxations"] = tuple(relaxations)
+    elif status != TRUE:
+        # A later observed contradiction or hard eligibility failure wins over
+        # every earlier recall assumption.  Such evidence is never marked as
+        # provisionally affirmative.
+        relaxations = []
+        attrs.pop("recall_provisional", None)
+        attrs.pop("recall_relaxations", None)
     support = [match.support_lineage_id] if status == TRUE and match.support_lineage_id else []
     context = list(dict.fromkeys(match.context_lineage_ids or attrs.get("context_lineage_ids", []) or []))
     source_provenance = {"source_event_id": match.source_event_id, "support_lineage_id": match.support_lineage_id,
                          "encounter_id": match.encounter_id,
                          "match_method": match.match_method,
+                         "source_table": attrs.get("table_key"),
                          "matched_config_value": match.matched_config_value,
                          "span_start": match.span_start,
                          "span_end": match.span_end,
@@ -524,6 +586,9 @@ def _qualify_one(match: AtomMatch, atom: Mapping[str, Any], *, context_processor
         status=status, support_lineage_ids=support, context_lineage_ids=context, attributes=attrs,
         source_provenance=source_provenance, config_restriction=dict(match.config_restriction or {}), reason=reason,
         config_hash=match.config_hash,
+        evaluation_mode=evaluation_mode,
+        provisional=bool(relaxations),
+        relaxations=relaxations,
     )
 
 
@@ -533,12 +598,19 @@ def qualify_atom_matches(
     *,
     context_processor: Any = None,
     screening_cutoff: Any = None,
+    evaluation_mode: str = "STRICT",
 ) -> list[QualifiedEvidence]:
     atoms = {str(_get(row, "atom_id", "Atom_ID", default="")): row for row in _rows(config, "atoms")}
     out = []
     for match in matches:
         atom = atoms.get(match.atom_id, {})
-        out.append(_qualify_one(match, atom, context_processor=context_processor, cutoff=screening_cutoff))
+        out.append(_qualify_one(
+            match,
+            atom,
+            context_processor=context_processor,
+            cutoff=screening_cutoff,
+            evaluation_mode=evaluation_mode,
+        ))
     return _apply_atom_firing_precedence(out)
 
 

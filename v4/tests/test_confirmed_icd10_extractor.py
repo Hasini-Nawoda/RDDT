@@ -10,11 +10,11 @@ from v4.warehouse.source_schema import default_source_config
 def test_confirmed_extractor_is_date_free_icd10_only_and_deduplicated() -> None:
     rows = {
         "claim": [
-            {"COLUMN0": "p-al", "COLUMN7": "ICD-10-CM", "COLUMN8": "E85.81"},
-            {"COLUMN0": "p-al", "COLUMN7": "ICD10", "COLUMN8": "E85.81"},
-            {"COLUMN0": "p-al", "COLUMN7": "ICD-9-CM", "COLUMN8": "277.30"},
-            {"COLUMN0": "p-text", "COLUMN7": "ICD-10-CM", "COLUMN8": "E859", "COLUMN21": "AL amyloidosis"},
-            {"COLUMN0": "p-other", "COLUMN7": "ICD-10-CM", "COLUMN8": "I10"},
+            {"PATIENTID": "p-al", "DIAGNOSISTYPE": "ICD-10-CM", "DIAGNOSISCODE": "E85.81"},
+            {"PATIENTID": "p-al", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "E85.81"},
+            {"PATIENTID": "p-al", "DIAGNOSISTYPE": "ICD-9-CM", "DIAGNOSISCODE": "277.30"},
+            {"PATIENTID": "p-text", "DIAGNOSISTYPE": "ICD-10-CM", "DIAGNOSISCODE": "E859", "COLUMN21": "AL amyloidosis"},
+            {"PATIENTID": "p-other", "DIAGNOSISTYPE": "ICD-10-CM", "DIAGNOSISCODE": "I10"},
         ]
     }
 
@@ -46,7 +46,7 @@ class _Session:
 def test_confirmed_profiles_materialize_only_as_temporary_table() -> None:
     session = _Session()
     profiles = extract_confirmed_icd10(
-        {"claim": [{"COLUMN0": "p1", "COLUMN7": "ICD10", "COLUMN8": "E85.82"}]},
+        {"claim": [{"PATIENTID": "p1", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "E85.82"}]},
         source_config=default_source_config(),
     )
 

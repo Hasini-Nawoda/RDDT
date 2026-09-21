@@ -11,6 +11,11 @@ from datetime import date, datetime
 from itertools import combinations as witness_combinations
 from typing import Any, Iterable
 
+from ..evaluation_policy import (
+    collect_relaxations,
+    is_claims_recall,
+    normalize_evaluation_mode,
+)
 from .reasoning_utils import FALSE, TRUE, UNKNOWN, as_list, dedup_key, independent, norm_status, rows, union_lineage, value
 
 
@@ -368,7 +373,16 @@ def _evaluate_nested_combination(rule_id: str, rule: Any, hits: list[Any]) -> tu
     )
 
 
-def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state: Iterable[Any] = (), patient_id: Any = None, phenotype: str | None = None) -> list[dict[str, Any]]:
+def match_combinations(
+    config: Any,
+    signal_hits: Iterable[Any],
+    *,
+    bucket_state: Iterable[Any] = (),
+    patient_id: Any = None,
+    phenotype: str | None = None,
+    evaluation_mode: str = "STRICT",
+) -> list[dict[str, Any]]:
+    evaluation_mode = normalize_evaluation_mode(evaluation_mode)
     hits = list(signal_hits)
     if patient_id is not None:
         hits = [h for h in hits if value(h, "patient_id", patient_id) == patient_id]
@@ -384,6 +398,7 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
         conflicts: list[tuple[str, tuple[str, ...]]] = []
         temporal_rejected = False
         temporal_state: str | None = None
+        combination_relaxations: list[str] = []
         if nested_rule is not None:
             status, selected, hold = _evaluate_nested_combination(cid, nested_rule, hits)
             assignment = selected if status == TRUE else None
@@ -404,13 +419,18 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
                     if temporal_state == FALSE:
                         status, assignment, hold = FALSE, None, "TEMPORAL_ORDER_NOT_SATISFIED"
                         temporal_rejected = True
+                    elif temporal_state == UNKNOWN and is_claims_recall(evaluation_mode):
+                        combination_relaxations.append("MISSING_REQUIRED_COMBINATION_CHRONOLOGY")
                 elif temporal_requirement == "SATISFIED_TRUE":
                     if temporal_state == FALSE:
                         status, assignment, hold = FALSE, None, "TEMPORAL_ORDER_NOT_SATISFIED"
                         temporal_rejected = True
                     elif temporal_state == UNKNOWN:
-                        status, assignment, hold = UNKNOWN, None, "INCOMPLETE_OR_UNKNOWN_EVIDENCE"
-                        temporal_rejected = True
+                        if is_claims_recall(evaluation_mode):
+                            combination_relaxations.append("MISSING_REQUIRED_COMBINATION_CHRONOLOGY")
+                        else:
+                            status, assignment, hold = UNKNOWN, None, "INCOMPLETE_OR_UNKNOWN_EVIDENCE"
+                            temporal_rejected = True
                 elif temporal_requirement == "SATISFIED_NULL":
                     if temporal_state != UNKNOWN:
                         status, assignment, hold = FALSE, None, "TEMPORAL_CHRONOLOGY_RESOLVED"
@@ -436,6 +456,22 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
             if potential is not None:
                 status, hold = UNKNOWN, "INCOMPLETE_OR_UNKNOWN_EVIDENCE"
         selected = assignment or []
+        temporal_policy = str(value(combo, "temporal_policy", "") or "").upper()
+        if (
+            selected
+            and temporal_state is None
+            and temporal_policy not in {"", "NONE", "NO_FIXED_ORDER"}
+        ):
+            temporal_state = _temporal_state(combo, selected)
+        if (
+            selected
+            and temporal_state == UNKNOWN
+            and temporal_policy not in {"", "NONE", "NO_FIXED_ORDER"}
+            and is_claims_recall(evaluation_mode)
+        ):
+            combination_relaxations.append("MISSING_REQUIRED_COMBINATION_CHRONOLOGY")
+        inherited_relaxations = collect_relaxations(selected)
+        relaxations = tuple(dict.fromkeys((*inherited_relaxations, *combination_relaxations)))
         out.append({
             "patient_id": patient_id,
             "phenotype": phenotype or value(combo, "phenotype", None),
@@ -454,6 +490,9 @@ def match_combinations(config: Any, signal_hits: Iterable[Any], *, bucket_state:
             "conflicts": tuple(conflicts),
             "clinical_rationale": value(combo, "clinical_rationale", None),
             "config_hash": value(config, "config_hash", None),
+            "evaluation_mode": evaluation_mode,
+            "provisional": bool(relaxations),
+            "relaxations": relaxations,
         })
     return out
 

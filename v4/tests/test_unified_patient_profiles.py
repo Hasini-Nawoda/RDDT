@@ -15,9 +15,9 @@ def test_suspicion_profile_uses_same_builder_with_full_ehr_and_exact_stage_trace
                 "enabled": True,
                 "profile_enabled": True,
                 "columns": {
-                    "patient_id": "COLUMN0",
-                    "diagnosis_type": "COLUMN7",
-                    "diagnosis_code": "COLUMN8",
+                    "patient_id": "PATIENTID",
+                    "diagnosis_type": "DIAGNOSISTYPE",
+                    "diagnosis_code": "DIAGNOSISCODE",
                 },
             },
             "lab": {
@@ -81,7 +81,7 @@ def test_suspicion_profile_uses_same_builder_with_full_ehr_and_exact_stage_trace
         guardrail_hits=[{"patient_id": patient_id, "guardrail_id": "G-1", "status": "FALSE"}],
         source_config=source_config,
         ehr_records_by_table={
-            "claim": [{"COLUMN0": patient_id, "COLUMN7": "ICD10", "COLUMN8": "E85.2"}],
+            "claim": [{"PATIENTID": patient_id, "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "E85.2"}],
             "lab": [{"COLUMN0": patient_id, "COLUMN4": "NT-proBNP", "COLUMN7": 900}],
         },
     )
@@ -130,11 +130,11 @@ def test_known_attr_text_route_is_not_mislabeled_as_exact_icd10() -> None:
                     "name": "CLAIMS",
                     "enabled": True,
                     "profile_enabled": True,
-                    "columns": {"patient_id": "COLUMN0"},
+                    "columns": {"patient_id": "PATIENTID"},
                 }
             }
         },
-        ehr_records_by_table={"claim": [{"COLUMN0": "p-known", "COLUMN21": "ATTR-CM"}]},
+        ehr_records_by_table={"claim": [{"PATIENTID": "p-known", "COLUMN21": "ATTR-CM"}]},
     )[0]
 
     assert profile["clinical_rationale"]["rule"] == "KNOWN_ATTR_TEXT"

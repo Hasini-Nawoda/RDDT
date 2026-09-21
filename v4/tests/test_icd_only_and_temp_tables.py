@@ -41,7 +41,7 @@ def test_icd_only_mode_matches_codes_without_an_nlp_runtime() -> None:
     )
     source_config = default_source_config()
     events = expand_source_row(
-        {"COLUMN0": "member-1", "COLUMN7": "ICD-10-CM", "COLUMN8": "E85.81"},
+        {"PATIENTID": "member-1", "DIAGNOSISTYPE": "ICD-10-CM", "DIAGNOSISCODE": "E85.81"},
         "claim",
         run_id="run",
         config_hash="hash",

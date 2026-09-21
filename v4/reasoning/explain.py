@@ -21,6 +21,13 @@ def build_explanation(result: Any, *, patient_facing: bool = False) -> str:
         text = f"{phenotype} screening/review route matched using independent configured clinical findings"
         if route:
             text += f" with route {route}"
+    elif status == "CLAIMS_RECALL_CANDIDATE":
+        text = (
+            f"{phenotype} claims-only review candidate matched configured code evidence; "
+            "one or more required dates or clinical-context facts were unavailable"
+        )
+        if route:
+            text += f" with route {route}"
     elif status == "HOLD":
         text = f"{phenotype} screening/review is on hold pending an auditable evidence or configuration issue"
     elif status == "NO_MATCH":

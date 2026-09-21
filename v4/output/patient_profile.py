@@ -126,7 +126,7 @@ def _claim_record(row: Any) -> dict[str, Any]:
 
 def _claim_code(row: Any, raw: Mapping[str, Any]) -> Any:
     source_value = _case_value(
-        raw, "DIAGNOSIS_CODE", "COLUMN8", "CODE_VALUE", "CODE"
+        raw, "DIAGNOSIS_CODE", "DIAGNOSISCODE", "COLUMN8", "CODE_VALUE", "CODE"
     )
     if source_value not in (None, ""):
         return source_value
@@ -134,7 +134,7 @@ def _claim_code(row: Any, raw: Mapping[str, Any]) -> Any:
 
 
 def _claim_system(row: Any, raw: Mapping[str, Any]) -> Any:
-    source_value = _case_value(raw, "DIAGNOSIS_TYPE", "COLUMN7", "CODE_SYSTEM")
+    source_value = _case_value(raw, "DIAGNOSIS_TYPE", "DIAGNOSISTYPE", "COLUMN7", "CODE_SYSTEM")
     if source_value not in (None, ""):
         return source_value
     return _case_value(row, "DIAGNOSIS_SYSTEM", "DIAGNOSIS_TYPE", "CODE_SYSTEM")
@@ -216,6 +216,9 @@ def _verdicts(router_rows: Sequence[Any]) -> list[dict[str, Any]]:
             ),
             "reason": _value(row, "explanation"),
             "parallel_routes": _plain(_value(row, "parallel_routes", [])),
+            "evaluation_mode": _value(row, "evaluation_mode", "STRICT"),
+            "provisional": bool(_value(row, "provisional", False)),
+            "relaxations": _plain(_value(row, "relaxations", [])),
         })
     return verdicts
 
@@ -231,7 +234,7 @@ def aggregate_attr_verdict(router_rows: Iterable[Any]) -> dict[str, Any]:
         row for row in router_rows
         if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
     ]
-    passing = [
+    strict_passing = [
         row for row in rows
         if str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
         and str(
@@ -243,6 +246,19 @@ def aggregate_attr_verdict(router_rows: Iterable[Any]) -> dict[str, Any]:
             or ""
         ).upper() in _SUSPICION_RANK
     ]
+    recall_passing = [
+        row for row in rows
+        if str(_value(row, "status", "")).upper() == "CLAIMS_RECALL_CANDIDATE"
+        and str(
+            _value(
+                row,
+                "suspicion_level",
+                suspicion_level(_value(row, "priority_class")),
+            )
+            or ""
+        ).upper() in _SUSPICION_RANK
+    ]
+    passing = strict_passing or recall_passing
     passing.sort(key=lambda row: (
         _SUSPICION_RANK[str(
             _value(
@@ -282,16 +298,27 @@ def aggregate_attr_verdict(router_rows: Iterable[Any]) -> dict[str, Any]:
             ).upper() == best_level
         ]
         return {
-            "status": "ATTR_SUSPICION",
+            "status": "ATTR_SUSPICION" if strict_passing else "ATTR_CLAIMS_RECALL_CANDIDATE",
             "result_route": "ATTR_EARLY_DETECTION_REVIEW",
             "suspicion_level": best_level,
             "passed_phenotypes": passed_phenotypes,
             "highest_suspicion_phenotypes": highest_phenotypes,
             "parallel_routes": parallel_routes,
+            "provisional": not bool(strict_passing),
+            "relaxations": list(dict.fromkeys(
+                str(reason)
+                for row in passing
+                for reason in (_value(row, "relaxations", ()) or ())
+                if reason
+            )),
             "reason": (
                 "ATTR early-detection criteria were met by "
                 + " and ".join(passed_phenotypes)
-                + "; the combined tier uses the highest phenotype suspicion."
+                + (
+                    "; the combined tier uses the highest phenotype suspicion."
+                    if strict_passing
+                    else "; claims-only assumptions require clinical review before strict promotion."
+                )
             ),
         }
     statuses = {str(_value(row, "status", "")).upper() for row in rows}
@@ -789,7 +816,7 @@ def build_patient_profile(
             str(_value(row, "matched_combination_id"))
             for row in patient_router
             if str(_value(row, "phenotype", "")).upper() in ATTR_PHENOTYPES
-            and str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
+            and str(_value(row, "status", "")).upper() in {"PHENOTYPE_PASS", "CLAIMS_RECALL_CANDIDATE"}
             and _value(row, "matched_combination_id") not in (None, "")
         }
     else:
@@ -860,7 +887,11 @@ def build_patient_profile(
         "run_id": run_id or next((str(_value(row, "run_id")) for row in patient_router if _value(row, "run_id") is not None), None),
         "patient_id": str(patient_id),
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "diagnosis_state": "SUSPICION_FLAGGED",
+        "diagnosis_state": (
+            "CLAIMS_RECALL_CANDIDATE"
+            if "CLAIMS_RECALL_CANDIDATE" in str(target_verdict.get("status", "")).upper()
+            else "SUSPICION_FLAGGED"
+        ),
         "demographics": _plain(dict(demographics or {})),
         "ehr": ehr,
         "medical_profile": {
@@ -884,6 +915,8 @@ def build_patient_profile(
             "highest_suspicion_phenotypes": target_verdict.get(
                 "highest_suspicion_phenotypes", [target]
             ),
+            "provisional": bool(target_verdict.get("provisional", False)),
+            "relaxations": _plain(target_verdict.get("relaxations", [])),
             "screening_only_not_diagnosis": True,
         },
         "clinical_rationale": {
@@ -963,7 +996,7 @@ def flagged_patient_ids(
     router_rows: Iterable[Any],
     *,
     phenotype: str,
-    statuses: Sequence[str] = ("PHENOTYPE_PASS",),
+    statuses: Sequence[str] = ("PHENOTYPE_PASS", "CLAIMS_RECALL_CANDIDATE"),
     priority_classes: Sequence[str] | None = None,
     suspicion_levels: Sequence[str] | None = ("HIGHEST_SUSPICION", "HIGH_SUSPICION"),
 ) -> list[str]:
@@ -1002,7 +1035,7 @@ def flagged_attr_patient_ids(
     output = []
     for patient_id in patient_ids:
         verdict = aggregate_attr_verdict(_patient(rows, patient_id))
-        if verdict["status"] != "ATTR_SUSPICION":
+        if verdict["status"] not in {"ATTR_SUSPICION", "ATTR_CLAIMS_RECALL_CANDIDATE"}:
             continue
         if accepted_levels is None or verdict["suspicion_level"] in accepted_levels:
             output.append(patient_id)
@@ -1022,7 +1055,7 @@ def flagged_al_detected_patient_ids(router_rows: Iterable[Any]) -> list[str]:
         patient_rows = _patient(rows, patient_id)
         al_pass = any(
             str(_value(row, "phenotype", "")).upper() == AL_PHENOTYPE
-            and str(_value(row, "status", "")).upper() == "PHENOTYPE_PASS"
+            and str(_value(row, "status", "")).upper() in {"PHENOTYPE_PASS", "CLAIMS_RECALL_CANDIDATE"}
             for row in patient_rows
         )
         if al_pass:

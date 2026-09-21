@@ -45,17 +45,17 @@ def test_active_profile_maps_sample_database_claim_columns() -> None:
 
     claim = config["tables"]["claim"]
     assert claim["name"] == "CLAIMS"
-    assert claim["columns"]["patient_id"] == "COLUMN0"
-    assert claim["columns"]["diagnosis_type"] == "COLUMN7"
-    assert claim["columns"]["diagnosis_code"] == "COLUMN8"
+    assert claim["columns"]["patient_id"] == "PATIENTID"
+    assert claim["columns"]["diagnosis_type"] == "DIAGNOSISTYPE"
+    assert claim["columns"]["diagnosis_code"] == "DIAGNOSISCODE"
     assert claim["required_columns"] == ("patient_id", "diagnosis_type", "diagnosis_code")
 
     events = expand_source_row(
         {
-            "COLUMN0": "member-1",
-            "COLUMN1": "visit-1",
-            "COLUMN7": "ICD-10-CM",
-            "COLUMN8": "E85.81",
+            "PATIENTID": "member-1",
+            "ENCOUNTERID": "visit-1",
+            "DIAGNOSISTYPE": "ICD-10-CM",
+            "DIAGNOSISCODE": "E85.81",
             "COLUMN19": "2026-01-02",
         },
         "claim",
@@ -151,7 +151,7 @@ def test_candidate_fetch_hydrates_profile_only_tables_without_enabling_detection
         def sql(self, text, params=None):
             self.sql_texts.append(text)
             if '"CLAIMS"' in text:
-                return Query([{"COLUMN0": "p1", "COLUMN8": "E85.81"}])
+                return Query([{"PATIENTID": "p1", "DIAGNOSISCODE": "E85.81"}])
             if '"LABS"' in text:
                 return Query([{"COLUMN0": "p1", "COLUMN4": "BNP"}])
             return Query([])
@@ -161,7 +161,7 @@ def test_candidate_fetch_hydrates_profile_only_tables_without_enabling_detection
         "tables": {
             "claim": {
                 "key": "claim", "name": "CLAIMS", "enabled": True,
-                "profile_enabled": True, "columns": {"patient_id": "COLUMN0"},
+                "profile_enabled": True, "columns": {"patient_id": "PATIENTID", "diagnosis_code": "DIAGNOSISCODE"},
             },
             "lab": {
                 "key": "lab", "name": "LABS", "enabled": False,
@@ -176,6 +176,6 @@ def test_candidate_fetch_hydrates_profile_only_tables_without_enabling_detection
         candidate_plan=[SimpleNamespace(sql="SELECT 'p1' AS PATIENT_ID", params=())],
     )
 
-    assert rows["claim"][0]["COLUMN8"] == "E85.81"
+    assert rows["claim"][0]["DIAGNOSISCODE"] == "E85.81"
     assert rows["lab"][0]["COLUMN4"] == "BNP"
     assert any('"LABS"' in sql for sql in session.sql_texts)

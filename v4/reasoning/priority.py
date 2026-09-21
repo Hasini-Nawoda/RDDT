@@ -35,15 +35,20 @@ def resolve_priority(config: Any, combination: Any, selected_witnesses: Iterable
     # The workbook's requirement order is the canonical pattern order.  Do
     # not sort tiers or derive a score.
     policies = [p for p in rows(config, "priority_policies") if str(value(p, "priority_policy_id", "")) == str(policy_id)]
-    fixed = [p for p in policies if str(value(p, "kind", value(p, "policy_kind", ""))).upper() == "FIXED"]
-    if fixed:
-        policy = fixed[0]
+    direct = [
+        p for p in policies
+        if str(value(p, "kind", value(p, "policy_kind", ""))).upper()
+        in {"FIXED", "NAMED_ROUTE"}
+    ]
+    if direct:
+        policy = direct[0]
+        kind = str(value(policy, "kind", value(policy, "policy_kind", "FIXED"))).upper()
         return {
             "priority_class": value(policy, "priority_class", value(policy, "class", None)),
             "policy_id": policy_id,
             "tier_pattern": tiers,
             "status": "TRUE",
-            "reason": "fixed workbook priority policy",
+            "reason": f"{kind.lower().replace('_', ' ')} workbook priority policy",
             "config_hash": value(config, "config_hash", None),
         }
     exact = [p for p in policies if _pattern(value(p, "tier_pattern", None)) == tiers]

@@ -10,6 +10,13 @@ from datetime import date, datetime
 from itertools import combinations
 from typing import Any, Iterable, Mapping
 
+from ..evaluation_policy import (
+    collect_relaxations,
+    is_claims_recall,
+    is_native_claim_code,
+    normalize_evaluation_mode,
+    provisional_copy,
+)
 from .reasoning_utils import (
     FALSE, TRUE, UNKNOWN, as_list, dedup_key, index_by, independent, lineage_set,
     norm_status, row_dict, rows, stable_id, tri_all, tri_any, tri_at_least, union_lineage,
@@ -31,34 +38,58 @@ def _qualifier_requirements(raw: Any) -> dict[str, str]:
     return out
 
 
-def _qualifies(evidence: Any, required: Any) -> str:
+def _qualifier_assessment(evidence: Any, required: Any) -> tuple[str, tuple[str, ...]]:
     req = _qualifier_requirements(required)
     if not req:
-        return TRUE
+        return TRUE, ()
     attrs = value(evidence, "attributes", {}) or {}
     statuses: list[str] = []
+    missing: list[str] = []
     for key, wanted in req.items():
         got = value(evidence, key, None)
         if got is None and isinstance(attrs, Mapping):
             got = attrs.get(key)
         if got is None:
             statuses.append(UNKNOWN)
+            missing.append(key)
         elif str(got).strip().lower() == str(wanted).strip().lower():
             statuses.append(TRUE)
         else:
             statuses.append(FALSE)
-    return tri_all(statuses)
+    return tri_all(statuses), tuple(missing)
 
 
-def _evidence_for_atom(evidence: Iterable[Any], atom_id: str, qualifier: Any = None) -> list[Any]:
+def _qualifies(evidence: Any, required: Any) -> str:
+    return _qualifier_assessment(evidence, required)[0]
+
+
+def _evidence_for_atom(
+    evidence: Iterable[Any],
+    atom_id: str,
+    qualifier: Any = None,
+    *,
+    evaluation_mode: str = "STRICT",
+) -> list[Any]:
     out: list[Any] = []
     for ev in evidence:
         if str(value(ev, "atom_id", value(ev, "ATOM_ID", ""))) != str(atom_id):
             continue
         status = norm_status(value(ev, "status", UNKNOWN))
-        q = _qualifies(ev, qualifier)
+        q, missing = _qualifier_assessment(ev, qualifier)
         if status == TRUE and q == TRUE:
             out.append(ev)
+        elif (
+            status == TRUE
+            and q == UNKNOWN
+            and missing
+            and is_claims_recall(evaluation_mode)
+            and is_native_claim_code(ev)
+        ):
+            out.append(provisional_copy(
+                ev,
+                *(f"MISSING_REQUIRED_QUALIFIER:{key}" for key in missing),
+                status=TRUE,
+            ))
         elif status == UNKNOWN or q == UNKNOWN:
             # A dataclass/object evidence row must also be converted to an
             # explicit UNKNOWN proxy. Returning the original TRUE object here
@@ -245,7 +276,12 @@ def _ordered_group_temporal_state(
     return TRUE if ordered else FALSE
 
 
-def _combine_group(group: Any, children: list[tuple[str, list[list[Any]], list[Any]]]) -> tuple[str, list[list[Any]], list[Any]]:
+def _combine_group(
+    group: Any,
+    children: list[tuple[str, list[list[Any]], list[Any]]],
+    *,
+    evaluation_mode: str = "STRICT",
+) -> tuple[str, list[list[Any]], list[Any]]:
     """Combine child alternatives without collapsing witness choices."""
     op = _group_operator(group)
     unknowns = [x for _, _, us in children for x in us]
@@ -298,6 +334,24 @@ def _combine_group(group: Any, children: list[tuple[str, list[list[Any]], list[A
         valid = [choice for choice in all_choices if valid_combo(choice)]
         if valid:
             return TRUE, _dedupe_witness_sets(valid), unknowns
+        if linked and is_claims_recall(evaluation_mode):
+            # Claim encounters can show that the configured codes occurred,
+            # but cannot always establish the rule's intended clinical-episode
+            # relationship. Preserve the code-supported route provisionally.
+            recall_choices = [
+                [
+                    provisional_copy(
+                        witness,
+                        "MISSING_REQUIRED_CLINICAL_EPISODE_LINKAGE",
+                        status=TRUE,
+                    )
+                    for witness in choice
+                ]
+                for choice in all_choices
+                if choice and all(is_native_claim_code(witness) for witness in choice)
+            ]
+            if recall_choices:
+                return TRUE, _dedupe_witness_sets(recall_choices), unknowns
         # Missing explicit linkage is uncertainty, not a negative finding.
         return UNKNOWN, [], unknowns
 
@@ -321,7 +375,15 @@ def _combine_group(group: Any, children: list[tuple[str, list[list[Any]], list[A
     return UNKNOWN, [], unknowns
 
 
-def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack: frozenset[str] = frozenset()) -> tuple[str, list[Any], list[Any], str, list[list[Any]]]:
+def _evaluate_signal_rule(
+    config: Any,
+    signal: Any,
+    evidence: list[Any],
+    _stack: frozenset[str] = frozenset(),
+    *,
+    evaluation_mode: str = "STRICT",
+) -> tuple[str, list[Any], list[Any], str, list[list[Any]]]:
+    evaluation_mode = normalize_evaluation_mode(evaluation_mode)
     sid = str(value(signal, "signal_id", ""))
     groups, members, rules = _rule_rows(config, sid)
     mappings = _mapping_for_signal(config, sid)
@@ -333,9 +395,26 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
         for mapping in mappings:
             if not _mapping_is_executable(mapping):
                 blocked = True
-                continue
+                if not is_claims_recall(evaluation_mode):
+                    continue
             aid = value(mapping, "atom_id", "")
-            candidates.extend(_evidence_for_atom(evidence, str(aid), value(mapping, "required_qualifiers", None)))
+            mapped = _evidence_for_atom(
+                evidence,
+                str(aid),
+                value(mapping, "required_qualifiers", None),
+                evaluation_mode=evaluation_mode,
+            )
+            if not _mapping_is_executable(mapping) and is_claims_recall(evaluation_mode):
+                mapped = [
+                    provisional_copy(
+                        item,
+                        "NON_EXECUTABLE_OR_SUPPORT_ONLY_SIGNAL_MAPPING",
+                        status=TRUE,
+                    )
+                    for item in mapped
+                    if is_native_claim_code(item)
+                ]
+            candidates.extend(mapped)
         status = tri_any(norm_status(value(c, "status", UNKNOWN)) for c in candidates)
         if not candidates and blocked:
             status = UNKNOWN
@@ -380,7 +459,26 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
                 # In a structured rule, Signal_Rule_Members is authoritative.
                 # Can_Fire_From_This_Mapping controls simple direct mappings;
                 # it must not suppress an atom explicitly used inside an AST.
-                evs = _evidence_for_atom(evidence, str(ident), value(member, "required_attributes", None))
+                evs = _evidence_for_atom(
+                    evidence,
+                    str(ident),
+                    value(member, "required_attributes", None),
+                    evaluation_mode=evaluation_mode,
+                )
+                if is_claims_recall(evaluation_mode):
+                    member_mappings = [
+                        mapping for mapping in mappings
+                        if str(value(mapping, "atom_id", "")) == str(ident)
+                    ]
+                    if member_mappings and not any(_mapping_is_executable(mapping) for mapping in member_mappings):
+                        evs = [
+                            provisional_copy(
+                                item,
+                                "NON_EXECUTABLE_OR_SUPPORT_ONLY_SIGNAL_MAPPING",
+                                status=TRUE,
+                            ) if is_native_claim_code(item) and norm_status(value(item, "status", UNKNOWN)) == TRUE else item
+                            for item in evs
+                        ]
                 ts = [e for e in evs if norm_status(value(e, "status", UNKNOWN)) == TRUE]
                 us = [e for e in evs if norm_status(value(e, "status", UNKNOWN)) == UNKNOWN]
                 sets = [[e] for e in ts]
@@ -394,12 +492,21 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
                     sets = [[e] for e in ts]
                 elif str(ident) in signal_by_id:
                     child = signal_by_id[str(ident)]
-                    st, support, us, _, child_sets = _evaluate_signal_rule(config, child, evidence, _stack | {sid})
+                    st, support, us, _, child_sets = _evaluate_signal_rule(
+                        config,
+                        child,
+                        evidence,
+                        _stack | {sid},
+                        evaluation_mode=evaluation_mode,
+                    )
                     child_exec = str(value(child, "runtime_executability", "EXECUTABLE") or "EXECUTABLE").upper()
                     child_action = str(value(child, "config_action", "POSITIVE_SIGNAL") or "POSITIVE_SIGNAL").upper()
                     child_enabled = value(child, "enabled", True)
                     if (
-                        child_exec in {"NON_EXECUTABLE", "NON_FIRING", "BLOCKED"}
+                        (
+                            child_exec in {"NON_EXECUTABLE", "NON_FIRING", "BLOCKED"}
+                            and not is_claims_recall(evaluation_mode)
+                        )
                         or child_action != "POSITIVE_SIGNAL"
                         or child_enabled is False
                         or str(child_enabled).upper() == "FALSE"
@@ -412,7 +519,7 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
                 else:
                     ts, us, sets = [], [{}], []
             evaluated.append((str(ident), sets, us))
-        return _combine_group(group, evaluated)
+        return _combine_group(group, evaluated, evaluation_mode=evaluation_mode)
 
     root_group_id = str(value(root, "group_id", ""))
     status, witness_sets, unknown = eval_group(root_group_id)
@@ -437,12 +544,43 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
             if temporal_state == TRUE or (optional_when_missing and temporal_state == UNKNOWN)
         ]
         if accepted:
+            if is_claims_recall(evaluation_mode):
+                accepted = [
+                    [
+                        provisional_copy(
+                            item,
+                            "MISSING_REQUIRED_TEMPORAL_ORDER",
+                            status=TRUE,
+                        ) if temporal_state == UNKNOWN and is_native_claim_code(item) else item
+                        for item in witness_set
+                    ]
+                    for witness_set, temporal_state in zip(witness_sets, temporal_states)
+                    if temporal_state == TRUE or (optional_when_missing and temporal_state == UNKNOWN)
+                ]
             witness_sets = accepted
             if any(state == UNKNOWN for state in temporal_states) and optional_when_missing:
                 reason = "workbook signal rule; chronology unavailable but optional"
         elif any(state == UNKNOWN for state in temporal_states):
-            status, witness_sets, unknown = UNKNOWN, [], [item for witness_set in witness_sets for item in witness_set]
-            reason = "INCOMPLETE_OR_UNKNOWN_TEMPORAL_EVIDENCE"
+            recall_sets = [
+                [
+                    provisional_copy(
+                        item,
+                        "MISSING_REQUIRED_TEMPORAL_ORDER",
+                        status=TRUE,
+                    )
+                    for item in witness_set
+                ]
+                for witness_set, temporal_state in zip(witness_sets, temporal_states)
+                if temporal_state == UNKNOWN
+                and witness_set
+                and all(is_native_claim_code(item) for item in witness_set)
+            ] if is_claims_recall(evaluation_mode) else []
+            if recall_sets:
+                witness_sets = recall_sets
+                reason = "CLAIMS_RECALL_PROVISIONAL_TEMPORAL_EVIDENCE"
+            else:
+                status, witness_sets, unknown = UNKNOWN, [], [item for witness_set in witness_sets for item in witness_set]
+                reason = "INCOMPLETE_OR_UNKNOWN_TEMPORAL_EVIDENCE"
         else:
             status, witness_sets = FALSE, []
             reason = "TEMPORAL_ORDER_NOT_SATISFIED"
@@ -450,13 +588,21 @@ def _evaluate_signal_rule(config: Any, signal: Any, evidence: list[Any], _stack:
     return status, support, unknown, reason, witness_sets
 
 
-def evaluate_signals(config: Any, evidence: Iterable[Any], *, patient_id: Any = None, phenotype: str | None = None) -> list[dict[str, Any]]:
+def evaluate_signals(
+    config: Any,
+    evidence: Iterable[Any],
+    *,
+    patient_id: Any = None,
+    phenotype: str | None = None,
+    evaluation_mode: str = "STRICT",
+) -> list[dict[str, Any]]:
     """Evaluate all enabled configured signals for one patient.
 
     ``evidence`` is expected to be qualified evidence events.  The function is
     pure and returns ordinary dictionaries so it can be used by Snowpark or by
     the reference engine.
     """
+    evaluation_mode = normalize_evaluation_mode(evaluation_mode)
     ev = list(evidence)
     if patient_id is not None:
         ev = [e for e in ev if value(e, "patient_id", patient_id) == patient_id]
@@ -466,13 +612,45 @@ def evaluate_signals(config: Any, evidence: Iterable[Any], *, patient_id: Any = 
         if enabled is False or str(enabled).upper() == "FALSE":
             continue
         sid = str(value(signal, "signal_id", ""))
-        status, support, unknown, reason, witness_sets = _evaluate_signal_rule(config, signal, ev)
+        status, support, unknown, reason, witness_sets = _evaluate_signal_rule(
+            config,
+            signal,
+            ev,
+            evaluation_mode=evaluation_mode,
+        )
         run_exec = str(value(signal, "runtime_executability", "EXECUTABLE") or "EXECUTABLE").upper()
         if run_exec in {"NON_EXECUTABLE", "NON_FIRING", "BLOCKED"}:
-            status = UNKNOWN
-            reason = f"CONFIG_GAP:{run_exec}"
-            support = []
-            witness_sets = []
+            if (
+                is_claims_recall(evaluation_mode)
+                and status == TRUE
+                and support
+                and all(is_native_claim_code(item) for item in support)
+            ):
+                support = [
+                    provisional_copy(
+                        item,
+                        f"SIGNAL_RUNTIME_RESTRICTION:{run_exec}",
+                        status=TRUE,
+                    )
+                    for item in support
+                ]
+                witness_sets = [
+                    [
+                        provisional_copy(
+                            item,
+                            f"SIGNAL_RUNTIME_RESTRICTION:{run_exec}",
+                            status=TRUE,
+                        ) if is_native_claim_code(item) else item
+                        for item in witness_set
+                    ]
+                    for witness_set in witness_sets
+                ]
+                reason = "CLAIMS_RECALL_PROVISIONAL_RUNTIME_RESTRICTION"
+            else:
+                status = UNKNOWN
+                reason = f"CONFIG_GAP:{run_exec}"
+                support = []
+                witness_sets = []
         if status == TRUE:
             # A configured blocker is evaluated only when represented as a
             # qualified blocker evidence event.  No clinical fallback occurs.
@@ -502,6 +680,9 @@ def evaluate_signals(config: Any, evidence: Iterable[Any], *, patient_id: Any = 
             "supporting_witness_sets": tuple(tuple(str(value(x, "evidence_id", stable_id(sid, i))) for i, x in enumerate(wset)) for wset in witness_sets),
             "explanation": reason,
             "config_hash": _config_hash(config),
+            "evaluation_mode": evaluation_mode,
+            "provisional": bool(collect_relaxations(support)),
+            "relaxations": collect_relaxations(support),
         }
         out.append(row)
     return out

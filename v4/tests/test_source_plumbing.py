@@ -32,8 +32,8 @@ def test_default_source_config_is_claim_only_and_exposes_logical_mapping() -> No
     assert enabled == ["claim"]
     claim = config["tables"]["claim"]
     assert claim["name"] == "CLAIMS"
-    assert claim["columns"]["patient_id"] == "COLUMN0"
-    assert claim["columns"]["diagnosis_code"] == "COLUMN8"
+    assert claim["columns"]["patient_id"] == "PATIENTID"
+    assert claim["columns"]["diagnosis_code"] == "DIAGNOSISCODE"
     assert "diagnosis_code" in claim["required_columns"]
 
 
@@ -116,7 +116,7 @@ def test_claim_only_toggle_limits_broad_text_candidate_plan() -> None:
 
 def test_disabled_source_tables_are_not_emitted_into_pipeline_events() -> None:
     rows = {
-        "claim": [{"COLUMN0": "p1", "COLUMN7": "ICD10", "COLUMN8": "I10"}],
+        "claim": [{"PATIENTID": "p1", "DIAGNOSISTYPE": "ICD10", "DIAGNOSISCODE": "I10"}],
         "lab": [{"PATIENTID": "p1", "OBSERVATIONIDENTIFIER": "14957-5"}],
     }
     events = list(

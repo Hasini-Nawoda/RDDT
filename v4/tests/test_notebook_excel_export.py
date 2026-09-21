@@ -17,6 +17,7 @@ from notebook_excel_export import (  # noqa: E402
     export_notebook_results,
     extract_sql_cells,
     resolve_placeholders,
+    sanitize_sql,
 )
 import notebook_excel_export as exporter  # noqa: E402
 
@@ -51,6 +52,11 @@ class _Session:
         return _Frame([(1,), (2,)], ("VALUE",))
 
 
+def test_sanitize_sql_strips_notebook_cell_magics() -> None:
+    assert sanitize_sql("%%sql -r dataframe_1\nSELECT 1;") == "SELECT 1;"
+    assert sanitize_sql("%sql\nDESCRIBE TABLE T;") == "DESCRIBE TABLE T;"
+
+
 def test_extracts_sql_in_order_and_resolves_both_placeholder_forms(tmp_path):
     path = tmp_path / "demo.ipynb"
     path.write_text(
@@ -60,8 +66,8 @@ def test_extracts_sql_in_order_and_resolves_both_placeholder_forms(tmp_path):
                     {"cell_type": "code", "source": ["x = 1"]},
                     {
                         "cell_type": "code",
-                        "metadata": {"name": "Named query"},
-                        "source": ["SELECT * FROM {{TABLE}} WHERE X = {VALUE};"],
+                        "metadata": {"language": "sql", "name": "Named query"},
+                        "source": ["%%sql -r dataframe_1\n", "SELECT * FROM {{TABLE}} WHERE X = {VALUE};"],
                     },
                 ]
             }

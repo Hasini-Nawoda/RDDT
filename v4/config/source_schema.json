@@ -52,16 +52,16 @@
           "profile_enabled": true,
           "profile_required": true,
           "columns": {
-            "patient_id": "COLUMN0",
-            "encounter_id": "COLUMN1",
-            "claim_no": "COLUMN2",
-            "claim_line_no": "COLUMN3",
-            "claim_status": "COLUMN4",
-          "service_from_date": "COLUMN5",
-          "service_to_date": "COLUMN6",
-            "diagnosis_type": "COLUMN7",
-            "diagnosis_code": "COLUMN8",
-            "provider_npi": "COLUMN9",
+            "patient_id": "PATIENTID",
+            "encounter_id": "ENCOUNTERID",
+            "claim_no": "CLAIMNO",
+            "claim_line_no": "CLAIMLINENO",
+            "claim_status": "CLAIMSTATUS",
+            "service_from_date": "COLUMN5",
+            "service_to_date": "COLUMN6",
+            "diagnosis_type": "DIAGNOSISTYPE",
+            "diagnosis_code": "DIAGNOSISCODE",
+            "provider_npi": "PROVIDERNPI",
             "provider_name": "COLUMN10",
             "provider_type": "COLUMN11",
             "specialty_code": "COLUMN12",
@@ -71,8 +71,8 @@
             "rev_code": "COLUMN16",
             "other_diagnosis_9": "COLUMN17",
             "other_diagnosis_10": "COLUMN18",
-          "from_date": "COLUMN19",
-          "to_date": "COLUMN20",
+            "from_date": "COLUMN19",
+            "to_date": "COLUMN20",
             "clinical_notes": "COLUMN21"
           },
           "required_columns": [
@@ -80,7 +80,7 @@
             "diagnosis_type",
             "diagnosis_code"
           ],
-        "mapping_notes": "CLAIMS exposes generic COLUMN0-COLUMN21 names. The positional mapping follows the supplied sample values and legacy claim order: COLUMN0 is the repeated GUID member identifier; COLUMN7/COLUMN8 are ICD-10-CM plus diagnosis code; COLUMN19/COLUMN20 are the pipeline encounter-window dates; COLUMN5/COLUMN6 are retained as service-date fields. Verify the remaining positional meanings against the warehouse data dictionary before enabling dependent fields."
+          "mapping_notes": "CLAIMS uses a hybrid warehouse layout: core identifiers and diagnosis fields are named (PATIENTID, ENCOUNTERID, CLAIMNO, CLAIMLINENO, CLAIMSTATUS, DIAGNOSISTYPE, DIAGNOSISCODE, PROVIDERNPI); dates, provider detail, DRG/REV, secondary diagnoses, and notes remain COLUMN5-COLUMN21 until the warehouse owner relabels them."
         },
         "lab": {
           "key": "lab",

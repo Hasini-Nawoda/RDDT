@@ -18,7 +18,13 @@ does not read Excel or run the build tooling.
   sources. It keeps the profile in notebook memory and creates no Snowflake
   table, view, or stage object.
 - The confirmed-only run requires no event date, ICD-9, NLP, spaCy, or
-  medSpaCy. Blank CLAIMS dates block only the later suspicion pipeline.
+  medSpaCy. The later suspicion pipeline defaults to strict evidence handling;
+  its explicit `CLAIMS_RECALL` mode retains exact claim-code routes as
+  provisional review candidates when dates or clinical context are absent.
+- When `encounter` is enabled for the later all-table run, a claim that lacks
+  its own date can inherit one only from a unique match on both patient and
+  encounter ID. Conflicting encounter dates remain unknown; profile-only
+  encounter rows never affect a claims-only run.
 - Source-table selection is config-driven. The checked-in
   `config/source_schema.json` currently algorithm-enables only `claim`.
   `profile_enabled` independently controls whether a table contributes raw
@@ -75,6 +81,11 @@ The run returns:
 
 - stage-level counts and the pinned configuration hash;
 - `run.router_output` for workspace-only result review and download;
+- `run.patient_verdicts`, a compact population-wide ledger with ATTRv,
+  ATTRwt, combined ATTR, and AL status for every patient in the enabled source
+  scope; patients outside candidate retrieval are explicitly labelled
+  `NO_CONFIGURED_CANDIDATE_EVIDENCE`, not silently omitted or called disease
+  negative;
 - `run.known_attr_patients` and `run.known_al_patients` for confirmed patients
   removed before early-detection scoring;
 - phenotype verdict slots including ATTRv, ATTRwt, and AL;
@@ -84,6 +95,16 @@ The run returns:
   concurrent ATTR passes, plus a separate known-AL exclusion route;
 - local-runtime JSONL and CSV exports for flagged patients. Both formats carry
   the ATTRv, ATTRwt, and AL verdicts plus the single combined ATTR tier.
+
+For a claims-only high-recall run, call the same entry point with
+`evaluation_mode="CLAIMS_RECALL"`. A route that depends on unavailable dates,
+NLP/context, or longitudinal qualifiers is emitted as
+`CLAIMS_RECALL_CANDIDATE`, never as an ordinary `PHENOTYPE_PASS`. Its evidence,
+signals, combinations, router row, and patient profile carry the exact
+`relaxations` used. The default `evaluation_mode="STRICT"` is unchanged for
+the all-table run. See
+`docs/CLAIMS_ONLY_RECALL_IMPLEMENTATION_PLAN.md` for the audited policy and
+non-relaxable safeguards.
 
 When `profile_output_dir` is supplied, local outputs are organized as:
 
@@ -159,6 +180,8 @@ parity on warehouse data.
 - `reasoning/signal_engine.py` through `reasoning/router.py`: generic clinical reasoning stages.
 - `output/patient_profile.py`: six-verdict medical profile, combined ATTR risk,
   and trace-safe exports.
+- `output/patient_verdict.py`: population-wide ATTR/AL verdict ledger,
+  including confirmed exclusions and non-candidate patients.
 - `pipeline.py`: end-to-end orchestration.
 - `pipeline_steps/step_01_...step_11_...`: named runtime stages.
 
