@@ -1,0 +1,3684 @@
+{
+  "source_specialty": "NEUROLOGY",
+  "atoms": [
+    {
+      "atom_id": "abnormal_cutaneous_silent_period",
+      "preferred_name": "Abnormal cutaneous silent period",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Supports small-fiber dysfunction but is not ATTRv-specific; use only as context with a compatible hereditary, neuropathic, or autonomic phenotype.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "95999",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supports small-fiber dysfunction but is not ATTRv-specific; use only as context with a compatible hereditary, neuropathic, or autonomic phenotype.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "absent cutaneous silent period",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prolonged CSP latency",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "anhidrosis",
+      "preferred_name": "Anhidrosis / abnormal sweating",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match absent/reduced-sweating terminology only. Generic 'sweating abnormality', hyperhidrosis, or heat intolerance alone must not create an anhidrosis atom.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "absent sweating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anhidrosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "decreased sweating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diminished sweating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "does not sweat",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypohidrosis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced sweating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to sweat",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "axonal_pattern_on_emg",
+      "preferred_name": "Axonal pattern on nerve conduction study / EMG",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require electrodiagnostic/NCS/EMG wording or explicit amplitude findings interpreted as axonal. Generic 'axonal', 'length-dependent', or stocking-glove language alone is insufficient.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "abnormal electromyography",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "abnormal nerve conduction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "absent sural response consistent with axonal neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal pattern on EMG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal pattern on NCS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal pattern on nerve conduction study",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "electrodiagnostic axonal pattern",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "electrodiagnostic evidence of axonal neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "electromyography",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "electromyography study",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low CMAP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low SNAP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "needle electromyography",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve conduction study",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve conduction study report",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve conduction velocity",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neurology note",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced CMAP amplitudes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced SNAP amplitudes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced compound muscle action potential",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced sensory nerve action potential",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "bulbar_neuropathy_symptoms",
+      "preferred_name": "Unexplained bulbar neuropathy symptoms",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Bulbar symptoms are not a core stand-alone ATTRv red flag. Require progressive/unexplained symptoms plus independent ATTR-compatible neurologic or hereditary evidence.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Unexplained bulbar neuropathy symptoms",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bulbar neuropathy symptoms",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bulbar palsy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bulbar symptoms",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "bulbar weakness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "disorder of cranial nerve",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "burning_feet",
+      "preferred_name": "Burning feet",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Grierson-Gopalan syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning feet",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning feet syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning sensation in lower limb",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning sensation of foot",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning soles",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "burning worse at night",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "feet burning",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "feet on fire",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hot feet",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "charcot_arthropathy",
+      "preferred_name": "charcot arthropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Charcot neuropathic arthropathy",
+      "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L97.409",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.411",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.412",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.413",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.414",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.415",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.416",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.418",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.419",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.421",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.422",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.423",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.424",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.425",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.426",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.428",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.429",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.501",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.502",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.503",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.504",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.505",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.506",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.508",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.509",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.511",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.512",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.513",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.514",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.515",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.516",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.518",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.519",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.521",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.522",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.523",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.524",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.525",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.526",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.528",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.529",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.671",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.672",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "707.14",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "707.15",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "713.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Charcot arthropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Charcot foot",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Charcot joint",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neuroarthropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neuropathic arthropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "cidp",
+      "preferred_name": "Chronic inflammatory demyelinating polyneuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Chronic inflammatory demyelinating polyradiculoneuropathy",
+      "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "96365",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96366",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96367",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96368",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "357.81",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "51689008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "CIDP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IVIG J-codes: product-specific, verify local formulary",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic demyelinating polyradiculoneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic inflammatory demyelinating neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic inflammatory demyelinating polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "demyelinating polyradiculoneuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "demyelinating_emg_pattern",
+      "preferred_name": "Demyelinating pattern on EMG/NCS",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Demyelinating pattern on EMG/NCS",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "conduction block",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "demyelinating",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "demyelinating emg pattern",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "electromyography",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve conduction study",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve conduction study report",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prolonged distal latency",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "slowed conduction velocity",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "temporal dispersion",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "dysautonomia",
+      "preferred_name": "Autonomic dysfunction / dysautonomia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "93660",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G90.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "337.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "autonomic dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic nervous system dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysautonomia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "generalized autonomic failure",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "elevated_nfl",
+      "preferred_name": "Elevated / rising neurofilament light chain",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit elevated/increased/rising neurofilament-light-chain wording. A bare NfL test/result mention must not create an elevated-NfL atom.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "elevated NfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated neurofilament light chain",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated sNfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "high NfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased NfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased neurofilament light chain",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "increased sNfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neurofilament light chain elevated",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rising NfL",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rising neurofilament light chain",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rising sNfL",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "erectile_dysfunction",
+      "preferred_name": "erectile dysfunction",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Erectile dysfunction",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "N52.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "607.84",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "ED",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "erectile dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "impotence",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to achieve erection",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "gastroparesis",
+      "preferred_name": "Gastroparesis / delayed gastric emptying",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78264",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "78265",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "78266",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R68.81",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R11.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "536.3",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "787.01",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "diabetic gastroparesis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "gastric stasis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "gastroparesis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "retained food at endoscopy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "retained food in stomach",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "retained gastric contents",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "gi_dysmotility",
+      "preferred_name": "Unexplained gastrointestinal dysmotility",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Gastrointestinal dysmotility",
+      "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R19.7",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K59.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K59.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "K59.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "564.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "564.00",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "GI dysmotility",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic GI dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic gastrointestinal dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic intestinal pseudo-obstruction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dysmotility",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "gastrointestinal dysmotility",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "intestinal dysmotility",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "intestinal pseudo-obstruction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "slow transit",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "slow-transit dysmotility",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "immunotherapy_exposure",
+      "preferred_name": "immunotherapy exposure",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "IVIG / corticosteroid / immunotherapy exposure",
+      "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "96365",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96366",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96367",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "96368",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "357.81",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "51689008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "Gamunex",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IVIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IVIG J-codes: product-specific, verify local formulary",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Privigen",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "SCIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "immune globulin infusion",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "immunoglobulin infusion",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "intravenous immunoglobulin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "methylprednisolone",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plasma exchange",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plasmapheresis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "prednisone",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rituximab",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "subcutaneous immunoglobulin",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "immunotherapy_nonresponse",
+      "preferred_name": "Poor or absent response to IVIG / immunotherapy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Only interpret as a CIDP-misdiagnosis red flag after an adequate therapeutic trial. Stopping treatment for adverse effects or inadequate exposure is not nonresponse.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "IVIG discontinued for lack of efficacy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Poor or absent response to IVIG / immunotherapy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "absent response to that treatment course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "absent response to this treatment course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "continued to progress despite",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "did not improve with",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "failed IVIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "failed immunotherapy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "immunotherapy nonresponse",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lack of improvement",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lack of response",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lack of response to that course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lack of response to this course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "no response to IVIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "no response to that course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "no response to this course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nonresponse to IVIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "objective lack of response",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "objective lack of response to that course",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "refractory to IVIG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "refractory to immunotherapy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "steroid nonresponse",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "treatment-resistant CIDP",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "mibg_cardiac_denervation",
+      "preferred_name": "Cardiac sympathetic denervation on 123I-MIBG",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Cardiac sympathetic denervation is not ATTRv-specific; retain as context-only evidence in a compatible hereditary/autonomic/cardiac phenotype.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "78299",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Cardiac sympathetic denervation is not ATTRv-specific; retain as context-only evidence in a compatible hereditary/autonomic/cardiac phenotype.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "cardiac sympathetic denervation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sympathetic denervation",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "mild_sensory_polyneuropathy",
+      "preferred_name": "Mild-to-moderate length-dependent sensory polyneuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Mild sensory-predominant length-dependent polyneuropathy compatible with ATTRwt",
+      "source_specialty": "NEUROLOGY",
+      "source_subdomain": "neuro",
+      "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "95907",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95908",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95909",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95910",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95911",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95912",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95913",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95885",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95886",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "13694005",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "789588003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "1155933006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "mild sensory neuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "sensory polyneuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "numbness in the feet",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "mild axonal neuropathy",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "length-dependent sensory loss",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "mr_neurography_abnormal",
+      "preferred_name": "MR neurography abnormalities of peripheral nerve or plexus",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "MR neurography abnormality of peripheral nerve or plexus",
+      "context_guard": "Supportive imaging only. Require specialist interpretation in an unexplained neuropathy context and consider compressive, inflammatory, infiltrative, and hereditary alternatives.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "72195",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supportive imaging only. Require specialist interpretation in an unexplained neuropathy context and consider compressive, inflammatory, infiltrative, and hereditary alternatives.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "72196",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supportive imaging only. Require specialist interpretation in an unexplained neuropathy context and consider compressive, inflammatory, infiltrative, and hereditary alternatives.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "72197",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Supportive imaging only. Require specialist interpretation in an unexplained neuropathy context and consider compressive, inflammatory, infiltrative, and hereditary alternatives.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "lumbosacral plexus abnormality",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve MRI",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve hypertrophy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plexus enlargement",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sciatic nerve T2 hyperintensity",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "nerve_ultrasound_enlargement",
+      "preferred_name": "Nerve ultrasound proximal enlargement",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Nerve ultrasound showing proximal nerve/plexus enlargement",
+      "context_guard": "Require explicit nerve enlargement/increased cross-sectional area on ultrasound. Merely mentioning a nerve-ultrasound study does not establish enlargement.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "76881",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit nerve enlargement/increased cross-sectional area on ultrasound. Merely mentioning a nerve-ultrasound study does not establish enlargement.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "76882",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit nerve enlargement/increased cross-sectional area on ultrasound. Merely mentioning a nerve-ultrasound study does not establish enlargement.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "enlarged nerve on ultrasound",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "high-resolution nerve ultrasound shows enlargement",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve enlargement on ultrasound",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "nerve hypertrophy on ultrasound",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ultrasound shows nerve enlargement",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "neurogenic_bladder",
+      "preferred_name": "neurogenic bladder",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Neurogenic bladder / neuromuscular bladder dysfunction",
+      "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "51728",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "51729",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N31.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R33.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R32",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "788.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "atonic bladder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autonomic bladder dysfunction",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "detrusor areflexia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neurogenic bladder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neurogenic urinary bladder",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "orthostatic_intolerance",
+      "preferred_name": "orthostatic intolerance",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Orthostatic hypotension / intolerance; Orthostatic hypotension / recurrent orthostatic intolerance",
+      "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "93660",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G90.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "458.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "337.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "28651003",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "dizziness on standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lightheaded on standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "lightheadedness on standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "near-syncope on standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "orthostatic intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "postural intolerance",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "presyncope on standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "symptoms when standing",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to tolerate standing",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "pain_temperature_loss",
+      "preferred_name": "Impaired pain and temperature sensation",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Pain/temperature loss can support early ATTRv small-fiber disease even when pain is absent, but for V04 it should be progressive and length-dependent unless corroborated by other compatible small-fiber evidence.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Impaired pain and temperature sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "analgesia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "decreased pinprick",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypoalgesia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypoesthesia of skin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "impaired pain sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "impaired temperature sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "impaired thermal sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "intact vibration",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "normal vibration sense",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "other disturbances of skin sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pain and temperature loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pain temperature loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced pinprick",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced sensation to pinprick",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "thermal hypoesthesia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "thermanesthesia",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "plantar_ulcer",
+      "preferred_name": "plantar ulcer",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Painless plantar ulcer / neuropathic foot ulcer",
+      "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L97.409",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.411",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.412",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.413",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.414",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.415",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.416",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.418",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.419",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.421",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.422",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.423",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.424",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.425",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.426",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.428",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.429",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.501",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.502",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.503",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.504",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.505",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.506",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.508",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.509",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.511",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.512",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.513",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.514",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.515",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.516",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.518",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.519",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.521",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.522",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.523",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.524",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.525",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.526",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.528",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.529",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.671",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.672",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "707.14",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "707.15",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "713.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "did not feel the foot injury",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neuropathic foot ulcer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "neuropathic plantar ulcer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "painless foot ulcer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "painless plantar ulcer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plantar foot ulcer",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "plantar ulcer",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "polyneuropathy",
+      "preferred_name": "Polyneuropathy / peripheral neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Peripheral polyneuropathy. For ATTRv screening, generic neuropathy evidence must be qualified by phenotype (for example progressive, length-dependent, axonal and/or sensorimotor) before satisfying a high-specificity signal.",
+      "context_guard": "Generic or unspecified neuropathy is nonspecific. Do not infer ATTR-compatible neuropathy from diabetes codes, autonomic terms, cardiac terms, or a procedure code alone.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "axonal polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "axonal sensorimotor neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "distal symmetric polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "length-dependent axonal sensorimotor polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "length-dependent neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "peripheral neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "progressive polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sensorimotor neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "positive_autoantibody",
+      "preferred_name": "Positive autoantibody result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "A positive autoantibody alone is not a sufficient alternative diagnosis. Require clinical relevance and a convincing inflammatory neuropathy phenotype.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "ANA",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ANA positive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ANCA positive",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Positive autoantibody result",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anti-MAG",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "anti-neutrophil cytoplasmic antibody",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "antinuclear antibody",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "autoantibody detected",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "myelin associated glycoprotein antibody",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "positive ANA",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "positive autoantibody",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "reduced_ienfd",
+      "preferred_name": "Reduced intraepidermal nerve-fiber density on skin biopsy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Require explicit reduced/decreased intraepidermal nerve-fiber density or equivalent skin-biopsy wording. QST, QSART, and PGP9.5 mention alone do not establish reduced IENFD.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "decreased IENFD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "decreased intraepidermal nerve fiber density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low IENFD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "low intraepidermal nerve fiber density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced IENFD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced epidermal nerve fiber density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced intraepidermal nerve fiber density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced intraepidermal nerve-fiber density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced nerve fibre density",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "skin biopsy shows reduced nerve fiber density",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "sfn",
+      "preferred_name": "Small-fiber neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "88305",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "95923",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "356.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "782.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "709489006",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "SFN",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "length-dependent small fibre neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "length-dependent small-fiber neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small fiber neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small fibre neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small fibre predominant neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small-fiber neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small-fiber predominant neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "small-fibre neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "sudoscan_reduced_esc",
+      "preferred_name": "Reduced electrochemical skin conductance on SUDOSCAN",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Reduced electrochemical skin conductance (SUDOSCAN)",
+      "context_guard": "Reduced electrochemical skin conductance is supportive of sudomotor/small-fiber dysfunction but is not ATTRv-specific; require a compatible carrier or clinical phenotype.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "reduced foot ESC",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "trophic_change",
+      "preferred_name": "trophic change",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Trophic foot / skin changes",
+      "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L97.409",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.411",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.412",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.413",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.414",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.415",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.416",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.418",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.419",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.421",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.422",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.423",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.424",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.425",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.426",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.428",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.429",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.501",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.502",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.503",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.504",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.505",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.506",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.508",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.509",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.511",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.512",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.513",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.514",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.515",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.516",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.518",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.519",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.521",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.522",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.523",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.524",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.525",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.526",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.528",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "L97.529",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.671",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "M14.672",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "707.14",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "707.15",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "713.5",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "brittle nails",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dry cracked skin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hair loss on feet",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "loss of hair on lower legs",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "shiny skin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "thickened nails",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trophic changes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trophic foot changes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "trophic skin changes",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "urinary_incontinence",
+      "preferred_name": "urinary incontinence",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Urinary incontinence",
+      "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "51728",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "51729",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N31.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R33.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R32",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "788.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "bladder leakage",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "leaking urine",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "overflow incontinence",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "urge incontinence",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "urinary incontinence",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "urine leakage",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "urinary_retention",
+      "preferred_name": "urinary retention",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Urinary retention",
+      "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "51728",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "51729",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "N31.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R33.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R32",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "596.54",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "788.30",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "cannot empty bladder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated post-void residual",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "high PVR",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "high post-void residual",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "incomplete bladder emptying",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "intermittent catheterization for retention",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "self-catheterisation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "self-catheterization",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "unable to empty bladder",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "urinary retention",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v02_competing_neuropathy",
+      "preferred_name": "Competing causes of axonal polyneuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "B12 deficiency",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Competing causes of axonal polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alcohol",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alcoholic polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chemotherapy-induced",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chemotherapy-induced peripheral neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "drug-induced polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "polyneuropathy in diseases classified elsewhere",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "uremic",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "uremic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "v02 competing neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitamin B12 deficiency neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v04_competing_neuropathy",
+      "preferred_name": "Competing causes of painful small-fiber neuropathy",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "B12 deficiency",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Competing causes of painful small-fiber neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alcohol",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "alcoholic polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chemotherapy-induced",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chemotherapy-induced peripheral neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic polyneuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "hypothyroid",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "painful diabetic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "v04 competing neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitamin B12 deficiency neuropathy",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "v05_competing_dysautonomia",
+      "preferred_name": "Competing causes of dysautonomia",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Competing causes of dysautonomia",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "MSA",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Parkinson",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Parkinson disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetes with diabetic autonomic (poly)neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "diabetic autonomic neuropathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "medication-induced",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "multiple system atrophy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "pure autonomic failure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "v05 competing dysautonomia",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "sensory_loss",
+      "preferred_name": "Sensory loss",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "source_type": "CLINICAL",
+      "source_specialty": "NEUROLOGY",
+      "source_subdomain": "neuro",
+      "clinical_meaning": "Documented peripheral sensory loss on examination/history.",
+      "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R20.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.1",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.8",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "R20.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "decreased sensation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "numbness",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "reduced vibration",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "sensory loss",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "stocking distribution",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "v4-confirmed-patients-v1",
+  "purpose": "Pre-screen recognition only. Matching patients are exported separately and excluded before phenotype scoring.",
+  "pipeline_behavior": {
+    "attr": "Exclude before ATTRv/ATTRwt/AL phenotype scoring.",
+    "al": "Exclude before phenotype scoring and retain a separate confirmed-AL export. AL confirmations still pass through the same pre-screen stage used by the ATTR pipeline."
+  },
+  "routes": {
+    "ALL_AMYLOIDOSIS": {
+      "source": "User-supplied exact ICD-10 amyloidosis code list",
+      "atoms": [
+        {
+          "atom_id": "confirmed_amyloidosis_e85_family",
+          "preferred_name": "Confirmed amyloidosis (ICD-10 E85 family)",
+          "stage": null,
+          "experiencer": "PATIENT",
+          "clinical_meaning": "An exact ICD-10-CM E85-family diagnosis code is present on a claim.",
+          "context_guard": "Structured ICD-10 claim value only; no NLP or ICD-9 fallback."
+        }
+      ],
+      "terminology": [
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85", "amyloidosis_type": "AMYLOIDOSIS", "subtype_label": "amyloidosis, unspecified family", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "KNOWN_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.0", "amyloidosis_type": "HEREDOFAMILIAL", "subtype_label": "non-neuropathic heredofamilial amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "HEREDOFAMILIAL_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.1", "amyloidosis_type": "HEREDOFAMILIAL", "subtype_label": "neuropathic heredofamilial amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "HEREDOFAMILIAL_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.2", "amyloidosis_type": "HEREDOFAMILIAL", "subtype_label": "heredofamilial amyloidosis, unspecified", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "HEREDOFAMILIAL_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.3", "amyloidosis_type": "AA", "subtype_label": "secondary systemic amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "AA_SPECIFIC"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.4", "amyloidosis_type": "LOCALIZED", "subtype_label": "organ-limited / localized amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "LOCALIZED_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.8", "amyloidosis_type": "OTHER", "subtype_label": "other amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "OTHER_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.81", "amyloidosis_type": "AL", "subtype_label": "light-chain (AL) amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "AL_SPECIFIC"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.82", "amyloidosis_type": "ATTR", "subtype_label": "wild-type transthyretin-related amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.89", "amyloidosis_type": "OTHER", "subtype_label": "other amyloidosis", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "OTHER_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_amyloidosis_e85_family", "terminology_system": "ICD10", "value": "E85.9", "amyloidosis_type": "UNSPECIFIED", "subtype_label": "amyloidosis, unspecified", "risk_label": "CONFIRMED", "priority_label": "CONFIRMED", "confirmation_scope": "UNSPECIFIED_AMYLOIDOSIS"}
+      ],
+      "confirmation_rules": [
+        {"rule_id": "KNOWN_AMYLOIDOSIS_ICD10_E85", "operator": "ANY_VALUE_PRESENT", "values": ["E85", "E85.0", "E85.1", "E85.2", "E85.3", "E85.4", "E85.8", "E85.81", "E85.82", "E85.89", "E85.9"], "confirmation_scope": "KNOWN_AMYLOIDOSIS"}
+      ]
+    },
+    "ATTR": {
+      "source": "RDDT_codebase/specialty_configs_v3/atoms/shared.json:confirmed_attr_e85",
+      "atoms": [
+        {
+          "atom_id": "confirmed_attr_e85",
+          "preferred_name": "Confirmed ATTR / known amyloidosis",
+          "stage": null,
+          "experiencer": "PATIENT",
+          "clinical_meaning": "Existing ATTR-specific documentation or corroborated known amyloidosis evidence present before early-detection scoring.",
+          "context_guard": "Text must be affirmed, patient-specific and not uncertain. General structured amyloidosis codes cannot exclude a patient unless the configured corroboration rule is met."
+        }
+      ],
+      "terminology": [
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "Confirmed ATTR / amyloidosis (E85)", "can_fire_atom_alone": true, "confirmation_scope": "KNOWN_AMYLOIDOSIS"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "ATTR-CM", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "ATTRwt", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "ATTRv", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "attr amyloidosis", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "transthyretin amyloidosis", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "wild-type attr", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "NLP", "value": "hereditary attr", "can_fire_atom_alone": true, "confirmation_scope": "ATTR_SPECIFIC"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "ICD10", "value": "E85.", "can_fire_atom_alone": false, "confirmation_scope": "KNOWN_AMYLOIDOSIS", "review_status": "NEEDS_CLINICAL_REVIEW"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "SNOMED_CT", "value": "17602002", "can_fire_atom_alone": false, "confirmation_scope": "KNOWN_AMYLOIDOSIS", "review_status": "NEEDS_CLINICAL_REVIEW"},
+        {"atom_id": "confirmed_attr_e85", "terminology_system": "SNOMED_CT", "value": "715655000", "can_fire_atom_alone": false, "confirmation_scope": "ATTR_SPECIFIC", "review_status": "NEEDS_CLINICAL_REVIEW"}
+      ],
+      "confirmation_rules": [
+        {"rule_id": "KNOWN_ATTR_TEXT", "operator": "ANY_AFFIRMED_NLP_TERM", "values": ["Confirmed ATTR / amyloidosis (E85)", "ATTR-CM", "ATTRwt", "ATTRv", "attr amyloidosis", "transthyretin amyloidosis", "wild-type attr", "hereditary attr"]},
+        {"rule_id": "KNOWN_AMYLOIDOSIS_CODE_CORROBORATION", "operator": "ALL_VALUES_PRESENT", "values": ["E85.", "17602002"], "confirmation_scope": "KNOWN_AMYLOIDOSIS"},
+        {"rule_id": "KNOWN_ATTR_CODE_CORROBORATION", "operator": "ALL_VALUES_PRESENT", "values": ["715655000", "17602002"], "confirmation_scope": "ATTR_SPECIFIC"}
+      ]
+    },
+    "AL": {
+      "source": "RDDT_codebase/specialty_configs_v3/atoms/ortho.json:AL amyloidosis differential-exclude vocabulary",
+      "atoms": [
+        {
+          "atom_id": "confirmed_al_e85_81",
+          "preferred_name": "Confirmed AL / light-chain amyloidosis",
+          "stage": null,
+          "experiencer": "PATIENT",
+          "clinical_meaning": "Existing light-chain (AL) amyloidosis documentation present before early-detection scoring.",
+          "context_guard": "Text must be affirmed, patient-specific and not uncertain. Exact AL-specific diagnosis codes confirm only through the explicit structured rules below."
+        }
+      ],
+      "terminology": [
+        {"atom_id": "confirmed_al_e85_81", "terminology_system": "NLP", "value": "AL amyloidosis", "can_fire_atom_alone": true, "confirmation_scope": "AL_SPECIFIC"},
+        {"atom_id": "confirmed_al_e85_81", "terminology_system": "NLP", "value": "Light chain (AL) amyloidosis", "can_fire_atom_alone": true, "confirmation_scope": "AL_SPECIFIC"},
+        {"atom_id": "confirmed_al_e85_81", "terminology_system": "ICD10", "value": "E85.81", "can_fire_atom_alone": false, "confirmation_scope": "AL_SPECIFIC", "review_status": "NEEDS_CLINICAL_REVIEW"},
+        {"atom_id": "confirmed_al_e85_81", "terminology_system": "SNOMED_CT", "value": "23132008", "can_fire_atom_alone": false, "confirmation_scope": "AL_SPECIFIC", "review_status": "NEEDS_CLINICAL_REVIEW"}
+      ],
+      "confirmation_rules": [
+        {"rule_id": "KNOWN_AL_TEXT", "operator": "ANY_AFFIRMED_NLP_TERM", "values": ["AL amyloidosis", "Light chain (AL) amyloidosis"], "confirmation_scope": "AL_SPECIFIC"},
+        {"rule_id": "KNOWN_AL_ICD10", "operator": "ALL_VALUES_PRESENT", "values": ["E85.81"], "confirmation_scope": "AL_SPECIFIC"},
+        {"rule_id": "KNOWN_AL_SNOMED", "operator": "ALL_VALUES_PRESENT", "values": ["23132008"], "confirmation_scope": "AL_SPECIFIC"}
+      ]
+    }
+  }
+}

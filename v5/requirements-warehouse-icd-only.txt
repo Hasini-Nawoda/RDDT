@@ -1,0 +1,3 @@
+# No additional third-party packages are required for the initial CLAIMS-only,
+# ICD-only run on Snowflake Warehouse Runtime. Snowpark is supplied by the
+# Snowflake notebook runtime. In particular, do not add spaCy or medSpaCy here.

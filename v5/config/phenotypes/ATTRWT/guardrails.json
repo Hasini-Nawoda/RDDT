@@ -1,0 +1,85 @@
+{
+  "phenotype": "ATTRWT",
+  "guardrails": [
+    {
+      "guardrail_id": "WT20_INCIDENTAL_TRACER_ROUTE",
+      "enabled": true,
+      "rule_ref": "WT20",
+      "action": "ROUTE_ONLY",
+      "route": "CARDIAC_AMYLOIDOSIS_EVALUATION",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Incidental myocardial bone-tracer uptake on a non-amyloidosis scan",
+      "message": "Do not classify as ATTRwt from uptake alone; route through monoclonal evaluation and definitive ATTR typing."
+    },
+    {
+      "guardrail_id": "WT22_MILD_NEURO_COMPATIBILITY",
+      "enabled": true,
+      "rule_ref": "WT22",
+      "action": "ROUTE_ONLY",
+      "route": "ATTRWT_COMPATIBLE_NEUROLOGY",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Mild sensory-predominant length-dependent neuropathy",
+      "message": "Mild sensory neuropathy does not automatically imply ATTRv; prominent painful/autonomic phenotype routes to WT28."
+    },
+    {
+      "guardrail_id": "WT24_FEMALE_LOW_IVST",
+      "enabled": true,
+      "rule_ref": "WT24",
+      "action": "DO_NOT_NEGATE",
+      "route": "ATTRWT_EVALUATION",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Female ATTR-like phenotype with low conventional septal thickness",
+      "message": "Low septal thickness contributes zero negative evidence; use broader phenotype and sex/body-size-aware LVMI context."
+    },
+    {
+      "guardrail_id": "WT25_MONOCLONAL_PATHWAY",
+      "enabled": true,
+      "rule_ref": "WT25",
+      "action": "ROUTE_ONLY",
+      "route": "AL_EVALUATION",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "MGUS/monoclonal study/plasma-cell disorder present",
+      "message": "Monoclonal evidence changes the diagnostic pathway and does not automatically prove AL or negate coexisting ATTR."
+    },
+    {
+      "guardrail_id": "WT26_CKD_FLC_INTERPRETATION",
+      "enabled": true,
+      "rule_ref": "WT26",
+      "action": "ROUTE_ONLY",
+      "route": "AL_INTERPRETATION_REVIEW",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Abnormal FLC ratio with reduced eGFR",
+      "message": "Use assay/eGFR-specific interpretation and immunofixation context; do not manufacture monoclonality from renal clearance shift."
+    },
+    {
+      "guardrail_id": "WT27_AL_COUNTEREVIDENCE",
+      "enabled": true,
+      "rule_ref": "WT27",
+      "action": "ROUTE_ONLY",
+      "route": "URGENT_AL_EVALUATION",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Macroglossia/periorbital purpura/nephrotic protein loss/plasma-cell disorder",
+      "message": "Route urgently toward AL/renal differential; do not implement as absolute ATTR exclusion."
+    },
+    {
+      "guardrail_id": "WT28_ATTRV_COUNTEREVIDENCE",
+      "enabled": true,
+      "rule_ref": "WT28",
+      "action": "ROUTE_ONLY",
+      "route": "ATTRV_REVIEW_AND_TTR_GENOTYPING",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Prominent painful neuropathy, marked dysautonomia/GI dysfunction, family or ocular signs",
+      "message": "Older age and absent family history do not establish wild type."
+    },
+    {
+      "guardrail_id": "WT29_AA_COUNTEREVIDENCE",
+      "enabled": true,
+      "rule_ref": "WT29",
+      "action": "ROUTE_ONLY",
+      "route": "AA_EVALUATION",
+      "does_not_negate_attrv": true,
+      "clinical_condition": "Active chronic inflammatory/infectious driver + persistent burden + renal protein-loss transition",
+      "message": "Driver alone is insufficient; require ordered multi-part phenotype."
+    }
+  ]
+}

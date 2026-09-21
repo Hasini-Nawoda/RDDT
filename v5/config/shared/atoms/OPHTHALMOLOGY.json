@@ -1,0 +1,505 @@
+{
+  "source_specialty": "OPHTHALMOLOGY",
+  "atoms": [
+    {
+      "atom_id": "dry_eye",
+      "preferred_name": "dry eye",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Dry eye syndrome / keratoconjunctivitis sicca",
+      "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "H40.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H04.123",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "365.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "375.15",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "artificial tears",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dry eye",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dry eye syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dry eyes",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dry-eye syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "keratoconjunctivitis sicca",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ocular dryness",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "floaters",
+      "preferred_name": "floaters",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Recurrent dark floaters",
+      "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "67036",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92004",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92014",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "H43.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.22",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.23",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "379.24",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "blurred vision from floaters",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cobweb-like floaters",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "cobwebs in vision",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "dark floaters",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "floaters",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "moving spots in vision",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "recurrent floaters",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "spots in vision",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "glaucoma",
+      "preferred_name": "glaucoma",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Glaucoma",
+      "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "H40.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H04.123",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "365.9",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "375.15",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "IOP elevation",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "elevated intraocular pressure",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "glaucoma",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "high IOP",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ocular hypertension",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "raised intraocular pressure",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "iris_abnormality",
+      "preferred_name": "iris abnormality",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Pupillary or iris abnormality",
+      "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "H21.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "364.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "amyloid iris deposits",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "iris deposits",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "scalloped_pupil",
+      "preferred_name": "Scalloped pupil / characteristic pupillary abnormality",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Scalloped pupil",
+      "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
+      "extraction": {
+        "codes": {
+          "ICD10": [
+            {
+              "value": "H21.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "364.89",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "amyloid iris",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "amyloid iris deposits",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "notched pupil",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "notched pupillary margin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "scalloped iris",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "scalloped pupil",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "scalloped pupillary margin",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "scalloped pupils",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "vitreous_opacity",
+      "preferred_name": "vitreous opacity",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Vitreous opacities / amyloid vitreopathy",
+      "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "67036",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92004",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "92014",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "H43.20",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.21",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.22",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "H43.23",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD9": [
+            {
+              "value": "379.24",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "amyloid deposits in vitreous",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "amyloid vitreopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "footplate opacities",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "glass wool vitreous",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "glass-wool vitreous opacities",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitreopathy",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitreous amyloid",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitreous amyloid deposits",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitreous opacities",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "vitreous opacity",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    }
+  ]
+}

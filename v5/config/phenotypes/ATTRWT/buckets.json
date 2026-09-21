@@ -1,0 +1,41 @@
+{
+  "phenotype": "ATTRWT",
+  "buckets": [
+    {
+      "reasoning_bucket": "ORTHO",
+      "bucket_class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Orthopedic/tenosynovial prodrome and multisite tissue-domain clues."
+    },
+    {
+      "reasoning_bucket": "CARDIO",
+      "bucket_class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Cardiac heart-failure, wall-thickening, rhythm, conduction, valve and imaging clues."
+    },
+    {
+      "reasoning_bucket": "NEURO",
+      "bucket_class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Neurologic compatibility/differential context; prominent autonomic/ocular/family phenotype routes toward ATTRv."
+    },
+    {
+      "reasoning_bucket": "SYSTEMIC_CONTEXT",
+      "bucket_class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Low-specificity contextual findings such as disproportionate sensorineural hearing loss. | Demographic/context attributes. Never positive entry criteria."
+    },
+    {
+      "reasoning_bucket": "LAB_CONTEXT",
+      "bucket_class": "NONE",
+      "counts_independently": false,
+      "definition": "Pathway-changing evidence requiring AL evaluation; not negative arithmetic against ATTR. | AA differential route requiring inflammatory driver + sustained burden + renal transition. | Retained for research/prognosis only and excluded from pre-test triggering."
+    },
+    {
+      "reasoning_bucket": "ATTRV_DIFFERENTIAL",
+      "bucket_class": "NONE",
+      "counts_independently": false,
+      "definition": "Hereditary phenotype route requiring ATTRv review/genotyping."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "phenotype": "ATTRV",
+  "buckets": [
+    {
+      "bucket": "AUTONOMIC",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Autonomic/GI/urologic dysfunction interpreted as one independent axis."
+    },
+    {
+      "bucket": "CARDIO",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Cardiac ATTR-compatible evidence. New config uses selected T3 signals only as explicitly authorized context witnesses."
+    },
+    {
+      "bucket": "HEREDITARY",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Etiologic/hereditary evidence; does not diagnose disease by itself."
+    },
+    {
+      "bucket": "LAB_CONTEXT",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Laboratory context that must not independently gate ATTRv."
+    },
+    {
+      "bucket": "NEURO",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Peripheral/small-fiber neuropathy evidence."
+    },
+    {
+      "bucket": "OCULAR",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "ATTR-compatible ocular manifestations."
+    },
+    {
+      "bucket": "ORTHO",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Orthopedic/tenosynovial red-flag axis."
+    },
+    {
+      "bucket": "RENAL",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Persistent unexplained renal protein-loss evidence."
+    },
+    {
+      "bucket": "SYSTEMIC_CONTEXT",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Systemic context such as unexplained weight loss; not a general independent gate bucket."
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "source_specialty": "RHEUM_INFLAMMATORY",
+  "atoms": [
+    {
+      "atom_id": "autoinflammatory_syndrome",
+      "preferred_name": "Other chronic autoinflammatory syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Other chronic active autoinflammatory syndrome relevant to AA-amyloidosis differential.",
+      "context_guard": "Use for AA differential only when chronic/active disease is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "autoinflammatory syndrome",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic autoinflammatory disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "periodic fever syndrome",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "chronic_infection",
+      "preferred_name": "Chronic or active infection",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Chronic active infection relevant to AA-amyloidosis differential.",
+      "context_guard": "Use for AA differential only when chronic/active infection is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "bronchiectasis with chronic infection",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic active infection",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic infection",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic osteomyelitis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "tuberculosis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "chronic_inflammatory_arthritis",
+      "preferred_name": "Chronic inflammatory joint disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Chronic active inflammatory arthritis relevant to AA-amyloidosis differential.",
+      "context_guard": "Use for AA differential only when chronic/active inflammation is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "ankylosing spondylitis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "chronic inflammatory arthritis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "inflammatory arthritis",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "rheumatoid arthritis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "crp_result",
+      "preferred_name": "C-reactive protein result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "C-reactive protein inflammatory-burden result",
+      "source_specialty": "RHEUMATOLOGY",
+      "source_subdomain": "inflammatory",
+      "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "86140",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "86141",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R79.82",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "61425002",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "C-reactive protein",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "CRP",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "persistently elevated CRP",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "esr_result",
+      "preferred_name": "Erythrocyte sedimentation rate result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "ESR inflammatory-burden result",
+      "source_specialty": "RHEUMATOLOGY",
+      "source_subdomain": "inflammatory",
+      "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "CPT_HCPCS": [
+            {
+              "value": "85652",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            },
+            {
+              "value": "85651",
+              "can_fire_atom_alone": false,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R70.0",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ],
+          "SNOMED_CT": [
+            {
+              "value": "416838001",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "erythrocyte sedimentation rate",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "ESR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "persistently elevated ESR",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "fmf",
+      "preferred_name": "Familial Mediterranean fever / periodic fever syndrome",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Familial Mediterranean fever / chronic active autoinflammatory driver relevant to AA-amyloidosis differential.",
+      "context_guard": "Match familial Mediterranean fever specifically. Generic periodic-fever/autoinflammatory syndromes belong under the broader autoinflammatory-syndrome atom.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "FMF",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "familial Mediterranean fever",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "ibd_inflammatory_driver",
+      "preferred_name": "Inflammatory bowel disease",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Chronic active inflammatory bowel disease relevant to AA-amyloidosis differential.",
+      "context_guard": "Use for AA differential only when chronic/active inflammatory disease is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
+      "extraction": {
+        "codes": {},
+        "nlp_terms": [
+          {
+            "value": "Crohn disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "Crohn's disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "IBD",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "inflammatory bowel disease",
+            "can_fire_atom_alone": false
+          },
+          {
+            "value": "ulcerative colitis",
+            "can_fire_atom_alone": false
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "saa_result",
+      "preferred_name": "Serum amyloid A result",
+      "stage": "PRETEST_SIGNAL",
+      "experiencer": "PATIENT",
+      "clinical_meaning": "Serum amyloid A inflammatory-burden result",
+      "source_specialty": "RHEUMATOLOGY",
+      "source_subdomain": "inflammatory",
+      "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings.",
+      "extraction": {
+        "codes": {
+          "SNOMED_CT": [
+            {
+              "value": "40185008",
+              "can_fire_atom_alone": true,
+              "review_status": "SOURCE_CANDIDATE",
+              "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT"
+            }
+          ]
+        },
+        "nlp_terms": [
+          {
+            "value": "serum amyloid A",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "SAA",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings."
+          },
+          {
+            "value": "persistently elevated SAA",
+            "can_fire_atom_alone": false,
+            "value_class": "NLP_TERM",
+            "review_status": "SOURCE_CANDIDATE",
+            "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,2132 @@
+{
+  "phenotype": "ATTRWT",
+  "signal_rules": [
+    {
+      "signal_id": "WT01",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": "ORTHOPEDIC_BEFORE_CARDIAC_WHEN_AVAILABLE",
+      "rule": {
+        "root_group_id": "WT01_G001",
+        "groups": [
+          {
+            "group_id": "WT01_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "INDEPENDENT_ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": true,
+            "members": []
+          },
+          {
+            "group_id": "WT01_G002",
+            "parent_group_id": "WT01_G001",
+            "evaluation_order": 1,
+            "operator": "AT_LEAST",
+            "minimum_count": 2,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT02",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT03",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT05",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT06",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT07",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT08",
+                "evaluation_order": 7,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT01_G003",
+            "parent_group_id": "WT01_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT09",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT11",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT12",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT02",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT02_G001",
+        "groups": [
+          {
+            "group_id": "WT02_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "cts_persistent_after_release",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "cts_bilateral",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "cts_recurrent",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "ctr_any",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "cts_any",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "cts_left",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "cts_right",
+                "evaluation_order": 7,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT03",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT03_G001",
+        "groups": [
+          {
+            "group_id": "WT03_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "biceps_rupture",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "spontaneous_atraumatic_rupture",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT03_B01",
+          "atom_id": "wt03_traumatic_rupture",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT04",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT04_G001",
+        "groups": [
+          {
+            "group_id": "WT04_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "AT_LEAST",
+            "minimum_count": 2,
+            "linkage_type": null,
+            "require_independent_lineage": true,
+            "members": [
+              {
+                "type": "atom",
+                "id": "cts_bilateral",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "lumbar_stenosis",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "biceps_rupture",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "trigger_finger",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "arthroplasty",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "rotator_cuff",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT05",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT05_G001",
+        "groups": [
+          {
+            "group_id": "WT05_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": []
+          },
+          {
+            "group_id": "WT05_G002",
+            "parent_group_id": "WT05_G001",
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "lumbar_stenosis",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "ligamentum_flavum_thickening",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT05_G003",
+            "parent_group_id": "WT05_G002",
+            "evaluation_order": 3,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT02",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT03",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT09",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT11",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT12",
+                "evaluation_order": 7,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT05_G004",
+            "parent_group_id": "WT05_G001",
+            "evaluation_order": 2,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "lumbar_decompression",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "ligamentum_flavum_thickening",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT06",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT06_G001",
+        "groups": [
+          {
+            "group_id": "WT06_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "arthroplasty",
+                "evaluation_order": 1,
+                "required_attributes": "multiple_or_bilateral=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT06_G002",
+            "parent_group_id": "WT06_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT09",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT11",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT12",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT07",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT07_G001",
+        "groups": [
+          {
+            "group_id": "WT07_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "trigger_release",
+                "evaluation_order": 1,
+                "required_attributes": "multiple_digits=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "trigger_finger",
+                "evaluation_order": 2,
+                "required_attributes": "multiple_digits=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT07_G002",
+            "parent_group_id": "WT07_G001",
+            "evaluation_order": 3,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "trigger_finger",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT02",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT07_B01",
+          "atom_id": "diabetes",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT08",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT08_G001",
+        "groups": [
+          {
+            "group_id": "WT08_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "rotator_cuff",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "shoulder_disorder",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT09",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT09_G001",
+        "groups": [
+          {
+            "group_id": "WT09_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "hfpef",
+                "evaluation_order": 1,
+                "required_attributes": "unexplained=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "hf_any",
+                "evaluation_order": 2,
+                "required_attributes": "unexplained=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT09_B01",
+          "atom_id": "wt09_competing_hf_cause",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT10",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT10_G001",
+        "groups": [
+          {
+            "group_id": "WT10_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "thick_walls",
+                "evaluation_order": 1,
+                "required_attributes": "unexplained=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "lv_cavity_geometry",
+                "evaluation_order": 2,
+                "required_attributes": "amyloid_compatible=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT10_G002",
+            "parent_group_id": "WT10_G001",
+            "evaluation_order": 3,
+            "operator": "LINKED_ALL",
+            "minimum_count": null,
+            "linkage_type": "CLINICAL_EPISODE",
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "lv_relative_wall_thickness",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "small_lv_cavity",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT10_B01",
+          "atom_id": "v24_competing_lvh",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT11",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT11_G001",
+        "groups": [
+          {
+            "group_id": "WT11_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "af",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT11_G002",
+            "parent_group_id": "WT11_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT11_B01",
+          "atom_id": "wt11_competing_af_cause",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT12",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT12_G001",
+        "groups": [
+          {
+            "group_id": "WT12_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "conduction_disease",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT12_G002",
+            "parent_group_id": "WT12_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "pacemaker_implantation",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "pacemaker_presence",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT12_B01",
+          "atom_id": "wt12_competing_conduction_cause",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT13",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT13_G001",
+        "groups": [
+          {
+            "group_id": "WT13_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "asymmetric_septal_hypertrophy",
+                "evaluation_order": 1,
+                "required_attributes": "late_onset=True, no_convincing_sarcomeric_explanation=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "hypertrophic_cardiomyopathy",
+                "evaluation_order": 2,
+                "required_attributes": "late_onset=True, no_convincing_sarcomeric_explanation=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT13_B01",
+          "atom_id": "wt13_sarcomeric_hcm",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT14",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT14_G001",
+        "groups": [
+          {
+            "group_id": "WT14_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "lflg_as",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT14_G002",
+            "parent_group_id": "WT14_G001",
+            "evaluation_order": 2,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "as_valve",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT14_G003",
+            "parent_group_id": "WT14_G002",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "tavr",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT15",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT16",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT15",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT15_G001",
+        "groups": [
+          {
+            "group_id": "WT15_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "apical_sparing",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "reduced_gls",
+                "evaluation_order": 2,
+                "required_attributes": "preserved_or_mildly_reduced_lvef=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT16",
+      "enabled": true,
+      "runtime_executability": "EXECUTABLE",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT16_G001",
+        "groups": [
+          {
+            "group_id": "WT16_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "voltage_mass_mismatch",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "pseudo_infarct",
+                "evaluation_order": 2,
+                "required_attributes": "no_matching_infarction_explanation=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT16_G002",
+            "parent_group_id": "WT16_G001",
+            "evaluation_order": 3,
+            "operator": "LINKED_ALL",
+            "minimum_count": null,
+            "linkage_type": "CLINICAL_EPISODE",
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "low_ecg_voltage",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT17",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT17_G001",
+        "groups": [
+          {
+            "group_id": "WT17_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "LINKED_ALL",
+            "minimum_count": null,
+            "linkage_type": "CLINICAL_EPISODE",
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "reduced_mcf",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "lvef_result",
+                "evaluation_order": 2,
+                "required_attributes": "preserved_or_mildly_reduced=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT18",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "SIGNAL_ESTABLISHED",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT18_G001",
+        "groups": [
+          {
+            "group_id": "WT18_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "hypertension",
+                "evaluation_order": 1,
+                "required_attributes": "prior_longstanding=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT18_G002",
+            "parent_group_id": "WT18_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "hf_medication_intolerance",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "declining_blood_pressure",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "medication_dose_change",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT18_B01",
+          "atom_id": "wt18_competing_hypotension",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT19",
+      "enabled": true,
+      "runtime_executability": "NON_FIRING",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT19_G001",
+        "groups": [
+          {
+            "group_id": "WT19_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "bnp_lvmi_ratio_result",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT20",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT20_G001",
+        "groups": [
+          {
+            "group_id": "WT20_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "myocardial_bone_tracer_uptake",
+                "evaluation_order": 1,
+                "required_attributes": "non_amyloid_indication=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT21",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "APPLY_SIGNAL_BLOCKERS_AFTER_SUPPORT_RULE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT21_G001",
+        "groups": [
+          {
+            "group_id": "WT21_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "age_excessive_snhl",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT21_G002",
+            "parent_group_id": "WT21_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "signal",
+                "id": "WT01",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT04",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT09",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT10",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT11",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT12",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT13",
+                "evaluation_order": 7,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT14",
+                "evaluation_order": 8,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT15",
+                "evaluation_order": 9,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              },
+              {
+                "type": "signal",
+                "id": "WT16",
+                "evaluation_order": 10,
+                "required_attributes": null,
+                "experiencer": null,
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": [
+        {
+          "blocker_id": "WT21_B01",
+          "atom_id": "wt21_competing_hearing_loss",
+          "action": "BLOCK_SIGNAL",
+          "required_attributes": "clearly_established=True, adequately_explains_signal=True",
+          "evaluation_semantics": "Block only when blocker evaluates TRUE; FALSE or UNKNOWN does not block"
+        }
+      ]
+    },
+    {
+      "signal_id": "WT22",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT22_G001",
+        "groups": [
+          {
+            "group_id": "WT22_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "mild_sensory_polyneuropathy",
+                "evaluation_order": 1,
+                "required_attributes": "mild_or_moderate=True, sensory_predominant=True, length_dependent=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT23",
+      "enabled": true,
+      "runtime_executability": "NON_FIRING",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT23_G001",
+        "groups": [
+          {
+            "group_id": "WT23_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": []
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT24",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT24_G001",
+        "groups": [
+          {
+            "group_id": "WT24_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "lv_mass_index_result",
+                "evaluation_order": 1,
+                "required_attributes": "female_context=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT25",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT25_G001",
+        "groups": [
+          {
+            "group_id": "WT25_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "mgus",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "abnormal_serum_free_light_chain_ratio",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "serum_immunofixation_monoclonal",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "urine_immunofixation_monoclonal",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "plasma_cell_dyscrasia",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT26",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT26_G001",
+        "groups": [
+          {
+            "group_id": "WT26_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "abnormal_serum_free_light_chain_ratio",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "egfr_result",
+                "evaluation_order": 2,
+                "required_attributes": "reduced=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT26_G002",
+            "parent_group_id": "WT26_G001",
+            "evaluation_order": 3,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "serum_immunofixation_monoclonal",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "urine_immunofixation_monoclonal",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT27",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT27_G001",
+        "groups": [
+          {
+            "group_id": "WT27_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "macroglossia",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "periorbital_purpura",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "nephrotic_range_proteinuria",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "hypoalbuminemia",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "plasma_cell_dyscrasia",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT28",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT28_G001",
+        "groups": [
+          {
+            "group_id": "WT28_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "sfn",
+                "evaluation_order": 1,
+                "required_attributes": "painful_or_prominent=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "dysautonomia",
+                "evaluation_order": 2,
+                "required_attributes": "marked_or_multisystem=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "gi_dysmotility",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "alternating_bowel_habit",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "gastroparesis",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "delayed_gastric_emptying",
+                "evaluation_order": 6,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "fhx_established_attr",
+                "evaluation_order": 7,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "fhx_adult_onset_neuropathy",
+                "evaluation_order": 8,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "vitreous_opacity",
+                "evaluation_order": 9,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "scalloped_pupil",
+                "evaluation_order": 10,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT29",
+      "enabled": true,
+      "runtime_executability": "PARTIAL",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": "ORDERED_CHILD_GROUPS_REQUIRED",
+      "rule": {
+        "root_group_id": "WT29_G001",
+        "groups": [
+          {
+            "group_id": "WT29_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "INDEPENDENT_ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": true,
+            "members": []
+          },
+          {
+            "group_id": "WT29_G002",
+            "parent_group_id": "WT29_G001",
+            "evaluation_order": 1,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "fmf",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "chronic_inflammatory_arthritis",
+                "evaluation_order": 2,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "ibd_inflammatory_driver",
+                "evaluation_order": 3,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "chronic_infection",
+                "evaluation_order": 4,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "autoinflammatory_syndrome",
+                "evaluation_order": 5,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT29_G003",
+            "parent_group_id": "WT29_G001",
+            "evaluation_order": 2,
+            "operator": "ANY",
+            "minimum_count": 1,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "saa_result",
+                "evaluation_order": 1,
+                "required_attributes": "persistent=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "crp_result",
+                "evaluation_order": 2,
+                "required_attributes": "persistent=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              },
+              {
+                "type": "atom",
+                "id": "esr_result",
+                "evaluation_order": 3,
+                "required_attributes": "persistent=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          },
+          {
+            "group_id": "WT29_G004",
+            "parent_group_id": "WT29_G001",
+            "evaluation_order": 3,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "urine_protein_result",
+                "evaluation_order": 1,
+                "required_attributes": "new_or_worsening=True",
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    },
+    {
+      "signal_id": "WT30",
+      "enabled": true,
+      "runtime_executability": "NON_FIRING",
+      "blocker_policy": "NONE",
+      "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+      "truth_model": "TRUE_FALSE_UNKNOWN",
+      "outcome": "ROUTE_ONLY",
+      "temporal_policy": null,
+      "rule": {
+        "root_group_id": "WT30_G001",
+        "groups": [
+          {
+            "group_id": "WT30_G001",
+            "parent_group_id": null,
+            "evaluation_order": 1,
+            "operator": "ALL",
+            "minimum_count": null,
+            "linkage_type": null,
+            "require_independent_lineage": false,
+            "members": [
+              {
+                "type": "atom",
+                "id": "elevated_uric_acid",
+                "evaluation_order": 1,
+                "required_attributes": null,
+                "experiencer": "PATIENT",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ]
+      },
+      "blockers": []
+    }
+  ]
+}

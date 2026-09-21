@@ -1,0 +1,23 @@
+{
+  "phenotype": "AL",
+  "priority_policies": [
+    {
+      "priority_policy_id": "AL_PRI_A",
+      "class": "A",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "High-priority AL phenotype or urgent differential route."
+    },
+    {
+      "priority_policy_id": "AL_PRI_B",
+      "class": "B",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "Moderate-priority multisystem/context route."
+    },
+    {
+      "priority_policy_id": "AL_PRI_C",
+      "class": "C",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "Low-specificity/context-only evidence."
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "phenotype": "ATTRV",
+  "priority_policies": [
+    {
+      "priority_policy_id": "FIXED_A",
+      "class": "A",
+      "kind": "FIXED",
+      "tier_pattern": "ANY",
+      "clinical_note": "Named nested combination rule only."
+    },
+    {
+      "priority_policy_id": "FIXED_B",
+      "class": "B",
+      "kind": "FIXED",
+      "tier_pattern": "ANY",
+      "clinical_note": "Named nested combination rule only."
+    },
+    {
+      "priority_policy_id": "PAIR_TIER_MIX",
+      "class": "A",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "1+1",
+      "clinical_note": "Default two-gate policy."
+    },
+    {
+      "priority_policy_id": "PAIR_TIER_MIX",
+      "class": "B",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "1+2",
+      "clinical_note": "Default two-gate policy."
+    },
+    {
+      "priority_policy_id": "PAIR_TIER_MIX",
+      "class": "B",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "2+1",
+      "clinical_note": "Default two-gate policy."
+    },
+    {
+      "priority_policy_id": "PAIR_TIER_MIX",
+      "class": "C",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "2+2",
+      "clinical_note": "Default two-gate policy."
+    },
+    {
+      "priority_policy_id": "PAIR_WITH_CONTEXT_T3",
+      "class": "B",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "1+3",
+      "clinical_note": "Explicitly authorized context witness; T3 is not globally gate-eligible."
+    },
+    {
+      "priority_policy_id": "PAIR_WITH_CONTEXT_T3",
+      "class": "C",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "2+3",
+      "clinical_note": "Explicitly authorized context witness; lower review priority."
+    },
+    {
+      "priority_policy_id": "PAIR_WITH_CONTEXT_T3",
+      "class": "B",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "3+1",
+      "clinical_note": "Explicitly authorized context witness; T3 is not globally gate-eligible."
+    },
+    {
+      "priority_policy_id": "PAIR_WITH_CONTEXT_T3",
+      "class": "C",
+      "kind": "PAIR_TIER_MIX",
+      "tier_pattern": "3+2",
+      "clinical_note": "Explicitly authorized context witness; lower review priority."
+    }
+  ]
+}
