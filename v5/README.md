@@ -43,3 +43,7 @@ to retrieve a real five-table test cohort from Snowflake.
 The resulting 20-patient warehouse run, its strict-versus-recall comparison,
 identified correctness defects, and the staged implementation plan are in
 [LINKED_COHORT_PIPELINE_EVALUATION.md](docs/LINKED_COHORT_PIPELINE_EVALUATION.md).
+
+The existing-atom ICD/SNOMED audit, including verified mapping defects and the
+no-new-atoms correction workflow, is documented in
+[EXISTING_ATOM_ICD_AUDIT.md](docs/EXISTING_ATOM_ICD_AUDIT.md).
