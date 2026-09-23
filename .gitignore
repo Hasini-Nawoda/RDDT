@@ -17,3 +17,4 @@
 *.xlsx
 ATTRv_atom_code_updates_from_workbook.json
 /not_for_snowflake
+results/confirmed_amyloidosis_patient_profiles.jsonl
