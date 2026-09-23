@@ -111,6 +111,43 @@ PROFILE_CAPABILITIES: dict[str, dict[str, EvidenceCapability]] = {
             "Dates exist outside CLAIMS. A claim date may be enriched only after a validated, unique patient-plus-encounter join.",
         ),
     },
+    "icd_dated_claims_v1": {
+        "ICD10": EvidenceCapability(
+            "AVAILABLE",
+            ("claim.diagnosis_code",),
+            "ICD-10-CM diagnosis codes are the only detection input.",
+        ),
+        "ICD9": EvidenceCapability(
+            "UNAVAILABLE_BY_SOURCE",
+            (),
+            "The supplied claims identify diagnosis values as ICD-10-CM; no ICD-9 field is available.",
+        ),
+        "CPT_HCPCS": EvidenceCapability(
+            "UNAVAILABLE_BY_SOURCE",
+            (),
+            "Procedure codes are outside the ICD-10 claim decision boundary.",
+        ),
+        "SNOMED_CT": EvidenceCapability(
+            "UNAVAILABLE_BY_SOURCE",
+            (),
+            "SURGICAL_HISTORY is profile context and does not create detection evidence.",
+        ),
+        "LOINC": EvidenceCapability(
+            "UNAVAILABLE_BY_SOURCE",
+            (),
+            "LABS is profile context. Local test names are not LOINC and do not fire atoms.",
+        ),
+        "NLP": EvidenceCapability(
+            "UNAVAILABLE_BY_SOURCE",
+            (),
+            "No clinical narrative is used. A code's display name and context guard are the available meaning.",
+        ),
+        "EVENT_DATE": EvidenceCapability(
+            "PARTIAL_CONTEXT",
+            ("encounter.encounter_date",),
+            "Claim dates come from ENCOUNTERS when patient plus encounter resolves to one visit date. Unmatched claims stay undated.",
+        ),
+    },
 }
 
 

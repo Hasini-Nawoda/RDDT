@@ -1,0 +1,887 @@
+{
+  "phenotype": "AA",
+  "signal_atoms": [
+    {
+      "signal_id": "AA01",
+      "atom_id": "chronic_inflammatory_arthritis",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA01",
+      "atom_id": "biologic_dmard_exposure",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA01",
+      "atom_id": "aa01_competing_renal",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA02",
+      "atom_id": "fmf",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA02",
+      "atom_id": "autoinflammatory_syndrome",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA02",
+      "atom_id": "recurrent_serositis",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA02",
+      "atom_id": "aa02_non_amyloid_kidney_disease",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA03",
+      "atom_id": "mefv_high_risk_genotype",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA03",
+      "atom_id": "fmf",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA04",
+      "atom_id": "family_aa_amyloidosis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA04",
+      "atom_id": "family_eskd",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA04",
+      "atom_id": "fmf",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA05",
+      "atom_id": "colchicine_adherence_problem",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA05",
+      "atom_id": "inflammatory_control_assessment",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA05",
+      "atom_id": "delayed_fmf_diagnosis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA05",
+      "atom_id": "fmf",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA06",
+      "atom_id": "autoinflammatory_syndrome",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA06",
+      "atom_id": "il1_blocker_exposure",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA06",
+      "atom_id": "aa06_independent_renal_evaluation",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA07",
+      "atom_id": "ibd_inflammatory_driver",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA07",
+      "atom_id": "crohn_fistulizing_phenotype",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA07",
+      "atom_id": "aa07_ibd_mimics_amyloid",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA08",
+      "atom_id": "chronic_infection",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA08",
+      "atom_id": "bronchiectasis",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA08",
+      "atom_id": "chronic_infection_burden",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA09",
+      "atom_id": "skin_soft_tissue_infection",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA09",
+      "atom_id": "abscess",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA09",
+      "atom_id": "chronic_wound",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA09",
+      "atom_id": "aa09_isolated_infection",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA10",
+      "atom_id": "castleman_disease",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA10",
+      "atom_id": "renal_cell_carcinoma",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA10",
+      "atom_id": "aa10_nonspecific_malignancy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA11",
+      "atom_id": "obesity",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA11",
+      "atom_id": "aa11_obesity_related_glomerulopathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA12",
+      "atom_id": "crp_result",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA12",
+      "atom_id": "esr_result",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA12",
+      "atom_id": "aa12_persistence_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA12",
+      "atom_id": "aa12_nonspecific_elevation",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA13",
+      "atom_id": "saa_elevated",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA13",
+      "atom_id": "saa_result",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA13",
+      "atom_id": "aa13_saa_not_tissue_amyloid",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA14",
+      "atom_id": "inflammatory_control_assessment",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA14",
+      "atom_id": "inflammatory_flare",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA14",
+      "atom_id": "treatment_escalation",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA14",
+      "atom_id": "aa14_cumulative_burden_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA15",
+      "atom_id": "microalbuminuria",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA15",
+      "atom_id": "albuminuria_trend",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA15",
+      "atom_id": "aa15_competing_albuminuria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA16",
+      "atom_id": "persistent_proteinuria",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA16",
+      "atom_id": "progressive_proteinuria",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA16",
+      "atom_id": "urine_protein_result",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA16",
+      "atom_id": "aa16_driver_plus_renal_transition_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA16",
+      "atom_id": "aa16_competing_proteinuria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA17",
+      "atom_id": "nephrotic_syndrome",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA17",
+      "atom_id": "nephrotic_range_proteinuria",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA18",
+      "atom_id": "hypoalbuminemia",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA18",
+      "atom_id": "aa18_inflammatory_hypoalbuminemia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA19",
+      "atom_id": "peripheral_edema",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA19",
+      "atom_id": "aa19_renal_cluster_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA19",
+      "atom_id": "aa19_competing_edema",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA20",
+      "atom_id": "falling_egfr",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA20",
+      "atom_id": "creatinine_result",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA20",
+      "atom_id": "egfr_result",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA20",
+      "atom_id": "kidney_failure",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA20",
+      "atom_id": "aa20_competing_renal_decline",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA21",
+      "atom_id": "aa21_disproportion_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA21",
+      "atom_id": "renal_dysfunction",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": "disproportionate=True"
+    },
+    {
+      "signal_id": "AA21",
+      "atom_id": "diabetes",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA21",
+      "atom_id": "hypertension",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA21",
+      "atom_id": "nephrotoxic_medication_exposure",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA22",
+      "atom_id": "diarrhea",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA22",
+      "atom_id": "aa22_competing_diarrhea",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA23",
+      "atom_id": "gi_bleeding",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA23",
+      "atom_id": "paralytic_ileus",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA24",
+      "atom_id": "hypothyroidism",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA24",
+      "atom_id": "goiter",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA25",
+      "atom_id": "hf_any",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA25",
+      "atom_id": "conduction_disease",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA25",
+      "atom_id": "thick_walls",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA25",
+      "atom_id": "aa25_cardiac_routing_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA26",
+      "atom_id": "aa26_nakd_uncertainty_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA26",
+      "atom_id": "non_amyloid_glomerulopathy",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA26",
+      "atom_id": "nephrotic_range_proteinuria",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA27",
+      "atom_id": "urine_sediment_result",
+      "can_fire_from_mapping": true,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA27",
+      "atom_id": "aa27_competing_sediment_cause",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA28",
+      "atom_id": "mgus",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA28",
+      "atom_id": "plasma_cell_dyscrasia",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA28",
+      "atom_id": "aa28_subtype_unresolved_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "cts_bilateral",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "lumbar_stenosis",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "biceps_rupture",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "aa29_attr_trajectory_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA30",
+      "atom_id": "aa30_no_driver_gate",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA30",
+      "atom_id": "occult_inflammation",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA30",
+      "atom_id": "aa30_alternative_amyloid_type",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "hf_any",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "conduction_disease",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    },
+    {
+      "signal_id": "AA29",
+      "atom_id": "thick_walls",
+      "can_fire_from_mapping": false,
+      "evidence_mode": "DOCUMENTED_ASSERTION",
+      "experiencer": "PATIENT",
+      "stage": "PRETEST_SIGNAL",
+      "required_qualifiers": null
+    }
+  ]
+}

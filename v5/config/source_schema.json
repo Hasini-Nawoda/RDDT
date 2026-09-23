@@ -207,6 +207,112 @@
           "mapping_notes": "Encounter IDs may be Unknown. Use patient ID and the surgical-history date; do not invent an encounter link."
         }
       }
+    },
+    "icd_dated_claims_v1": {
+      "schema_version": "v5-source-schema-icd-dated-claims-v1",
+      "namespace": "UHTX_RDDT_CLINICAL_DEV.PUBLIC",
+      "description": "Decisions use CLAIMS ICD-10 codes only. ENCOUNTERS supply a date when patient plus encounter resolves to one visit date. CENSUS, ENCOUNTERS, LABS, and SURGICAL_HISTORY hydrate the patient profile and do not create evidence.",
+      "tables": {
+        "census": {
+          "key": "census",
+          "name": "CENSUS",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "patient_id": "PATIENTID",
+            "birth_date": "BIRTHDATE",
+            "gender": "GENDER",
+            "ethnicity": "OMBETHNICITY",
+            "race": "OMBRACE",
+            "death_date": "DEATHDATE"
+          },
+          "required_columns": ["patient_id"]
+        },
+        "claim": {
+          "key": "claim",
+          "name": "CLAIMS",
+          "enabled": true,
+          "required": true,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "patient_id": "PATIENTID",
+            "encounter_id": "ENCOUNTERID",
+            "claim_no": "CLAIMNO",
+            "claim_line_no": "CLAIMLINENO",
+            "claim_status": "CLAIMSTATUS",
+            "diagnosis_type": "DIAGNOSISTYPE",
+            "diagnosis_code": "DIAGNOSISCODE"
+          },
+          "required_columns": ["patient_id", "diagnosis_type", "diagnosis_code"],
+          "mapping_notes": "Algorithmic decisions use DIAGNOSISCODE when DIAGNOSISTYPE is ICD-10-CM. Claim rows have no native date."
+        },
+        "encounter": {
+          "key": "encounter",
+          "name": "ENCOUNTERS",
+          "enabled": false,
+          "required": false,
+          "date_enrichment": true,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "encounter_id": "VISITID",
+            "patient_id": "PATIENTID",
+            "encounter_date": "VISITDATE",
+            "encounter_type": "TYPE",
+            "encounter_status": "STATUS"
+          },
+          "required_columns": ["encounter_id", "patient_id", "encounter_date"],
+          "mapping_notes": "Visit rows date claims. They are not diagnosis evidence. A claim inherits VISITDATE only when patient plus encounter resolves to one date."
+        },
+        "lab": {
+          "key": "lab",
+          "name": "LABS",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "lab_id": "LABTESTKEY",
+            "encounter_id": "ENCOUNTERKEY",
+            "patient_id": "PATIENTID",
+            "lab_request_id": "LABREQUESTID",
+            "lab_result_id": "LABRESULTID",
+            "observation_identifier": "OBSERVATIONIDENTIFIER",
+            "observation_identifier_common_name": "OBSERVATIONIDENTIFIERCOMMONNAME",
+            "observation_value": "OBSERVATIONVALUE",
+            "result_status": "OBSERVATIONRESULTSTATUS",
+            "observation_datetime": "OBSERVATIONDATETIME",
+            "performed_datetime": "PERFORMEDDATETIME",
+            "analysis_datetime": "ANALYSISDATETIME",
+            "lab_result_note": "LABRESULTNOTE"
+          },
+          "required_columns": ["lab_id", "patient_id", "observation_identifier", "observation_value", "observation_datetime"],
+          "mapping_notes": "Labs are profile context only. Local names are not LOINC and do not fire atoms."
+        },
+        "surgical_history": {
+          "key": "surgical_history",
+          "name": "SURGICAL_HISTORY",
+          "enabled": false,
+          "required": false,
+          "profile_enabled": true,
+          "profile_required": true,
+          "columns": {
+            "record_id": "SURGICALHISTORYID",
+            "encounter_id": "ENCOUNTERID",
+            "patient_id": "PATIENTID",
+            "source_category": "SOURCE",
+            "value": "CATEGORY",
+            "snomed": "SNOMED",
+            "secondary_snomed": "SECONDARY_SNOMED",
+            "event_date": "DATE"
+          },
+          "required_columns": ["record_id", "patient_id", "source_category", "value", "event_date"],
+          "mapping_notes": "Surgical history is profile context only and does not fire atoms."
+        }
+      }
     }
   }
 }

@@ -1,0 +1,53 @@
+{
+  "phenotype": "AA",
+  "buckets": [
+    {
+      "bucket": "INFLAMMATORY",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Chronic inflammatory, autoinflammatory, or infectious AA driver."
+    },
+    {
+      "bucket": "RENAL",
+      "class": "INDEPENDENT",
+      "counts_independently": true,
+      "definition": "Albuminuria, proteinuria, nephrotic syndrome, and renal transition."
+    },
+    {
+      "bucket": "CARDIAC",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "Cardiac findings that route toward AL or ATTR and do not establish AA."
+    },
+    {
+      "bucket": "GI",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Gastrointestinal symptoms that are weak AA context."
+    },
+    {
+      "bucket": "ORTHOPEDIC",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "ATTR orthopedic prodrome used only as a route guardrail."
+    },
+    {
+      "bucket": "CLONAL",
+      "class": "NONE",
+      "counts_independently": false,
+      "definition": "Monoclonal protein that routes to AL and leaves subtype unresolved."
+    },
+    {
+      "bucket": "SYSTEMIC",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Weak systemic context such as obesity or thyroid findings."
+    },
+    {
+      "bucket": "DERIVED",
+      "class": "CONTEXT",
+      "counts_independently": false,
+      "definition": "Longitudinal gates that claims cannot establish."
+    }
+  ]
+}

@@ -12,6 +12,7 @@ def evaluate_signals_stage(
     patient_id: Any,
     phenotype: str,
     evaluation_mode: str = "STRICT",
+    birth_date: Any = None,
 ) -> list[dict[str, Any]]:
     return list(evaluate_signals(
         config,
@@ -19,6 +20,7 @@ def evaluate_signals_stage(
         patient_id=patient_id,
         phenotype=phenotype,
         evaluation_mode=evaluation_mode,
+        birth_date=birth_date,
     ))
 
 

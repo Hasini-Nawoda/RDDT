@@ -12,7 +12,8 @@ from typing import Any, Iterable, Mapping
 
 STRICT = "STRICT"
 CLAIMS_RECALL = "CLAIMS_RECALL"
-EVALUATION_MODES = frozenset({STRICT, CLAIMS_RECALL})
+ICD_DATED_CLAIMS = "ICD_DATED_CLAIMS"
+EVALUATION_MODES = frozenset({STRICT, CLAIMS_RECALL, ICD_DATED_CLAIMS})
 
 NATIVE_STRUCTURED_CODE_METHODS = frozenset({
     "EXACT_NORMALIZED_CODE",
@@ -29,6 +30,8 @@ def normalize_evaluation_mode(value: Any = None) -> str:
         "CLAIM_ONLY": CLAIMS_RECALL,
         "HIGH_RECALL": CLAIMS_RECALL,
         "RECALL": CLAIMS_RECALL,
+        "ICD_DATED": ICD_DATED_CLAIMS,
+        "CLAIMS_AND_DATES": ICD_DATED_CLAIMS,
     }
     mode = aliases.get(mode, mode)
     if mode not in EVALUATION_MODES:
@@ -40,6 +43,20 @@ def normalize_evaluation_mode(value: Any = None) -> str:
 
 def is_claims_recall(value: Any = None) -> bool:
     return normalize_evaluation_mode(value) == CLAIMS_RECALL
+
+
+def is_icd_dated_claims(value: Any = None) -> bool:
+    """Claim ICD-10 plus encounter dates, with missing note context lowered."""
+    return normalize_evaluation_mode(value) == ICD_DATED_CLAIMS
+
+
+def verdict_scope_for(value: Any = None) -> str:
+    mode = normalize_evaluation_mode(value)
+    if mode == CLAIMS_RECALL:
+        return "CLAIMS_ONLY_RECALL"
+    if mode == ICD_DATED_CLAIMS:
+        return "ICD_DATED_CLAIMS"
+    return "STRICT_CLINICAL_EVIDENCE"
 
 
 def _value(obj: Any, name: str, default: Any = None) -> Any:
@@ -130,7 +147,10 @@ __all__ = [
     "EVALUATION_MODES",
     "NATIVE_STRUCTURED_CODE_METHODS",
     "normalize_evaluation_mode",
+    "ICD_DATED_CLAIMS",
     "is_claims_recall",
+    "is_icd_dated_claims",
+    "verdict_scope_for",
     "is_native_claim_code",
     "recall_relaxations",
     "is_provisional",

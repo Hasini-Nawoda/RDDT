@@ -1,4 +1,4 @@
-"""Compact, population-wide ATTR and AL verdict ledger.
+"""Compact, population-wide ATTR, AL, and AA verdict ledger.
 
 The expensive clinical engine still evaluates only patients with configured
 candidate evidence.  This module adds an explicit row for everybody else so
@@ -10,7 +10,7 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Iterable, Mapping
 
-from ..evaluation_policy import CLAIMS_RECALL, normalize_evaluation_mode
+from ..evaluation_policy import normalize_evaluation_mode, verdict_scope_for
 from .patient_profile import aggregate_attr_verdict
 
 
@@ -54,7 +54,7 @@ def build_all_patient_verdicts(
     known_al_patients: Iterable[Any] = (),
     evaluation_mode: str = "STRICT",
 ) -> list[dict[str, Any]]:
-    """Return one explicit ATTR/AL screening row for every supplied patient."""
+    """Return one explicit ATTR, AL, and AA screening row for every supplied patient."""
     mode = normalize_evaluation_mode(evaluation_mode)
     routers_by_patient: dict[str, list[Any]] = defaultdict(list)
     for row in router_output:
@@ -104,12 +104,11 @@ def build_all_patient_verdicts(
                     if al_confirmations else "NOT_EVALUATED_CONFIRMED_EXCLUSION"
                 ),
                 "al_suspicion_level": None,
+                "aa_status": "NOT_EVALUATED_CONFIRMED_EXCLUSION",
+                "aa_suspicion_level": None,
                 "candidate_for_review": False,
                 "evaluation_mode": mode,
-                "verdict_scope": (
-                    "CLAIMS_ONLY_RECALL" if mode == CLAIMS_RECALL
-                    else "STRICT_CLINICAL_EVIDENCE"
-                ),
+                "verdict_scope": verdict_scope_for(mode),
                 "provisional": False,
                 "relaxations": (),
                 "reason": "Confirmed amyloidosis is identified before and excluded from suspicion scoring.",
@@ -124,6 +123,7 @@ def build_all_patient_verdicts(
         attrv = _router_verdict(by_phenotype.get("ATTRV"))
         attrwt = _router_verdict(by_phenotype.get("ATTRWT"))
         al = _router_verdict(by_phenotype.get("AL"))
+        aa = _router_verdict(by_phenotype.get("AA"))
         if patient_router:
             attr = aggregate_attr_verdict(patient_router)
             attr_status = attr.get("status", "UNKNOWN")
@@ -131,7 +131,7 @@ def build_all_patient_verdicts(
             attr_provisional = bool(attr.get("provisional", False))
             attr_relaxations = tuple(attr.get("relaxations", ()) or ())
             population_status = "CANDIDATE_EVALUATED"
-            reason = "Configured candidate evidence was evaluated for ATTRv, ATTRwt, and AL."
+            reason = "Configured candidate evidence was evaluated for ATTRv, ATTRwt, AL, and AA."
         else:
             attr_status = "NO_CANDIDATE_EVIDENCE"
             attr_level = None
@@ -148,6 +148,7 @@ def build_all_patient_verdicts(
             *attrv["relaxations"],
             *attrwt["relaxations"],
             *al["relaxations"],
+            *aa["relaxations"],
         )))
         review_statuses = {
             "PHENOTYPE_PASS", "CLAIMS_RECALL_CANDIDATE", "ATTR_SUSPICION",
@@ -156,6 +157,7 @@ def build_all_patient_verdicts(
         candidate_for_review = (
             attr_status in review_statuses
             or al["status"] in review_statuses
+            or aa["status"] in review_statuses
         )
         output.append({
             "patient_id": patient_id,
@@ -168,15 +170,14 @@ def build_all_patient_verdicts(
             "attrwt_status": attrwt["status"],
             "al_status": al["status"],
             "al_suspicion_level": al["suspicion_level"],
+            "aa_status": aa["status"],
+            "aa_suspicion_level": aa["suspicion_level"],
             "candidate_for_review": candidate_for_review,
             "evaluation_mode": mode,
-            "verdict_scope": (
-                "CLAIMS_ONLY_RECALL" if mode == CLAIMS_RECALL
-                else "STRICT_CLINICAL_EVIDENCE"
-            ),
+            "verdict_scope": verdict_scope_for(mode),
             "provisional": bool(
                 attr_provisional or attrv["provisional"]
-                or attrwt["provisional"] or al["provisional"]
+                or attrwt["provisional"] or al["provisional"] or aa["provisional"]
             ),
             "relaxations": relaxations,
             "reason": reason,

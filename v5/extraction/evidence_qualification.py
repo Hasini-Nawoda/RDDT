@@ -479,16 +479,39 @@ def _qualify_one(
         status, reason = UNKNOWN, "CONFIG_GAP_CONTEXT_ANNOTATOR_UNAVAILABLE"
     if status == TRUE and str(attrs.get("context_processing_status", "")).startswith("CONFIG_GAP"):
         status, reason = UNKNOWN, str(attrs["context_processing_status"])
+    mapping_role = _mapping_role(attrs)
+    proxy_code = (
+        status == TRUE
+        and match.match_method in _CODE_MATCH_METHODS
+        and mapping_role == "PROXY_SUPPORT"
+    )
+    if proxy_code:
+        # Proxy ICD evidence establishes the atom. The signal evaluator drops
+        # that signal one tier, so the code is not treated as a direct target.
+        attrs["evidence_strength"] = "PROXY_SUPPORT"
+        attrs["mapping_role"] = "PROXY_SUPPORT"
+    elif (
+        status == TRUE
+        and match.match_method in _CODE_MATCH_METHODS
+        and mapping_role == "DIRECT_TARGET"
+    ):
+        attrs["evidence_strength"] = "DIRECT_TARGET"
+        attrs["mapping_role"] = "DIRECT_TARGET"
     can_fire_alone = _truth(attrs.get("can_fire_atom_alone"))
-    if status == TRUE and can_fire_alone is False and match.match_method != "PHRASEMATCHER":
+    if (
+        status == TRUE
+        and can_fire_alone is False
+        and match.match_method != "PHRASEMATCHER"
+        and not proxy_code
+    ):
         # A structured code marked candidate-only can retrieve and label the
         # source event, but it cannot be silently promoted to affirmative atom
         # evidence without the contextual qualification available to NLP.
+        # PROXY_SUPPORT is the exception: it fires, and the tier drops later.
         relax_or_downgrade(
             "TERM_REQUIRES_CONTEXT_OR_CORROBORATION",
             "CONFIG_RESTRICTION_TERM_CANNOT_FIRE_ALONE",
         )
-    mapping_role = _mapping_role(attrs)
     if status == TRUE and match.match_method in _CODE_MATCH_METHODS and mapping_role in _NON_STANDALONE_MAPPING_ROLES:
         # Supporting/result-required rows may retrieve or annotate an event,
         # but cannot establish an atom on their own.  This is qualification,

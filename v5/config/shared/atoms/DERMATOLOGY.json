@@ -54,7 +54,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other nonthrombocytopenic purpura"
             },
             {
               "value": "D69.59",
@@ -62,7 +63,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other secondary thrombocytopenia"
             },
             {
               "value": "D69.6",
@@ -70,7 +72,26 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Thrombocytopenia, unspecified"
+            },
+            {
+              "value": "D69.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Immune thrombocytopenic purpura"
+            },
+            {
+              "value": "D69.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hemorrhagic condition, unspecified"
             },
             {
               "value": "E54",
@@ -78,23 +99,98 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Ascorbic acid deficiency"
             },
             {
               "value": "Z79.01",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Long term (current) use of anticoagulants"
             },
             {
               "value": "Z79.52",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Long term (current) use of systemic steroids"
+            },
+            {
+              "value": "D69.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Allergic purpura"
+            },
+            {
+              "value": "D68.61",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Antiphospholipid syndrome"
+            },
+            {
+              "value": "D68.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Von Willebrand disease, unspecified"
+            },
+            {
+              "value": "D68.51",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Activated protein C resistance"
+            },
+            {
+              "value": "D68.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary deficiency of other clotting factors"
+            },
+            {
+              "value": "D68.59",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other primary thrombophilia"
+            },
+            {
+              "value": "D68.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Coagulation defect, unspecified"
+            },
+            {
+              "value": "D68.69",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other thrombophilia"
+            },
+            {
+              "value": "R79.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal coagulation profile"
             }
           ],
           "SNOMED_CT": [
@@ -273,11 +369,12 @@
           "ICD10": [
             {
               "value": "D69.2",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other nonthrombocytopenic purpura"
             },
             {
               "value": "R23.3",
@@ -285,7 +382,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Spontaneous unexplained ecchymosis'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Spontaneous ecchymoses"
+            },
+            {
+              "value": "D69.6",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Thrombocytopenia, unspecified"
+            },
+            {
+              "value": "D69.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Immune thrombocytopenic purpura"
+            },
+            {
+              "value": "D69.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hemorrhagic condition, unspecified"
+            },
+            {
+              "value": "D69.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Allergic purpura"
+            },
+            {
+              "value": "D69.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Qualitative platelet defects"
+            },
+            {
+              "value": "D69.59",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other secondary thrombocytopenia"
+            },
+            {
+              "value": "D69.41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Evans syndrome"
+            },
+            {
+              "value": "R23.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other skin changes"
             }
           ],
           "SNOMED_CT": [

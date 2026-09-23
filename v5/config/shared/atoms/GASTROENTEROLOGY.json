@@ -8,7 +8,58 @@
       "experiencer": "PATIENT",
       "context_guard": "Common and nonspecific. Require a chronic/recurrent and otherwise unexplained pattern before contributing to V10; isolated IBS-like symptoms should not be sufficient.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K58.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mixed irritable bowel syndrome"
+            },
+            {
+              "value": "K58.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome, unspecified"
+            },
+            {
+              "value": "K58.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome with diarrhea"
+            },
+            {
+              "value": "K58.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome with constipation"
+            },
+            {
+              "value": "R19.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Change in bowel habit"
+            },
+            {
+              "value": "K59.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Functional intestinal disorder, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "alternating bowel habit",
@@ -86,7 +137,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, unspecified"
             },
             {
               "value": "R13.19",
@@ -94,7 +146,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other dysphagia"
             },
             {
               "value": "R49.0",
@@ -102,7 +155,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphonia"
             },
             {
               "value": "R47.1",
@@ -110,7 +164,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit choking/aspiration-with-swallowing language. Dysarthria, hoarseness, and dysphagia are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysarthria and anarthria"
+            },
+            {
+              "value": "R13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Aphagia"
+            },
+            {
+              "value": "R13.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, oral phase"
+            },
+            {
+              "value": "R13.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, oropharyngeal phase"
+            },
+            {
+              "value": "R13.13",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, pharyngeal phase"
+            },
+            {
+              "value": "R13.14",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, pharyngoesophageal phase"
+            },
+            {
+              "value": "J69.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pneumonitis due to inhalation of food and vomit"
+            },
+            {
+              "value": "J69.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pneumonitis due to inhalation of oils and essences"
+            },
+            {
+              "value": "T17.990A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other foreign object in respiratory tract, part unspecified in causing asphyxiation, initial encounter"
             }
           ],
           "ICD9": [
@@ -184,7 +303,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Diarrhea, unspecified"
             },
             {
               "value": "K59.1",
@@ -192,7 +312,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Functional diarrhea"
             },
             {
               "value": "K59.00",
@@ -200,7 +321,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Constipation, unspecified"
             },
             {
               "value": "K59.8",
@@ -208,7 +330,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match constipation-specific wording only. Diarrhea, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "K59.8 [no 2026 description]"
+            },
+            {
+              "value": "K59.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Slow transit constipation"
+            },
+            {
+              "value": "K59.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Outlet dysfunction constipation"
+            },
+            {
+              "value": "K59.03",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Drug induced constipation"
+            },
+            {
+              "value": "K59.04",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic idiopathic constipation"
+            },
+            {
+              "value": "K59.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other constipation"
+            },
+            {
+              "value": "K56.41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Fecal impaction"
+            },
+            {
+              "value": "R15.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Incomplete defecation"
+            },
+            {
+              "value": "K59.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ogilvie syndrome"
             }
           ],
           "ICD9": [
@@ -303,7 +490,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
             },
             {
               "value": "R68.81",
@@ -311,7 +499,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Early satiety"
             },
             {
               "value": "R11.2",
@@ -319,7 +508,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit delayed/impaired gastric-emptying language. Symptoms alone do not establish delayed gastric emptying.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nausea with vomiting, unspecified"
+            },
+            {
+              "value": "K31.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of stomach and duodenum"
+            },
+            {
+              "value": "K31.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute dilatation of stomach"
+            },
+            {
+              "value": "K30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Functional dyspepsia"
+            },
+            {
+              "value": "R14.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abdominal distension (gaseous)"
+            },
+            {
+              "value": "R11.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nausea"
+            },
+            {
+              "value": "R11.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting, unspecified"
             }
           ],
           "ICD9": [
@@ -385,7 +623,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Diarrhea, unspecified"
             },
             {
               "value": "K59.1",
@@ -393,7 +632,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Functional diarrhea"
             },
             {
               "value": "K59.00",
@@ -401,7 +641,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Constipation, unspecified"
             },
             {
               "value": "K59.8",
@@ -409,7 +650,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diarrhea/loose-stool wording only. Constipation, alternating bowel habit, or generic dysmotility must be represented by their own atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "K59.8 [no 2026 description]"
+            },
+            {
+              "value": "K52.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified noninfective gastroenteritis and colitis"
+            },
+            {
+              "value": "K52.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Noninfective gastroenteritis and colitis, unspecified"
             }
           ],
           "ICD9": [
@@ -517,7 +775,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, unspecified"
             },
             {
               "value": "R13.19",
@@ -525,7 +784,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other dysphagia"
             },
             {
               "value": "R49.0",
@@ -533,7 +793,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphonia"
             },
             {
               "value": "R47.1",
@@ -541,7 +802,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match speech-articulation impairment only. Dysphagia, choking, and hoarseness must not independently create dysarthria.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysarthria and anarthria"
+            },
+            {
+              "value": "R47.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "R47.0 [description not in 2026 official file]"
+            },
+            {
+              "value": "R47.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other speech disturbances"
+            },
+            {
+              "value": "R47.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified speech disturbances"
             }
           ],
           "ICD9": [
@@ -629,7 +915,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, unspecified"
             },
             {
               "value": "R13.19",
@@ -637,7 +924,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other dysphagia"
             },
             {
               "value": "R49.0",
@@ -645,7 +933,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphonia"
             },
             {
               "value": "R47.1",
@@ -653,7 +942,80 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match swallowing difficulty only. Dysarthria and hoarseness must not independently create dysphagia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysarthria and anarthria"
+            },
+            {
+              "value": "R13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Aphagia"
+            },
+            {
+              "value": "R13.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, oral phase"
+            },
+            {
+              "value": "R13.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, oropharyngeal phase"
+            },
+            {
+              "value": "R13.13",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, pharyngeal phase"
+            },
+            {
+              "value": "R13.14",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, pharyngoesophageal phase"
+            },
+            {
+              "value": "K22.4",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dyskinesia of esophagus"
+            },
+            {
+              "value": "K22.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Esophageal obstruction"
+            },
+            {
+              "value": "K20.90",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Esophagitis, unspecified without bleeding"
+            },
+            {
+              "value": "J69.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pneumonitis due to inhalation of food and vomit"
             }
           ],
           "ICD9": [
@@ -757,7 +1119,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
             },
             {
               "value": "R68.81",
@@ -765,7 +1128,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Early satiety"
             },
             {
               "value": "R11.2",
@@ -773,7 +1137,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match early/premature satiety or equivalent fullness wording only; nausea, vomiting, and gastroparesis are related but not lexical synonyms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nausea with vomiting, unspecified"
+            },
+            {
+              "value": "R14.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abdominal distension (gaseous)"
+            },
+            {
+              "value": "K30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Functional dyspepsia"
+            },
+            {
+              "value": "K31.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of stomach and duodenum"
+            },
+            {
+              "value": "R11.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nausea"
             }
           ],
           "ICD9": [
@@ -833,7 +1230,82 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "F50.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, unspecified"
+            },
+            {
+              "value": "F50.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "F50.01 [description not in 2026 official file]"
+            },
+            {
+              "value": "F50.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "F50.02 [description not in 2026 official file]"
+            },
+            {
+              "value": "F50.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "F50.2 [description not in 2026 official file]"
+            },
+            {
+              "value": "F50.82",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Avoidant/restrictive food intake disorder"
+            },
+            {
+              "value": "F50.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified eating disorder"
+            },
+            {
+              "value": "F50.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Eating disorder, unspecified"
+            },
+            {
+              "value": "R63.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anorexia"
+            },
+            {
+              "value": "R63.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "R63.3 [description not in 2026 official file]"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "ARFID",
@@ -912,7 +1384,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, unspecified"
             },
             {
               "value": "R13.19",
@@ -920,7 +1393,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other dysphagia"
             },
             {
               "value": "R49.0",
@@ -928,7 +1402,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysphonia"
             },
             {
               "value": "R47.1",
@@ -936,7 +1411,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match voice/phonation changes only. Dysphagia, choking, and dysarthria must not independently create hoarseness.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dysarthria and anarthria"
+            },
+            {
+              "value": "R49.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Aphonia"
+            },
+            {
+              "value": "R49.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other voice and resonance disorders"
+            },
+            {
+              "value": "R49.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified voice and resonance disorder"
+            },
+            {
+              "value": "J38.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Paralysis of vocal cords and larynx, unspecified"
+            },
+            {
+              "value": "J38.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Paralysis of vocal cords and larynx, unilateral"
+            },
+            {
+              "value": "J38.02",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Paralysis of vocal cords and larynx, bilateral"
+            },
+            {
+              "value": "J38.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of vocal cords"
+            },
+            {
+              "value": "J37.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic laryngitis"
             }
           ],
           "ICD9": [
@@ -1040,7 +1580,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
             },
             {
               "value": "R68.81",
@@ -1048,7 +1589,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Early satiety"
             },
             {
               "value": "R11.2",
@@ -1056,7 +1598,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match nausea/queasiness language only. Gastroparesis, vomiting, delayed gastric emptying, or early satiety must not independently create nausea.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nausea with vomiting, unspecified"
+            },
+            {
+              "value": "R11.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nausea"
+            },
+            {
+              "value": "R11.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting, unspecified"
+            },
+            {
+              "value": "R11.11",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting without nausea"
+            },
+            {
+              "value": "R11.14",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Bilious vomiting"
+            },
+            {
+              "value": "G43.A0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cyclical vomiting, in migraine, not intractable"
             }
           ],
           "ICD9": [
@@ -1112,7 +1695,178 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K58.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome with diarrhea"
+            },
+            {
+              "value": "K58.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome with constipation"
+            },
+            {
+              "value": "K58.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mixed irritable bowel syndrome"
+            },
+            {
+              "value": "K58.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Irritable bowel syndrome, unspecified"
+            },
+            {
+              "value": "K50.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of small intestine without complications"
+            },
+            {
+              "value": "K50.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of large intestine without complications"
+            },
+            {
+              "value": "K50.80",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of both small and large intestine without complications"
+            },
+            {
+              "value": "K50.90",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease, unspecified, without complications"
+            },
+            {
+              "value": "K51.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ulcerative (chronic) pancolitis without complications"
+            },
+            {
+              "value": "K51.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ulcerative (chronic) proctitis without complications"
+            },
+            {
+              "value": "K51.90",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ulcerative colitis, unspecified, without complications"
+            },
+            {
+              "value": "K90.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Celiac disease"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "E11.49",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with other diabetic neurological complication"
+            },
+            {
+              "value": "E10.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "E10.49",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with other diabetic neurological complication"
+            },
+            {
+              "value": "K52.832",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Lymphocytic colitis"
+            },
+            {
+              "value": "K52.839",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Microscopic colitis, unspecified"
+            },
+            {
+              "value": "K90.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Whipple's disease"
+            },
+            {
+              "value": "K59.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ogilvie syndrome"
+            },
+            {
+              "value": "K59.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified functional intestinal disorders"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Competing causes of chronic GI dysmotility",
@@ -1203,7 +1957,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
             },
             {
               "value": "R68.81",
@@ -1211,7 +1966,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Early satiety"
             },
             {
               "value": "R11.2",
@@ -1219,7 +1975,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match vomiting/emesis language only. Gastroparesis, nausea, delayed gastric emptying, and early satiety must not independently create vomiting.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nausea with vomiting, unspecified"
+            },
+            {
+              "value": "R11.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting, unspecified"
+            },
+            {
+              "value": "R11.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting without nausea"
+            },
+            {
+              "value": "R11.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Projectile vomiting"
+            },
+            {
+              "value": "R11.13",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting of fecal matter"
+            },
+            {
+              "value": "R11.14",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Bilious vomiting"
+            },
+            {
+              "value": "R11.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nausea"
+            },
+            {
+              "value": "G43.A0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cyclical vomiting, in migraine, not intractable"
+            },
+            {
+              "value": "G43.A1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cyclical vomiting, in migraine, intractable"
             }
           ],
           "ICD9": [
@@ -1318,7 +2139,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Upper abdominal pain, unspecified"
             },
             {
               "value": "R10.13",
@@ -1326,7 +2148,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Epigastric pain"
             },
             {
               "value": "R10.84",
@@ -1334,7 +2157,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Generalized abdominal pain"
             },
             {
               "value": "R10.9",
@@ -1342,7 +2166,120 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Unexplained abdominal pain'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified abdominal pain"
+            },
+            {
+              "value": "R10.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute abdomen"
+            },
+            {
+              "value": "R10.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Right upper quadrant pain"
+            },
+            {
+              "value": "R10.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Left upper quadrant pain"
+            },
+            {
+              "value": "R10.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "R10.2 [description not in 2026 official file]"
+            },
+            {
+              "value": "R10.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Lower abdominal pain, unspecified"
+            },
+            {
+              "value": "R10.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Right lower quadrant pain"
+            },
+            {
+              "value": "R10.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Left lower quadrant pain"
+            },
+            {
+              "value": "R10.33",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Periumbilical pain"
+            },
+            {
+              "value": "R10.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "R10.4 [description not in 2026 official file]"
+            },
+            {
+              "value": "R10.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "R10.81 [description not in 2026 official file]"
+            },
+            {
+              "value": "R10.819",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abdominal tenderness, unspecified site"
+            },
+            {
+              "value": "R10.821",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Right upper quadrant rebound abdominal tenderness"
+            },
+            {
+              "value": "R14.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abdominal distension (gaseous)"
+            },
+            {
+              "value": "R19.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Intra-abdominal and pelvic swelling, mass and lump, unspecified site"
             }
           ],
           "SNOMED_CT": [

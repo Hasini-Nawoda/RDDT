@@ -8,7 +8,42 @@
       "experiencer": "PATIENT",
       "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Confirm an affirmed patient finding and route for amyloid typing when clinically appropriate.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Q38.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Macroglossia"
+            },
+            {
+              "value": "K14.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of tongue"
+            },
+            {
+              "value": "K14.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertrophy of tongue papillae"
+            },
+            {
+              "value": "K14.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disease of tongue, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "acquired tongue enlargement",
@@ -41,7 +76,76 @@
       "clinical_meaning": "Periorbital / pinch purpura",
       "context_guard": "AL differential clue; not a stand-alone exclusion of ATTR. Require an affirmed patient finding rather than copied history or negated text.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D69.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Use as purpura context only; the code does not establish periorbital or pinch distribution.",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other nonthrombocytopenic purpura"
+            },
+            {
+              "value": "R23.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Use as ecchymosis context only; the code does not establish periorbital or pinch distribution.",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Spontaneous ecchymoses"
+            },
+            {
+              "value": "D69.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Immune thrombocytopenic purpura"
+            },
+            {
+              "value": "D69.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Allergic purpura"
+            },
+            {
+              "value": "H02.843",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Edema of right eye, unspecified eyelid"
+            },
+            {
+              "value": "H02.846",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Edema of left eye, unspecified eyelid"
+            },
+            {
+              "value": "H02.844",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Edema of left upper eyelid"
+            },
+            {
+              "value": "H02.841",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Edema of right upper eyelid"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "bruising around eyes",

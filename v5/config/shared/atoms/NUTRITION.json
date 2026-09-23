@@ -54,7 +54,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Respiratory tuberculosis unspecified"
             },
             {
               "value": "C80.1",
@@ -62,7 +63,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Malignant (primary) neoplasm, unspecified"
             },
             {
               "value": "E05.9",
@@ -70,7 +72,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "E05.9 [no 2026 description]"
             },
             {
               "value": "F32.9",
@@ -78,7 +81,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, single episode, unspecified"
             },
             {
               "value": "F33.9",
@@ -86,7 +90,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, recurrent, unspecified"
             },
             {
               "value": "K90.9",
@@ -94,7 +99,208 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Intestinal malabsorption, unspecified"
+            },
+            {
+              "value": "E05.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with diffuse goiter without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with diffuse goiter with thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with toxic single thyroid nodule without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with toxic multinodular goiter without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.80",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other thyrotoxicosis without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "F32.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, single episode, mild"
+            },
+            {
+              "value": "F32.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, single episode, moderate"
+            },
+            {
+              "value": "F32.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, single episode, severe without psychotic features"
+            },
+            {
+              "value": "F33.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, recurrent, mild"
+            },
+            {
+              "value": "F33.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, recurrent, moderate"
+            },
+            {
+              "value": "F33.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Major depressive disorder, recurrent severe without psychotic features"
+            },
+            {
+              "value": "C80.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Disseminated malignant neoplasm, unspecified"
+            },
+            {
+              "value": "C78.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary malignant neoplasm of other digestive organs"
+            },
+            {
+              "value": "F50.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, unspecified"
+            },
+            {
+              "value": "F50.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "F50.01 [no 2026 description]"
+            },
+            {
+              "value": "F50.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "F50.02 [no 2026 description]"
+            },
+            {
+              "value": "B20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Human immunodeficiency virus [HIV] disease"
+            },
+            {
+              "value": "K90.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Celiac disease"
+            },
+            {
+              "value": "K90.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other intestinal malabsorption"
+            },
+            {
+              "value": "K86.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other chronic pancreatitis"
+            },
+            {
+              "value": "A15.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Tuberculosis of lung"
+            },
+            {
+              "value": "A15.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Tuberculosis of intrathoracic lymph nodes"
+            },
+            {
+              "value": "E40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Kwashiorkor"
+            },
+            {
+              "value": "E41",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nutritional marasmus"
+            },
+            {
+              "value": "E44.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mild protein-calorie malnutrition"
             }
           ],
           "SNOMED_CT": [
@@ -204,6 +410,88 @@
               "context_guard": "Measurement/result route only; existence of the test does not independently establish the signal.",
               "mapping_role": "DIRECT_TARGET",
               "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R63.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal weight loss"
+            },
+            {
+              "value": "R63.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Underweight"
+            },
+            {
+              "value": "R63.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal weight gain"
+            },
+            {
+              "value": "Z68.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 19.9 or less, adult"
+            },
+            {
+              "value": "Z68.20",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 20.0-20.9, adult"
+            },
+            {
+              "value": "Z68.21",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 21.0-21.9, adult"
+            },
+            {
+              "value": "Z68.22",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 22.0-22.9, adult"
+            },
+            {
+              "value": "Z68.23",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 23.0-23.9, adult"
+            },
+            {
+              "value": "Z68.41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 40.0-44.9, adult"
+            },
+            {
+              "value": "Z68.42",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Body mass index [BMI] 45.0-49.9, adult"
             }
           ]
         },

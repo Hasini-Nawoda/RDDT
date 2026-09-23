@@ -18,6 +18,32 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            }
           ]
         },
         "nlp_terms": [
@@ -39,7 +65,34 @@
       "experiencer": "PATIENT",
       "context_guard": "Match absent/reduced-sweating terminology only. Generic 'sweating abnormality', hyperhidrosis, or heat intolerance alone must not create an anhidrosis atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L74.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Eccrine sweat disorder, unspecified"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            },
+            {
+              "value": "G90.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Familial dysautonomia [Riley-Day]"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "absent sweating",
@@ -83,7 +136,50 @@
       "experiencer": "PATIENT",
       "context_guard": "Require electrodiagnostic/NCS/EMG wording or explicit amplitude findings interpreted as axonal. Generic 'axonal', 'length-dependent', or stocking-glove language alone is insufficient.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "abnormal electromyography",
@@ -179,7 +275,66 @@
       "experiencer": "PATIENT",
       "context_guard": "Bulbar symptoms are not a core stand-alone ATTRv red flag. Require progressive/unexplained symptoms plus independent ATTR-compatible neurologic or hereditary evidence.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R13.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, unspecified"
+            },
+            {
+              "value": "R13.12",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, oropharyngeal phase"
+            },
+            {
+              "value": "R47.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dysarthria and anarthria"
+            },
+            {
+              "value": "R49.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dysphonia"
+            },
+            {
+              "value": "R47.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Slurred speech"
+            },
+            {
+              "value": "R13.14",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dysphagia, pharyngoesophageal phase"
+            },
+            {
+              "value": "R13.19",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other dysphagia"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Unexplained bulbar neuropathy symptoms",
@@ -214,7 +369,58 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Paresthesia of skin"
+            },
+            {
+              "value": "R20.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other disturbances of skin sensation"
+            },
+            {
+              "value": "G57.93",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified mononeuropathy of bilateral lower limbs"
+            },
+            {
+              "value": "G57.61",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Lesion of plantar nerve, right lower limb"
+            },
+            {
+              "value": "G57.62",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Lesion of plantar nerve, left lower limb"
+            },
+            {
+              "value": "G63",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy in diseases classified elsewhere"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Grierson-Gopalan syndrome",
@@ -275,7 +481,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of unspecified heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.411",
@@ -283,7 +490,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.412",
@@ -291,7 +499,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.413",
@@ -299,7 +508,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.414",
@@ -307,7 +517,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.415",
@@ -315,7 +526,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.416",
@@ -323,7 +535,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.418",
@@ -331,7 +544,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with other specified severity"
             },
             {
               "value": "L97.419",
@@ -339,7 +553,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.421",
@@ -347,7 +562,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.422",
@@ -355,7 +571,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.423",
@@ -363,7 +580,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.424",
@@ -371,7 +589,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.425",
@@ -379,7 +598,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.426",
@@ -387,7 +607,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.428",
@@ -395,7 +616,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with other specified severity"
             },
             {
               "value": "L97.429",
@@ -403,7 +625,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.501",
@@ -411,7 +634,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot limited to breakdown of skin"
             },
             {
               "value": "L97.502",
@@ -419,7 +643,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with fat layer exposed"
             },
             {
               "value": "L97.503",
@@ -427,7 +652,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of muscle"
             },
             {
               "value": "L97.504",
@@ -435,7 +661,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of bone"
             },
             {
               "value": "L97.505",
@@ -443,7 +670,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.506",
@@ -451,7 +679,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.508",
@@ -459,7 +688,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with other specified severity"
             },
             {
               "value": "L97.509",
@@ -467,7 +697,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with unspecified severity"
             },
             {
               "value": "L97.511",
@@ -475,7 +706,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot limited to breakdown of skin"
             },
             {
               "value": "L97.512",
@@ -483,7 +715,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with fat layer exposed"
             },
             {
               "value": "L97.513",
@@ -491,7 +724,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of muscle"
             },
             {
               "value": "L97.514",
@@ -499,7 +733,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of bone"
             },
             {
               "value": "L97.515",
@@ -507,7 +742,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.516",
@@ -515,7 +751,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.518",
@@ -523,7 +760,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with other specified severity"
             },
             {
               "value": "L97.519",
@@ -531,7 +769,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with unspecified severity"
             },
             {
               "value": "L97.521",
@@ -539,7 +778,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot limited to breakdown of skin"
             },
             {
               "value": "L97.522",
@@ -547,7 +787,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with fat layer exposed"
             },
             {
               "value": "L97.523",
@@ -555,7 +796,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of muscle"
             },
             {
               "value": "L97.524",
@@ -563,7 +805,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of bone"
             },
             {
               "value": "L97.525",
@@ -571,7 +814,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.526",
@@ -579,7 +823,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.528",
@@ -587,7 +832,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with other specified severity"
             },
             {
               "value": "L97.529",
@@ -595,7 +841,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with unspecified severity"
             },
             {
               "value": "M14.671",
@@ -603,7 +850,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, right ankle and foot"
             },
             {
               "value": "M14.672",
@@ -611,7 +859,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match Charcot/neuroarthropathy language only. Ulcers and trophic skin changes are separate downstream manifestations.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, left ankle and foot"
+            },
+            {
+              "value": "M14.679",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, unspecified ankle and foot"
+            },
+            {
+              "value": "M14.670",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "M14.670 [no 2026 description]"
+            },
+            {
+              "value": "E11.610",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic neuropathic arthropathy"
+            },
+            {
+              "value": "E10.610",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic neuropathic arthropathy"
             }
           ],
           "ICD9": [
@@ -715,7 +996,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit CIDP/chronic inflammatory demyelinating neuropathy terminology. Treatment exposure or treatment failure alone must not create a CIDP diagnosis atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Guillain-Barre syndrome"
+            },
+            {
+              "value": "G61.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multifocal motor neuropathy"
+            },
+            {
+              "value": "G61.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other inflammatory polyneuropathies"
+            },
+            {
+              "value": "G61.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Inflammatory polyneuropathy, unspecified"
+            },
+            {
+              "value": "G61.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Serum neuropathy"
             }
           ],
           "ICD9": [
@@ -773,7 +1095,50 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Guillain-Barre syndrome"
+            },
+            {
+              "value": "G61.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multifocal motor neuropathy"
+            },
+            {
+              "value": "G60.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary motor and sensory neuropathy"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Demyelinating pattern on EMG/NCS",
@@ -851,7 +1216,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "G90.8 [no 2026 description]"
             },
             {
               "value": "G90.9",
@@ -859,7 +1225,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit dysautonomia/autonomic-neuropathy/autonomic-failure terminology only. Individual autonomic symptoms such as sweating abnormality or orthostatic symptoms should remain in their own atoms unless the clinician explicitly labels dysautonomia.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "G90.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Familial dysautonomia [Riley-Day]"
+            },
+            {
+              "value": "G90.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multi-system degeneration of the autonomic nervous system"
+            },
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            },
+            {
+              "value": "I95.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic hypotension"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
             }
           ],
           "ICD9": [
@@ -908,7 +1323,34 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit elevated/increased/rising neurofilament-light-chain wording. A bare NfL test/result mention must not create an elevated-NfL atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "elevated NfL",
@@ -971,7 +1413,48 @@
               "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Male erectile dysfunction, unspecified"
+            },
+            {
+              "value": "N52.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Erectile dysfunction due to diseases classified elsewhere"
+            },
+            {
+              "value": "N52.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other male erectile dysfunction"
+            },
+            {
+              "value": "N52.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Erectile dysfunction due to arterial insufficiency"
+            },
+            {
+              "value": "N52.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced erectile dysfunction"
+            },
+            {
+              "value": "F52.21",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Male erectile disorder"
             }
           ],
           "ICD9": [
@@ -1045,7 +1528,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
             },
             {
               "value": "R68.81",
@@ -1053,7 +1537,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Early satiety"
             },
             {
               "value": "R11.2",
@@ -1061,7 +1546,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit gastroparesis/gastric-stasis language. Nausea, vomiting, or early satiety alone must not be converted into gastroparesis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nausea with vomiting, unspecified"
+            },
+            {
+              "value": "R11.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nausea"
+            },
+            {
+              "value": "R11.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting, unspecified"
+            },
+            {
+              "value": "K31.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of stomach and duodenum"
+            },
+            {
+              "value": "R11.11",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vomiting without nausea"
             }
           ],
           "ICD9": [
@@ -1127,7 +1645,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Diarrhea, unspecified"
             },
             {
               "value": "K59.1",
@@ -1135,7 +1654,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Functional diarrhea"
             },
             {
               "value": "K59.00",
@@ -1143,7 +1663,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Constipation, unspecified"
             },
             {
               "value": "K59.8",
@@ -1151,7 +1672,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require persistent/objective or specialist-documented unexplained dysmotility. Do not treat transient postoperative, medication-related, mechanical, or acute infectious symptoms as ATTR-compatible autonomic disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "K59.8 [no 2026 description]"
+            },
+            {
+              "value": "K59.09",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other constipation"
+            },
+            {
+              "value": "K59.04",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic idiopathic constipation"
+            },
+            {
+              "value": "K59.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Slow transit constipation"
+            },
+            {
+              "value": "K59.03",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug induced constipation"
+            },
+            {
+              "value": "R19.4",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Change in bowel habit"
+            },
+            {
+              "value": "K31.84",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
+            },
+            {
+              "value": "K31.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other diseases of stomach and duodenum"
             }
           ],
           "ICD9": [
@@ -1267,7 +1845,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match actual immunotherapy/corticosteroid/plasma-exchange exposure terms. CIDP diagnosis and lack of response are separate concepts.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "Z79.899",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other long term (current) drug therapy"
+            },
+            {
+              "value": "Z79.60",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Long term (current) use of unspecified immunomodulators and immunosuppressants"
+            },
+            {
+              "value": "Z51.12",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for antineoplastic immunotherapy"
             }
           ],
           "ICD9": [
@@ -1358,7 +1961,34 @@
       "experiencer": "PATIENT",
       "context_guard": "Only interpret as a CIDP-misdiagnosis red flag after an adequate therapeutic trial. Stopping treatment for adverse effects or inadequate exposure is not nonresponse.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other inflammatory polyneuropathies"
+            },
+            {
+              "value": "G61.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Inflammatory polyneuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "IVIG discontinued for lack of efficacy",
@@ -1472,6 +2102,32 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "R93.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal findings on diagnostic imaging of heart and coronary circulation"
+            },
+            {
+              "value": "R93.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal findings on diagnostic imaging of other specified body structures"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            }
           ]
         },
         "nlp_terms": [
@@ -1578,7 +2234,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
             },
             {
               "value": "G62.89",
@@ -1586,7 +2243,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
             },
             {
               "value": "G60.9",
@@ -1594,7 +2252,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Mild-to-moderate length-dependent sensory polyneuropathy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic progressive neuropathy"
+            },
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            },
+            {
+              "value": "G63",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy in diseases classified elsewhere"
             }
           ],
           "SNOMED_CT": [
@@ -1697,6 +2388,48 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G60.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary motor and sensory neuropathy"
+            }
           ]
         },
         "nlp_terms": [
@@ -1748,6 +2481,48 @@
               "context_guard": "Require explicit nerve enlargement/increased cross-sectional area on ultrasound. Merely mentioning a nerve-ultrasound study does not establish enlargement.",
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multifocal motor neuropathy"
+            },
+            {
+              "value": "G60.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary motor and sensory neuropathy"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
             }
           ]
         },
@@ -1809,7 +2584,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Neuromuscular dysfunction of bladder, unspecified"
             },
             {
               "value": "R33.9",
@@ -1817,7 +2593,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Retention of urine, unspecified"
             },
             {
               "value": "R32",
@@ -1825,7 +2602,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit neurogenic/autonomic/atonic bladder language. Retention or incontinence alone do not establish a neurogenic bladder diagnosis.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified urinary incontinence"
+            },
+            {
+              "value": "N31.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Flaccid neuropathic bladder, not elsewhere classified"
+            },
+            {
+              "value": "N31.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Uninhibited neuropathic bladder, not elsewhere classified"
+            },
+            {
+              "value": "N31.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Reflex neuropathic bladder, not elsewhere classified"
+            },
+            {
+              "value": "N31.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other neuromuscular dysfunction of bladder"
             }
           ],
           "ICD9": [
@@ -1905,7 +2715,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
             },
             {
               "value": "G90.8",
@@ -1913,7 +2724,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "G90.8 [no 2026 description]"
             },
             {
               "value": "G90.9",
@@ -1921,7 +2733,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Symptom/intolerance wording on standing. Objective orthostatic hypotension may be represented separately; generic dysautonomia or sweating abnormalities must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypotension, unspecified"
+            },
+            {
+              "value": "I95.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic hypotension"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
+            },
+            {
+              "value": "R55",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Syncope and collapse"
+            },
+            {
+              "value": "G90.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multi-system degeneration of the autonomic nervous system"
             }
           ],
           "ICD9": [
@@ -2000,7 +2861,58 @@
       "experiencer": "PATIENT",
       "context_guard": "Pain/temperature loss can support early ATTRv small-fiber disease even when pain is absent, but for V04 it should be progressive and length-dependent unless corroborated by other compatible small-fiber evidence.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R20.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Anesthesia of skin"
+            },
+            {
+              "value": "R20.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypoesthesia of skin"
+            },
+            {
+              "value": "R20.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Paresthesia of skin"
+            },
+            {
+              "value": "R20.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other disturbances of skin sensation"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Impaired pain and temperature sensation",
@@ -2089,7 +3001,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of unspecified heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.411",
@@ -2097,7 +3010,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.412",
@@ -2105,7 +3019,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.413",
@@ -2113,7 +3028,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.414",
@@ -2121,7 +3037,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.415",
@@ -2129,7 +3046,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.416",
@@ -2137,7 +3055,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.418",
@@ -2145,7 +3064,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with other specified severity"
             },
             {
               "value": "L97.419",
@@ -2153,7 +3073,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.421",
@@ -2161,7 +3082,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.422",
@@ -2169,7 +3091,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.423",
@@ -2177,7 +3100,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.424",
@@ -2185,7 +3109,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.425",
@@ -2193,7 +3118,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.426",
@@ -2201,7 +3127,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.428",
@@ -2209,7 +3136,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with other specified severity"
             },
             {
               "value": "L97.429",
@@ -2217,7 +3145,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.501",
@@ -2225,7 +3154,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot limited to breakdown of skin"
             },
             {
               "value": "L97.502",
@@ -2233,7 +3163,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with fat layer exposed"
             },
             {
               "value": "L97.503",
@@ -2241,7 +3172,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of muscle"
             },
             {
               "value": "L97.504",
@@ -2249,7 +3181,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of bone"
             },
             {
               "value": "L97.505",
@@ -2257,7 +3190,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.506",
@@ -2265,7 +3199,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.508",
@@ -2273,7 +3208,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with other specified severity"
             },
             {
               "value": "L97.509",
@@ -2281,7 +3217,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with unspecified severity"
             },
             {
               "value": "L97.511",
@@ -2289,7 +3226,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot limited to breakdown of skin"
             },
             {
               "value": "L97.512",
@@ -2297,7 +3235,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with fat layer exposed"
             },
             {
               "value": "L97.513",
@@ -2305,7 +3244,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of muscle"
             },
             {
               "value": "L97.514",
@@ -2313,7 +3253,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of bone"
             },
             {
               "value": "L97.515",
@@ -2321,7 +3262,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.516",
@@ -2329,7 +3271,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.518",
@@ -2337,7 +3280,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with other specified severity"
             },
             {
               "value": "L97.519",
@@ -2345,7 +3289,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with unspecified severity"
             },
             {
               "value": "L97.521",
@@ -2353,7 +3298,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot limited to breakdown of skin"
             },
             {
               "value": "L97.522",
@@ -2361,7 +3307,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with fat layer exposed"
             },
             {
               "value": "L97.523",
@@ -2369,7 +3316,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of muscle"
             },
             {
               "value": "L97.524",
@@ -2377,7 +3325,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of bone"
             },
             {
               "value": "L97.525",
@@ -2385,7 +3334,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.526",
@@ -2393,7 +3343,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.528",
@@ -2401,7 +3352,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with other specified severity"
             },
             {
               "value": "L97.529",
@@ -2409,7 +3361,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with unspecified severity"
             },
             {
               "value": "M14.671",
@@ -2417,7 +3370,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, right ankle and foot"
             },
             {
               "value": "M14.672",
@@ -2425,7 +3379,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match plantar/neuropathic foot-ulcer language only. Charcot arthropathy and generic trophic change must not independently create an ulcer atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, left ankle and foot"
+            },
+            {
+              "value": "E11.621",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with foot ulcer"
+            },
+            {
+              "value": "E11.622",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with other skin ulcer"
+            },
+            {
+              "value": "E11.51",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic peripheral angiopathy without gangrene"
             }
           ],
           "ICD9": [
@@ -2495,7 +3474,74 @@
       "clinical_meaning": "Peripheral polyneuropathy. For ATTRv screening, generic neuropathy evidence must be qualified by phenotype (for example progressive, length-dependent, axonal and/or sensorimotor) before satisfying a high-specificity signal.",
       "context_guard": "Generic or unspecified neuropathy is nonspecific. Do not infer ATTR-compatible neuropathy from diabetes codes, autonomic terms, cardiac terms, or a procedure code alone.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic progressive neuropathy"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G60.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary motor and sensory neuropathy"
+            },
+            {
+              "value": "G63",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy in diseases classified elsewhere"
+            },
+            {
+              "value": "G62.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic polyneuropathy"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "axonal polyneuropathy",
@@ -2547,7 +3593,58 @@
       "experiencer": "PATIENT",
       "context_guard": "A positive autoantibody alone is not a sufficient alternative diagnosis. Require clinical relevance and a convincing inflammatory neuropathy phenotype.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R76.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Raised antibody titer"
+            },
+            {
+              "value": "R76.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormal immunological findings in serum"
+            },
+            {
+              "value": "R76.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal rheumatoid factor and anti-citrullinated protein antibody without rheumatoid arthritis"
+            },
+            {
+              "value": "G37.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Myelin oligodendrocyte glycoprotein antibody disease"
+            },
+            {
+              "value": "I77.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Antineutrophilic cytoplasmic antibody [ANCA] vasculitis"
+            },
+            {
+              "value": "R76.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal immunological finding in serum, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "ANA",
@@ -2603,7 +3700,34 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit reduced/decreased intraepidermal nerve-fiber density or equivalent skin-biopsy wording. QST, QSART, and PGP9.5 mention alone do not establish reduced IENFD.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "decreased IENFD",
@@ -2681,7 +3805,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
             },
             {
               "value": "G60.9",
@@ -2689,7 +3814,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
             },
             {
               "value": "R20.2",
@@ -2697,7 +3823,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit small-fiber-neuropathy terminology only. Burning feet, dysesthesia, and pain/temperature loss are separate compatible findings and should combine at the AST level.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Paresthesia of skin"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic progressive neuropathy"
+            },
+            {
+              "value": "R20.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other disturbances of skin sensation"
+            },
+            {
+              "value": "R20.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified disturbances of skin sensation"
             }
           ],
           "ICD9": [
@@ -2777,7 +3944,34 @@
       "clinical_meaning": "Reduced electrochemical skin conductance (SUDOSCAN)",
       "context_guard": "Reduced electrochemical skin conductance is supportive of sudomotor/small-fiber dysfunction but is not ATTRv-specific; require a compatible carrier or clinical phenotype.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "L74.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Eccrine sweat disorder, unspecified"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "reduced foot ESC",
@@ -2802,7 +3996,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of unspecified heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.411",
@@ -2810,7 +4005,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.412",
@@ -2818,7 +4014,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.413",
@@ -2826,7 +4023,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.414",
@@ -2834,7 +4032,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.415",
@@ -2842,7 +4041,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.416",
@@ -2850,7 +4050,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.418",
@@ -2858,7 +4059,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with other specified severity"
             },
             {
               "value": "L97.419",
@@ -2866,7 +4068,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of right heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.421",
@@ -2874,7 +4077,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot limited to breakdown of skin"
             },
             {
               "value": "L97.422",
@@ -2882,7 +4086,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with fat layer exposed"
             },
             {
               "value": "L97.423",
@@ -2890,7 +4095,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of muscle"
             },
             {
               "value": "L97.424",
@@ -2898,7 +4104,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with necrosis of bone"
             },
             {
               "value": "L97.425",
@@ -2906,7 +4113,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.426",
@@ -2914,7 +4122,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.428",
@@ -2922,7 +4131,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with other specified severity"
             },
             {
               "value": "L97.429",
@@ -2930,7 +4140,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of left heel and midfoot with unspecified severity"
             },
             {
               "value": "L97.501",
@@ -2938,7 +4149,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot limited to breakdown of skin"
             },
             {
               "value": "L97.502",
@@ -2946,7 +4158,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with fat layer exposed"
             },
             {
               "value": "L97.503",
@@ -2954,7 +4167,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of muscle"
             },
             {
               "value": "L97.504",
@@ -2962,7 +4176,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with necrosis of bone"
             },
             {
               "value": "L97.505",
@@ -2970,7 +4185,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.506",
@@ -2978,7 +4194,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.508",
@@ -2986,7 +4203,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with other specified severity"
             },
             {
               "value": "L97.509",
@@ -2994,7 +4212,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of unspecified foot with unspecified severity"
             },
             {
               "value": "L97.511",
@@ -3002,7 +4221,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot limited to breakdown of skin"
             },
             {
               "value": "L97.512",
@@ -3010,7 +4230,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with fat layer exposed"
             },
             {
               "value": "L97.513",
@@ -3018,7 +4239,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of muscle"
             },
             {
               "value": "L97.514",
@@ -3026,7 +4248,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with necrosis of bone"
             },
             {
               "value": "L97.515",
@@ -3034,7 +4257,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.516",
@@ -3042,7 +4266,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.518",
@@ -3050,7 +4275,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with other specified severity"
             },
             {
               "value": "L97.519",
@@ -3058,7 +4284,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of right foot with unspecified severity"
             },
             {
               "value": "L97.521",
@@ -3066,7 +4293,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot limited to breakdown of skin"
             },
             {
               "value": "L97.522",
@@ -3074,7 +4302,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with fat layer exposed"
             },
             {
               "value": "L97.523",
@@ -3082,7 +4311,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of muscle"
             },
             {
               "value": "L97.524",
@@ -3090,7 +4320,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with necrosis of bone"
             },
             {
               "value": "L97.525",
@@ -3098,7 +4329,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with muscle involvement without evidence of necrosis"
             },
             {
               "value": "L97.526",
@@ -3106,7 +4338,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with bone involvement without evidence of necrosis"
             },
             {
               "value": "L97.528",
@@ -3114,7 +4347,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with other specified severity"
             },
             {
               "value": "L97.529",
@@ -3122,7 +4356,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Non-pressure chronic ulcer of other part of left foot with unspecified severity"
             },
             {
               "value": "M14.671",
@@ -3130,7 +4365,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, right ankle and foot"
             },
             {
               "value": "M14.672",
@@ -3138,7 +4374,16 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match trophic skin/nail/hair changes only. Plantar ulcer and Charcot arthropathy are separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Charcot's joint, left ankle and foot"
+            },
+            {
+              "value": "R23.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other skin changes"
             }
           ],
           "ICD9": [
@@ -3242,7 +4487,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Neuromuscular dysfunction of bladder, unspecified"
             },
             {
               "value": "R33.9",
@@ -3250,7 +4496,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Retention of urine, unspecified"
             },
             {
               "value": "R32",
@@ -3258,7 +4505,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match urine-leakage/incontinence language only. Retention and neurogenic bladder are related but separate atoms.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified urinary incontinence"
+            },
+            {
+              "value": "N39.46",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Mixed incontinence"
+            },
+            {
+              "value": "N39.41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Urge incontinence"
+            },
+            {
+              "value": "R39.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Functional urinary incontinence"
+            },
+            {
+              "value": "N39.498",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified urinary incontinence"
             }
           ],
           "ICD9": [
@@ -3342,7 +4622,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Neuromuscular dysfunction of bladder, unspecified"
             },
             {
               "value": "R33.9",
@@ -3350,7 +4631,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Retention of urine, unspecified"
             },
             {
               "value": "R32",
@@ -3358,7 +4640,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match retention/incomplete-emptying language only. Incontinence alone must not create urinary retention.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified urinary incontinence"
+            },
+            {
+              "value": "R33.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other retention of urine"
+            },
+            {
+              "value": "N31.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Flaccid neuropathic bladder, not elsewhere classified"
+            },
+            {
+              "value": "N31.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other neuromuscular dysfunction of bladder"
+            },
+            {
+              "value": "N31.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Uninhibited neuropathic bladder, not elsewhere classified"
+            },
+            {
+              "value": "R33.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug induced retention of urine"
             }
           ],
           "ICD9": [
@@ -3430,7 +4753,106 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "E11.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E11.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic neuropathy, unspecified"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            },
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Guillain-Barre syndrome"
+            },
+            {
+              "value": "E10.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E13.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "G62.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic polyneuropathy"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy due to other toxic agents"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "B12 deficiency",
@@ -3497,7 +4919,90 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "E11.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E11.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic neuropathy, unspecified"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            },
+            {
+              "value": "G60.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary motor and sensory neuropathy"
+            },
+            {
+              "value": "G61.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic inflammatory demyelinating polyneuritis"
+            },
+            {
+              "value": "G61.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Guillain-Barre syndrome"
+            },
+            {
+              "value": "E10.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E13.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "B12 deficiency",
@@ -3556,7 +5061,66 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G90.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Multi-system degeneration of the autonomic nervous system"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "E10.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "G90.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
+            },
+            {
+              "value": "G90.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Familial dysautonomia [Riley-Day]"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Competing causes of dysautonomia",
@@ -3620,7 +5184,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anesthesia of skin"
             },
             {
               "value": "R20.1",
@@ -3628,7 +5193,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypoesthesia of skin"
             },
             {
               "value": "R20.2",
@@ -3636,7 +5202,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Paresthesia of skin"
             },
             {
               "value": "R20.8",
@@ -3644,7 +5211,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other disturbances of skin sensation"
             },
             {
               "value": "R20.9",
@@ -3652,7 +5220,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sensory loss'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified disturbances of skin sensation"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G54.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Brachial plexus disorders"
+            },
+            {
+              "value": "G54.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cervical root disorders, not elsewhere classified"
+            },
+            {
+              "value": "G54.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Lumbosacral plexus disorders"
             }
           ]
         },

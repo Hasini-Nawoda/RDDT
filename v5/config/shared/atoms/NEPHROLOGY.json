@@ -9,7 +9,50 @@
       "clinical_meaning": "Abnormal serum free-light-chain result that warrants AL-amyloidosis workup in the appropriate clinical context.",
       "context_guard": "AL-workup trigger only; not a standalone diagnosis of AL amyloidosis. Interpret in clinical context and do not automatically exclude coexisting ATTR.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Monoclonal gammopathy"
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "R77.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormalities of plasma proteins"
+            },
+            {
+              "value": "R77.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of plasma protein, unspecified"
+            },
+            {
+              "value": "R77.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of globulin"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "abnormal free light chain ratio",
@@ -86,7 +129,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "N18.3 [no 2026 description]"
             },
             {
               "value": "N18.4",
@@ -94,7 +138,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 4 (severe)"
             },
             {
               "value": "N18.5",
@@ -102,7 +147,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
             },
             {
               "value": "N18.9",
@@ -110,7 +156,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Estimated glomerular filtration rate'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "N18.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3a"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
+            },
+            {
+              "value": "N18.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3b"
+            },
+            {
+              "value": "N18.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3 unspecified"
+            },
+            {
+              "value": "N18.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 2 (mild)"
+            },
+            {
+              "value": "N18.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 1"
+            },
+            {
+              "value": "I12.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I12.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I13.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "D63.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anemia in chronic kidney disease"
+            },
+            {
+              "value": "N25.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary hyperparathyroidism of renal origin"
             }
           ],
           "SNOMED_CT": [
@@ -200,7 +343,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other disorders of plasma-protein metabolism, not elsewhere classified"
             },
             {
               "value": "E88.0",
@@ -208,7 +352,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "E88.0 [no 2026 description]"
             },
             {
               "value": "R77.8",
@@ -216,7 +361,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Marked hypoalbuminemia'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormalities of plasma proteins"
+            },
+            {
+              "value": "R77.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of albumin"
+            },
+            {
+              "value": "R77.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of plasma protein, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -271,7 +433,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match albuminuria/microalbumin-specific language. Generic proteinuria remains a separate renal atom; V17 combines persistent unexplained renal findings at the AST level.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Proteinuria, unspecified"
+            },
+            {
+              "value": "R80.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Persistent proteinuria, unspecified"
+            },
+            {
+              "value": "R80.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria"
+            },
+            {
+              "value": "R80.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other proteinuria"
+            },
+            {
+              "value": "N06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria with unspecified morphologic lesion"
             }
           ],
           "ICD9": [
@@ -354,7 +549,90 @@
       "experiencer": "PATIENT",
       "context_guard": "Nonspecific renal phenotype. Requires differential evaluation; should not by itself classify AL, AA, or ATTR.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "N04.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with unspecified morphologic changes"
+            },
+            {
+              "value": "N04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with focal and segmental glomerular lesions"
+            },
+            {
+              "value": "N04.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with minor glomerular abnormality"
+            },
+            {
+              "value": "N04.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with diffuse membranous glomerulonephritis, unspecified"
+            },
+            {
+              "value": "N04.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary membranous nephropathy with nephrotic syndrome"
+            },
+            {
+              "value": "N04.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with other morphologic changes"
+            },
+            {
+              "value": "R80.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Proteinuria, unspecified"
+            },
+            {
+              "value": "R80.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Persistent proteinuria, unspecified"
+            },
+            {
+              "value": "R80.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other proteinuria"
+            },
+            {
+              "value": "N06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria with unspecified morphologic lesion"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "heavy proteinuria",
@@ -387,7 +665,58 @@
       "clinical_meaning": "Monoclonal protein detected on serum immunofixation; redirects toward AL evaluation/amyloid typing.",
       "context_guard": "AL-workup trigger only; monoclonal gammopathy can coexist with ATTR and must not by itself suppress an ATTR pathway.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Monoclonal gammopathy"
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "C90.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multiple myeloma not having achieved remission"
+            },
+            {
+              "value": "R77.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormalities of plasma proteins"
+            },
+            {
+              "value": "R77.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of plasma protein, unspecified"
+            },
+            {
+              "value": "R77.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of globulin"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "monoclonal band on serum immunofixation",
@@ -420,7 +749,34 @@
       "clinical_meaning": "Monoclonal protein detected on urine immunofixation; redirects toward AL evaluation/amyloid typing.",
       "context_guard": "AL-workup trigger only; monoclonal gammopathy can coexist with ATTR and must not by itself suppress an ATTR pathway.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Monoclonal gammopathy"
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "R77.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormalities of plasma proteins"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "monoclonal band on urine immunofixation",
@@ -453,7 +809,58 @@
       "clinical_meaning": "New persistent proteinuria / worsening proteinuric renal phenotype.",
       "context_guard": "Nonspecific renal finding. For V40 it is necessary but not sufficient and must be paired with a chronic active inflammatory/autoinflammatory/infectious driver.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R80.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Proteinuria, unspecified"
+            },
+            {
+              "value": "R80.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Persistent proteinuria, unspecified"
+            },
+            {
+              "value": "R80.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other proteinuria"
+            },
+            {
+              "value": "R80.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria"
+            },
+            {
+              "value": "N06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria with unspecified morphologic lesion"
+            },
+            {
+              "value": "R80.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic proteinuria, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "24-hour urine protein",
@@ -555,7 +962,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic nephropathy"
             },
             {
               "value": "E11.21",
@@ -563,7 +971,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic nephropathy"
             },
             {
               "value": "I12.9",
@@ -571,7 +980,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
             },
             {
               "value": "I13.10",
@@ -579,7 +989,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
             },
             {
               "value": "N04.1",
@@ -587,7 +998,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with focal and segmental glomerular lesions"
             },
             {
               "value": "N04.2",
@@ -595,7 +1007,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "N04.2 [no 2026 description]"
             },
             {
               "value": "N05.2",
@@ -603,7 +1016,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified nephritic syndrome with diffuse membranous glomerulonephritis"
             },
             {
               "value": "N18.9",
@@ -611,7 +1025,120 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "E11.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic chronic kidney disease"
+            },
+            {
+              "value": "E10.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic chronic kidney disease"
+            },
+            {
+              "value": "N18.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3a"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
+            },
+            {
+              "value": "N18.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3b"
+            },
+            {
+              "value": "N18.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 4 (severe)"
+            },
+            {
+              "value": "N18.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3 unspecified"
+            },
+            {
+              "value": "N18.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 2 (mild)"
+            },
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
+            },
+            {
+              "value": "I12.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+              "value": "N05.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified nephritic syndrome with focal and segmental glomerular lesions"
+            },
+            {
+              "value": "N05.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified nephritic syndrome with unspecified morphologic changes"
+            },
+            {
+              "value": "N05.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified nephritic syndrome with minor glomerular abnormality"
+            },
+            {
+              "value": "N04.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with unspecified morphologic changes"
             }
           ],
           "SNOMED_CT": [
@@ -766,7 +1293,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic nephropathy"
             },
             {
               "value": "E11.21",
@@ -774,7 +1302,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic nephropathy"
             },
             {
               "value": "E85.3",
@@ -782,7 +1311,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Secondary systemic amyloidosis"
             },
             {
               "value": "N04.0",
@@ -790,7 +1320,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with minor glomerular abnormality"
             },
             {
               "value": "N04.1",
@@ -798,7 +1329,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with focal and segmental glomerular lesions"
             },
             {
               "value": "N04.2",
@@ -806,7 +1338,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "N04.2 [no 2026 description]"
+            },
+            {
+              "value": "N04.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with unspecified morphologic changes"
+            },
+            {
+              "value": "N04.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with other morphologic changes"
+            },
+            {
+              "value": "N04.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with diffuse membranous glomerulonephritis, unspecified"
+            },
+            {
+              "value": "N04.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary membranous nephropathy with nephrotic syndrome"
+            },
+            {
+              "value": "N04.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with diffuse mesangiocapillary glomerulonephritis"
+            },
+            {
+              "value": "E11.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic chronic kidney disease"
+            },
+            {
+              "value": "E10.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic chronic kidney disease"
             }
           ],
           "SNOMED_CT": [
@@ -949,7 +1538,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified severe protein-calorie malnutrition"
             },
             {
               "value": "E46",
@@ -957,7 +1547,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified protein-calorie malnutrition"
             },
             {
               "value": "I50.9",
@@ -965,7 +1556,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Heart failure, unspecified"
             },
             {
               "value": "I87.2",
@@ -973,7 +1565,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Venous insufficiency (chronic) (peripheral)"
             },
             {
               "value": "K70.30",
@@ -981,7 +1574,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic cirrhosis of liver without ascites"
             },
             {
               "value": "K74.60",
@@ -989,7 +1583,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified cirrhosis of liver"
             },
             {
               "value": "K76.9",
@@ -997,7 +1592,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Liver disease, unspecified"
             },
             {
               "value": "N18.9",
@@ -1005,7 +1601,96 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "K74.69",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other cirrhosis of liver"
+            },
+            {
+              "value": "K70.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic cirrhosis of liver with ascites"
+            },
+            {
+              "value": "I50.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified systolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic systolic (congestive) heart failure"
+            },
+            {
+              "value": "N04.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with unspecified morphologic changes"
+            },
+            {
+              "value": "N04.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with minor glomerular abnormality"
+            },
+            {
+              "value": "E44.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Moderate protein-calorie malnutrition"
+            },
+            {
+              "value": "E41",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nutritional marasmus"
+            },
+            {
+              "value": "K90.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Intestinal malabsorption, unspecified"
+            },
+            {
+              "value": "K90.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other intestinal malabsorption"
             }
           ],
           "SNOMED_CT": [
@@ -1146,6 +1831,48 @@
               "mapping_role": "DIRECT_TARGET",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "N18.31",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3a"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
+            },
+            {
+              "value": "R94.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal results of kidney function studies"
+            },
+            {
+              "value": "N17.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute kidney failure, unspecified"
+            }
           ]
         },
         "nlp_terms": [
@@ -1221,7 +1948,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Acute kidney failure, unspecified"
             },
             {
               "value": "N18.3",
@@ -1229,7 +1957,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "N18.3 [no 2026 description]"
             },
             {
               "value": "N18.4",
@@ -1237,7 +1966,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 4 (severe)"
             },
             {
               "value": "N18.5",
@@ -1245,7 +1975,80 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Falling eGFR / rising creatinine'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
+            },
+            {
+              "value": "N18.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3a"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
+            },
+            {
+              "value": "N18.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3b"
+            },
+            {
+              "value": "N18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "N18.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3 unspecified"
+            },
+            {
+              "value": "N18.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 2 (mild)"
+            },
+            {
+              "value": "N18.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 1"
+            },
+            {
+              "value": "N17.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute kidney failure with tubular necrosis"
+            },
+            {
+              "value": "N17.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other acute kidney failure"
             }
           ],
           "SNOMED_CT": [
@@ -1364,7 +2167,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
             },
             {
               "value": "N18.6",
@@ -1372,7 +2176,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
             },
             {
               "value": "N19",
@@ -1380,7 +2185,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified kidney failure"
             },
             {
               "value": "Z99.2",
@@ -1388,7 +2194,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Kidney failure / end-stage renal disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dependence on renal dialysis"
+            },
+            {
+              "value": "N17.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute kidney failure, unspecified"
+            },
+            {
+              "value": "N17.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute kidney failure with tubular necrosis"
+            },
+            {
+              "value": "N17.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other acute kidney failure"
+            },
+            {
+              "value": "I12.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+              "value": "I13.11",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease without heart failure, with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+              "value": "I13.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+              "value": "Z94.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Kidney transplant status"
             }
           ],
           "SNOMED_CT": [
@@ -1503,7 +2366,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with other morphologic changes"
             },
             {
               "value": "N04.9",
@@ -1511,7 +2375,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Nephrotic syndrome'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with unspecified morphologic changes"
+            },
+            {
+              "value": "N04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with focal and segmental glomerular lesions"
+            },
+            {
+              "value": "N04.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with minor glomerular abnormality"
+            },
+            {
+              "value": "N04.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with diffuse membranous glomerulonephritis, unspecified"
+            },
+            {
+              "value": "N04.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary membranous nephropathy with nephrotic syndrome"
+            },
+            {
+              "value": "N04.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nephrotic syndrome with diffuse mesangiocapillary glomerulonephritis"
+            },
+            {
+              "value": "N04.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "N04.2 [no 2026 description]"
+            },
+            {
+              "value": "Z87.441",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Personal history of nephrotic syndrome"
             }
           ],
           "SNOMED_CT": [
@@ -1564,7 +2485,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Localized edema"
             },
             {
               "value": "R60.1",
@@ -1572,7 +2494,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Generalized edema"
             },
             {
               "value": "R60.9",
@@ -1580,7 +2503,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Peripheral edema / anasarca'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Edema, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -1699,7 +2623,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria"
             },
             {
               "value": "R80.1",
@@ -1707,7 +2632,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Persistent proteinuria, unspecified"
             },
             {
               "value": "R80.8",
@@ -1715,7 +2641,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other proteinuria"
             },
             {
               "value": "R80.9",
@@ -1723,7 +2650,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Persistent proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Proteinuria, unspecified"
+            },
+            {
+              "value": "N06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria with unspecified morphologic lesion"
+            },
+            {
+              "value": "R80.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic proteinuria, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -1802,7 +2746,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Persistent proteinuria, unspecified"
             },
             {
               "value": "R80.9",
@@ -1810,7 +2755,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Progressive proteinuria'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Proteinuria, unspecified"
+            },
+            {
+              "value": "R80.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria"
+            },
+            {
+              "value": "R80.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other proteinuria"
+            },
+            {
+              "value": "N06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Isolated proteinuria with unspecified morphologic lesion"
             }
           ],
           "SNOMED_CT": [
@@ -1893,7 +2863,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "N18.3 [no 2026 description]"
             },
             {
               "value": "N18.4",
@@ -1901,7 +2872,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 4 (severe)"
             },
             {
               "value": "N18.9",
@@ -1909,7 +2881,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
             },
             {
               "value": "N19",
@@ -1917,7 +2890,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Renal dysfunction / chronic kidney disease'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified kidney failure"
+            },
+            {
+              "value": "N18.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3a"
+            },
+            {
+              "value": "N18.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "End stage renal disease"
+            },
+            {
+              "value": "N18.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3b"
+            },
+            {
+              "value": "N18.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
+            },
+            {
+              "value": "N18.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 3 unspecified"
+            },
+            {
+              "value": "N18.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 2 (mild)"
+            },
+            {
+              "value": "N18.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 1"
+            },
+            {
+              "value": "I12.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I12.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "N25.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary hyperparathyroidism of renal origin"
+            },
+            {
+              "value": "D63.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anemia in chronic kidney disease"
             }
           ],
           "SNOMED_CT": [

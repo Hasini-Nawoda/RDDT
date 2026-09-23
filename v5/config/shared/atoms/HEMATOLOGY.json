@@ -9,7 +9,106 @@
       "clinical_meaning": "Monoclonal gammopathy / plasma-cell disorder",
       "context_guard": "MGUS/monoclonal gammopathy does not exclude ATTR and may coexist with ATTR. Treat as a competing AL-workup signal, not as proof of AL.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Monoclonal gammopathy"
+            },
+            {
+              "value": "D47.Z9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified neoplasms of uncertain behavior of lymphoid, hematopoietic and related tissue"
+            },
+            {
+              "value": "D47.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Neoplasm of uncertain behavior of lymphoid, hematopoietic and related tissue, unspecified"
+            },
+            {
+              "value": "R77.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of globulin"
+            },
+            {
+              "value": "R77.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormalities of plasma proteins"
+            },
+            {
+              "value": "R77.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormality of plasma protein, unspecified"
+            },
+            {
+              "value": "C90.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Solitary plasmacytoma not having achieved remission"
+            },
+            {
+              "value": "C90.31",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Solitary plasmacytoma in remission"
+            },
+            {
+              "value": "C88.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Waldenstrom macroglobulinemia not having achieved remission"
+            },
+            {
+              "value": "D47.Z2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Castleman disease"
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "E85.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Amyloidosis, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "M-protein",
@@ -102,7 +201,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Multiple myeloma not having achieved remission"
             },
             {
               "value": "C90.01",
@@ -110,7 +210,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Multiple myeloma in remission"
             },
             {
               "value": "C90.10",
@@ -118,7 +219,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Plasma cell leukemia not having achieved remission"
             },
             {
               "value": "C90.30",
@@ -126,7 +228,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Solitary plasmacytoma not having achieved remission"
             },
             {
               "value": "C90.20",
@@ -134,7 +237,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Extramedullary plasmacytoma not having achieved remission"
             },
             {
               "value": "E85.81",
@@ -142,7 +246,128 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Plasma-cell dyscrasia / multiple myeloma'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "C90.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Multiple myeloma in relapse"
+            },
+            {
+              "value": "C90.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Solitary plasmacytoma in remission"
+            },
+            {
+              "value": "C90.32",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Solitary plasmacytoma in relapse"
+            },
+            {
+              "value": "C90.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Plasma cell leukemia in remission"
+            },
+            {
+              "value": "C90.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Plasma cell leukemia in relapse"
+            },
+            {
+              "value": "C90.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Extramedullary plasmacytoma in remission"
+            },
+            {
+              "value": "C90.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Extramedullary plasmacytoma in relapse"
+            },
+            {
+              "value": "C88.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Waldenstrom macroglobulinemia not having achieved remission"
+            },
+            {
+              "value": "C88.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Waldenstrom macroglobulinemia, in remission"
+            },
+            {
+              "value": "C88.20",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Heavy chain disease not having achieved remission"
+            },
+            {
+              "value": "D47.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Monoclonal gammopathy"
+            },
+            {
+              "value": "D47.Z9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified neoplasms of uncertain behavior of lymphoid, hematopoietic and related tissue"
+            },
+            {
+              "value": "E85.4",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Organ-limited amyloidosis"
+            },
+            {
+              "value": "E85.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other amyloidosis"
+            },
+            {
+              "value": "E85.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Amyloidosis, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -326,7 +551,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Z51.1 [no 2026 description]"
             },
             {
               "value": "Z51.11",
@@ -334,7 +560,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Encounter for antineoplastic chemotherapy"
             },
             {
               "value": "Z92.21",
@@ -342,7 +569,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Anti-myeloma therapy exposure'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Personal history of antineoplastic chemotherapy"
+            },
+            {
+              "value": "Z51.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for antineoplastic immunotherapy"
+            },
+            {
+              "value": "Z79.60",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Long term (current) use of unspecified immunomodulators and immunosuppressants"
+            },
+            {
+              "value": "Z79.52",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Long term (current) use of systemic steroids"
+            },
+            {
+              "value": "Z92.29",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Personal history of other drug therapy"
+            },
+            {
+              "value": "Z92.22",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Personal history of monoclonal drug therapy"
+            },
+            {
+              "value": "D70.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Agranulocytosis secondary to cancer chemotherapy"
+            },
+            {
+              "value": "D64.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anemia due to antineoplastic chemotherapy"
+            },
+            {
+              "value": "Z85.79",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Personal history of other malignant neoplasms of lymphoid, hematopoietic and related tissues"
             }
           ],
           "SNOMED_CT": [

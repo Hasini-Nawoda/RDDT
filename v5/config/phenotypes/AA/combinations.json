@@ -1,0 +1,131 @@
+{
+  "phenotype": "AA",
+  "combinations": [
+    {
+      "combination_id": "AA_COMBO01",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "AA_SUSPICION",
+      "priority_policy_id": "AA_PRI_A",
+      "temporal_policy": "NONE",
+      "clinical_rationale": "High-yield inflammatory driver plus a proteinuric renal code.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1
+          ],
+          "signal_ids": [
+            "AA02",
+            "AA06",
+            "AA08"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "FMF, other autoinflammatory disease, or chronic infection."
+        },
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1,
+            2
+          ],
+          "signal_ids": [
+            "AA15",
+            "AA16",
+            "AA17"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Albuminuria, proteinuria, or nephrotic syndrome. Claims cannot prove the finding is new."
+        }
+      ],
+      "clinical_note": "Full clinical truth is a credible driver, sustained inflammatory burden, and a new renal transition. This claims pass omits marker persistence and newness because claims do not carry them."
+    },
+    {
+      "combination_id": "AA_COMBO02",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "AA_SUSPICION",
+      "priority_policy_id": "AA_PRI_B",
+      "temporal_policy": "NONE",
+      "clinical_rationale": "Common inflammatory driver plus a proteinuric renal code.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            2
+          ],
+          "signal_ids": [
+            "AA01",
+            "AA07",
+            "AA09",
+            "AA10"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Inflammatory arthritis, IBD, recurrent soft-tissue infection, or Castleman disease."
+        },
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1,
+            2
+          ],
+          "signal_ids": [
+            "AA15",
+            "AA16",
+            "AA17"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Albuminuria, proteinuria, or nephrotic syndrome."
+        }
+      ],
+      "clinical_note": "A driver code alone does not pass. Obesity, diarrhea, thyroid disease, and cardiac findings are not drivers."
+    },
+    {
+      "combination_id": "AA_COMBO03",
+      "enabled": true,
+      "outcome": "PHENOTYPE_PASS",
+      "result_route": "AA_SUSPICION",
+      "priority_policy_id": "AA_PRI_A",
+      "temporal_policy": "NONE",
+      "clinical_rationale": "Nephrotic-range protein loss plus any credible AA driver.",
+      "requirements": [
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1,
+            2
+          ],
+          "signal_ids": [
+            "AA02",
+            "AA06",
+            "AA08",
+            "AA01",
+            "AA07",
+            "AA09",
+            "AA10"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Credible inflammatory or infectious driver."
+        },
+        {
+          "kind": "SIGNAL_GROUP_COUNT",
+          "tiers": [
+            1
+          ],
+          "signal_ids": [
+            "AA17"
+          ],
+          "minimum_count": 1,
+          "distinct_lineage_required": true,
+          "clinical_note": "Nephrotic syndrome or nephrotic-range proteinuria."
+        }
+      ],
+      "clinical_note": "Nephrotic protein loss with a driver is the strongest claims-rough AA route. It still does not confirm AA."
+    }
+  ]
+}

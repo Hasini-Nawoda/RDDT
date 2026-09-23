@@ -483,6 +483,83 @@ def _logical_source_value(
     return _case_value(row, logical_name, physical_name) if physical_name else _case_value(row, logical_name)
 
 
+def _expectation_vs_observed(
+    signal: Mapping[str, Any],
+    matched_code: Any = None,
+    display_name: Any = None,
+) -> str | None:
+    """Say what the signal required and what the claim code actually showed."""
+    gaps = signal.get("context_gaps") or []
+    inferences = signal.get("inferred_qualifiers") or []
+    inference_sentence = ""
+    if inferences:
+        inference_sentence = " ".join(
+            f"{item.get('qualifier')} was established from {item.get('source')}, so that qualifier was not treated as missing."
+            for item in inferences
+        )
+    if not gaps:
+        return inference_sentence or None
+    expected = " and ".join(
+        f"{gap.get('qualifier')}={gap.get('expected')}" for gap in gaps
+    )
+    qualifier_names = ", ".join(str(gap.get("qualifier")) for gap in gaps)
+    got = f"ICD-10 {matched_code}" if matched_code else "the claim ICD-10 code"
+    if display_name:
+        got += f" ({display_name})"
+    configured = signal.get("configured_tier")
+    effective = signal.get("effective_tier", signal.get("tier"))
+    if str(configured) == str(effective):
+        tier_sentence = (
+            f"The signal still counts at tier {effective}. "
+            "The missing context is why this is not the fully described suspicion level."
+        )
+    else:
+        tier_sentence = (
+            f"The signal still counts, at tier {effective} instead of configured tier {configured}. "
+            "That lower tier is why the suspicion is not the fully described level."
+        )
+    return (
+        f"This signal expected {expected}. "
+        f"What matched was {got}. "
+        f"That code does not say whether {qualifier_names} is present, "
+        f"so those qualifiers were not observed. "
+        f"{inference_sentence} "
+        f"{tier_sentence}"
+    )
+
+
+def _why_code_matched(
+    mapping_role: Any,
+    matched_code: Any,
+    display_name: Any,
+    context_guard: Any,
+) -> str:
+    """Explain a claim ICD match in the words an LLM reviewer needs."""
+    role = str(mapping_role or "").strip().upper().replace("-", "_").replace(" ", "_")
+    code = str(matched_code or "").strip()
+    name = str(display_name or "").strip()
+    guard = str(context_guard or "").strip()
+    name_text = f" The code display name is '{name}'." if name else ""
+    guard_text = f" Context guard: {guard}" if guard else ""
+    if role == "PROXY_SUPPORT":
+        return (
+            f"ICD-10 {code} matched as proxy support. It is nearby evidence for this "
+            f"finding and does not by itself assert the full clinical concept. "
+            f"The signal still fires, one tier below its configured tier."
+            f"{name_text}{guard_text}"
+        )
+    if role == "DIRECT_TARGET":
+        return (
+            f"ICD-10 {code} matched as a direct target. The code's meaning is the "
+            f"configured finding, so the signal keeps its configured tier."
+            f"{name_text}{guard_text}"
+        )
+    return (
+        f"ICD-10 {code} matched this finding."
+        f"{name_text}{guard_text}"
+    )
+
+
 def _ehr_payload(
     patient_id: str,
     records_by_table: Mapping[str, Iterable[Any]] | None,
@@ -837,31 +914,83 @@ def build_patient_profile(
         if str(_value(row, "combination_id")) in matched_combination_ids
         and str(_value(row, "status", "")).upper() == "TRUE"
     ]
-    rationale_evidence_ids: set[str] = set()
+    selected_evidence_ids: set[str] = set()
     for matched_combination in matched_combinations:
-        rationale_evidence_ids.update(_supporting_evidence_ids(
+        selected_evidence_ids.update(_supporting_evidence_ids(
             _value(matched_combination, "selected_witnesses", ()) or ()
         ))
+    signal_uses: dict[str, list[dict[str, Any]]] = {}
+    fired_signals: list[dict[str, Any]] = []
+    for signal in patient_signals:
+        if str(_value(signal, "status", "")).upper() != "TRUE":
+            continue
+        signal_record = {
+            "phenotype": _value(signal, "phenotype"),
+            "signal_id": _value(signal, "signal_id"),
+            "clinical_feature": _value(signal, "clinical_feature"),
+            "reasoning_bucket": _value(signal, "reasoning_bucket"),
+            "configured_tier": _plain(_value(signal, "configured_tier")),
+            "effective_tier": _plain(_value(signal, "tier")),
+            "tier_basis": _value(signal, "tier_basis"),
+            "context_gaps": _plain(_value(signal, "context_gaps", [])),
+            "inferred_qualifiers": _plain(_value(signal, "inferred_qualifiers", [])),
+        }
+        signal_record["expectation_vs_observed"] = _expectation_vs_observed(signal_record)
+        fired_signals.append(signal_record)
+        for evidence_id in _value(signal, "supporting_evidence_ids", ()) or ():
+            signal_uses.setdefault(str(evidence_id), []).append(signal_record)
 
     clinical_reasons = []
     seen_reasons: set[tuple[str, str, str]] = set()
     for evidence in patient_evidence:
         if str(_value(evidence, "status", "")).upper() != "TRUE":
             continue
-        if matched_combinations and str(_value(evidence, "evidence_id", "")) not in rationale_evidence_ids:
+        evidence_id = str(_value(evidence, "evidence_id", ""))
+        if signal_uses and evidence_id not in signal_uses:
             continue
         atom_id = str(_value(evidence, "atom_id", ""))
         provenance = _value(evidence, "source_provenance", {}) or {}
+        attributes = _value(evidence, "attributes", {}) or {}
+        if not isinstance(attributes, Mapping):
+            attributes = {}
         reason_key = (atom_id, str(_value(provenance, "source_event_id", "")), str(_value(evidence, "event_date", "")))
         if reason_key in seen_reasons:
             continue
         seen_reasons.add(reason_key)
+        restriction = _value(evidence, "config_restriction", {}) or {}
+        if not isinstance(restriction, Mapping):
+            restriction = {}
+        mapping_role = attributes.get("mapping_role") or restriction.get("mapping_role")
+        display_name = attributes.get("display_name") or restriction.get("display_name")
+        context_guard = attributes.get("context_guard") or restriction.get("context_guard")
+        matched_code = _value(provenance, "matched_config_value")
+        date_source = attributes.get("date_enrichment_source") or (
+            "NATIVE" if _value(evidence, "event_date") not in (None, "") else "DATE_UNAVAILABLE"
+        )
         clinical_reasons.append({
             "clinical_finding": names.get(atom_id, atom_id),
             "atom_id": atom_id,
             "event_date": _plain(_value(evidence, "event_date")),
+            "date_source": date_source,
             "source_event_id": _value(provenance, "source_event_id"),
-            "matched_value": _value(provenance, "matched_config_value"),
+            "matched_code": matched_code,
+            "matched_value": matched_code,
+            "display_name": display_name,
+            "context_guard": context_guard,
+            "mapping_role": mapping_role,
+            "why_this_code_matched": _why_code_matched(
+                mapping_role, matched_code, display_name, context_guard
+            ),
+            "selected_for_passing_combination": evidence_id in selected_evidence_ids,
+            "signals": [
+                {
+                    **signal_record,
+                    "expectation_vs_observed": _expectation_vs_observed(
+                        signal_record, matched_code, display_name
+                    ),
+                }
+                for signal_record in signal_uses.get(evidence_id, [])
+            ],
         })
 
     risk_assessments = [
@@ -921,7 +1050,9 @@ def build_patient_profile(
         },
         "clinical_rationale": {
             "summary": target_verdict.get("reason"),
+            "decision_inputs": "CLAIMS ICD-10 codes, with dates taken from ENCOUNTERS when patient and encounter resolve to one visit date.",
             "findings": clinical_reasons,
+            "fired_signals": fired_signals,
             "parallel_routes": target_verdict.get("parallel_routes", []),
             "cross_phenotype_annotations": [differential] if differential["visible"] else [],
         },
@@ -1080,6 +1211,7 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
         "attrv_status", "attrv_suspicion_level", "attrv_review_route",
         "attrwt_status", "attrwt_suspicion_level", "attrwt_review_route",
         "al_status", "al_suspicion_level", "al_review_route",
+        "aa_status", "aa_suspicion_level", "aa_review_route",
         "clinical_rationale",
     ]
     writer = csv.DictWriter(output, fieldnames=fields)
@@ -1095,6 +1227,7 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
         attrv = verdicts.get("ATTRV", {})
         attrwt = verdicts.get("ATTRWT", {})
         al = verdicts.get("AL", {})
+        aa = verdicts.get("AA", {})
         writer.writerow({
             "run_id": clean.get("run_id"),
             "patient_id": clean.get("patient_id"),
@@ -1111,6 +1244,9 @@ def profiles_csv_bytes(profiles: Iterable[Mapping[str, Any]]) -> bytes:
             "al_status": al.get("status"),
             "al_suspicion_level": al.get("suspicion_level"),
             "al_review_route": al.get("result_route"),
+            "aa_status": aa.get("status"),
+            "aa_suspicion_level": aa.get("suspicion_level"),
+            "aa_review_route": aa.get("result_route"),
             "clinical_rationale": rationale.get("summary"),
         })
     return output.getvalue().encode("utf-8-sig")
@@ -1151,6 +1287,23 @@ def export_profiles(
         output[f"{key}_jsonl"] = str(tier_jsonl)
         output[f"{key}_csv"] = str(tier_csv)
     return output
+
+
+def export_aa_profiles(
+    profiles: Iterable[Mapping[str, Any]],
+    output_dir: str | Path,
+    *,
+    basename: str = "aa_detected_patient_profiles",
+    include_proprietary_trace: bool = False,
+) -> dict[str, str]:
+    """Write highest and high AA profiles under a separate output root."""
+    target = Path(output_dir).expanduser().resolve() / "aa_detected"
+    return export_profiles(
+        list(profiles),
+        target,
+        basename=basename,
+        include_proprietary_trace=include_proprietary_trace,
+    )
 
 
 def export_al_detected_profiles(
@@ -1649,6 +1802,7 @@ __all__ = [
     "profiles_csv_bytes",
     "export_profiles",
     "export_al_detected_profiles",
+    "export_aa_profiles",
     "build_known_attr_profile",
     "known_attr_profiles_csv_bytes",
     "export_known_attr_profiles",

@@ -1059,23 +1059,23 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config-dir", type=Path, default=Path("v5/config"))
     parser.add_argument(
-        "--icd-vocabulary", type=Path, default=Path("v5/sql/codes/icd_codes_with_meaning.csv")
+        "--icd-vocabulary", type=Path, default=Path("not_for_snowflake/sql_codes/icd_codes_with_meaning.csv")
     )
     parser.add_argument(
         "--snomed-vocabulary",
         type=Path,
-        default=Path("v5/sql/codes/snomed_codes_with_meaning.csv"),
+        default=Path("not_for_snowflake/sql_codes/snomed_codes_with_meaning.csv"),
     )
     parser.add_argument(
-        "--related-list", type=Path, default=Path("v5/sql/codes/icd_amyloid_related.csv")
+        "--related-list", type=Path, default=Path("not_for_snowflake/sql_codes/icd_amyloid_related.csv")
     )
     parser.add_argument(
         "--diagnostic-list",
         type=Path,
-        default=Path("v5/sql/codes/icd_amyloid_diagnostic_signals.csv"),
+        default=Path("not_for_snowflake/sql_codes/icd_amyloid_diagnostic_signals.csv"),
     )
     parser.add_argument(
-        "--official-icd", type=Path, default=Path("v5/sql/codes/icd10cm-codes-2026.txt")
+        "--official-icd", type=Path, default=Path("not_for_snowflake/sql_codes/icd10cm-codes-2026.txt")
     )
     parser.add_argument(
         "--output-dir", type=Path, default=Path("v5/audits/terminology/generated")

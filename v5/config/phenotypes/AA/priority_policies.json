@@ -1,0 +1,23 @@
+{
+  "phenotype": "AA",
+  "priority_policies": [
+    {
+      "priority_policy_id": "AA_PRI_A",
+      "class": "A",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "High-yield AA driver plus a renal transition. Suspicion only, never confirmed."
+    },
+    {
+      "priority_policy_id": "AA_PRI_B",
+      "class": "B",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "Common inflammatory driver plus a renal transition. Suspicion only."
+    },
+    {
+      "priority_policy_id": "AA_PRI_C",
+      "class": "C",
+      "kind": "NAMED_ROUTE",
+      "clinical_note": "Low-specificity AA context."
+    }
+  ]
+}

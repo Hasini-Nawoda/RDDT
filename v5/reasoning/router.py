@@ -4,10 +4,10 @@ from __future__ import annotations
 from typing import Any, Iterable
 
 from ..evaluation_policy import (
-    CLAIMS_RECALL,
     collect_relaxations,
     is_provisional,
     normalize_evaluation_mode,
+    verdict_scope_for,
 )
 from .explain import build_explanation, build_trace
 from .priority import resolve_priority
@@ -107,7 +107,7 @@ def route_results(
         "config_hash": config_hash or value(config, "config_hash", None),
         "implementation_version": implementation_version,
         "evaluation_mode": evaluation_mode,
-        "verdict_scope": "CLAIMS_ONLY_RECALL" if evaluation_mode == CLAIMS_RECALL else "STRICT_CLINICAL_EVIDENCE",
+        "verdict_scope": verdict_scope_for(evaluation_mode),
         "provisional": bool(combo is not None and is_provisional(combo)),
         "relaxations": collect_relaxations([combo]) if combo is not None else (),
     }

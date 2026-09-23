@@ -23,6 +23,14 @@ in the V5 source contract, even as disabled compatibility entries.
   candidates, evidence, dates, verdicts, or patient-profile content.
 - `all_available_v1` uses the five-table boundary. `CENSUS` hydrates profiles;
   the other four tables may provide screening evidence.
+- `icd_dated_claims_v1` makes decisions from claim ICD-10 codes only. Encounter
+  visit dates fill claim dates when the patient-plus-encounter join is unique.
+  Census, encounters, labs, and surgical history are stored on the patient
+  profile and do not fire atoms. Run that profile with evaluation mode
+  `ICD_DATED_CLAIMS`. A direct-target code keeps the signal's configured tier.
+  A proxy-support code, or a code that is missing note qualifiers such as
+  progressive or length-dependent, still fires the signal one tier lower.
+  The profile states what the signal expected and what the code showed.
 
 Select the profile explicitly with `V5_SOURCE_SCHEMA_PROFILE` or the `profile`
 argument to `load_source_config`.

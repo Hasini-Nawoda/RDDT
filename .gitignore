@@ -16,3 +16,4 @@
 /RDDT-codexversion
 *.xlsx
 ATTRv_atom_code_updates_from_workbook.json
+/not_for_snowflake

@@ -51,7 +51,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Paroxysmal atrial fibrillation"
             },
             {
               "value": "I48.11",
@@ -59,7 +60,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Longstanding persistent atrial fibrillation"
             },
             {
               "value": "I48.19",
@@ -67,7 +69,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other persistent atrial fibrillation"
             },
             {
               "value": "I48.20",
@@ -75,7 +78,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic atrial fibrillation, unspecified"
             },
             {
               "value": "I48.21",
@@ -83,7 +87,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Permanent atrial fibrillation"
             },
             {
               "value": "I48.3",
@@ -91,7 +96,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Typical atrial flutter"
             },
             {
               "value": "I48.4",
@@ -99,7 +105,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atypical atrial flutter"
             },
             {
               "value": "I48.91",
@@ -107,7 +114,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrial fibrillation"
             },
             {
               "value": "I48.92",
@@ -115,98 +123,20 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "I44.1",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "I44.2",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "I44.30",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "I44.39",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "I45.4",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrial flutter"
             },
             {
               "value": "Z95.0",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac pacemaker"
             }
           ],
           "ICD9": [
-            {
-              "value": "426.0",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "426.10",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "426.11",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "426.12",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "426.13",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
             {
               "value": "427.31",
               "can_fire_atom_alone": true,
@@ -217,14 +147,6 @@
             },
             {
               "value": "427.32",
-              "can_fire_atom_alone": true,
-              "review_status": "SOURCE_CANDIDATE",
-              "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
-            },
-            {
-              "value": "V45.01",
               "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only atrial fibrillation/flutter language. Conduction disease, pacemaker/device language, or generic arrhythmia must not create an AF atom.",
@@ -458,7 +380,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atrioventricular block, second degree"
             },
             {
               "value": "I44.2",
@@ -466,7 +389,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atrioventricular block, complete"
             },
             {
               "value": "I44.30",
@@ -474,7 +398,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrioventricular block"
             },
             {
               "value": "I44.39",
@@ -482,7 +407,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other atrioventricular block"
             },
             {
               "value": "I45.4",
@@ -490,7 +416,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonspecific intraventricular block"
             },
             {
               "value": "I48.0",
@@ -498,7 +425,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Paroxysmal atrial fibrillation"
             },
             {
               "value": "I48.11",
@@ -506,7 +434,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Longstanding persistent atrial fibrillation"
             },
             {
               "value": "I48.19",
@@ -514,7 +443,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other persistent atrial fibrillation"
             },
             {
               "value": "I48.20",
@@ -522,7 +452,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic atrial fibrillation, unspecified"
             },
             {
               "value": "I48.21",
@@ -530,7 +461,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Permanent atrial fibrillation"
             },
             {
               "value": "I48.3",
@@ -538,7 +470,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Typical atrial flutter"
             },
             {
               "value": "I48.4",
@@ -546,7 +479,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atypical atrial flutter"
             },
             {
               "value": "I48.91",
@@ -554,7 +488,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrial fibrillation"
             },
             {
               "value": "Z95.0",
@@ -562,7 +497,120 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic arrhythmia is nonspecific. Require clinically significant, otherwise unexplained rhythm disease before contributing as cardiac context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac pacemaker"
+            },
+            {
+              "value": "R00.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Tachycardia, unspecified"
+            },
+            {
+              "value": "R00.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Bradycardia, unspecified"
+            },
+            {
+              "value": "I49.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atrial premature depolarization"
+            },
+            {
+              "value": "I49.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ventricular premature depolarization"
+            },
+            {
+              "value": "I49.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified cardiac arrhythmias"
+            },
+            {
+              "value": "I49.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Cardiac arrhythmia, unspecified"
+            },
+            {
+              "value": "I47.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Supraventricular tachycardia, unspecified"
+            },
+            {
+              "value": "I47.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Inappropriate sinus tachycardia, so stated"
+            },
+            {
+              "value": "I47.19",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other supraventricular tachycardia"
+            },
+            {
+              "value": "I47.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ventricular tachycardia, unspecified"
+            },
+            {
+              "value": "I47.29",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other ventricular tachycardia"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "I49.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ventricular fibrillation"
+            },
+            {
+              "value": "I49.02",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ventricular flutter"
             }
           ],
           "ICD9": [
@@ -742,7 +790,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis"
             },
             {
               "value": "I35.2",
@@ -750,7 +799,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis with insufficiency"
             },
             {
               "value": "I06.0",
@@ -758,7 +808,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic aortic stenosis"
             },
             {
               "value": "I06.2",
@@ -766,7 +817,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Severe aortic stenosis'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic aortic stenosis with insufficiency"
+            },
+            {
+              "value": "I35.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) insufficiency"
+            },
+            {
+              "value": "I35.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other nonrheumatic aortic valve disorders"
+            },
+            {
+              "value": "I35.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic valve disorder, unspecified"
             }
           ]
         },
@@ -877,7 +953,16 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Asymmetric / basal septal hypertrophy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
             }
           ],
           "SNOMED_CT": [
@@ -1058,7 +1143,42 @@
       "clinical_meaning": "Cardiomyopathy / infiltrative or restrictive cardiac phenotype; requires clinical context and exclusion of common competing explanations before use as ATTR-supporting evidence.",
       "context_guard": "Match explicit cardiomyopathy/cardiac-amyloidosis terminology only. Wall thickening or HFpEF alone are separate cardiac findings and must not automatically create cardiomyopathy.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I25.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ischemic cardiomyopathy"
+            },
+            {
+              "value": "O90.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Peripartum cardiomyopathy"
+            },
+            {
+              "value": "I43",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy in diseases classified elsewhere"
+            },
+            {
+              "value": "B33.24",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Viral cardiomyopathy"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "amyloid cardiomyopathy",
@@ -1115,7 +1235,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atrioventricular block, first degree"
             },
             {
               "value": "I44.1",
@@ -1123,7 +1244,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atrioventricular block, second degree"
             },
             {
               "value": "I44.2",
@@ -1131,7 +1253,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atrioventricular block, complete"
             },
             {
               "value": "I44.30",
@@ -1139,7 +1262,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrioventricular block"
             },
             {
               "value": "I44.39",
@@ -1147,7 +1271,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other atrioventricular block"
             },
             {
               "value": "I44.4",
@@ -1155,7 +1280,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Left anterior fascicular block"
             },
             {
               "value": "I44.5",
@@ -1163,7 +1289,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Left posterior fascicular block"
             },
             {
               "value": "I44.60",
@@ -1171,7 +1298,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified fascicular block"
             },
             {
               "value": "I44.69",
@@ -1179,7 +1307,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other fascicular block"
             },
             {
               "value": "I44.7",
@@ -1187,7 +1316,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Left bundle-branch block, unspecified"
             },
             {
               "value": "I45.0",
@@ -1195,7 +1325,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Right fascicular block"
             },
             {
               "value": "I45.10",
@@ -1203,7 +1334,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified right bundle-branch block"
             },
             {
               "value": "I45.19",
@@ -1211,7 +1343,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other right bundle-branch block"
             },
             {
               "value": "I45.2",
@@ -1219,7 +1352,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Bifascicular block"
             },
             {
               "value": "I45.3",
@@ -1227,7 +1361,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Trifascicular block"
             },
             {
               "value": "I45.4",
@@ -1235,7 +1370,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonspecific intraventricular block"
             },
             {
               "value": "I45.5",
@@ -1243,7 +1379,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified heart block"
             },
             {
               "value": "I45.6",
@@ -1251,7 +1388,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Pre-excitation syndrome"
             },
             {
               "value": "I45.81",
@@ -1259,7 +1397,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Long QT syndrome"
             },
             {
               "value": "I45.89",
@@ -1267,7 +1406,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified conduction disorders"
             },
             {
               "value": "I45.9",
@@ -1275,7 +1415,65 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Conduction disorder, unspecified"
+            },
+            {
+              "value": "I49.5",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match explicit conduction-system disease only. Atrial fibrillation/flutter and pacemaker presence alone do not establish conduction disease.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Sick sinus syndrome"
+            },
+            {
+              "value": "R00.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Bradycardia, unspecified"
+            },
+            {
+              "value": "I49.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Atrial premature depolarization"
+            },
+            {
+              "value": "I49.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ventricular premature depolarization"
+            },
+            {
+              "value": "I49.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified cardiac arrhythmias"
+            },
+            {
+              "value": "I49.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiac arrhythmia, unspecified"
+            },
+            {
+              "value": "Q24.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Congenital heart block"
             }
           ],
           "ICD9": [
@@ -1423,7 +1621,74 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
+            },
+            {
+              "value": "I95.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypotension due to drugs"
+            },
+            {
+              "value": "I95.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic hypotension"
+            },
+            {
+              "value": "I95.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postprocedural hypotension"
+            },
+            {
+              "value": "I95.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypotension of hemodialysis"
+            },
+            {
+              "value": "R03.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nonspecific low blood-pressure reading"
+            },
+            {
+              "value": "I95.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypotension, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "BP now low",
@@ -1482,7 +1747,18 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dizziness and giddiness"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Dizziness / lightheadedness",
@@ -1583,7 +1859,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Heart failure, unspecified"
             },
             {
               "value": "I50.32",
@@ -1591,7 +1868,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic diastolic (congestive) heart failure"
             },
             {
               "value": "I50.22",
@@ -1599,7 +1877,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic systolic (congestive) heart failure"
             },
             {
               "value": "I50.42",
@@ -1607,7 +1886,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic combined systolic (congestive) and diastolic (congestive) heart failure"
             },
             {
               "value": "I50.20",
@@ -1615,7 +1895,218 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified systolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Left ventricular failure, unspecified"
+            },
+            {
+              "value": "I50.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute systolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.23",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic systolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.33",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified combined systolic (congestive) and diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.41",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute combined systolic (congestive) and diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic combined systolic (congestive) and diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.810",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Right heart failure, unspecified"
+            },
+            {
+              "value": "I50.811",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute right heart failure"
+            },
+            {
+              "value": "I50.812",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic right heart failure"
+            },
+            {
+              "value": "I50.813",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic right heart failure"
+            },
+            {
+              "value": "I50.814",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Right heart failure due to left heart failure"
+            },
+            {
+              "value": "I50.82",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Biventricular heart failure"
+            },
+            {
+              "value": "I50.83",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "High output heart failure"
+            },
+            {
+              "value": "I50.84",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "End stage heart failure"
+            },
+            {
+              "value": "I50.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match only the canonical clinical concept 'Heart failure'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other heart failure"
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I13.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+              "value": "I97.130",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Postprocedural heart failure following cardiac surgery"
+            },
+            {
+              "value": "I97.131",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Postprocedural heart failure following other surgery"
+            },
+            {
+              "value": "I09.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic heart failure"
             }
           ],
           "SNOMED_CT": [
@@ -1709,7 +2200,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit intolerance to antihypertensive/heart-failure medication, preferably linked to low or falling blood pressure. Generic hypotension or a medication name alone is insufficient.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypotension, unspecified"
+            },
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
+            },
+            {
+              "value": "I95.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypotension due to drugs"
+            },
+            {
+              "value": "T46.4X5A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Adverse effect of angiotensin-converting-enzyme inhibitors, initial encounter"
+            },
+            {
+              "value": "T46.5X5A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Adverse effect of other antihypertensive drugs, initial encounter"
+            },
+            {
+              "value": "T46.2X5A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Adverse effect of other antidysrhythmic drugs, initial encounter"
             }
           ],
           "ICD9": [
@@ -1807,40 +2347,63 @@
               "can_fire_atom_alone": true,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Diastolic (congestive) heart failure [non-billable parent; use I50.30-I50.33]"
+            },
+            {
+              "value": "I50.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.31",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute diastolic (congestive) heart failure"
             },
             {
               "value": "I50.32",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic diastolic (congestive) heart failure"
             },
             {
               "value": "I50.33",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic diastolic (congestive) heart failure"
             },
             {
               "value": "I42.9",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
             },
             {
               "value": "I51.7",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit HFpEF/diastolic-heart-failure terminology only. LVH, increased wall thickness, restrictive physiology, or generic cardiomyopathy alone must not create HFpEF.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomegaly"
             }
           ],
           "ICD9": [
@@ -1992,7 +2555,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Essential (primary) hypertension"
             },
             {
               "value": "I11.9",
@@ -2000,7 +2564,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
             },
             {
               "value": "I11.0",
@@ -2008,7 +2573,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
             },
             {
               "value": "I13.10",
@@ -2016,7 +2582,112 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertension'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "R03.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Elevated blood-pressure reading, without diagnosis of hypertension"
+            },
+            {
+              "value": "I12.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I12.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+              "value": "I16.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive urgency"
+            },
+            {
+              "value": "I16.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive emergency"
+            },
+            {
+              "value": "I15.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Secondary hypertension, unspecified"
+            },
+            {
+              "value": "I15.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertension secondary to other renal disorders"
+            },
+            {
+              "value": "I15.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other secondary hypertension"
+            },
+            {
+              "value": "I1A.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Resistant hypertension"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I13.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+              "value": "I27.20",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pulmonary hypertension, unspecified"
+            },
+            {
+              "value": "I27.21",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary pulmonary arterial hypertension"
             }
           ],
           "SNOMED_CT": [
@@ -2138,7 +2809,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hypertrophic cardiomyopathy"
             },
             {
               "value": "I42.1",
@@ -2146,7 +2818,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypertrophic cardiomyopathy'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I42.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other cardiomyopathies"
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -2249,7 +2938,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit low-flow/low-gradient aortic-stenosis wording or equivalent combined documentation. Generic aortic stenosis or severe AS alone must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis"
+            },
+            {
+              "value": "I35.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) insufficiency"
+            },
+            {
+              "value": "I35.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis with insufficiency"
+            },
+            {
+              "value": "I35.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other nonrheumatic aortic valve disorders"
+            },
+            {
+              "value": "I35.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic valve disorder, unspecified"
+            },
+            {
+              "value": "I06.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic aortic stenosis"
+            },
+            {
+              "value": "I06.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic aortic stenosis with insufficiency"
+            },
+            {
+              "value": "Q24.4",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Congenital subaortic stenosis"
             }
           ],
           "ICD9": [
@@ -2337,11 +3083,12 @@
           "ICD10": [
             {
               "value": "R94.31",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Low QRS voltage'. Do not broaden to related but clinically distinct findings.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal electrocardiogram [ECG] [EKG]"
             }
           ],
           "SNOMED_CT": [
@@ -2849,7 +3596,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit antihypertensive/heart-failure medication reduction, holding, or discontinuation. Generic words such as 'stopped', 'held', or 'dose reduced' without medication context must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypotension, unspecified"
             }
           ],
           "ICD9": [
@@ -2991,11 +3739,68 @@
           "ICD10": [
             {
               "value": "Z95.0",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Pacemaker implantation'. Do not broaden to related but clinically distinct findings.",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac pacemaker"
+            },
+            {
+              "value": "Z95.810",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Presence of automatic (implantable) cardiac defibrillator"
+            },
+            {
+              "value": "Z95.818",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Presence of other cardiac implants and grafts"
+            },
+            {
+              "value": "Z45.018",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of other part of cardiac pacemaker"
+            },
+            {
+              "value": "Z45.010",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for checking and testing of cardiac pacemaker pulse generator [battery]"
+            },
+            {
+              "value": "Z45.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of automatic implantable cardiac defibrillator"
+            },
+            {
+              "value": "Z45.09",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of other cardiac device"
+            },
+            {
+              "value": "Z95.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac and vascular implant and graft, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -3130,7 +3935,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit pacemaker presence/interrogation language. Conduction disease or atrial arrhythmia alone must not create a pacemaker atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac pacemaker"
+            },
+            {
+              "value": "Z95.810",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Presence of automatic (implantable) cardiac defibrillator"
+            },
+            {
+              "value": "Z95.818",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Presence of other cardiac implants and grafts"
+            },
+            {
+              "value": "Z45.018",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of other part of cardiac pacemaker"
+            },
+            {
+              "value": "Z45.010",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for checking and testing of cardiac pacemaker pulse generator [battery]"
+            },
+            {
+              "value": "Z45.02",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of automatic implantable cardiac defibrillator"
+            },
+            {
+              "value": "Z95.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Presence of cardiac and vascular implant and graft, unspecified"
             }
           ],
           "ICD9": [
@@ -3208,11 +4062,12 @@
           "ICD10": [
             {
               "value": "R94.31",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Pseudo-infarction ECG pattern'. Do not broaden to related but clinically distinct findings.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal electrocardiogram [ECG] [EKG]"
             }
           ],
           "SNOMED_CT": [
@@ -3536,7 +4391,58 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "R55",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Syncope and collapse"
+            },
+            {
+              "value": "G90.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Carotid sinus syncope"
+            },
+            {
+              "value": "T67.1XXA",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Heat syncope, initial encounter"
+            },
+            {
+              "value": "R05.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Cough syncope"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "G90.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multi-system degeneration of the autonomic nervous system"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Syncope / presyncope",
@@ -3637,7 +4543,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presence of prosthetic heart valve"
             },
             {
               "value": "Z95.3",
@@ -3645,7 +4552,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presence of xenogenic heart valve"
             },
             {
               "value": "Z95.4",
@@ -3653,7 +4561,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Aortic valve replacement'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presence of other heart-valve replacement"
+            },
+            {
+              "value": "Z95.818",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Presence of other cardiac implants and grafts"
+            },
+            {
+              "value": "Z45.09",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "SUPPORTING",
+              "match_mode": "EXACT",
+              "display_name": "Encounter for adjustment and management of other cardiac device"
             }
           ],
           "SNOMED_CT": [
@@ -3740,7 +4665,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiomegaly"
             },
             {
               "value": "I42.0",
@@ -3748,7 +4674,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dilated cardiomyopathy"
             },
             {
               "value": "I42.1",
@@ -3756,7 +4683,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
             },
             {
               "value": "I42.2",
@@ -3764,7 +4692,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hypertrophic cardiomyopathy"
             },
             {
               "value": "I42.3",
@@ -3772,7 +4701,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Endomyocardial (eosinophilic) disease"
             },
             {
               "value": "I42.4",
@@ -3780,7 +4710,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Endocardial fibroelastosis"
             },
             {
               "value": "I42.5",
@@ -3788,7 +4719,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other restrictive cardiomyopathy"
             },
             {
               "value": "I42.6",
@@ -3796,7 +4728,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic cardiomyopathy"
             },
             {
               "value": "I42.7",
@@ -3804,7 +4737,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy due to drug and external agent"
             },
             {
               "value": "I42.8",
@@ -3812,7 +4746,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other cardiomyopathies"
             },
             {
               "value": "I42.9",
@@ -3820,7 +4755,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
             },
             {
               "value": "I50.32",
@@ -3828,7 +4764,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic diastolic (congestive) heart failure"
             },
             {
               "value": "I50.33",
@@ -3836,7 +4773,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match explicit increased LV wall thickness/LVH terminology only. HFpEF, diastolic heart failure, cardiomyopathy, and generic amyloid echo descriptors are separate findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
             }
           ],
           "ICD9": [
@@ -3981,7 +4943,90 @@
       "stage": "PRETEST_SIGNAL",
       "experiencer": "PATIENT",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "I11.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
+            },
+            {
+              "value": "I11.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I13.10",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I13.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I42.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I42.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Dilated cardiomyopathy"
+            },
+            {
+              "value": "I42.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other cardiomyopathies"
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Competing causes of LV wall thickening",
@@ -4129,7 +5174,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Essential (primary) hypertension"
             },
             {
               "value": "I11.0",
@@ -4137,7 +5183,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
             },
             {
               "value": "I11.9",
@@ -4145,7 +5192,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
             },
             {
               "value": "I13.0",
@@ -4153,7 +5201,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
             },
             {
               "value": "I25.5",
@@ -4161,7 +5210,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Ischemic cardiomyopathy"
             },
             {
               "value": "I35.0",
@@ -4169,7 +5219,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis"
             },
             {
               "value": "I34.0",
@@ -4177,7 +5228,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic mitral (valve) insufficiency"
             },
             {
               "value": "I42.0",
@@ -4185,7 +5237,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dilated cardiomyopathy"
             },
             {
               "value": "I42.1",
@@ -4193,7 +5246,56 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I25.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
+            },
+            {
+              "value": "I25.118",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with other forms of angina pectoris"
+            },
+            {
+              "value": "I25.119",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with unspecified angina pectoris"
+            },
+            {
+              "value": "I25.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Old myocardial infarction"
+            },
+            {
+              "value": "I25.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic ischemic heart disease, unspecified"
+            },
+            {
+              "value": "I13.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
             }
           ],
           "SNOMED_CT": [
@@ -4342,7 +5444,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Essential (primary) hypertension"
             },
             {
               "value": "I34.9",
@@ -4350,7 +5453,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic mitral valve disorder, unspecified"
             },
             {
               "value": "I34.0",
@@ -4358,7 +5462,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic mitral (valve) insufficiency"
             },
             {
               "value": "I05.0",
@@ -4366,7 +5471,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Rheumatic mitral stenosis"
             },
             {
               "value": "E05.9",
@@ -4374,7 +5480,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis, unspecified [non-billable parent; use E05.90]"
             },
             {
               "value": "G47.33",
@@ -4382,7 +5489,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obstructive sleep apnea (adult) (pediatric)"
             },
             {
               "value": "E66.9",
@@ -4390,7 +5498,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obesity, unspecified"
             },
             {
               "value": "F10.20",
@@ -4398,7 +5507,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Alcohol dependence, uncomplicated"
             },
             {
               "value": "I11.0",
@@ -4406,7 +5516,72 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
+            },
+            {
+              "value": "I25.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
+            },
+            {
+              "value": "I25.118",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with other forms of angina pectoris"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "E05.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with diffuse goiter without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis with toxic single thyroid nodule without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "E05.90",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Thyrotoxicosis, unspecified without thyrotoxic crisis or storm"
+            },
+            {
+              "value": "G47.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sleep apnea, unspecified"
+            },
+            {
+              "value": "K70.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic cirrhosis of liver without ascites"
             }
           ],
           "SNOMED_CT": [
@@ -4539,7 +5714,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic ischemic heart disease, unspecified"
             },
             {
               "value": "I25.10",
@@ -4547,7 +5723,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
             },
             {
               "value": "D86.89",
@@ -4555,7 +5732,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Sarcoidosis of other sites"
             },
             {
               "value": "A69.29",
@@ -4563,7 +5741,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other conditions associated with Lyme disease"
             },
             {
               "value": "I40.9",
@@ -4571,7 +5750,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Acute myocarditis, unspecified"
             },
             {
               "value": "R00.1",
@@ -4579,7 +5759,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Bradycardia, unspecified"
             },
             {
               "value": "I51.7",
@@ -4587,7 +5768,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiomegaly"
+            },
+            {
+              "value": "A69.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Lyme disease, unspecified"
+            },
+            {
+              "value": "A69.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Meningitis due to Lyme disease"
+            },
+            {
+              "value": "A69.23",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Arthritis due to Lyme disease"
+            },
+            {
+              "value": "D86.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Sarcoidosis of lung"
+            },
+            {
+              "value": "D86.85",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Sarcoid myocarditis"
+            },
+            {
+              "value": "D86.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sarcoidosis, unspecified"
+            },
+            {
+              "value": "I25.5",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Ischemic cardiomyopathy"
             }
           ],
           "SNOMED_CT": [
@@ -4753,7 +5991,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hypertrophic cardiomyopathy"
             },
             {
               "value": "I11.9",
@@ -4761,7 +6000,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
             },
             {
               "value": "I11.0",
@@ -4769,7 +6009,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
             },
             {
               "value": "I10",
@@ -4777,7 +6018,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Essential (primary) hypertension"
             },
             {
               "value": "Z82.41",
@@ -4785,7 +6027,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Family history of sudden cardiac death"
             },
             {
               "value": "Z82.49",
@@ -4793,7 +6036,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Sarcomeric HCM / hypertensive remodeling'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Family history of ischemic heart disease and other diseases of the circulatory system"
+            },
+            {
+              "value": "I42.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
+            },
+            {
+              "value": "Z84.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Family history of carrier of genetic disease"
             }
           ],
           "SNOMED_CT": [
@@ -4905,7 +6173,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dehydration"
             },
             {
               "value": "E86.9",
@@ -4913,7 +6182,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Volume depletion, unspecified"
             },
             {
               "value": "N18.9",
@@ -4921,7 +6191,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
             },
             {
               "value": "R54",
@@ -4929,7 +6200,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Age-related physical debility"
             },
             {
               "value": "A41.9",
@@ -4937,7 +6209,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Sepsis, unspecified organism"
             },
             {
               "value": "G90.9",
@@ -4945,7 +6218,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Disorder of the autonomic nervous system, unspecified"
             },
             {
               "value": "R63.4",
@@ -4953,7 +6227,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Abnormal weight loss"
             },
             {
               "value": "I95.2",
@@ -4961,7 +6236,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypotension due to drugs"
+            },
+            {
+              "value": "D50.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Iron deficiency anemia, unspecified"
+            },
+            {
+              "value": "D50.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other iron deficiency anemias"
+            },
+            {
+              "value": "D50.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Iron deficiency anemia secondary to blood loss (chronic)"
+            },
+            {
+              "value": "D62",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute posthemorrhagic anemia"
+            },
+            {
+              "value": "D53.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nutritional anemia, unspecified"
+            },
+            {
+              "value": "D63.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anemia in other chronic diseases classified elsewhere"
+            },
+            {
+              "value": "D64.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified anemias"
+            },
+            {
+              "value": "E86.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypovolemia"
+            },
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
             }
           ],
           "SNOMED_CT": [
@@ -5129,7 +6501,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Sepsis, unspecified organism"
             },
             {
               "value": "I21.9",
@@ -5137,7 +6510,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Acute myocardial infarction, unspecified"
             },
             {
               "value": "I26.99",
@@ -5145,7 +6519,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other pulmonary embolism without acute cor pulmonale"
             },
             {
               "value": "I48.91",
@@ -5153,7 +6528,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified atrial fibrillation"
             },
             {
               "value": "N18.4",
@@ -5161,7 +6537,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 4 (severe)"
             },
             {
               "value": "N18.5",
@@ -5169,7 +6546,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, stage 5"
             },
             {
               "value": "N18.9",
@@ -5177,7 +6555,128 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic kidney disease, unspecified"
+            },
+            {
+              "value": "I21.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Non-ST elevation (NSTEMI) myocardial infarction"
+            },
+            {
+              "value": "I21.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "ST elevation (STEMI) myocardial infarction of unspecified site"
+            },
+            {
+              "value": "I21.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "ST elevation (STEMI) myocardial infarction involving left anterior descending coronary artery"
+            },
+            {
+              "value": "I21.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "ST elevation (STEMI) myocardial infarction involving right coronary artery"
+            },
+            {
+              "value": "I21.A1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Myocardial infarction type 2"
+            },
+            {
+              "value": "I25.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Old myocardial infarction"
+            },
+            {
+              "value": "I26.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other pulmonary embolism with acute cor pulmonale"
+            },
+            {
+              "value": "I26.93",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Single subsegmental thrombotic pulmonary embolism without acute cor pulmonale"
+            },
+            {
+              "value": "I26.94",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Multiple subsegmental thrombotic pulmonary emboli without acute cor pulmonale"
+            },
+            {
+              "value": "I27.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic pulmonary embolism"
+            },
+            {
+              "value": "I31.39",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other pericardial effusion (noninflammatory)"
+            },
+            {
+              "value": "I30.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute pericarditis, unspecified"
+            },
+            {
+              "value": "I51.7",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomegaly"
+            },
+            {
+              "value": "I51.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other ill-defined heart diseases"
+            },
+            {
+              "value": "Z86.711",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Personal history of pulmonary embolism"
             }
           ],
           "SNOMED_CT": [
@@ -5316,7 +6815,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anemia, unspecified"
             },
             {
               "value": "E66.9",
@@ -5324,7 +6824,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obesity, unspecified"
             },
             {
               "value": "I26.99",
@@ -5332,7 +6833,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other pulmonary embolism without acute cor pulmonale"
             },
             {
               "value": "I50.9",
@@ -5340,7 +6842,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Heart failure, unspecified"
             },
             {
               "value": "J44.9",
@@ -5348,7 +6851,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Chronic obstructive pulmonary disease, unspecified"
             },
             {
               "value": "J45.909",
@@ -5356,7 +6860,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified asthma, uncomplicated"
             },
             {
               "value": "J84.9",
@@ -5364,7 +6869,136 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Interstitial pulmonary disease, unspecified"
+            },
+            {
+              "value": "R06.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Shortness of breath"
+            },
+            {
+              "value": "R06.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dyspnea, unspecified"
+            },
+            {
+              "value": "R06.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other forms of dyspnea"
+            },
+            {
+              "value": "J45.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mild intermittent asthma, uncomplicated"
+            },
+            {
+              "value": "J45.21",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mild intermittent asthma with (acute) exacerbation"
+            },
+            {
+              "value": "J45.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mild persistent asthma, uncomplicated"
+            },
+            {
+              "value": "J45.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Mild persistent asthma with (acute) exacerbation"
+            },
+            {
+              "value": "J45.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Moderate persistent asthma, uncomplicated"
+            },
+            {
+              "value": "J45.41",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Moderate persistent asthma with (acute) exacerbation"
+            },
+            {
+              "value": "J45.901",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified asthma with (acute) exacerbation"
+            },
+            {
+              "value": "J44.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic obstructive pulmonary disease with (acute) exacerbation"
+            },
+            {
+              "value": "J44.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Chronic obstructive pulmonary disease with (acute) lower respiratory infection"
+            },
+            {
+              "value": "J18.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Pneumonia, unspecified organism"
+            },
+            {
+              "value": "D50.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Iron deficiency anemia, unspecified"
+            },
+            {
+              "value": "R06.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Wheezing"
+            },
+            {
+              "value": "R06.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other abnormalities of breathing"
             }
           ],
           "SNOMED_CT": [
@@ -5503,7 +7137,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Sepsis, unspecified organism"
             },
             {
               "value": "D64.9",
@@ -5511,7 +7146,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anemia, unspecified"
             },
             {
               "value": "E27.40",
@@ -5519,7 +7155,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified adrenocortical insufficiency"
             },
             {
               "value": "E86.0",
@@ -5527,7 +7164,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dehydration"
             },
             {
               "value": "E86.9",
@@ -5535,7 +7173,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Volume depletion, unspecified"
             },
             {
               "value": "I49.9",
@@ -5543,7 +7182,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiac arrhythmia, unspecified"
             },
             {
               "value": "I95.2",
@@ -5551,7 +7191,96 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypotension due to drugs"
+            },
+            {
+              "value": "D50.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Iron deficiency anemia, unspecified"
+            },
+            {
+              "value": "D50.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other iron deficiency anemias"
+            },
+            {
+              "value": "D50.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Iron deficiency anemia secondary to blood loss (chronic)"
+            },
+            {
+              "value": "D62",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Acute posthemorrhagic anemia"
+            },
+            {
+              "value": "D53.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Nutritional anemia, unspecified"
+            },
+            {
+              "value": "D63.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anemia in other chronic diseases classified elsewhere"
+            },
+            {
+              "value": "D64.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified anemias"
+            },
+            {
+              "value": "E86.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hypovolemia"
+            },
+            {
+              "value": "I95.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
+            },
+            {
+              "value": "I95.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
+            },
+            {
+              "value": "G90.A",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Postural orthostatic tachycardia syndrome [POTS]"
             }
           ],
           "SNOMED_CT": [
@@ -5664,7 +7393,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Essential (primary) hypertension"
             },
             {
               "value": "I11.0",
@@ -5672,7 +7402,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease with heart failure"
             },
             {
               "value": "I11.9",
@@ -5680,7 +7411,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart disease without heart failure"
             },
             {
               "value": "I25.5",
@@ -5688,7 +7420,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Ischemic cardiomyopathy"
             },
             {
               "value": "I35.0",
@@ -5696,7 +7429,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Nonrheumatic aortic (valve) stenosis"
             },
             {
               "value": "I42.1",
@@ -5704,7 +7438,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Obstructive hypertrophic cardiomyopathy"
             },
             {
               "value": "I42.6",
@@ -5712,7 +7447,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a clearly documented competing explanation that adequately explains the target finding; FALSE or UNKNOWN must not block.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Alcoholic cardiomyopathy"
+            },
+            {
+              "value": "I25.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
+            },
+            {
+              "value": "I25.118",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with other forms of angina pectoris"
+            },
+            {
+              "value": "I25.119",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with unspecified angina pectoris"
+            },
+            {
+              "value": "I25.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Old myocardial infarction"
+            },
+            {
+              "value": "I25.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic ischemic heart disease, unspecified"
+            },
+            {
+              "value": "I13.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+              "value": "I25.110",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Atherosclerotic heart disease of native coronary artery with unstable angina pectoris"
             }
           ],
           "SNOMED_CT": [
@@ -5887,7 +7679,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Cardiomegaly'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cardiomegaly"
+            },
+            {
+              "value": "I51.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other ill-defined heart diseases"
+            },
+            {
+              "value": "I51.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Heart disease, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -5940,7 +7749,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dyspnea, unspecified"
             },
             {
               "value": "R06.01",
@@ -5948,7 +7758,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Orthopnea"
             },
             {
               "value": "R06.02",
@@ -5956,7 +7767,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Shortness of breath"
             },
             {
               "value": "R06.09",
@@ -5964,7 +7776,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Dyspnea / shortness of breath'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other forms of dyspnea"
+            },
+            {
+              "value": "R06.2",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Wheezing"
+            },
+            {
+              "value": "R06.03",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute respiratory distress"
+            },
+            {
+              "value": "R06.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other abnormalities of breathing"
+            },
+            {
+              "value": "R06.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Tachypnea, not elsewhere classified"
+            },
+            {
+              "value": "R06.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified abnormalities of breathing"
             }
           ],
           "SNOMED_CT": [
@@ -6033,7 +7886,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Orthostatic hypotension"
             },
             {
               "value": "I95.89",
@@ -6041,7 +7895,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other hypotension"
             },
             {
               "value": "I95.9",
@@ -6049,7 +7904,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Hypotension'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hypotension, unspecified"
             }
           ],
           "SNOMED_CT": [
@@ -6108,7 +7964,8 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
-          ]
+          ],
+          "ICD10": []
         },
         "nlp_terms": [
           {
@@ -6220,7 +8077,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Pericardial effusion (noninflammatory) [non-billable parent; use I31.31/I31.39]"
             },
             {
               "value": "I31.39",
@@ -6228,7 +8086,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other pericardial effusion (noninflammatory)"
             },
             {
               "value": "I31.8",
@@ -6236,7 +8095,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Pericardial effusion'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified diseases of pericardium"
+            },
+            {
+              "value": "I31.31",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Malignant pericardial effusion in diseases classified elsewhere"
+            },
+            {
+              "value": "I31.4",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Cardiac tamponade"
+            },
+            {
+              "value": "I31.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Hemopericardium, not elsewhere classified"
+            },
+            {
+              "value": "I31.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Disease of pericardium, unspecified"
+            },
+            {
+              "value": "I30.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute pericarditis, unspecified"
+            },
+            {
+              "value": "I30.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute nonspecific idiopathic pericarditis"
+            },
+            {
+              "value": "I30.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Infective pericarditis"
+            },
+            {
+              "value": "I30.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other forms of acute pericarditis"
+            },
+            {
+              "value": "I31.1",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic constrictive pericarditis"
+            },
+            {
+              "value": "M32.12",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pericarditis in systemic lupus erythematosus"
+            },
+            {
+              "value": "B33.23",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Viral pericarditis"
+            },
+            {
+              "value": "I32",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Pericarditis in diseases classified elsewhere"
             }
           ],
           "SNOMED_CT": [
@@ -6343,23 +8299,34 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other restrictive cardiomyopathy"
             },
             {
               "value": "I42.8",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other cardiomyopathies"
             },
             {
               "value": "I42.9",
-              "can_fire_atom_alone": true,
+              "can_fire_atom_alone": false,
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Restrictive cardiomyopathy'. Related findings must remain separate atoms or rule context.",
-              "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
+            },
+            {
+              "value": "I43",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy in diseases classified elsewhere"
             }
           ],
           "SNOMED_CT": [
@@ -6444,6 +8411,56 @@
               "mapping_role": "DIRECT_TARGET",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "I50.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.31",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.32",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Chronic diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I50.33",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Acute on chronic diastolic (congestive) heart failure"
+            },
+            {
+              "value": "I42.5",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other restrictive cardiomyopathy"
+            },
+            {
+              "value": "I42.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Cardiomyopathy, unspecified"
+            }
           ]
         },
         "nlp_terms": [
@@ -6494,6 +8511,16 @@
               "context_guard": "Match only the canonical clinical concept 'Persistent troponin elevation'. Related findings must remain separate atoms or rule context.",
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R79.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified abnormal findings of blood chemistry"
             }
           ]
         },

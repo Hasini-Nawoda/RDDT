@@ -6,6 +6,10 @@
     "AL": {
       "path": "phenotypes/AL",
       "status": "LOADED"
+    },
+    "AA": {
+      "path": "phenotypes/AA",
+      "status": "LOADED"
     }
   }
 }

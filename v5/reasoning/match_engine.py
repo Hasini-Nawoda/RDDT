@@ -14,9 +14,10 @@ from typing import Any, Iterable
 from ..evaluation_policy import (
     collect_relaxations,
     is_claims_recall,
+    is_icd_dated_claims,
     normalize_evaluation_mode,
 )
-from .reasoning_utils import FALSE, TRUE, UNKNOWN, as_list, dedup_key, independent, norm_status, rows, union_lineage, value
+from .reasoning_utils import FALSE, TRUE, UNKNOWN, as_list, dedup_key, grouped_rows, independent, norm_status, rows, union_lineage, value
 
 
 @dataclass(frozen=True)
@@ -47,17 +48,31 @@ def _tier_match(actual: Any, allowed: frozenset[str]) -> bool:
     return a in allowed or a.upper() in {x.upper() for x in allowed}
 
 
+def _tier_allowed(hit: Any, allowed: frozenset[str], *, accept_configured_tier: bool = False) -> bool:
+    """Accept the weakened tier, and in claims-and-dates mode the authored tier.
+
+    A missing qualifier lowers the tier used for suspicion. The signal remains
+    eligible for a combination that allows the tier the signal was written at.
+    """
+    if _tier_match(value(hit, "tier", None), allowed):
+        return True
+    if not accept_configured_tier:
+        return False
+    return _tier_match(value(hit, "configured_tier", None), allowed)
+
+
+def _requirement_value_map(config: Any, table: str, value_field: str) -> dict[str, set[str]]:
+    return {
+        requirement_id: {str(value(row, value_field, "")) for row in requirement_rows}
+        for requirement_id, requirement_rows in grouped_rows(config, table, "requirement_id").items()
+    }
+
+
 def _requirements(config: Any, combination_id: str) -> list[Requirement]:
-    raw = [r for r in rows(config, "combination_requirements") if str(value(r, "combination_id", "")) == combination_id]
-    bmap: dict[str, set[str]] = {}
-    tmap: dict[str, set[str]] = {}
-    smap: dict[str, set[str]] = {}
-    for r in rows(config, "requirement_buckets"):
-        bmap.setdefault(str(value(r, "requirement_id", "")), set()).add(str(value(r, "reasoning_bucket", "")))
-    for r in rows(config, "requirement_tiers"):
-        tmap.setdefault(str(value(r, "requirement_id", "")), set()).add(str(value(r, "allowed_tier", "")))
-    for r in rows(config, "requirement_signals"):
-        smap.setdefault(str(value(r, "requirement_id", "")), set()).add(str(value(r, "allowed_signal_id", "")))
+    raw = grouped_rows(config, "combination_requirements", "combination_id").get(str(combination_id), [])
+    bmap = _requirement_value_map(config, "requirement_buckets", "reasoning_bucket")
+    tmap = _requirement_value_map(config, "requirement_tiers", "allowed_tier")
+    smap = _requirement_value_map(config, "requirement_signals", "allowed_signal_id")
     out: list[Requirement] = []
     for r in raw:
         rid = str(value(r, "requirement_id", ""))
@@ -90,14 +105,20 @@ def _requirements(config: Any, combination_id: str) -> list[Requirement]:
     return sorted(out, key=lambda r: (r.order, r.requirement_id))
 
 
-def _eligible_shape(hit: Any, requirement: Requirement, *, allow_unknown: bool = False) -> bool:
+def _eligible_shape(
+    hit: Any,
+    requirement: Requirement,
+    *,
+    allow_unknown: bool = False,
+    accept_configured_tier: bool = False,
+) -> bool:
     status = norm_status(value(hit, "status", UNKNOWN))
     if status != TRUE and not (allow_unknown and status == UNKNOWN):
         return False
     bucket = str(value(hit, "reasoning_bucket", ""))
     if requirement.allowed_buckets and bucket not in requirement.allowed_buckets:
         return False
-    if not _tier_match(value(hit, "tier", None), requirement.allowed_tiers):
+    if not _tier_allowed(hit, requirement.allowed_tiers, accept_configured_tier=accept_configured_tier):
         return False
     signal = str(value(hit, "signal_id", ""))
     if requirement.allowed_signal_ids and signal not in requirement.allowed_signal_ids:
@@ -128,12 +149,17 @@ def _conflicts(candidate: Any, chosen: list[Any], req: Requirement, bucket_defs:
     return False
 
 
-def assign_witnesses(combination: Any, requirements: list[Requirement], candidate_hits: list[Any], bucket_defs: dict[str, Any] | None = None, *, allow_unknown: bool = False) -> tuple[list[Any] | None, list[tuple[str, tuple[str, ...]]]]:
+def assign_witnesses(combination: Any, requirements: list[Requirement], candidate_hits: list[Any], bucket_defs: dict[str, Any] | None = None, *, allow_unknown: bool = False, accept_configured_tier: bool = False) -> tuple[list[Any] | None, list[tuple[str, tuple[str, ...]]]]:
     bucket_defs = bucket_defs or {}
     candidate_map = {
         r.requirement_id: [
             h for h in candidate_hits
-            if _eligible_shape(h, r, allow_unknown=allow_unknown)
+            if _eligible_shape(
+                h,
+                r,
+                allow_unknown=allow_unknown,
+                accept_configured_tier=accept_configured_tier,
+            )
         ]
         for r in requirements
     }
@@ -405,7 +431,14 @@ def match_combinations(
         elif not reqs:
             status, hold, assignment = UNKNOWN, "CONFIG_GAP:missing combination logic", None
         else:
-            assignment, conflicts = assign_witnesses(combo, reqs, hits, bucket_defs)
+            accept_configured_tier = is_icd_dated_claims(evaluation_mode)
+            assignment, conflicts = assign_witnesses(
+                combo,
+                reqs,
+                hits,
+                bucket_defs,
+                accept_configured_tier=accept_configured_tier,
+            )
             status, hold = (TRUE, None) if assignment is not None else (FALSE, None)
             if assignment is not None:
                 temporal_state = _temporal_state(combo, assignment)
@@ -439,7 +472,13 @@ def match_combinations(
             # A relaxed run is diagnostic only.  It can produce a hold, never
             # a pass, when the only route reuses lineage/dedup evidence.
             relaxed_reqs = [Requirement(**{**r.__dict__, "distinct_lineage_required": False}) for r in reqs]
-            relaxed, _ = assign_witnesses(combo, relaxed_reqs, hits, bucket_defs)
+            relaxed, _ = assign_witnesses(
+                combo,
+                relaxed_reqs,
+                hits,
+                bucket_defs,
+                accept_configured_tier=is_icd_dated_claims(evaluation_mode),
+            )
             if relaxed is not None:
                 status, hold = UNKNOWN, "HOLD_DUPLICATE_LINEAGE"
         if nested_rule is None and reqs and assignment is None and status == FALSE and not temporal_rejected:
@@ -452,6 +491,7 @@ def match_combinations(
                 hits,
                 bucket_defs,
                 allow_unknown=True,
+                accept_configured_tier=is_icd_dated_claims(evaluation_mode),
             )
             if potential is not None:
                 status, hold = UNKNOWN, "INCOMPLETE_OR_UNKNOWN_EVIDENCE"

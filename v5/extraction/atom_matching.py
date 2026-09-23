@@ -20,11 +20,20 @@ from .extraction_contract import (
 )
 from .code_semantics import (
     CODE_IN_TEXT,
+    PREFIX,
+    PREFIX_FALLBACK,
+    RANGE,
+    _icd_prefix_base,
+    canonical_code,
+    code_forms,
+    expanded_values,
     find_code_in_text,
+    is_structured_system,
     match_code_value,
     normalize_code_system,
-    PREFIX_FALLBACK,
     prefix_fallback_supported,
+    term_match_mode,
+    term_values,
 )
 from .source_events import SourceEvent
 from .temporal_context import resolve_temporal_context
@@ -153,6 +162,65 @@ def _event_system_compatible(event: SourceEvent, system: str) -> bool:
     return event_system_compatible(event.source_table, event.source_field, system, event.code_system)
 
 
+def _structured_term_index(
+    terms: Sequence[Mapping[str, Any]],
+) -> tuple[dict[tuple[str, str], list[tuple[int, Mapping[str, Any]]]], dict[tuple[str, str], list[tuple[int, Mapping[str, Any]]]], set[str]]:
+    """Index exact code forms, and ICD family bases that can fall back by prefix.
+
+    Matching still calls ``match_code_value``. The index only chooses which
+    terminology rows can possibly match, in workbook order.
+    """
+    exact: dict[tuple[str, str], list[tuple[int, Mapping[str, Any]]]] = {}
+    prefixes: dict[tuple[str, str], list[tuple[int, Mapping[str, Any]]]] = {}
+    systems: set[str] = set()
+    for index, term in enumerate(terms):
+        system = normalize_code_system(_get(term, "terminology_system", "system", "Terminology_System", default=""))
+        if not is_structured_system(system):
+            continue
+        systems.add(system)
+        mode = term_match_mode(term)
+        values = expanded_values(term) if mode in {PREFIX, PREFIX_FALLBACK, RANGE} else term_values(term)
+        for value in values:
+            for form in code_forms(value, system):
+                if form:
+                    exact.setdefault((system, form), []).append((index, term))
+        if mode in {PREFIX, PREFIX_FALLBACK} and prefix_fallback_supported(term):
+            parsed = _icd_prefix_base(term)
+            if parsed is not None:
+                prefix_system, base = parsed
+                prefixes.setdefault((prefix_system, base.replace(".", "")), []).append((index, term))
+    return exact, prefixes, systems
+
+
+def _candidate_terms(
+    event: SourceEvent,
+    exact: Mapping[tuple[str, str], Sequence[tuple[int, Mapping[str, Any]]]],
+    prefixes: Mapping[tuple[str, str], Sequence[tuple[int, Mapping[str, Any]]]],
+    systems: set[str],
+) -> list[Mapping[str, Any]]:
+    if not event.code_value:
+        return []
+    chosen: dict[int, Mapping[str, Any]] = {}
+    for system in systems:
+        if not _event_system_compatible(event, system):
+            continue
+        for form in code_forms(event.code_value, system):
+            for index, term in exact.get((system, form), ()):
+                chosen[index] = term
+        canonical = canonical_code(event.code_value, system)
+        if len(canonical) > 3:
+            for index, term in prefixes.get((system, canonical[:3]), ()):
+                chosen[index] = term
+    return [chosen[index] for index in sorted(chosen)]
+
+
+def _is_family_history_icd(value: Any) -> bool:
+    """True for ICD-10-CM family-history codes Z80 through Z84."""
+    compact = str(value or "").strip().upper().replace(" ", "")
+    head = compact.split(".", 1)[0]
+    return head in {"Z80", "Z81", "Z82", "Z83", "Z84"}
+
+
 def match_atom_events(
     events: Sequence[SourceEvent],
     config: Any,
@@ -182,20 +250,29 @@ def match_atom_events(
         else:
             matcher, labels = build_phrase_matcher(nlp, terms)
     structured_terms = [t for t in terms if not _is_nlp(normalize_system(_get(t, "terminology_system", "system", "Terminology_System", default="")))]
+    exact_index, prefix_index, indexed_systems = _structured_term_index(structured_terms)
     nlp_terms = [t for t in terms if _is_nlp(normalize_system(_get(t, "terminology_system", "system", "Terminology_System", default="")))]
     def restriction(term: Mapping[str, Any]) -> dict[str, Any]:
         return {
             "can_fire_atom_alone": _get(term, "can_fire_atom_alone", "Can_Fire_Atom_Alone"),
             "review_status": _get(term, "review_status", "Review_Status"),
             "context_guard": _get(term, "context_guard", "Context_Guard"),
+            "display_name": _get(term, "display_name", "Display_Name"),
             "can_fire_from_mapping": _get(term, "can_fire_from_mapping", "Can_Fire_From_This_Mapping"),
             "mapping_role": _get(term, "mapping_role", "Mapping_Role"),
         }
-    def source_hints(event: SourceEvent) -> tuple[str, str | None]:
+    def source_hints(event: SourceEvent, atom_id: str, code_value: Any) -> tuple[str, str | None]:
         experiencer = event.experiencer_hint or ("FAMILY_MEMBER" if event.source_table.upper() == "FAMILY_HISTORY" else "PATIENT")
+        atom = atoms.get(atom_id, {})
+        atom_experiencer = str(_get(atom, "experiencer", "Experiencer", default="") or "").strip().upper()
+        if atom_experiencer == "FAMILY_MEMBER" and _is_family_history_icd(code_value):
+            # The code itself is a family-history ICD-10 code, and it is
+            # configured on a family-history atom. That is the only
+            # experiencer context a claim diagnosis carries.
+            experiencer = "FAMILY_MEMBER"
         return experiencer, None
     for event in events:
-        for term in structured_terms:
+        for term in _candidate_terms(event, exact_index, prefix_index, indexed_systems):
             atom_id = str(_get(term, "atom_id", "Atom_ID", default=""))
             if not atom_id:
                 continue
@@ -207,7 +284,7 @@ def match_atom_events(
                     "RANGE": "RANGE_NORMALIZED_CODE",
                     PREFIX_FALLBACK: "PREFIX_FALLBACK_CODE",
                 }.get(match_mode, "EXACT_NORMALIZED_CODE")
-                experiencer_hint, stage_hint = source_hints(event)
+                experiencer_hint, stage_hint = source_hints(event, atom_id, event.code_value or config_value)
                 out.append(AtomMatch(event.run_id, event.patient_id, atom_id, event.source_event_id,
                                      method, config_value, event.code_value, "TRUE",
                                      event.event_date, event.available_date, event.support_lineage_id,
@@ -238,7 +315,7 @@ def match_atom_events(
                 if not atom_id:
                     continue
                 config_value = _term_value(term)
-                experiencer_hint, stage_hint = source_hints(event)
+                experiencer_hint, stage_hint = source_hints(event, atom_id, span.value or config_value)
                 for span in spans:
                     out.append(AtomMatch(
                         event.run_id, event.patient_id, atom_id, event.source_event_id,
@@ -259,7 +336,7 @@ def match_atom_events(
             for term in nlp_terms:
                 if unknown_count >= max_unknown_nlp_matches:
                     break
-                experiencer_hint, stage_hint = source_hints(event)
+                experiencer_hint, stage_hint = source_hints(event, str(_get(term, "atom_id", "Atom_ID", default="")), _term_value(term))
                 out.append(AtomMatch(event.run_id, event.patient_id,
                                      str(_get(term, "atom_id", "Atom_ID", default="")), event.source_event_id,
                                      "NLP_CONFIG_GAP_NO_PHRASEMATCHER", _term_value(term), event.text_value,
@@ -283,7 +360,8 @@ def match_atom_events(
                 continue
             seen_spans.add(span_key)
             term = labels[label]
-            experiencer_hint, stage_hint = source_hints(event)
+            nlp_atom_id = str(_get(term, "atom_id", "Atom_ID", default=""))
+            experiencer_hint, stage_hint = source_hints(event, nlp_atom_id, _term_value(term))
             temporal = resolve_temporal_context(doc, int(start), int(end), event.event_date)
             source_attributes = dict(event.attributes or {})
             source_attributes.update(temporal.attributes(event.event_date))

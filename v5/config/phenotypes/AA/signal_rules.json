@@ -1,0 +1,913 @@
+{
+  "phenotype": "AA",
+  "signal_rules": [
+    {
+      "signal_id": "AA01",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "chronic_inflammatory_arthritis",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "biologic_dmard_exposure",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA02",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "fmf",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "autoinflammatory_syndrome",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "recurrent_serositis",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA03",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ALL",
+        "members": [
+          {
+            "type": "atom",
+            "id": "fmf",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "atom",
+                  "id": "mefv_high_risk_genotype",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                }
+              ]
+            }
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA04",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "family_eskd",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA05",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "colchicine_adherence_problem",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA06",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "autoinflammatory_syndrome",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA07",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "ibd_inflammatory_driver",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "crohn_fistulizing_phenotype",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA08",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "chronic_infection",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "bronchiectasis",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA09",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "skin_soft_tissue_infection",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "abscess",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "chronic_wound",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA10",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "castleman_disease",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "renal_cell_carcinoma",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA11",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "obesity",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA12",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "crp_result",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT",
+            "required_attributes": "persistent=True"
+          },
+          {
+            "type": "atom",
+            "id": "esr_result",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT",
+            "required_attributes": "persistent=True"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA13",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "saa_result",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA14",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "treatment_escalation",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA15",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "microalbuminuria",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA16",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "persistent_proteinuria",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "progressive_proteinuria",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "urine_protein_result",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA17",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "nephrotic_syndrome",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "nephrotic_range_proteinuria",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA18",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "hypoalbuminemia",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA19",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "peripheral_edema",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA20",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "falling_egfr",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "kidney_failure",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA21",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "renal_dysfunction",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT",
+            "required_attributes": "disproportionate=True"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA22",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "diarrhea",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA23",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "gi_bleeding",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "paralytic_ileus",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA24",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "hypothyroidism",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          },
+          {
+            "type": "atom",
+            "id": "goiter",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "SIGNAL_ESTABLISHED",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA25",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ALL",
+        "members": [
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "atom",
+                  "id": "hf_any",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "conduction_disease",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "thick_walls",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                }
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "signal",
+                  "id": "AA02",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA06",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA08",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA01",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA07",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA09",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA10",
+                  "role": "SUPPORT"
+                }
+              ]
+            }
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA26",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ALL",
+        "members": [
+          {
+            "type": "signal",
+            "id": "AA02",
+            "role": "SUPPORT"
+          },
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "signal",
+                  "id": "AA15",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA16",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA17",
+                  "role": "SUPPORT"
+                }
+              ]
+            }
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA27",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "urine_sediment_result",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA28",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ALL",
+        "members": [
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "atom",
+                  "id": "mgus",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "plasma_cell_dyscrasia",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                }
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "signal",
+                  "id": "AA15",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA16",
+                  "role": "SUPPORT"
+                },
+                {
+                  "type": "signal",
+                  "id": "AA17",
+                  "role": "SUPPORT"
+                }
+              ]
+            }
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA29",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ALL",
+        "members": [
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "atom",
+                  "id": "cts_bilateral",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "lumbar_stenosis",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "biceps_rupture",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                }
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "rule": {
+              "operator": "ANY",
+              "minimum_count": 1,
+              "members": [
+                {
+                  "type": "atom",
+                  "id": "hf_any",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "conduction_disease",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                },
+                {
+                  "type": "atom",
+                  "id": "thick_walls",
+                  "role": "SUPPORT",
+                  "experiencer": "PATIENT"
+                }
+              ]
+            }
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    },
+    {
+      "signal_id": "AA30",
+      "enabled": true,
+      "blockers": [],
+      "rule": {
+        "operator": "ANY",
+        "minimum_count": 1,
+        "members": [
+          {
+            "type": "atom",
+            "id": "occult_inflammation",
+            "role": "SUPPORT",
+            "experiencer": "PATIENT"
+          }
+        ],
+        "missing_data_policy": "UNKNOWN_DOES_NOT_SATISFY_AND_DOES_NOT_NEGATE",
+        "truth_model": "TRUE_FALSE_UNKNOWN",
+        "outcome": "ROUTE_ONLY",
+        "blocker_policy": "NONE"
+      }
+    }
+  ]
+}

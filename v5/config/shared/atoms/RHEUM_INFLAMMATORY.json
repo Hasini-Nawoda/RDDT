@@ -9,7 +9,50 @@
       "clinical_meaning": "Other chronic active autoinflammatory syndrome relevant to AA-amyloidosis differential.",
       "context_guard": "Use for AA differential only when chronic/active disease is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Periodic fever syndromes"
+            },
+            {
+              "value": "M04.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Cryopyrin-associated periodic syndromes"
+            },
+            {
+              "value": "M04.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other autoinflammatory syndromes"
+            },
+            {
+              "value": "M04.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Autoinflammatory syndrome, unspecified"
+            },
+            {
+              "value": "E85.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary systemic amyloidosis"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "autoinflammatory syndrome",
@@ -34,7 +77,90 @@
       "clinical_meaning": "Chronic active infection relevant to AA-amyloidosis differential.",
       "context_guard": "Use for AA differential only when chronic/active infection is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "A15.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Tuberculosis of lung"
+            },
+            {
+              "value": "A15.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Respiratory tuberculosis unspecified"
+            },
+            {
+              "value": "A18.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other musculoskeletal tuberculosis"
+            },
+            {
+              "value": "M86.60",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other chronic osteomyelitis, unspecified site"
+            },
+            {
+              "value": "M86.20",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Subacute osteomyelitis, unspecified site"
+            },
+            {
+              "value": "J47.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Bronchiectasis, uncomplicated"
+            },
+            {
+              "value": "J47.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Bronchiectasis with acute lower respiratory infection"
+            },
+            {
+              "value": "A18.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Tuberculosis of spine"
+            },
+            {
+              "value": "B20",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Human immunodeficiency virus [HIV] disease"
+            },
+            {
+              "value": "A69.20",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Lyme disease, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "bronchiectasis with chronic infection",
@@ -67,7 +193,82 @@
       "clinical_meaning": "Chronic active inflammatory arthritis relevant to AA-amyloidosis differential.",
       "context_guard": "Use for AA differential only when chronic/active inflammation is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M06.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis, unspecified"
+            },
+            {
+              "value": "M05.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis with rheumatoid factor, unspecified"
+            },
+            {
+              "value": "M05.79",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis with rheumatoid factor of multiple sites without organ or systems involvement"
+            },
+            {
+              "value": "M06.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis without rheumatoid factor, multiple sites"
+            },
+            {
+              "value": "M45.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ankylosing spondylitis of multiple sites in spine"
+            },
+            {
+              "value": "M45.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ankylosing spondylitis of unspecified sites in spine"
+            },
+            {
+              "value": "M08.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified juvenile rheumatoid arthritis of unspecified site"
+            },
+            {
+              "value": "M07.60",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Enteropathic arthropathies, unspecified site"
+            },
+            {
+              "value": "M32.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Systemic lupus erythematosus, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "ankylosing spondylitis",
@@ -124,7 +325,16 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'C-reactive protein result'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Elevated C-reactive protein (CRP)"
+            },
+            {
+              "value": "R70.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Elevated erythrocyte sedimentation rate"
             }
           ],
           "SNOMED_CT": [
@@ -199,7 +409,16 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Erythrocyte sedimentation rate result'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Elevated erythrocyte sedimentation rate"
+            },
+            {
+              "value": "R79.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Elevated C-reactive protein (CRP)"
             }
           ],
           "SNOMED_CT": [
@@ -246,7 +465,42 @@
       "clinical_meaning": "Familial Mediterranean fever / chronic active autoinflammatory driver relevant to AA-amyloidosis differential.",
       "context_guard": "Match familial Mediterranean fever specifically. Generic periodic-fever/autoinflammatory syndromes belong under the broader autoinflammatory-syndrome atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "M04.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Periodic fever syndromes"
+            },
+            {
+              "value": "E85.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary systemic amyloidosis"
+            },
+            {
+              "value": "E85.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Non-neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "M04.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Autoinflammatory syndrome, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "FMF",
@@ -267,7 +521,82 @@
       "clinical_meaning": "Chronic active inflammatory bowel disease relevant to AA-amyloidosis differential.",
       "context_guard": "Use for AA differential only when chronic/active inflammatory disease is documented; must be paired with a new persistent proteinuric renal phenotype for V40.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "K50.90",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease, unspecified, without complications"
+            },
+            {
+              "value": "K50.91",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "K50.91 [no 2026 description]"
+            },
+            {
+              "value": "K51.90",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ulcerative colitis, unspecified, without complications"
+            },
+            {
+              "value": "K51.91",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "K51.91 [no 2026 description]"
+            },
+            {
+              "value": "K50.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of small intestine without complications"
+            },
+            {
+              "value": "K50.10",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of large intestine without complications"
+            },
+            {
+              "value": "K50.011",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of small intestine with rectal bleeding"
+            },
+            {
+              "value": "K50.111",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Crohn's disease of large intestine with rectal bleeding"
+            },
+            {
+              "value": "K51.011",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ulcerative (chronic) pancolitis with rectal bleeding"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "Crohn disease",
@@ -311,6 +640,32 @@
               "context_guard": "Match only the canonical clinical concept 'Serum amyloid A result'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
               "match_mode": "EXACT"
+            }
+          ],
+          "ICD10": [
+            {
+              "value": "R79.82",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Elevated C-reactive protein (CRP)"
+            },
+            {
+              "value": "R70.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Elevated erythrocyte sedimentation rate"
+            },
+            {
+              "value": "E85.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Secondary systemic amyloidosis"
             }
           ]
         },

@@ -17,7 +17,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified glaucoma"
             },
             {
               "value": "H04.123",
@@ -25,7 +26,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Dry eye is nonspecific and must remain separate from glaucoma. Do not infer glaucoma from dry-eye terminology.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dry eye syndrome of bilateral lacrimal glands"
+            },
+            {
+              "value": "H04.121",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dry eye syndrome of right lacrimal gland"
+            },
+            {
+              "value": "H04.122",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dry eye syndrome of left lacrimal gland"
+            },
+            {
+              "value": "H04.129",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Dry eye syndrome of unspecified lacrimal gland"
             }
           ],
           "ICD9": [
@@ -121,7 +147,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, unspecified eye"
             },
             {
               "value": "H43.21",
@@ -129,7 +156,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, right eye"
             },
             {
               "value": "H43.22",
@@ -137,7 +165,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, left eye"
             },
             {
               "value": "H43.23",
@@ -145,7 +174,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Floaters are a symptom and are retrieval/corroborating evidence only. Do not convert vitreous amyloid/opacities into a floaters atom unless floaters are actually documented.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, bilateral"
+            },
+            {
+              "value": "H43.391",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, right eye"
+            },
+            {
+              "value": "H43.392",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, left eye"
+            },
+            {
+              "value": "H43.399",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, unspecified eye"
+            },
+            {
+              "value": "H43.813",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, bilateral"
+            },
+            {
+              "value": "H43.819",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, unspecified eye"
             }
           ],
           "ICD9": [
@@ -211,7 +281,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified glaucoma"
             },
             {
               "value": "H04.123",
@@ -219,7 +290,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Glaucoma/ocular-hypertension terminology only. Dry-eye terminology must not create a glaucoma atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Dry eye syndrome of bilateral lacrimal glands"
+            },
+            {
+              "value": "H40.10x0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.10x0 [no 2026 description]"
+            },
+            {
+              "value": "H40.10x1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.10x1 [no 2026 description]"
+            },
+            {
+              "value": "H40.10x2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.10x2 [no 2026 description]"
+            },
+            {
+              "value": "H40.1110",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary open-angle glaucoma, right eye, stage unspecified"
+            },
+            {
+              "value": "H40.1120",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary open-angle glaucoma, left eye, stage unspecified"
+            },
+            {
+              "value": "H40.1130",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Primary open-angle glaucoma, bilateral, stage unspecified"
+            },
+            {
+              "value": "H40.20x0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.20x0 [no 2026 description]"
+            },
+            {
+              "value": "H40.2110",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.2110 [no 2026 description]"
+            },
+            {
+              "value": "H40.2120",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.2120 [no 2026 description]"
+            },
+            {
+              "value": "H40.2130",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H40.2130 [no 2026 description]"
+            },
+            {
+              "value": "H40.3110",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H40.3110 [no 2026 description]"
+            },
+            {
+              "value": "H40.3120",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H40.3120 [no 2026 description]"
             }
           ],
           "ICD9": [
@@ -285,7 +453,40 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Generic iris or pupillary abnormality is nonspecific. Require a characteristic ophthalmologist-confirmed amyloid-compatible pattern before contributing to V16.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified disorders of iris and ciliary body"
+            },
+            {
+              "value": "H21.30",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H21.30 [no 2026 description]"
+            },
+            {
+              "value": "H21.80",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H21.80 [no 2026 description]"
+            },
+            {
+              "value": "H57.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified anomaly of pupillary function"
+            },
+            {
+              "value": "H57.09",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other anomalies of pupillary function"
             }
           ],
           "ICD9": [
@@ -327,7 +528,32 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "High-specificity ocular atom. Require scalloped/notched pupillary-margin or amyloid-iris wording; generic irregular pupil/anisocoria belongs under the broader iris-abnormality atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified disorders of iris and ciliary body"
+            },
+            {
+              "value": "H57.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified anomaly of pupillary function"
+            },
+            {
+              "value": "H57.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other anomalies of pupillary function"
+            },
+            {
+              "value": "H21.80",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H21.80 [no 2026 description]"
             }
           ],
           "ICD9": [
@@ -419,7 +645,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, unspecified eye"
             },
             {
               "value": "H43.21",
@@ -427,7 +654,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, right eye"
             },
             {
               "value": "H43.22",
@@ -435,7 +663,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, left eye"
             },
             {
               "value": "H43.23",
@@ -443,7 +672,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require explicit vitreous opacity/vitreopathy/amyloid-deposit wording. Generic floaters alone are nonspecific and must not create this atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Crystalline deposits in vitreous body, bilateral"
+            },
+            {
+              "value": "H43.391",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, right eye"
+            },
+            {
+              "value": "H43.392",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, left eye"
+            },
+            {
+              "value": "H43.399",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other vitreous opacities, unspecified eye"
+            },
+            {
+              "value": "H43.813",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, bilateral"
+            },
+            {
+              "value": "H43.819",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, unspecified eye"
+            },
+            {
+              "value": "H43.811",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, right eye"
+            },
+            {
+              "value": "H43.812",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Vitreous degeneration, left eye"
             }
           ],
           "ICD9": [

@@ -193,6 +193,11 @@ def _normalize_source_config(
                 ),
                 field_name=f"{table_key}.profile_required",
             ),
+            "date_enrichment": _config_bool(
+                value.get("date_enrichment"),
+                default=False,
+                field_name=f"{table_key}.date_enrichment",
+            ),
             "columns": {str(logical): str(physical) for logical, physical in columns.items()},
             "required_columns": tuple(str(logical) for logical in required_columns),
         }
@@ -232,6 +237,21 @@ def load_source_config(
 def default_source_config(*, profile: str | None = None) -> dict[str, Any]:
     """Return the checked-in, operator-editable source schema contract."""
     return load_source_config(profile=profile)
+
+
+def is_date_enrichment_enabled(table: Mapping[str, Any]) -> bool:
+    """Return whether a table may date other rows without becoming evidence.
+
+    Encounter visit dates can fill a null claim date. That use is separate
+    from ``enabled``: a date source must not also create atom matches.
+    """
+    if "date_enrichment" not in table:
+        return False
+    return _config_bool(
+        table.get("date_enrichment"),
+        default=False,
+        field_name=f"{table.get('key', table.get('name', 'source_table'))}.date_enrichment",
+    )
 
 
 def is_table_enabled(table: Mapping[str, Any], *, default: bool = True) -> bool:
@@ -366,7 +386,8 @@ def validate_source_schema(session: Any, source_config: Mapping[str, Any] | None
 
 __all__ = [
     "SourceSchemaError", "SourceTable", "SourceValidationReport", "default_source_config",
-    "load_source_config", "is_table_enabled", "quote_identifier", "qualified_table_name",
+    "load_source_config", "is_table_enabled", "is_date_enrichment_enabled",
+    "quote_identifier", "qualified_table_name",
     "is_table_profile_enabled", "is_table_profile_required",
     "SOURCE_PROFILE_ENV",
     "validate_source_schema",

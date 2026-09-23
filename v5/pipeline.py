@@ -46,11 +46,13 @@ from .pipeline_steps.step_10_router import route_stage
 from .pipeline_steps.step_11_patient_profiles import (
     build_attr_profiles,
     build_al_detected_profiles,
+    build_aa_profiles,
     build_known_al_profiles,
     build_known_profiles,
     build_profiles,
     export_attr_profile_files,
     export_al_detected_profile_files,
+    export_aa_profile_files,
     export_known_al_profile_files,
     export_known_profile_files,
     export_profile_files,
@@ -189,7 +191,7 @@ class PipelineError(RuntimeError):
 
 
 ATTR_PHENOTYPES = ("ATTRV", "ATTRWT")
-SCREENED_PHENOTYPES = (*ATTR_PHENOTYPES, "AL")
+SCREENED_PHENOTYPES = (*ATTR_PHENOTYPES, "AL", "AA")
 
 
 class AttrExtractionConfig:
@@ -255,6 +257,8 @@ class PipelineRun:
     profile_exports: dict[str, str] = field(default_factory=dict)
     al_detected_profiles: list[dict[str, Any]] = field(default_factory=list)
     al_detected_exports: dict[str, str] = field(default_factory=dict)
+    aa_profiles: list[dict[str, Any]] = field(default_factory=list)
+    aa_exports: dict[str, str] = field(default_factory=dict)
     temporary_tables: dict[str, str] = field(default_factory=lambda: dict(TEMP_TABLES))
     warehouse_objects_created: tuple[str, ...] = ()
 
@@ -275,6 +279,8 @@ class PipelineRun:
             "known_al_exports": dict(self.known_al_exports),
             "al_detected_exports": dict(self.al_detected_exports),
             "al_detected_profiles": len(self.al_detected_profiles),
+            "aa_exports": dict(self.aa_exports),
+            "aa_profiles": len(self.aa_profiles),
         }
 
 
@@ -701,20 +707,28 @@ def _run_single_phenotype_reference_pipeline(
     )
     patient_universe = set(candidate_patient_ids or {event.patient_id for event in all_events})
     patients = sorted(patient_universe - known_ids)
+    birth_dates = {
+        pid: row.get("birth_date")
+        for pid, row in _demographics(rows_by_table, source_config).items()
+    }
     signal_hits: list[Any] = []
     bucket_state: list[Any] = []
     combination_hits: list[Any] = []
     guardrail_hits: list[Any] = []
     phenotype_results: list[Any] = []
     router_output: list[Any] = []
+    evidence_by_patient: dict[str, list[Any]] = {}
+    for row in evidence:
+        evidence_by_patient.setdefault(str(row.patient_id), []).append(row)
     for patient_id in patients:
-        patient_evidence = [row for row in evidence if row.patient_id == patient_id]
+        patient_evidence = evidence_by_patient.get(str(patient_id), [])
         patient_signals = evaluate_signals_stage(
             config,
             patient_evidence,
             patient_id=patient_id,
             phenotype=selected_phenotype,
             evaluation_mode=evaluation_mode,
+            birth_date=birth_dates.get(str(patient_id)),
         )
         patient_buckets = evaluate_buckets_stage(config, patient_signals, patient_id=patient_id, phenotype=selected_phenotype)
         patient_combinations = match_combinations_stage(
@@ -831,8 +845,9 @@ def run_attr_reference_pipeline(
     known_al_config: KnownALConfig | None = None,
     evaluation_mode: str = "STRICT",
     include_all_patient_verdicts: bool = True,
+    include_proprietary_trace: bool = True,
 ) -> PipelineRun:
-    """Run ATTRv, ATTRwt, and AL after one shared extraction pass."""
+    """Run ATTRv, ATTRwt, AL, and AA after one shared extraction pass."""
     if screening_cutoff is None:
         raise PipelineError("screening_cutoff/as-of date is required for pre-test evidence eligibility")
     evaluation_mode = normalize_evaluation_mode(evaluation_mode)
@@ -919,6 +934,10 @@ def run_attr_reference_pipeline(
     patient_universe = set(candidate_patient_ids or {event.patient_id for event in all_events})
     excluded_ids = known_attr.patient_ids | known_al_result.patient_ids
     patients = sorted(patient_universe - excluded_ids)
+    birth_dates = {
+        pid: row.get("birth_date")
+        for pid, row in _demographics(rows_by_table, source_config).items()
+    }
 
     signal_hits: list[Any] = []
     bucket_state: list[Any] = []
@@ -926,8 +945,11 @@ def run_attr_reference_pipeline(
     guardrail_hits: list[Any] = []
     phenotype_results: list[Any] = []
     router_output: list[Any] = []
+    evidence_by_patient: dict[str, list[Any]] = {}
+    for row in evidence:
+        evidence_by_patient.setdefault(str(row.patient_id), []).append(row)
     for patient_id in patients:
-        patient_evidence = [row for row in evidence if row.patient_id == patient_id]
+        patient_evidence = evidence_by_patient.get(str(patient_id), [])
         for phenotype in SCREENED_PHENOTYPES:
             config = loaded_configs[phenotype]
             patient_signals = evaluate_signals_stage(
@@ -936,6 +958,7 @@ def run_attr_reference_pipeline(
                 patient_id=patient_id,
                 phenotype=phenotype,
                 evaluation_mode=evaluation_mode,
+                birth_date=birth_dates.get(str(patient_id)),
             )
             patient_buckets = evaluate_buckets_stage(
                 config,
@@ -1012,7 +1035,7 @@ def run_attr_reference_pipeline(
         run_id=run_id,
         ehr_records_by_table=rows_by_table,
         source_config=source_config,
-        include_proprietary_trace=True,
+        include_proprietary_trace=include_proprietary_trace,
         profile_suspicion_levels=effective_profile_levels,
     ) if include_profiles else []
     al_detected_profiles = build_al_detected_profiles(
@@ -1028,7 +1051,24 @@ def run_attr_reference_pipeline(
         run_id=run_id,
         ehr_records_by_table=rows_by_table,
         source_config=source_config,
-        include_proprietary_trace=True,
+        include_proprietary_trace=include_proprietary_trace,
+        profile_suspicion_levels=effective_profile_levels,
+    ) if include_profiles else []
+    aa_profiles = build_aa_profiles(
+        router_output,
+        config=extraction_config,
+        source_events=events,
+        evidence_events=evidence,
+        signal_hits=signal_hits,
+        bucket_state=bucket_state,
+        combination_hits=combination_hits,
+        guardrail_hits=guardrail_hits,
+        demographics=demographics,
+        run_id=run_id,
+        ehr_records_by_table=rows_by_table,
+        source_config=source_config,
+        include_proprietary_trace=include_proprietary_trace,
+        profile_suspicion_levels=effective_profile_levels,
     ) if include_profiles else []
     known_profiles = build_known_profiles(
         known_attr.patients,
@@ -1038,7 +1078,7 @@ def run_attr_reference_pipeline(
         demographics=demographics,
         ehr_records_by_table=rows_by_table,
         source_config=source_config,
-        include_proprietary_trace=True,
+        include_proprietary_trace=include_proprietary_trace,
     ) if include_profiles else []
     known_al_profiles = build_known_al_profiles(
         known_al_result.patients,
@@ -1048,10 +1088,11 @@ def run_attr_reference_pipeline(
         demographics=demographics,
         ehr_records_by_table=rows_by_table,
         source_config=source_config,
-        include_proprietary_trace=True,
+        include_proprietary_trace=include_proprietary_trace,
     ) if include_profiles else []
     exports = export_attr_profile_files(profiles, profile_output_dir)
     al_detected_exports = export_al_detected_profile_files(al_detected_profiles, profile_output_dir)
+    aa_exports = export_aa_profile_files(aa_profiles, profile_output_dir)
     known_exports = export_known_profile_files(known_profiles, profile_output_dir)
     known_al_exports = export_known_al_profile_files(known_al_profiles, profile_output_dir)
     if known_al_result.config_gap:
@@ -1074,6 +1115,8 @@ def run_attr_reference_pipeline(
         "patient_profiles": len(profiles),
         "al_detected_profiles": len(al_detected_profiles),
         "al_detected_patients": len(al_detected_profiles),
+        "aa_profiles": len(aa_profiles),
+        "aa_patients": len(aa_profiles),
         "known_attr_profiles": len(known_profiles),
         "known_al_profiles": len(known_al_profiles),
     }
@@ -1106,6 +1149,8 @@ def run_attr_reference_pipeline(
         profile_exports=exports,
         al_detected_profiles=al_detected_profiles,
         al_detected_exports=al_detected_exports,
+        aa_profiles=aa_profiles,
+        aa_exports=aa_exports,
     )
 
 

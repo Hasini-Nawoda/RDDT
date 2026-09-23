@@ -7,7 +7,11 @@ import json
 from dataclasses import asdict, dataclass, field, replace
 from typing import Any, Iterable, Mapping
 
-from ..warehouse.source_schema import default_source_config, is_table_enabled
+from ..warehouse.source_schema import (
+    default_source_config,
+    is_date_enrichment_enabled,
+    is_table_enabled,
+)
 from .extraction_contract import (
     UNKNOWN_DIAGNOSIS_TYPE_POLICY,
     derive_available_date,
@@ -373,6 +377,22 @@ def expand_source_row(
     return value_events
 
 
+def _claim_evidence_key(event: SourceEvent) -> tuple[str, str, str, str, str]:
+    """Identity of one diagnosis on one encounter.
+
+    Repeated claim lines for the same patient, encounter, and code are one
+    clinical fact. Distinct encounters stay separate so a repeated code can
+    still show that the diagnosis was recorded more than once.
+    """
+    return (
+        event.patient_id,
+        event.encounter_id or "",
+        event.code_system or "",
+        event.source_field or "",
+        str(event.code_value or "").strip().upper(),
+    )
+
+
 def iter_source_events(
     rows_by_table: Mapping[str, Iterable[Mapping[str, Any]]],
     *,
@@ -387,14 +407,14 @@ def iter_source_events(
         for table_key, rows in rows_by_table.items()
     }
 
-    # In the all-table profile, an encounter row may be the only reliable date
-    # for an otherwise undated claim.  Join conservatively on both patient and
-    # encounter identifier.  Ambiguous encounter dates remain unknown.  When
-    # the encounter table is disabled (the claims-only profile), no enrichment
-    # occurs even if profile-hydration rows happen to be present.
+    # An encounter row may be the only reliable date for an otherwise undated
+    # claim. Join on patient plus encounter. One date is inherited. Several
+    # dates stay unknown. Enrichment runs when encounters are detection
+    # inputs or an explicit date source. A disabled encounter table with no
+    # date_enrichment flag does not invent dates from profile rows.
     encounter_cfg = cfg.get("tables", {}).get("encounter", {})
     encounter_dates: dict[tuple[str, str], set[Any]] = {}
-    if is_table_enabled(encounter_cfg):
+    if is_table_enabled(encounter_cfg) or is_date_enrichment_enabled(encounter_cfg):
         encounter_columns = encounter_cfg.get("columns", {})
         for row in materialized.get("encounter", ()):
             patient = _value(row, encounter_columns.get("patient_id"), "patient_id")
@@ -408,9 +428,14 @@ def iter_source_events(
                 continue
             encounter_dates.setdefault((str(patient), str(encounter)), set()).add(encounter_date)
 
+    claim_events: dict[tuple[str, str, str, str, str], SourceEvent] = {}
+    claim_counts: dict[tuple[str, str, str, str, str], int] = {}
     for table_key, rows in materialized.items():
-        table_cfg = cfg.get("tables", {}).get(table_key, {})
-        if not is_table_enabled(table_cfg):
+        table_cfg = cfg.get("tables", {}).get(table_key)
+        # Profile-only rows, such as medications, stay on the chart payload.
+        # They are not evidence unless the source profile defines the table
+        # and turns it on.
+        if not isinstance(table_cfg, Mapping) or not is_table_enabled(table_cfg):
             continue
         for row in rows:
             patient = _value(row, table_cfg.get("columns", {}).get("patient_id"), "patient_id")
@@ -445,7 +470,29 @@ def iter_source_events(
                                 "date_enrichment_status": "AMBIGUOUS_ENCOUNTER_DATE",
                             },
                         )
+                if table_key == "claim" and event.code_value not in (None, ""):
+                    key = _claim_evidence_key(event)
+                    claim_counts[key] = claim_counts.get(key, 0) + 1
+                    current = claim_events.get(key)
+                    if current is None or (
+                        current.event_date in (None, "") and event.event_date not in (None, "")
+                    ):
+                        claim_events[key] = event
+                    continue
                 yield event
+    for key in sorted(claim_events):
+        event = claim_events[key]
+        count = claim_counts[key]
+        if count > 1:
+            event = replace(
+                event,
+                attributes={
+                    **dict(event.attributes or {}),
+                    "duplicate_claim_row_count": count,
+                    "claim_evidence_grain": "PATIENT_ENCOUNTER_CODE",
+                },
+            )
+        yield event
 
 
 __all__ = ["SourceEvent", "stable_row_hash", "normalize_source_row", "expand_source_row", "iter_source_events"]

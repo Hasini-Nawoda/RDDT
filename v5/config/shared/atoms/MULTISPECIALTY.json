@@ -77,7 +77,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Sensorineural hearing loss, bilateral"
             },
             {
               "value": "H90.5",
@@ -85,7 +86,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Unspecified sensorineural hearing loss"
             },
             {
               "value": "H91.8X3",
@@ -93,7 +95,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified hearing loss, bilateral"
             },
             {
               "value": "H91.8X9",
@@ -101,7 +104,80 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Bilateral sensorineural hearing loss disproportionate to age'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Other specified hearing loss, unspecified ear"
+            },
+            {
+              "value": "H91.93",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified hearing loss, bilateral"
+            },
+            {
+              "value": "H91.90",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified hearing loss, unspecified ear"
+            },
+            {
+              "value": "H90.42",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sensorineural hearing loss, unilateral, left ear, with unrestricted hearing on the contralateral side"
+            },
+            {
+              "value": "H90.41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sensorineural hearing loss, unilateral, right ear, with unrestricted hearing on the contralateral side"
+            },
+            {
+              "value": "H90.A22",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sensorineural hearing loss, unilateral, left ear, with restricted hearing on the contralateral side"
+            },
+            {
+              "value": "H90.A21",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Sensorineural hearing loss, unilateral, right ear, with restricted hearing on the contralateral side"
+            },
+            {
+              "value": "H91.8X1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified hearing loss, right ear"
+            },
+            {
+              "value": "H91.8X2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified hearing loss, left ear"
+            },
+            {
+              "value": "H90.6",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Mixed conductive and sensorineural hearing loss, bilateral"
             }
           ],
           "SNOMED_CT": [
@@ -193,7 +269,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Systemic involvement of connective tissue, unspecified"
             },
             {
               "value": "R76.0",
@@ -201,7 +278,160 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Require an actual autoimmune diagnosis/disorder. A positive autoantibody or an inflammatory/demyelinating neuropathy pattern alone does not establish systemic autoimmune disease.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Raised antibody titer"
+            },
+            {
+              "value": "M06.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis, unspecified"
+            },
+            {
+              "value": "M05.79",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis with rheumatoid factor of multiple sites without organ or systems involvement"
+            },
+            {
+              "value": "M05.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis with rheumatoid factor, unspecified"
+            },
+            {
+              "value": "M06.09",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Rheumatoid arthritis without rheumatoid factor, multiple sites"
+            },
+            {
+              "value": "M32.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Systemic lupus erythematosus, unspecified"
+            },
+            {
+              "value": "M32.19",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other organ or system involvement in systemic lupus erythematosus"
+            },
+            {
+              "value": "M32.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other forms of systemic lupus erythematosus"
+            },
+            {
+              "value": "M32.14",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Glomerular disease in systemic lupus erythematosus"
+            },
+            {
+              "value": "M35.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Sjogren syndrome, unspecified"
+            },
+            {
+              "value": "M35.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Sjogren syndrome with keratoconjunctivitis"
+            },
+            {
+              "value": "M34.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Systemic sclerosis, unspecified"
+            },
+            {
+              "value": "M34.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "CR(E)ST syndrome"
+            },
+            {
+              "value": "M34.83",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Systemic sclerosis with polyneuropathy"
+            },
+            {
+              "value": "I77.82",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Antineutrophilic cytoplasmic antibody [ANCA] vasculitis"
+            },
+            {
+              "value": "M31.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other giant cell arteritis"
+            },
+            {
+              "value": "M35.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other overlap syndromes"
+            },
+            {
+              "value": "M35.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polymyalgia rheumatica"
+            },
+            {
+              "value": "E06.3",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Autoimmune thyroiditis"
+            },
+            {
+              "value": "R76.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal rheumatoid factor and anti-citrullinated protein antibody without rheumatoid arthritis"
             }
           ],
           "ICD9": [
@@ -288,7 +518,66 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit axonal-neuropathy/polyneuropathy terminology. A bare adjective such as 'axonal' without neuropathy context must not create this atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G63",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy in diseases classified elsewhere"
+            },
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            },
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic progressive neuropathy"
+            },
+            {
+              "value": "G62.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Drug-induced polyneuropathy"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "axonal neuropathy",
@@ -453,7 +742,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus without complications"
             },
             {
               "value": "E11.42",
@@ -461,7 +751,128 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match diabetes diagnoses/terminology only. HbA1c values, neuropathy progression, ataxia, or phenotype mismatch must not independently create a diabetes atom.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E11.65",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with hyperglycemia"
+            },
+            {
+              "value": "E11.69",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with other specified complication"
+            },
+            {
+              "value": "E11.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic neuropathy, unspecified"
+            },
+            {
+              "value": "E11.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with unspecified complications"
+            },
+            {
+              "value": "E11.49",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with other diabetic neurological complication"
+            },
+            {
+              "value": "E11.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "E11.41",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic mononeuropathy"
+            },
+            {
+              "value": "E10.9",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus without complications"
+            },
+            {
+              "value": "E10.65",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with hyperglycemia"
+            },
+            {
+              "value": "E10.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E10.43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic autonomic (poly)neuropathy"
+            },
+            {
+              "value": "E10.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Type 1 diabetes mellitus with diabetic neuropathy, unspecified"
+            },
+            {
+              "value": "E13.42",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified diabetes mellitus with diabetic polyneuropathy"
+            },
+            {
+              "value": "E13.40",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Other specified diabetes mellitus with diabetic neuropathy, unspecified"
+            },
+            {
+              "value": "E11.22",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Type 2 diabetes mellitus with diabetic chronic kidney disease"
             }
           ],
           "ICD9": [
@@ -587,7 +998,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match only the canonical clinical concept 'Elevated serum uric acid'. Do not broaden to related but clinically distinct findings.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease"
             }
           ],
           "SNOMED_CT": [
@@ -656,7 +1068,24 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Supportive family-history signal only. Require a first- or second-degree relative with adult-onset progressive unexplained neuropathy; do not infer ATTR or a pathogenic TTR variant from this history.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Family history of epilepsy and other diseases of the nervous system"
+            },
+            {
+              "value": "Z84.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Family history of carrier of genetic disease"
+            },
+            {
+              "value": "Z84.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Family history of other specified conditions"
             }
           ],
           "ICD9": [
@@ -744,7 +1173,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Family history of other endocrine, nutritional and metabolic diseases"
             },
             {
               "value": "Z15.89",
@@ -752,7 +1182,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Genetic susceptibility to other disease"
             },
             {
               "value": "Z14.8",
@@ -760,7 +1191,48 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "FAMILY_MEMBER experiencer is mandatory. Generic patient-level TTR/ATTR genetic terminology must not satisfy this atom unless the phrase is attributed to a relative with established ATTR/TTR disease or a pathogenic TTR result.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Genetic carrier of other disease"
+            },
+            {
+              "value": "Z84.81",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Family history of carrier of genetic disease"
+            },
+            {
+              "value": "Z84.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Family history of other specified conditions"
+            },
+            {
+              "value": "E85.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "E85.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Non-neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "E85.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Heredofamilial amyloidosis, unspecified"
             }
           ],
           "ICD9": [
@@ -899,7 +1371,58 @@
       "experiencer": "PATIENT",
       "context_guard": "Require neuropathy-anchored progressive/idiopathic wording. Generic 'rapidly progressive', 'deteriorating', or 'cryptogenic' language without neuropathy context must not create this atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G60.3",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Idiopathic progressive neuropathy"
+            },
+            {
+              "value": "G62.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy, unspecified"
+            },
+            {
+              "value": "G62.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other specified polyneuropathies"
+            },
+            {
+              "value": "G60.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Hereditary and idiopathic neuropathy, unspecified"
+            },
+            {
+              "value": "G60.8",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other hereditary and idiopathic neuropathies"
+            },
+            {
+              "value": "G63",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Polyneuropathy in diseases classified elsewhere"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "cryptogenic polyneuropathy",
@@ -1040,6 +1563,32 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "M48.061",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, lumbar region without neurogenic claudication"
+            },
+            {
+              "value": "M48.062",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, lumbar region with neurogenic claudication"
+            },
+            {
+              "value": "M48.00",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, site unspecified"
+            }
           ]
         },
         "nlp_terms": [
@@ -1117,6 +1666,72 @@
               "mapping_role": "SUPPORTING",
               "match_mode": "EXACT"
             }
+          ],
+          "ICD10": [
+            {
+              "value": "R93.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal findings on diagnostic imaging of heart and coronary circulation"
+            },
+            {
+              "value": "R93.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Abnormal findings on diagnostic imaging of other specified body structures"
+            },
+            {
+              "value": "E85.82",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Wild-type transthyretin-related (ATTR) amyloidosis"
+            },
+            {
+              "value": "E85.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "E85.4",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Organ-limited amyloidosis"
+            },
+            {
+              "value": "E85.81",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Light chain (AL) amyloidosis"
+            },
+            {
+              "value": "E85.9",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Amyloidosis, unspecified"
+            },
+            {
+              "value": "E85.89",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Other amyloidosis"
+            }
           ]
         },
         "nlp_terms": [
@@ -1186,7 +1801,130 @@
       "experiencer": "PATIENT",
       "context_guard": "Require explicit temporal linkage between an orthopedic prodrome and later cardiac disease. A single biceps rupture, lumbar decompression, or carpal-tunnel procedure alone must not create the trajectory atom.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "G56.03",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Carpal tunnel syndrome, bilateral upper limbs"
+            },
+            {
+              "value": "G56.01",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Carpal tunnel syndrome, right upper limb"
+            },
+            {
+              "value": "G56.02",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Carpal tunnel syndrome, left upper limb"
+            },
+            {
+              "value": "M48.061",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, lumbar region without neurogenic claudication"
+            },
+            {
+              "value": "M48.062",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, lumbar region with neurogenic claudication"
+            },
+            {
+              "value": "M48.02",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Spinal stenosis, cervical region"
+            },
+            {
+              "value": "M65.30",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger finger, unspecified finger"
+            },
+            {
+              "value": "M65.311",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger thumb, right thumb"
+            },
+            {
+              "value": "M65.312",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger thumb, left thumb"
+            },
+            {
+              "value": "M65.331",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger finger, right middle finger"
+            },
+            {
+              "value": "M65.332",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger finger, left middle finger"
+            },
+            {
+              "value": "M65.341",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger finger, right ring finger"
+            },
+            {
+              "value": "M65.342",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Trigger finger, left ring finger"
+            },
+            {
+              "value": "M75.101",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified rotator cuff tear or rupture of right shoulder, not specified as traumatic"
+            },
+            {
+              "value": "M75.102",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified rotator cuff tear or rupture of left shoulder, not specified as traumatic"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "biceps rupture followed years later by cardiac disease",
@@ -1231,7 +1969,50 @@
       "clinical_meaning": "Documented pathogenic or likely pathogenic TTR variant in the patient from a prior independent molecular result; carrier status alone does not establish symptomatic ATTRv.",
       "context_guard": "Accept common hereditary-TTR nomenclature and variant spellings, but do not trigger from generic 'TTR', 'transthyretin', or generic 'ATTR' alone, a test order, pending/negative result, VUS, or family-member result. Require a patient-level pathogenic/likely pathogenic result from an independent molecular source; disease-name phrases remain retrieval evidence until provenance confirms the result.",
       "extraction": {
-        "codes": {},
+        "codes": {
+          "ICD10": [
+            {
+              "value": "Z15.89",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Genetic susceptibility to other disease"
+            },
+            {
+              "value": "Z14.8",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Genetic carrier of other disease"
+            },
+            {
+              "value": "E85.1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "E85.0",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Non-neuropathic heredofamilial amyloidosis"
+            },
+            {
+              "value": "E85.2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Heredofamilial amyloidosis, unspecified"
+            }
+          ]
+        },
         "nlp_terms": [
           {
             "value": "TTR mutation positive",
@@ -1312,7 +2093,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Abnormal weight loss"
             },
             {
               "value": "R64",
@@ -1320,7 +2102,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Cachexia"
             },
             {
               "value": "F50.00",
@@ -1328,7 +2111,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, unspecified"
             },
             {
               "value": "F50.010",
@@ -1336,7 +2120,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, mild"
             },
             {
               "value": "F50.011",
@@ -1344,7 +2129,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, moderate"
             },
             {
               "value": "F50.012",
@@ -1352,7 +2138,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, severe"
             },
             {
               "value": "F50.013",
@@ -1360,7 +2147,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, extreme"
             },
             {
               "value": "F50.014",
@@ -1368,7 +2156,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, in remission"
             },
             {
               "value": "F50.019",
@@ -1376,7 +2165,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, restricting type, unspecified"
             },
             {
               "value": "F50.020",
@@ -1384,7 +2174,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, mild"
             },
             {
               "value": "F50.021",
@@ -1392,7 +2183,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, moderate"
             },
             {
               "value": "F50.022",
@@ -1400,7 +2192,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, severe"
             },
             {
               "value": "F50.023",
@@ -1408,7 +2201,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, extreme"
             },
             {
               "value": "F50.024",
@@ -1416,7 +2210,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, in remission"
             },
             {
               "value": "F50.029",
@@ -1424,7 +2219,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Anorexia nervosa, binge eating/purging type, unspecified"
             },
             {
               "value": "K31.84",
@@ -1432,7 +2228,64 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Match involuntary/unexplained weight-loss language. Eating-disorder diagnoses themselves must not be converted into unintentional weight loss; intentional weight loss or a clear competing cause should not qualify.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Gastroparesis"
+            },
+            {
+              "value": "R63.6",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Underweight"
+            },
+            {
+              "value": "R63.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Anorexia"
+            },
+            {
+              "value": "E43",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified severe protein-calorie malnutrition"
+            },
+            {
+              "value": "E46",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified protein-calorie malnutrition"
+            },
+            {
+              "value": "E44.0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Moderate protein-calorie malnutrition"
+            },
+            {
+              "value": "E41",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Nutritional marasmus"
+            },
+            {
+              "value": "M62.50",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Muscle wasting and atrophy, not elsewhere classified, unspecified site"
             }
           ],
           "ICD9": [
@@ -1625,7 +2478,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presbycusis, unspecified ear"
             },
             {
               "value": "H91.13",
@@ -1633,7 +2487,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Presbycusis, bilateral"
             },
             {
               "value": "H83.3X3",
@@ -1641,7 +2496,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Noise effects on inner ear, bilateral"
             },
             {
               "value": "H83.3X9",
@@ -1649,7 +2505,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Noise effects on inner ear, unspecified ear"
             },
             {
               "value": "H91.03",
@@ -1657,7 +2514,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Ototoxic hearing loss, bilateral"
             },
             {
               "value": "H91.09",
@@ -1665,7 +2523,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Ototoxic hearing loss, unspecified ear"
             },
             {
               "value": "H81.03",
@@ -1673,7 +2532,8 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Meniere's disease, bilateral"
             },
             {
               "value": "H81.09",
@@ -1681,7 +2541,104 @@
               "review_status": "SOURCE_CANDIDATE",
               "context_guard": "Use only as a documented competing explanation; it must be clearly established and sufficiently explanatory before it can block/down-weight a signal.",
               "mapping_role": "DIRECT_TARGET",
-              "match_mode": "EXACT"
+              "match_mode": "EXACT",
+              "display_name": "Meniere's disease, unspecified ear"
+            },
+            {
+              "value": "H91.11",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Presbycusis, right ear"
+            },
+            {
+              "value": "H91.12",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Presbycusis, left ear"
+            },
+            {
+              "value": "H91.00",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "H91.00 [no 2026 description]"
+            },
+            {
+              "value": "H91.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ototoxic hearing loss, right ear"
+            },
+            {
+              "value": "H91.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Ototoxic hearing loss, left ear"
+            },
+            {
+              "value": "H83.3X1",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Noise effects on right inner ear"
+            },
+            {
+              "value": "H83.3X2",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Noise effects on left inner ear"
+            },
+            {
+              "value": "H83.3X0",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "H83.3X0 [no 2026 description]"
+            },
+            {
+              "value": "H81.01",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Meniere's disease, right ear"
+            },
+            {
+              "value": "H81.02",
+              "can_fire_atom_alone": true,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "DIRECT_TARGET",
+              "match_mode": "EXACT",
+              "display_name": "Meniere's disease, left ear"
+            },
+            {
+              "value": "H91.90",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified hearing loss, unspecified ear"
+            },
+            {
+              "value": "H91.93",
+              "can_fire_atom_alone": false,
+              "review_status": "WAREHOUSE_REVIEWED",
+              "mapping_role": "PROXY_SUPPORT",
+              "match_mode": "EXACT",
+              "display_name": "Unspecified hearing loss, bilateral"
             }
           ],
           "SNOMED_CT": [

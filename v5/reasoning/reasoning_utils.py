@@ -10,6 +10,7 @@ from dataclasses import asdict, is_dataclass
 from enum import Enum
 from hashlib import sha256
 import json
+import weakref
 from typing import Any, Iterable, Mapping, Sequence
 
 
@@ -95,6 +96,41 @@ def rows(config: Any, name: str) -> list[Any]:
                 got = tables[candidate]
                 return list(got.values()) if isinstance(got, Mapping) else list(got)
     return []
+
+
+_GROUPED_ROWS: dict[int, tuple[weakref.ref, dict[tuple[str, str], dict[str, list[Any]]]]] = {}
+
+
+def grouped_rows(config: Any, table: str, key_field: str) -> dict[str, list[Any]]:
+    """Index one config table by a field, once per config object.
+
+    Signal and combination lookup used to copy the whole table for every
+    patient. The grouped lists keep workbook order. Config objects are not
+    hashed: a phenotype package compares equal by value and cannot be a
+    dictionary key.
+    """
+    cache_key = (table, key_field)
+    per_config: dict[tuple[str, str], dict[str, list[Any]]] | None = None
+    try:
+        holder = weakref.ref(config)
+    except TypeError:
+        holder = None
+    if holder is not None:
+        slot = _GROUPED_ROWS.get(id(config))
+        if slot is not None and slot[0]() is config:
+            per_config = slot[1]
+        else:
+            per_config = {}
+            _GROUPED_ROWS[id(config)] = (holder, per_config)
+        grouped = per_config.get(cache_key)
+        if grouped is not None:
+            return grouped
+    grouped = {}
+    for row in rows(config, table):
+        grouped.setdefault(str(value(row, key_field, "")), []).append(row)
+    if per_config is not None:
+        per_config[cache_key] = grouped
+    return grouped
 
 
 def configured_phenotype(config: Any, requested: str | None = None) -> str:

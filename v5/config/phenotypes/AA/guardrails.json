@@ -1,0 +1,59 @@
+{
+  "phenotype": "AA",
+  "guardrails": [
+    {
+      "guardrail_id": "AA25_CARDIAC_NOT_AA",
+      "enabled": true,
+      "rule_ref": "AA25",
+      "action": "ROUTE_ONLY",
+      "route": "ATTR_OR_AL_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "Cardiac findings in an inflammatory patient route toward AL or ATTR. Cardiac disease alone must not create an AA flag, and an AA driver does not prove the amyloid is AA."
+    },
+    {
+      "guardrail_id": "AA26_FMF_PROTEINURIA_UNRESOLVED",
+      "enabled": true,
+      "rule_ref": "AA26",
+      "action": "ROUTE_ONLY",
+      "route": "RENAL_CAUSE_UNRESOLVED",
+      "does_not_negate_attrv": true,
+      "message": "FMF plus proteinuria raises AA suspicion and leaves the renal cause unresolved. It never confirms AA."
+    },
+    {
+      "guardrail_id": "AA27_ACTIVE_SEDIMENT",
+      "enabled": true,
+      "rule_ref": "AA27",
+      "action": "ROUTE_ONLY",
+      "route": "NEPHROLOGY_REVIEW",
+      "does_not_negate_attrv": true,
+      "message": "Active sediment reduces certainty and does not exclude AA. Bland sediment does not confirm AA."
+    },
+    {
+      "guardrail_id": "AA28_MONOCLONAL_SUBTYPE_UNRESOLVED",
+      "enabled": true,
+      "rule_ref": "AA28",
+      "action": "ROUTE_ONLY",
+      "route": "AL_WORKUP",
+      "does_not_negate_attrv": true,
+      "message": "A monoclonal protein requires an AL work-up and leaves the amyloid subtype unresolved. It does not remove AA when inflammatory evidence is present."
+    },
+    {
+      "guardrail_id": "AA29_ATTR_ORTHOPEDIC_TRAJECTORY",
+      "enabled": true,
+      "rule_ref": "AA29",
+      "action": "ROUTE_ONLY",
+      "route": "ATTR_EVALUATION",
+      "does_not_negate_attrv": true,
+      "message": "An orthopedic prodrome plus cardiac disease routes toward ATTR unless a dominant inflammatory and renal AA pattern is present."
+    },
+    {
+      "guardrail_id": "AA30_NO_CODED_DRIVER",
+      "enabled": true,
+      "rule_ref": "AA30",
+      "action": "ROUTE_ONLY",
+      "route": "SEARCH_FOR_DRIVER",
+      "does_not_negate_attrv": true,
+      "message": "No coded inflammatory driver weakly argues against AA and is never a hard exclusion. Absence of a code is not documented absence."
+    }
+  ]
+}
